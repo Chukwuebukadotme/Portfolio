@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="description" content="Chukwuebuka Onyemelukwe — Design Engineer × AI Engineer based in the United Kingdom. Product engineering, product design, AI engineering and web engineering.">
+<meta name="theme-color" content="#FFFFFF">
+<meta property="og:title" content="Chukwuebuka Onyemelukwe — Design Engineer × AI Engineer">
+<meta property="og:description" content="I design and engineer digital products that make complex work simpler.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&amp;family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<script src="./video-slot.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body, body[data-theme="dark"] {
+    --bg: #0E172A; --bg-2: #09111F; --bg-blur: rgba(14,23,42,.86);
+    --ink: #F4F1EA; --ink-2: #94A3B8; --accent: #22D3EE; --on-inv: #09111F;
+    --r14: rgba(148,163,184,.14); --r16: rgba(148,163,184,.16); --r18: rgba(148,163,184,.18);
+    --r22: rgba(148,163,184,.22); --r24: rgba(148,163,184,.24); --r30: rgba(148,163,184,.3);
+    --r34: rgba(148,163,184,.34);
+    --acc40: rgba(34,211,238,.4); --acc35: rgba(34,211,238,.35);
+  }
+  body[data-theme="light"] {
+    --bg: #FFFFFF; --bg-2: #F1F4F7; --bg-blur: rgba(255,255,255,.88);
+    --ink: #0F172A; --ink-2: #4B5768; --accent: #0B6E82; --on-inv: #FFFFFF;
+    --r14: rgba(16,26,44,.14); --r16: rgba(16,26,44,.17); --r18: rgba(16,26,44,.19);
+    --r22: rgba(16,26,44,.22); --r24: rgba(16,26,44,.24); --r30: rgba(16,26,44,.3);
+    --r34: rgba(16,26,44,.34);
+    --acc40: rgba(11,110,130,.45); --acc35: rgba(11,110,130,.4);
+  }
+  body {
+    transition: background-color .35s ease, color .35s ease;
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--ink); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  ::selection { background: var(--accent); color: var(--on-inv); }
+  h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  @keyframes wordIn {
+    from { transform: translateY(0.9em); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  @keyframes drawLine { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  [data-figleft] { order: 0; }
+  @media (min-width: 760px) { [data-figleft] { order: -1; } }
+  [data-nav="narrow"] { display: none; }
+  @media (max-width: 1000px) { [data-theme-label] { display: none; } }
+  @media (max-width: 759px) {
+    [data-nav="wide"] { display: none; }
+    [data-nav="narrow"] { display: block; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+</style>
+</helmet>
+
+<a href="#main" style="position:absolute;left:-9999px;top:0;padding:10px 16px;background:var(--accent);color:var(--on-inv);font-family:'IBM Plex Mono',monospace;font-size:12px;z-index:99" style-focus="left:12px;top:12px">Skip to content</a>
+
+<header style="position:sticky;top:0;z-index:40;background:var(--bg-blur);backdrop-filter:blur(14px);border-bottom:1px solid var(--r16)">
+  <div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,72px);height:64px;display:flex;align-items:center;justify-content:space-between;gap:20px">
+    <a href="#/" onClick="{{ goHome }}" aria-label="Chukwuebuka Onyemelukwe — home" style="display:flex;align-items:baseline;gap:10px;color:var(--ink)">
+      <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:19px;letter-spacing:-.02em">CO</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--ink-2)">DESIGN ENG × AI ENG</span>
+    </a>
+    <div data-nav="wide">
+      <nav aria-label="Primary" style="display:flex;align-items:center;flex-wrap:nowrap;gap:clamp(14px,1.8vw,30px)">
+        <a href="#/work" onClick="{{ goWork }}" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:{{ cWork }}" style-hover="color:var(--ink)">Work</a>
+        <a href="#/about" onClick="{{ goAbout }}" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:{{ cAbout }}" style-hover="color:var(--ink)">About</a>
+        <a href="{{ resumeUrl }}" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap" style-hover="color:var(--ink)">Résumé <span style="color:var(--accent)">↗</span></a>
+        <button type="button" onClick="{{ toggleTheme }}" aria-pressed="{{ isLight }}" title="{{ themeTitle }}" style="display:flex;align-items:center;gap:8px;background:none;border:1px solid var(--r30);padding:7px 12px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);cursor:pointer;white-space:nowrap;flex:none" style-hover="color:var(--ink);border-color:var(--ink)">
+          <span style="width:7px;height:7px;border:1px solid var(--accent);background:{{ themeDot }};border-radius:50%;flex:none"></span><span data-theme-label="">{{ themeLabel }}</span>
+        </button>
+        <a href="#/contact" onClick="{{ goContact }}" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-inv);background:var(--accent);padding:8px 16px" style-hover="background:var(--ink)">Contact</a>
+      </nav>
+    </div>
+    <div data-nav="narrow">
+      <button type="button" onClick="{{ toggleMenu }}" aria-expanded="{{ menuOpen }}" style="background:none;border:1px solid var(--r30);padding:9px 14px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);cursor:pointer">{{ menuLabel }}</button>
+    </div>
+  </div>
+</header>
+
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+  <nav aria-label="Mobile" style="position:fixed;inset:64px 0 0 0;z-index:39;background:var(--bg-2);padding:clamp(28px,7vw,56px);display:flex;flex-direction:column;justify-content:space-between">
+    <ul style="display:flex;flex-direction:column;gap:6px">
+      <li style="border-top:1px solid var(--r18);padding:18px 0"><a href="#/work" onClick="{{ goWork }}" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,10vw,44px);letter-spacing:-.03em;color:var(--ink)">Work</a></li>
+      <li style="border-top:1px solid var(--r18);padding:18px 0"><a href="#/about" onClick="{{ goAbout }}" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,10vw,44px);letter-spacing:-.03em;color:var(--ink)">About</a></li>
+      <li style="border-top:1px solid var(--r18);padding:18px 0"><a href="{{ resumeUrl }}" target="_blank" rel="noopener" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,10vw,44px);letter-spacing:-.03em;color:var(--ink)">Résumé ↗</a></li>
+      <li style="border-top:1px solid var(--r18);border-bottom:1px solid var(--r18);padding:18px 0"><a href="#/contact" onClick="{{ goContact }}" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,10vw,44px);letter-spacing:-.03em;color:var(--accent)">Contact</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)">UK Based · Open to permanent UK roles</p>
+      <button type="button" onClick="{{ toggleTheme }}" aria-pressed="{{ isLight }}" style="display:flex;align-items:center;gap:8px;background:none;border:1px solid var(--r30);padding:9px 14px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);cursor:pointer">
+        <span style="width:7px;height:7px;border:1px solid var(--accent);background:{{ themeDot }};border-radius:50%;flex:none"></span>{{ themeLabel }}
+      </button>
+    </div>
+  </nav>
+</sc-if>
+
+<main id="main">
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<div>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(48px,8vw,104px) clamp(20px,5vw,72px) clamp(40px,6vw,80px);min-height:calc(100svh - 76px);display:flex;flex-direction:column;justify-content:center" data-comment-anchor="9980c34b83-section">
+    
+
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,72px)">
+      <h1 style="flex:1 1 min(100%,640px);font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(38px,7.4vw,92px);line-height:.98;letter-spacing:-.035em;color:var(--ink);text-wrap:balance">
+        I design and engineer <span style="display:inline-block;overflow:hidden;vertical-align:bottom">{{ rotEl }}</span> that make complex work simpler.
+      </h1>
+      <div style="flex:0 1 min(100%,420px);display:flex;flex-direction:column;gap:clamp(24px,3vw,36px);align-self:flex-end">
+        <p style="font-size:clamp(16px,1.2vw,18px);line-height:1.62;color:var(--ink-2);max-width:42ch">I’m naturally curious about how things work and how they could work better. I combine product thinking, design and engineering to build fast, usable and durable websites, applications and intelligent systems.</p>
+        <div style="display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:12px">
+          <a href="#selected-work" onClick="{{ scrollWork }}" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-inv);background:var(--accent);padding:14px 18px;white-space:nowrap" style-hover="background:var(--ink)">Explore Selected Work ↓</a>
+          <a href="{{ resumeUrl }}" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);border:1px solid var(--r34);padding:14px 18px;white-space:nowrap" style-hover="border-color:var(--accent);color:var(--accent)">View Résumé ↗</a>
+        </div>
+        <p style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">
+          <span style="width:6px;height:6px;background:var(--accent);border-radius:50%;flex:none"></span>UK based · Open to permanent UK roles
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Professional proof" style="border-top:1px solid var(--r16);border-bottom:1px solid var(--r16);background:var(--bg-2)">
+    <dl style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,72px);display:flex;flex-wrap:wrap">
+      <div data-reveal="1" style="flex:1 1 min(100%,220px);padding:clamp(28px,4vw,44px) clamp(18px,2.4vw,32px) clamp(28px,4vw,44px) 0;border-right:1px solid var(--r14)">
+        <dt style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(40px,5vw,64px);line-height:1;letter-spacing:-.04em;color:var(--ink)">5+</dt>
+        <dd style="margin:12px 0 0;font-size:15px;line-height:1.5;color:var(--ink-2);max-width:24ch">Years across design, AI &amp; engineering</dd>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,220px);padding:clamp(28px,4vw,44px) clamp(18px,2.4vw,32px);border-right:1px solid var(--r14)">
+        <dt style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(40px,5vw,64px);line-height:1;letter-spacing:-.04em;color:var(--ink)">20+</dt>
+        <dd style="margin:12px 0 0;font-size:15px;line-height:1.5;color:var(--ink-2);max-width:24ch">Projects across product, web &amp; AI</dd>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,220px);padding:clamp(28px,4vw,44px) clamp(18px,2.4vw,32px);border-right:1px solid var(--r14)">
+        <dt style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(40px,5vw,64px);line-height:1;letter-spacing:-.04em;color:var(--accent)">UK</dt>
+        <dd style="margin:12px 0 0;font-size:15px;line-height:1.5;color:var(--ink-2);max-width:24ch">Based in the United Kingdom</dd>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,220px);padding:clamp(28px,4vw,44px) 0 clamp(28px,4vw,44px) clamp(18px,2.4vw,32px)">
+        <dt style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(40px,5vw,64px);line-height:1;letter-spacing:-.04em;color:var(--ink)">Global</dt>
+        <dd style="margin:12px 0 0;font-size:15px;line-height:1.5;color:var(--ink-2);max-width:26ch">Available for remote collaboration</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section id="selected-work" style="max-width:1440px;margin:0 auto;padding:clamp(64px,9vw,132px) clamp(20px,5vw,72px) clamp(32px,4vw,56px)">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,72px);align-items:flex-end">
+      <div style="flex:1 1 min(100%,560px)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:clamp(20px,3vw,32px)">Selected Work / 01—03</p>
+        <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,4.6vw,60px);line-height:1.02;letter-spacing:-.032em;color:var(--ink);text-wrap:balance">Designed with intent.<br>Built to solve real problems.</h2>
+      </div>
+      <p style="flex:0 1 min(100%,340px);font-size:clamp(15px,1.1vw,17px);line-height:1.62;color:var(--ink-2);max-width:40ch">Selected digital products across financial technology, construction technology and healthcare.</p>
+    </div>
+  </section>
+
+  <article style="max-width:1440px;margin:0 auto;padding:clamp(32px,5vw,64px) clamp(20px,5vw,72px);border-top:1px solid var(--r16)">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+      <div data-reveal="1" style="flex:1 1 min(100%,400px)">
+        <div style="display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;margin-bottom:clamp(20px,3vw,30px)">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--ink-2)">01</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);border:1px solid var(--acc40);padding:4px 9px">Fintech</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)">BudgetView</span>
+          
+        </div>
+        <a href="#/work/budgetview" style="display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(28px,3.8vw,50px);line-height:1.04;letter-spacing:-.03em;color:var(--ink);max-width:22ch" style-hover="color:var(--accent)">See where the month is going before the money does.</a>
+        <p style="margin-top:clamp(20px,3vw,28px);font-size:clamp(15px,1.1vw,17px);line-height:1.62;color:var(--ink-2);max-width:48ch">BudgetView brings transactions, bills, subscriptions and budgets from multiple accounts into one clear monthly financial plan.</p>
+        <dl style="margin:clamp(24px,3.4vw,36px) 0 0;display:flex;flex-wrap:wrap;gap:20px 44px;border-top:1px solid var(--r16);padding-top:20px">
+          <div><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Role</dt><dd style="margin:8px 0 0;font-size:15px;color:var(--ink)">Design Engineer / Product Engineer</dd></div>
+          <div><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Stack</dt><dd style="margin:8px 0 0;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-2)">Next.js · Python · FastAPI · Figma · AI</dd></div>
+        </dl>
+        <a href="#/work/budgetview" style="display:inline-block;margin-top:clamp(24px,3vw,32px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--acc40);padding-bottom:4px" style-hover="color:var(--ink);border-color:var(--ink)">Read case study →</a>
+      </div>
+      <figure data-reveal="1" data-figleft="" style="flex:0 1 min(100%,380px);max-width:380px;display:flex;flex-direction:column;gap:clamp(16px,2vw,22px)">
+        <div style="aspect-ratio:4/3;border:1px solid var(--r16);background:var(--bg-2)">
+          <video-slot id="home-bv-anim"></video-slot>
+        </div>
+        
+        
+      </figure>
+    </div>
+  </article>
+
+  <article style="max-width:1440px;margin:0 auto;padding:clamp(32px,5vw,64px) clamp(20px,5vw,72px);border-top:1px solid var(--r16)">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+      <div data-reveal="1" style="flex:1 1 min(100%,400px)">
+        <div style="display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;margin-bottom:clamp(20px,3vw,30px)">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--ink-2)">02</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);border:1px solid var(--acc40);padding:4px 9px">Construction Tech</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)">SiteResolve</span>
+        </div>
+        <a href="#/work/siteresolve" style="display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,4.4vw,58px);line-height:1.02;letter-spacing:-.032em;color:var(--ink);max-width:22ch" style-hover="color:var(--accent)">Construction defects should end in resolution, not paperwork.</a>
+        <p style="margin-top:clamp(20px,3vw,28px);font-size:clamp(15px,1.1vw,17px);line-height:1.62;color:var(--ink-2);max-width:52ch">SiteResolve connects defect management, snagging, inspections, documentation and task coordination through one traceable workflow.</p>
+        <dl style="margin:clamp(24px,3.4vw,36px) 0 0;display:flex;flex-wrap:wrap;gap:20px 44px;border-top:1px solid var(--r16);padding-top:20px">
+          <div><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Role</dt><dd style="margin:8px 0 0;font-size:15px;color:var(--ink)">Design Engineer / Product Engineer</dd></div>
+          <div><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Stack</dt><dd style="margin:8px 0 0;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-2)">Next.js · TypeScript · Python · FastAPI · Figma · AI</dd></div>
+          <div><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Also</dt><dd style="margin:8px 0 0;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-2)">Product Research · UI/UX · Brand Expression · Content</dd></div>
+        </dl>
+        <a href="#/work/siteresolve" style="display:inline-block;margin-top:clamp(24px,3vw,32px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--acc40);padding-bottom:4px" style-hover="color:var(--ink);border-color:var(--ink)">Read case study →</a>
+      </div>
+      <figure data-reveal="1" data-figleft="" style="flex:0 1 min(100%,380px);max-width:380px;display:flex;flex-direction:column;gap:clamp(16px,2vw,22px)">
+        <div style="aspect-ratio:4/3;border:1px solid var(--r16);background:var(--bg-2)">
+          <video-slot id="home-sr-anim"></video-slot>
+        </div>
+        
+      </figure>
+    </div>
+  </article>
+
+  <article style="max-width:1440px;margin:0 auto;padding:clamp(32px,5vw,64px) clamp(20px,5vw,72px) clamp(64px,8vw,110px);border-top:1px solid var(--r16)">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+      <figure data-reveal="1" data-figleft="" style="flex:0 1 min(100%,380px);max-width:380px;display:flex;flex-direction:column;gap:clamp(16px,2vw,22px)">
+        <div style="aspect-ratio:4/3;border:1px solid var(--r16);background:var(--bg-2)">
+          <video-slot id="home-rv-anim"></video-slot>
+        </div>
+        
+        
+      </figure>
+      <div data-reveal="1" style="flex:1 1 min(100%,400px)">
+        <div style="display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;margin-bottom:clamp(20px,3vw,30px)">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--ink-2)">03</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);border:1px solid var(--acc40);padding:4px 9px">Healthtech</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)">ReferralView</span>
+        </div>
+        <a href="#/work/referralview" style="display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,4.4vw,58px);line-height:1.02;letter-spacing:-.032em;color:var(--ink);max-width:20ch" style-hover="color:var(--accent)">Every referral. Every step. One clear timeline.</a>
+        <p style="margin-top:clamp(20px,3vw,28px);font-size:clamp(15px,1.1vw,17px);line-height:1.62;color:var(--ink-2);max-width:52ch">ReferralView brings referrals, appointments, documents, updates and actions into one comprehensive timeline so teams can understand exactly where each case stands.</p>
+        <dl style="margin:clamp(24px,3.4vw,36px) 0 0;display:flex;flex-wrap:wrap;gap:20px 44px;border-top:1px solid var(--r16);padding-top:20px">
+          <div><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Role</dt><dd style="margin:8px 0 0;font-size:15px;color:var(--ink)">Product Designer / Design Engineer</dd></div>
+          <div><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Stack</dt><dd style="margin:8px 0 0;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-2)">Next.js · TypeScript · Figma · AI</dd></div>
+        </dl>
+        <a href="#/work/referralview" style="display:inline-block;margin-top:clamp(24px,3vw,32px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--acc40);padding-bottom:4px" style-hover="color:var(--ink);border-color:var(--ink)">Read case study →</a>
+      </div>
+    </div>
+  </article>
+
+  <section style="background:var(--bg-2);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16)">
+    <div style="max-width: 1440px; margin: 0 auto; padding: clamp(48px,6vw,88px) clamp(20px,5vw,72px); display: none">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:clamp(24px,3vw,36px)">Common thread</p>
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(24px,3vw,48px)">
+        <p data-reveal="1" style="flex:1 1 min(100%,240px);font-size:clamp(15px,1.1vw,17px);line-height:1.6;color:var(--ink-2)"><strong style="color:var(--ink);font-weight:600">BudgetView</strong><br>Financial complexity <span style="color:var(--accent)">→</span> clarity</p>
+        <p data-reveal="1" style="flex:1 1 min(100%,240px);font-size:clamp(15px,1.1vw,17px);line-height:1.6;color:var(--ink-2)"><strong style="color:var(--ink);font-weight:600">SiteResolve</strong><br>Construction complexity <span style="color:var(--accent)">→</span> traceable resolution</p>
+        <p data-reveal="1" style="flex:1 1 min(100%,240px);font-size:clamp(15px,1.1vw,17px);line-height:1.6;color:var(--ink-2)"><strong style="color:var(--ink);font-weight:600">ReferralView</strong><br>Healthcare workflow complexity <span style="color:var(--accent)">→</span> one comprehensible timeline</p>
+      </div>
+      <p data-reveal="1" style="margin-top:clamp(36px,4.5vw,64px);font-family:'Bricolage Grotesque',sans-serif;font-weight:400;font-size:clamp(22px,2.6vw,34px);line-height:1.22;letter-spacing:-.02em;color:var(--ink);max-width:26ch">I make complicated systems easier to understand and operate.</p>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,120px) clamp(20px,5vw,72px)">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:clamp(20px,3vw,32px)">Capabilities</p>
+    <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,4.4vw,58px);line-height:1.02;letter-spacing:-.032em;color:var(--ink);max-width:24ch;margin-bottom:clamp(40px,5vw,72px)">From ambiguous problems to working products.</h2>
+    <div style="display:flex;flex-direction:column">
+      <div data-reveal="1" onMouseEnter="{{ capEnter0 }}" onMouseLeave="{{ capLeave }}" style="position:relative;display:flex;flex-wrap:wrap;align-items:baseline;gap:12px clamp(24px,4vw,64px);border-top:1px solid var(--r16);padding:clamp(24px,3vw,36px) clamp(16px,2vw,28px);margin:0 calc(-1 * clamp(16px,2vw,28px));transition:background .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s cubic-bezier(.2,.7,.2,1);background:{{ capBg0 }};box-shadow:{{ capShadow0 }}">
+        <span style="flex:none;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;width:34px;transition:color .35s ease;color:{{ capNum0 }}">01</span>
+        <h3 style="flex:1 1 min(100%,240px);max-width:280px;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(20px,2.1vw,28px);letter-spacing:-.02em;color:var(--ink);transition:transform .45s cubic-bezier(.2,.7,.2,1);transform:translateX({{ capX0 }})">Digital Products</h3>
+        <p style="flex:2 1 min(100%,320px);padding-right:34px;font-size:clamp(15px,1.1vw,17px);line-height:1.6;color:var(--ink-2);max-width:56ch">Applications, SaaS products, internal tools, dashboards, portals and MVPs.</p>
+        <span aria-hidden="true" style="position:absolute;bottom:clamp(24px,3vw,36px);right:clamp(16px,2vw,28px);font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);transition:opacity .4s ease,transform .45s cubic-bezier(.2,.7,.2,1);opacity:{{ capOp0 }};transform:translateX({{ capArrow0 }})">↗</span>
+        <div style="flex:0 0 100%;display:grid;overflow:hidden;transition:grid-template-rows .5s cubic-bezier(.2,.7,.2,1),opacity .4s ease;opacity:{{ capOp0 }};grid-template-rows:{{ capRows0 }}">
+          <div style="min-height:0;padding:0"><div style="display:flex;flex-wrap:wrap;gap:8px;padding-top:20px;margin-left:calc(34px + clamp(24px,4vw,64px))">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">SaaS</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Dashboards</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Internal Tools</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Portals</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">MVPs</span>
+          </div></div>
+        </div>
+      </div>
+      <div data-reveal="1" onMouseEnter="{{ capEnter1 }}" onMouseLeave="{{ capLeave }}" style="position:relative;display:flex;flex-wrap:wrap;align-items:baseline;gap:12px clamp(24px,4vw,64px);border-top:1px solid var(--r16);padding:clamp(24px,3vw,36px) clamp(16px,2vw,28px);margin:0 calc(-1 * clamp(16px,2vw,28px));transition:background .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s cubic-bezier(.2,.7,.2,1);background:{{ capBg1 }};box-shadow:{{ capShadow1 }}">
+        <span style="flex:none;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;width:34px;transition:color .35s ease;color:{{ capNum1 }}">02</span>
+        <h3 style="flex:1 1 min(100%,240px);max-width:280px;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(20px,2.1vw,28px);letter-spacing:-.02em;color:var(--ink);transition:transform .45s cubic-bezier(.2,.7,.2,1);transform:translateX({{ capX1 }})">Web Experiences</h3>
+        <p style="flex:2 1 min(100%,320px);padding-right:34px;font-size:clamp(15px,1.1vw,17px);line-height:1.6;color:var(--ink-2);max-width:56ch">High-performance websites, landing pages, CMS experiences, e-commerce and interactive web experiences.</p>
+        <span aria-hidden="true" style="position:absolute;bottom:clamp(24px,3vw,36px);right:clamp(16px,2vw,28px);font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);transition:opacity .4s ease,transform .45s cubic-bezier(.2,.7,.2,1);opacity:{{ capOp1 }};transform:translateX({{ capArrow1 }})">↗</span>
+        <div style="flex:0 0 100%;display:grid;overflow:hidden;transition:grid-template-rows .5s cubic-bezier(.2,.7,.2,1),opacity .4s ease;opacity:{{ capOp1 }};grid-template-rows:{{ capRows1 }}">
+          <div style="min-height:0;padding:0"><div style="display:flex;flex-wrap:wrap;gap:8px;padding-top:20px;margin-left:calc(34px + clamp(24px,4vw,64px))">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Landing Pages</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">CMS</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">E-commerce</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Performance</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Interaction</span>
+          </div></div>
+        </div>
+      </div>
+      <div data-reveal="1" onMouseEnter="{{ capEnter2 }}" onMouseLeave="{{ capLeave }}" style="position:relative;display:flex;flex-wrap:wrap;align-items:baseline;gap:12px clamp(24px,4vw,64px);border-top:1px solid var(--r16);padding:clamp(24px,3vw,36px) clamp(16px,2vw,28px);margin:0 calc(-1 * clamp(16px,2vw,28px));transition:background .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s cubic-bezier(.2,.7,.2,1);background:{{ capBg2 }};box-shadow:{{ capShadow2 }}">
+        <span style="flex:none;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;width:34px;transition:color .35s ease;color:{{ capNum2 }}">03</span>
+        <h3 style="flex:1 1 min(100%,240px);max-width:280px;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(20px,2.1vw,28px);letter-spacing:-.02em;color:var(--ink);transition:transform .45s cubic-bezier(.2,.7,.2,1);transform:translateX({{ capX2 }})">AI &amp; Automation</h3>
+        <p style="flex:2 1 min(100%,320px);padding-right:34px;font-size:clamp(15px,1.1vw,17px);line-height:1.6;color:var(--ink-2);max-width:56ch">AI agents, intelligent product features, workflow automation, LLM integrations, APIs and AI-enabled systems.</p>
+        <span aria-hidden="true" style="position:absolute;bottom:clamp(24px,3vw,36px);right:clamp(16px,2vw,28px);font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);transition:opacity .4s ease,transform .45s cubic-bezier(.2,.7,.2,1);opacity:{{ capOp2 }};transform:translateX({{ capArrow2 }})">↗</span>
+        <div style="flex:0 0 100%;display:grid;overflow:hidden;transition:grid-template-rows .5s cubic-bezier(.2,.7,.2,1),opacity .4s ease;opacity:{{ capOp2 }};grid-template-rows:{{ capRows2 }}">
+          <div style="min-height:0;padding:0"><div style="display:flex;flex-wrap:wrap;gap:8px;padding-top:20px;margin-left:calc(34px + clamp(24px,4vw,64px))">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Agents</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">LLM Integration</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Workflow Automation</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">APIs</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Evaluation</span>
+          </div></div>
+        </div>
+      </div>
+      <div data-reveal="1" onMouseEnter="{{ capEnter3 }}" onMouseLeave="{{ capLeave }}" style="position:relative;display:flex;flex-wrap:wrap;align-items:baseline;gap:12px clamp(24px,4vw,64px);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16);padding:clamp(24px,3vw,36px) clamp(16px,2vw,28px);margin:0 calc(-1 * clamp(16px,2vw,28px));transition:background .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s cubic-bezier(.2,.7,.2,1);background:{{ capBg3 }};box-shadow:{{ capShadow3 }}">
+        <span style="flex:none;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;width:34px;transition:color .35s ease;color:{{ capNum3 }}">04</span>
+        <h3 style="flex:1 1 min(100%,240px);max-width:280px;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(20px,2.1vw,28px);letter-spacing:-.02em;color:var(--ink);transition:transform .45s cubic-bezier(.2,.7,.2,1);transform:translateX({{ capX3 }})">Product Design</h3>
+        <p style="flex:2 1 min(100%,320px);padding-right:34px;font-size:clamp(15px,1.1vw,17px);line-height:1.6;color:var(--ink-2);max-width:56ch">Product research, information architecture, UX/UI, interaction design, prototyping and design systems.</p>
+        <span aria-hidden="true" style="position:absolute;bottom:clamp(24px,3vw,36px);right:clamp(16px,2vw,28px);font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);transition:opacity .4s ease,transform .45s cubic-bezier(.2,.7,.2,1);opacity:{{ capOp3 }};transform:translateX({{ capArrow3 }})">↗</span>
+        <div style="flex:0 0 100%;display:grid;overflow:hidden;transition:grid-template-rows .5s cubic-bezier(.2,.7,.2,1),opacity .4s ease;opacity:{{ capOp3 }};grid-template-rows:{{ capRows3 }}">
+          <div style="min-height:0;padding:0"><div style="display:flex;flex-wrap:wrap;gap:8px;padding-top:20px;margin-left:calc(34px + clamp(24px,4vw,64px))">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Research</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Information Architecture</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">UX / UI</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Prototyping</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Design Systems</span>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--bg-2);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16)">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,110px) clamp(20px,5vw,72px)">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,64px);align-items:flex-end;margin-bottom:clamp(40px,5vw,72px)">
+        <div style="flex:1 1 min(100%,420px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:clamp(20px,3vw,32px)">Process / 01—05</p>
+          <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(28px,4vw,52px);line-height:1.04;letter-spacing:-.032em;color:var(--ink)">Understand. Shape. Build. Launch. Learn.</h2>
+        </div>
+      </div>
+      <ol style="display:flex;flex-wrap:wrap;gap:1px;background:var(--r16)">
+        <li data-reveal="1" style="flex:1 1 min(100%,200px);background:var(--bg-2);padding:clamp(24px,2.6vw,32px) clamp(20px,2.2vw,28px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--accent);margin-bottom:18px">01 — Discover</p>
+          <ul style="display:flex;flex-direction:column;gap:8px;font-size:15px;color:var(--ink-2)"><li>Goals</li><li>Product Research</li><li>User Research</li><li>Early Concepts</li></ul>
+        </li>
+        <li data-reveal="1" style="flex:1 1 min(100%,200px);background:var(--bg-2);padding:clamp(24px,2.6vw,32px) clamp(20px,2.2vw,28px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--ink-2);margin-bottom:18px">02 — Design</p>
+          <ul style="display:flex;flex-direction:column;gap:8px;font-size:15px;color:var(--ink-2)"><li>Information Architecture</li><li>Interfaces</li><li>Flows</li><li>Prototypes</li></ul>
+        </li>
+        <li data-reveal="1" style="flex:1 1 min(100%,200px);background:var(--bg-2);padding:clamp(24px,2.6vw,32px) clamp(20px,2.2vw,28px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--ink-2);margin-bottom:18px">03 — Build</p>
+          <ul style="display:flex;flex-direction:column;gap:8px;font-size:15px;color:var(--ink-2)"><li>Development</li><li>Integration</li><li>Production Code</li><li>Testing</li></ul>
+        </li>
+        <li data-reveal="1" style="flex:1 1 min(100%,200px);background:var(--bg-2);padding:clamp(24px,2.6vw,32px) clamp(20px,2.2vw,28px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--ink-2);margin-bottom:18px">04 — Launch</p>
+          <ul style="display:flex;flex-direction:column;gap:8px;font-size:15px;color:var(--ink-2)"><li>Deployment</li><li>QA</li><li>Performance</li><li>Production Checks</li></ul>
+        </li>
+        <li data-reveal="1" style="flex:1 1 min(100%,200px);background:var(--bg-2);padding:clamp(24px,2.6vw,32px) clamp(20px,2.2vw,28px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--ink-2);margin-bottom:18px">05 — Evolve</p>
+          <ul style="display:flex;flex-direction:column;gap:8px;font-size:15px;color:var(--ink-2)"><li>Feedback</li><li>Analysis</li><li>Iteration</li><li>Improvement</li></ul>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,120px) clamp(20px,5vw,72px)">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px);margin-bottom:clamp(40px,5vw,72px)">
+      <h2 style="flex:1 1 min(100%,480px);font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,4.6vw,60px);line-height:1.02;letter-spacing:-.032em;color:var(--ink);max-width:22ch">The interface is only half the product.</h2>
+      <p style="flex:1 1 min(100%,320px);align-self:flex-end;font-size:clamp(15px,1.1vw,17px);line-height:1.62;color:var(--ink-2);max-width:48ch">Visual quality matters, but so do architecture, accessibility, performance, reliability and maintainability. I work across both sides so that what looks considered also behaves considered.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:1px;background:var(--r16);border:1px solid var(--r16)">
+      <div data-reveal="1" style="flex:1 1 min(100%,260px);background:var(--bg);padding:clamp(26px,3vw,40px)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:20px">Discipline 01</p>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(19px,1.9vw,24px);letter-spacing:-.02em;color:var(--ink);margin-bottom:20px">Product Design</h3>
+        <ul style="display:flex;flex-direction:column;gap:9px;font-size:15px;color:var(--ink-2)"><li>Research</li><li>UX/UI</li><li>Information Architecture</li><li>Prototyping</li><li>Design Systems</li></ul>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,260px);background:var(--bg);padding:clamp(26px,3vw,40px)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:20px">Discipline 02</p>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(19px,1.9vw,24px);letter-spacing:-.02em;color:var(--ink);margin-bottom:20px">Product Engineering</h3>
+        <ul style="display:flex;flex-direction:column;gap:9px;font-size:15px;color:var(--ink-2)"><li>Next.js</li><li>TypeScript</li><li>Full Stack</li><li>APIs</li><li>Cloud Infrastructure</li></ul>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,260px);background:var(--bg);padding:clamp(26px,3vw,40px)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:20px">Discipline 03</p>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(19px,1.9vw,24px);letter-spacing:-.02em;color:var(--ink);margin-bottom:20px">AI &amp; Automation</h3>
+        <ul style="display:flex;flex-direction:column;gap:9px;font-size:15px;color:var(--ink-2)"><li>Python</li><li>AI Agents</li><li>LLMs</li><li>Automation</li><li>Intelligent Integrations</li></ul>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,220px);background:var(--bg-2);padding:clamp(26px,3vw,40px);display:flex;flex-direction:column;justify-content:flex-end;gap:14px">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)">Intersection</p>
+        <p style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(24px,2.6vw,34px);line-height:1.08;letter-spacing:-.028em;color:var(--ink)">Useful<br>Products</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid var(--r16)">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,100px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(32px,4vw,64px)">
+      <div style="flex:1 1 min(100%,240px)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:22px">Capabilities</p>
+        <ul style="display:flex;flex-direction:column;gap:11px;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(16px,1.35vw,19px);color:var(--ink);letter-spacing:-.01em"><li>Product Research</li><li>Product Design</li><li>UI/UX</li><li>Design Engineering</li><li>Product Engineering</li><li>AI Engineering</li><li>Full-Stack Development</li><li>AI Automation</li></ul>
+      </div>
+      <div style="flex:1 1 min(100%,240px)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:22px">Technology</p>
+        <ul style="display:flex;flex-direction:column;gap:11px;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--ink-2)"><li>Next.js</li><li>TypeScript</li><li>Python</li><li>FastAPI</li><li>Supabase</li><li>APIs</li><li>Cloud Infrastructure</li></ul>
+      </div>
+      <div style="flex:1 1 min(100%,240px)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:22px">Tools</p>
+        <ul style="display:flex;flex-direction:column;gap:11px;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--ink-2)"><li>Figma</li><li>Webflow</li><li>Claude</li><li>ChatGPT / Codex</li><li>GitHub</li><li>Vercel</li><li>n8n</li><li>Google AI Studio</li><li>Microsoft 365</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--bg-2);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16)">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,100px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+      <div data-reveal="1" style="flex:0 1 min(100%,300px);aspect-ratio:4/5;border:1px solid var(--r22);padding:clamp(22px,2.6vw,32px);display:flex;flex-direction:column;justify-content:space-between">
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(28px,3vw,40px);letter-spacing:-.03em;color:var(--accent)">CO</span>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(26px,3.2vw,42px);line-height:1.02;letter-spacing:-.03em;color:var(--ink)">Making<br>systems<br>better.</span>
+      </div>
+      <div style="flex:1 1 min(100%,420px)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:clamp(22px,3vw,32px)">About / CO</p>
+        <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(28px,4vw,52px);line-height:1.02;letter-spacing:-.032em;color:var(--ink)">Different disciplines.<br>Same question.</h2>
+        <p style="margin-top:18px;font-family:'Bricolage Grotesque',sans-serif;font-weight:400;font-size:clamp(24px,3.4vw,44px);line-height:1.04;letter-spacing:-.03em;color:var(--accent)">How can this work better?</p>
+        <div style="margin-top:clamp(26px,3.4vw,40px);display:flex;flex-direction:column;gap:16px;max-width:52ch">
+          <p style="font-size:clamp(15px,1.1vw,17px);line-height:1.62;color:var(--ink-2)">I work at the intersection of design, engineering and product, turning complicated business and user problems into digital systems that are useful, fast and built to last.</p>
+          <p style="font-size:clamp(15px,1.1vw,17px);line-height:1.62;color:var(--ink-2)">Curiosity, experimentation and multidisciplinary thinking shape how I approach products and systems.</p>
+        </div>
+        <a href="#/about" style="display:inline-block;margin-top:clamp(26px,3vw,36px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--acc40);padding-bottom:4px" style-hover="color:var(--ink);border-color:var(--ink)">More About Me →</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(72px,10vw,150px) clamp(20px,5vw,72px)">
+    <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(32px,5.4vw,72px);line-height:1;letter-spacing:-.035em;color:var(--ink);max-width:20ch">Think we could build something useful together?</h2>
+    <p style="margin-top:clamp(24px,3vw,36px);font-size:clamp(16px,1.2vw,18px);line-height:1.62;color:var(--ink-2);max-width:46ch">I’m open to permanent opportunities across the UK and selected product collaborations globally.</p>
+    <div style="margin-top:clamp(32px,4vw,48px);display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+      <a href="{{ resumeUrl }}" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-inv);background:var(--accent);padding:15px 22px" style-hover="background:var(--ink)">View Résumé ↗</a>
+      <a href="#/contact" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);border:1px solid var(--r34);padding:15px 22px" style-hover="border-color:var(--accent);color:var(--accent)">Start a Conversation →</a>
+      <span style="display:flex;gap:18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-left:8px">
+        
+        
+      </span>
+    </div>
+  </section>
+
+</div>
+</sc-if>
+
+<sc-if value="{{ isWork }}" hint-placeholder-val="{{ false }}">
+<div>
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(48px,7vw,100px) clamp(20px,5vw,72px) clamp(40px,5vw,72px)">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:clamp(22px,3vw,34px)">Work / 001—003</p>
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px);align-items:flex-end">
+      <h1 style="flex:1 1 min(100%,520px);font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(34px,5.6vw,76px);line-height:1;letter-spacing:-.035em;color:var(--ink);max-width:20ch">Products designed around problems worth solving.</h1>
+      <p style="flex:0 1 min(100%,340px);font-size:clamp(15px,1.1vw,17px);line-height:1.62;color:var(--ink-2);max-width:42ch">Selected work across financial technology, construction technology, healthcare, product engineering and intelligent systems.</p>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,72px) clamp(72px,9vw,130px)">
+    <div style="display:flex;flex-wrap:wrap;gap:12px clamp(20px,3vw,48px);border-bottom:1px solid var(--r16);padding-bottom:14px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)">
+      <span style="flex:none;width:34px">No.</span>
+      <span style="flex:1 1 160px">Project</span>
+      <span style="flex:1 1 160px">Industry</span>
+      <span style="flex:1 1 160px">Discipline</span>
+    </div>
+    <ol>
+      <sc-for list="{{ caseLinks }}" as="c" hint-placeholder-count="3">
+        <li style="border-bottom:1px solid var(--r16)">
+          <a href="{{ c.href }}" style="display:block;padding:clamp(22px,3vw,34px) 0;color:var(--ink)" style-hover="color:var(--accent)">
+            <div style="display:flex;flex-wrap:wrap;gap:10px clamp(20px,3vw,48px);align-items:baseline">
+              <span style="flex:none;width:34px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-2)">{{ c.number }}</span>
+              <span style="flex:1 1 160px;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(22px,2.8vw,36px);letter-spacing:-.028em">{{ c.name }}</span>
+              <span style="flex:1 1 160px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)">{{ c.industry }}</span>
+              <span style="flex:1 1 160px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)">{{ c.discipline }}</span>
+            </div>
+            <sc-if value="{{ c.open }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-wrap:wrap;gap:16px clamp(24px,4vw,64px);padding:clamp(18px,2.4vw,28px) 0 6px;margin-left:clamp(0px,4vw,54px)">
+                <p style="flex:1 1 min(100%,300px);font-size:clamp(15px,1.05vw,16px);line-height:1.6;color:var(--ink-2);max-width:52ch">{{ c.summary }}</p>
+                <p style="flex:1 1 min(100%,240px);font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:2;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)">{{ c.flowText }}</p>
+              </div>
+            </sc-if>
+          </a>
+        </li>
+      </sc-for>
+    </ol>
+    <p style="margin-top:clamp(32px,4vw,56px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)">TODO — further projects to be added</p>
+  </section>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCase }}" hint-placeholder-val="{{ false }}">
+<article>
+  <header style="max-width:1440px;margin:0 auto;padding:clamp(40px,6vw,88px) clamp(20px,5vw,72px) clamp(32px,4vw,56px)">
+    <p style="display:flex;flex-wrap:wrap;gap:10px 18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:clamp(24px,3.4vw,40px)">
+      <a href="#/work" style="color:var(--ink-2)" style-hover="color:var(--accent)">Work</a>
+      <span style="color:var(--ink-2)">/</span>
+      <span style="color:var(--ink-2)">{{ cs.number }} — {{ cs.name }}</span>
+      <span style="color:var(--accent)">{{ cs.industry }}</span>
+    </p>
+    <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(32px,5.4vw,74px);line-height:1;letter-spacing:-.035em;color:var(--ink);max-width:22ch">{{ cs.headline }}</h1>
+    <p style="margin-top:clamp(24px,3vw,36px);font-size:clamp(16px,1.25vw,19px);line-height:1.6;color:var(--ink-2);max-width:54ch">{{ cs.summary }}</p>
+  </header>
+
+  <dl style="max-width:1440px;margin:0 auto;padding:clamp(24px,3vw,36px) clamp(20px,5vw,72px);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16);display:flex;flex-wrap:wrap;gap:24px clamp(28px,4vw,64px);background:var(--bg-2)">
+    <div style="flex:1 1 150px"><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Role</dt><dd style="margin:9px 0 0;font-size:15px;color:var(--ink);line-height:1.45">{{ cs.role }}</dd></div>
+    <div style="flex:0 1 90px"><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Year</dt><dd style="margin:9px 0 0;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--ink)">{{ cs.year }}</dd></div>
+    <div style="flex:0 1 160px"><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Status</dt><dd style="margin:9px 0 0;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--accent)">{{ cs.status }}</dd><dd style="margin:6px 0 0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--ink-2)">{{ cs.statusNote }}</dd></div>
+    <div style="flex:1 1 240px"><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Technology</dt>
+      <dd style="margin:9px 0 0;display:flex;flex-wrap:wrap;gap:8px">
+        <sc-for list="{{ csTech }}" as="x" hint-placeholder-count="4"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2);border:1px solid var(--r24);padding:5px 9px">{{ x.t }}</span></sc-for>
+      </dd>
+    </div>
+    <div style="flex:1 1 240px"><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Areas</dt>
+      <dd style="margin:9px 0 0;display:flex;flex-wrap:wrap;gap:8px">
+        <sc-for list="{{ csAreas }}" as="x" hint-placeholder-count="3"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2)">{{ x.t }}</span></sc-for>
+      </dd>
+    </div>
+  </dl>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px)">
+    <h2 style="flex:0 1 min(100%,220px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);padding-top:6px">Overview</h2>
+    <p style="flex:1 1 min(100%,420px);font-family:'Newsreader',Georgia,serif;font-size:clamp(18px,1.6vw,23px);line-height:1.52;color:var(--ink);max-width:56ch">{{ cs.overview }}</p>
+  </section>
+
+  <section style="background:var(--bg-2);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16)">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px)">
+      <h2 style="flex:0 1 min(100%,220px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);padding-top:6px">Problem</h2>
+      <p style="flex:1 1 min(100%,420px);font-size:clamp(16px,1.2vw,18px);line-height:1.66;color:var(--ink-2);max-width:62ch">{{ cs.problem }}</p>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px)">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px)">
+      <h2 style="flex:0 1 min(100%,220px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);padding-top:6px">Product approach</h2>
+      <div style="flex:1 1 min(100%,420px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,56px)">
+        <p style="flex:1 1 min(100%,320px);font-size:clamp(16px,1.2vw,18px);line-height:1.66;color:var(--ink-2);max-width:56ch">{{ cs.approach }}</p>
+        <figure style="flex:0 1 min(100%,280px)">
+          <figcaption style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:20px">{{ cs.flowLabel }}</figcaption>
+          <ol style="border-left:1px solid var(--acc40);padding-left:20px;display:flex;flex-direction:column;gap:16px">
+            <sc-for list="{{ csFlow }}" as="f" hint-placeholder-count="5">
+              <li style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-2)">{{ f.n }}</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)">{{ f.label }}</span></li>
+            </sc-for>
+          </ol>
+        </figure>
+      </div>
+    </div>
+    <ol style="margin-top:clamp(48px,6vw,88px);display:flex;flex-wrap:wrap;gap:1px;background:var(--r16);border:1px solid var(--r16)">
+      <sc-for list="{{ csDecisions }}" as="d" hint-placeholder-count="3">
+        <li data-reveal="1" style="flex:1 1 min(100%,260px);background:var(--bg);padding:clamp(24px,3vw,36px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--accent);margin-bottom:16px">Decision {{ d.n }}</p>
+          <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(18px,1.8vw,22px);letter-spacing:-.02em;color:var(--ink);margin-bottom:12px">{{ d.t }}</h3>
+          <p style="font-size:15px;line-height:1.6;color:var(--ink-2)">{{ d.d }}</p>
+        </li>
+      </sc-for>
+    </ol>
+  </section>
+
+  <section style="background:var(--bg-2);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16)">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px)">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,64px);align-items:baseline;margin-bottom:clamp(28px,3.4vw,44px)">
+        <h2 style="flex:0 1 min(100%,220px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)">Product experience</h2>
+        <p style="flex:1 1 min(100%,320px);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)">TODO — replace slots with final interface screenshots</p>
+      </div>
+      <sc-if value="{{ isBudget }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,2vw,28px)">
+          <div style="flex:2 1 min(100%,420px);aspect-ratio:16/10"><image-slot id="bv-main" shape="rect" placeholder="Monthly plan — primary screen"></image-slot></div>
+          <div style="flex:1 1 min(100%,240px);aspect-ratio:4/5"><image-slot id="bv-detail" shape="rect" placeholder="Subscriptions detail"></image-slot></div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isSite }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,2vw,28px)">
+          <div style="flex:1 1 min(100%,240px);aspect-ratio:4/5"><image-slot id="sr-capture" shape="rect" placeholder="Defect capture — mobile"></image-slot></div>
+          <div style="flex:2 1 min(100%,420px);aspect-ratio:16/10"><image-slot id="sr-board" shape="rect" placeholder="Defect board / workflow view"></image-slot></div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isReferral }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,2vw,28px)">
+          <div style="flex:2 1 min(100%,420px);aspect-ratio:16/10"><image-slot id="rv-timeline" shape="rect" placeholder="Case timeline view"></image-slot></div>
+          <div style="flex:1 1 min(100%,240px);aspect-ratio:4/5"><image-slot id="rv-triage" shape="rect" placeholder="Triage list"></image-slot></div>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px)">
+    <h2 style="flex:0 1 min(100%,220px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);padding-top:6px">Engineering</h2>
+    <div style="flex:1 1 min(100%,420px)">
+      <p style="font-size:clamp(16px,1.2vw,18px);line-height:1.66;color:var(--ink-2);max-width:62ch">{{ cs.engineering }}</p>
+      <ol style="margin-top:clamp(32px,4vw,52px);display:flex;flex-direction:column">
+        <sc-for list="{{ csArch }}" as="a" hint-placeholder-count="4">
+          <li style="display:flex;flex-wrap:wrap;gap:8px 24px;border-top:1px solid var(--r16);padding:16px 0">
+            <span style="flex:0 1 110px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)">{{ a.k }}</span>
+            <span style="flex:1 1 200px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink)">{{ a.v }}</span>
+          </li>
+        </sc-for>
+      </ol>
+    </div>
+  </section>
+
+  <section style="background:var(--bg-2);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16)">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+      <div style="flex:1 1 min(100%,320px)">
+        <h2 style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:22px">Outcome</h2>
+        <p style="font-size:clamp(15px,1.1vw,17px);line-height:1.64;color:var(--ink-2);max-width:48ch">{{ cs.outcome }}</p>
+      </div>
+      <div style="flex:1 1 min(100%,320px)">
+        <h2 style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:22px">Reflection</h2>
+        <p style="font-family:'Newsreader',Georgia,serif;font-size:clamp(17px,1.4vw,21px);line-height:1.52;color:var(--ink);max-width:48ch">{{ cs.reflection }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px)">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:20px">Next project — {{ next.number }}</p>
+    <a href="{{ nextHref }}" style="display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,4.6vw,62px);line-height:1.02;letter-spacing:-.032em;color:var(--ink);max-width:24ch" style-hover="color:var(--accent)">{{ next.name }} <span style="color:var(--accent)">→</span></a>
+    <p style="margin-top:18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)">{{ next.industry }}</p>
+  </section>
+</article>
+</sc-if>
+
+<sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+<div>
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(48px,7vw,100px) clamp(20px,5vw,72px) clamp(40px,5vw,72px)">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:clamp(22px,3vw,34px)">About / CO</p>
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+      <div style="flex:1 1 min(100%,480px)">
+        <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(34px,5.4vw,74px);line-height:1;letter-spacing:-.035em;color:var(--ink);max-width:16ch">Designer. Engineer. Product thinker.</h1>
+        <p style="margin-top:clamp(24px,3vw,36px);font-size:clamp(16px,1.25vw,19px);line-height:1.6;color:var(--ink-2);max-width:54ch">I work at the intersection of design, engineering and product, taking complicated problems and turning them into digital systems that are useful, understandable and durable.</p>
+      </div>
+      <div style="flex:0 1 min(100%,300px);aspect-ratio:4/5;border:1px solid var(--r22);padding:clamp(22px,2.6vw,32px);display:flex;flex-direction:column;justify-content:space-between;background:var(--bg-2)">
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(28px,3vw,40px);letter-spacing:-.03em;color:var(--accent)">CO</span>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(26px,3.2vw,42px);line-height:1.02;letter-spacing:-.03em;color:var(--ink)">Making<br>systems<br>better.</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--bg-2);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16)">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+      <div style="flex:1 1 min(100%,380px)">
+        <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(28px,3.8vw,50px);line-height:1.02;letter-spacing:-.032em;color:var(--ink)">Different disciplines. Same question.</h2>
+        <p style="margin-top:18px;font-family:'Bricolage Grotesque',sans-serif;font-weight:400;font-size:clamp(26px,3.4vw,46px);line-height:1.02;letter-spacing:-.03em;color:var(--accent)">How can this work better?</p>
+      </div>
+      <p style="flex:1 1 min(100%,360px);align-self:center;font-family:'Newsreader',Georgia,serif;font-size:clamp(17px,1.45vw,21px);line-height:1.56;color:var(--ink-2);max-width:52ch">Curiosity has consistently pushed me across disciplines. Design helps me understand how people experience a system. Engineering helps me understand how it works. Artificial intelligence expands what that system can do. Product thinking keeps the work connected to a real problem.</p>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px)">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:clamp(32px,4vw,52px)">The practice</p>
+    <div style="display:flex;flex-wrap:wrap;gap:1px;background:var(--r16);border:1px solid var(--r16)">
+      <div data-reveal="1" style="flex:1 1 min(100%,230px);background:var(--bg);padding:clamp(26px,3vw,38px)">
+        <h3 style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--accent);margin-bottom:16px">DESIGN</h3>
+        <p style="font-family:'Bricolage Grotesque',sans-serif;font-weight:400;font-size:clamp(17px,1.6vw,21px);line-height:1.28;letter-spacing:-.018em;color:var(--ink)">Understand and shape the experience.</p>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,230px);background:var(--bg);padding:clamp(26px,3vw,38px)">
+        <h3 style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--ink-2);margin-bottom:16px">ENGINEERING</h3>
+        <p style="font-family:'Bricolage Grotesque',sans-serif;font-weight:400;font-size:clamp(17px,1.6vw,21px);line-height:1.28;letter-spacing:-.018em;color:var(--ink)">Make the experience real and reliable.</p>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,230px);background:var(--bg);padding:clamp(26px,3vw,38px)">
+        <h3 style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--ink-2);margin-bottom:16px">INTELLIGENCE</h3>
+        <p style="font-family:'Bricolage Grotesque',sans-serif;font-weight:400;font-size:clamp(17px,1.6vw,21px);line-height:1.28;letter-spacing:-.018em;color:var(--ink)">Make the system more capable.</p>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,230px);background:var(--bg);padding:clamp(26px,3vw,38px)">
+        <h3 style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--ink-2);margin-bottom:16px">PRODUCT</h3>
+        <p style="font-family:'Bricolage Grotesque',sans-serif;font-weight:400;font-size:clamp(17px,1.6vw,21px);line-height:1.28;letter-spacing:-.018em;color:var(--ink)">Make sure the right problem is being solved.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,72px) clamp(56px,7vw,104px);display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+    <div style="flex:1 1 min(100%,380px)">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:26px">Journey</p>
+      <ol style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px">
+        <li style="display:flex;align-items:center;gap:16px"><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(17px,1.7vw,22px);letter-spacing:-.02em;color:var(--ink-2)">Design</span><span style="color:var(--accent)">→</span></li>
+        <li style="display:flex;align-items:center;gap:16px"><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(17px,1.7vw,22px);letter-spacing:-.02em;color:var(--ink-2)">Product</span><span style="color:var(--accent)">→</span></li>
+        <li style="display:flex;align-items:center;gap:16px"><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(17px,1.7vw,22px);letter-spacing:-.02em;color:var(--ink-2)">Engineering</span><span style="color:var(--accent)">→</span></li>
+        <li><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(17px,1.7vw,22px);letter-spacing:-.02em;color:var(--ink)">Artificial Intelligence</span></li>
+      </ol>
+      <div style="margin-top:clamp(36px,4.5vw,60px);border-top:1px solid var(--r16);padding-top:26px">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:18px">Education</p>
+        <p style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(20px,2.2vw,28px);line-height:1.16;letter-spacing:-.022em;color:var(--ink)">MSc Artificial Intelligence</p>
+        <p style="margin-top:10px;font-size:16px;line-height:1.5;color:var(--ink-2)">Nottingham Trent University<br>United Kingdom</p>
+      </div>
+    </div>
+    <div style="flex:1 1 min(100%,320px);border-left:1px solid var(--acc35);padding-left:clamp(20px,3vw,36px);align-self:center">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:20px">Availability</p>
+      <p style="font-family:'Newsreader',Georgia,serif;font-size:clamp(17px,1.5vw,22px);line-height:1.5;color:var(--ink);max-width:40ch">Based in the UK and open to permanent roles across Design Engineering, Product Engineering and AI Engineering.</p>
+      <p style="margin-top:18px;font-size:15px;line-height:1.6;color:var(--ink-2);max-width:40ch">Available for selected global remote collaborations.</p>
+      <a href="#/contact" style="display:inline-block;margin-top:clamp(24px,3vw,34px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-inv);background:var(--accent);padding:14px 20px" style-hover="background:var(--ink)">Start a Conversation →</a>
+    </div>
+  </section>
+</div>
+</sc-if>
+
+<sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+<div>
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(48px,7vw,100px) clamp(20px,5vw,72px) clamp(36px,4.5vw,64px)">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:clamp(22px,3vw,34px)">Contact</p>
+    <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(44px,8vw,110px);line-height:.96;letter-spacing:-.04em;color:var(--ink)">Let’s talk.</h1>
+  </section>
+
+  <section style="border-top:1px solid var(--r16);border-bottom:1px solid var(--r16);background:var(--bg-2)">
+    <div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,72px);display:flex;flex-wrap:wrap">
+      <div style="flex:1 1 min(100%,340px);padding:clamp(36px,4.5vw,64px) clamp(20px,3vw,48px) clamp(36px,4.5vw,64px) 0;border-right:1px solid var(--r16)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:22px">Hiring</p>
+        <p style="font-family:'Newsreader',Georgia,serif;font-size:clamp(17px,1.5vw,22px);line-height:1.5;color:var(--ink);max-width:40ch">Building a product, design engineering or AI team? I’m open to permanent opportunities across the UK.</p>
+        <div style="margin-top:clamp(24px,3vw,34px);display:flex;flex-wrap:wrap;gap:10px">
+          <a href="{{ resumeUrl }}" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-inv);background:var(--accent);padding:14px 20px" style-hover="background:var(--ink)">View Résumé</a>
+          <a href="{{ emailHref }}" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);border:1px solid var(--r34);padding:14px 20px" style-hover="border-color:var(--accent);color:var(--accent)">Email</a>
+          <a href="{{ linkedin }}" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);border:1px solid var(--r34);padding:14px 20px" style-hover="border-color:var(--accent);color:var(--accent)">LinkedIn</a>
+        </div>
+      </div>
+      <div style="flex:1 1 min(100%,340px);padding:clamp(36px,4.5vw,64px) 0 clamp(36px,4.5vw,64px) clamp(20px,3vw,48px)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:22px">Project enquiries</p>
+        <p style="font-family:'Newsreader',Georgia,serif;font-size:clamp(17px,1.5vw,22px);line-height:1.5;color:var(--ink);max-width:40ch">Have a product, website or intelligent system you want to bring to life?</p>
+        <a href="#enquiry" style="display:inline-block;margin-top:clamp(24px,3vw,34px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);border:1px solid var(--r34);padding:14px 20px" style-hover="border-color:var(--accent);color:var(--accent)">Start Project →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="enquiry" style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,100px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(36px,5vw,80px)">
+    <form onSubmit="{{ onSubmit }}" style="flex:1 1 min(100%,440px);display:flex;flex-direction:column;gap:clamp(20px,2.4vw,28px)">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)">Send a message</p>
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,2vw,24px)">
+        <p style="flex:1 1 min(100%,200px);display:flex;flex-direction:column;gap:9px">
+          <label for="f-name" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Name</label>
+          <input id="f-name" name="name" type="text" required="required" autoComplete="name" style="background:transparent;border:0;border-bottom:1px solid var(--r34);padding:10px 0;font-size:16px;color:var(--ink);font-family:'Newsreader',Georgia,serif">
+        </p>
+        <p style="flex:1 1 min(100%,200px);display:flex;flex-direction:column;gap:9px">
+          <label for="f-email" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Email</label>
+          <input id="f-email" name="email" type="email" required="required" autoComplete="email" style="background:transparent;border:0;border-bottom:1px solid var(--r34);padding:10px 0;font-size:16px;color:var(--ink);font-family:'Newsreader',Georgia,serif">
+        </p>
+      </div>
+      <p style="display:flex;flex-direction:column;gap:9px">
+        <label for="f-company" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Company / Organisation</label>
+        <input id="f-company" name="company" type="text" autoComplete="organization" style="background:transparent;border:0;border-bottom:1px solid var(--r34);padding:10px 0;font-size:16px;color:var(--ink);font-family:'Newsreader',Georgia,serif">
+      </p>
+      <p style="display:flex;flex-direction:column;gap:9px">
+        <label for="f-type" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Enquiry type</label>
+        <select id="f-type" name="enquiry" required="required" value="{{ enquiryType }}" onChange="{{ setType }}" style="background:var(--bg-2);border:1px solid var(--r34);padding:12px 10px;font-size:15px;color:var(--ink);font-family:'IBM Plex Mono',monospace">
+          <option value="">Select…</option>
+          <option value="Hiring / Career Opportunity">Hiring / Career Opportunity</option>
+          <option value="Digital Product">Digital Product</option>
+          <option value="Website">Website</option>
+          <option value="AI &amp; Automation">AI &amp; Automation</option>
+          <option value="Product Design">Product Design</option>
+          <option value="Other">Other</option>
+        </select>
+      </p>
+      <p style="display:flex;flex-direction:column;gap:9px">
+        <label for="f-message" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Message</label>
+        <textarea id="f-message" name="message" rows="5" required="required" style="background:transparent;border:1px solid var(--r34);padding:12px;font-size:16px;line-height:1.55;color:var(--ink);font-family:'Newsreader',Georgia,serif;resize:vertical"></textarea>
+      </p>
+      <sc-if value="{{ projectEnquiry }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,2vw,24px);border-left:1px solid var(--acc40);padding-left:clamp(16px,2vw,24px)">
+          <p style="flex:1 1 min(100%,180px);display:flex;flex-direction:column;gap:9px">
+            <label for="f-timeline" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Timeline</label>
+            <input id="f-timeline" name="timeline" type="text" placeholder="e.g. Q1, 6 weeks" style="background:transparent;border:0;border-bottom:1px solid var(--r34);padding:10px 0;font-size:16px;color:var(--ink);font-family:'Newsreader',Georgia,serif">
+          </p>
+          <p style="flex:1 1 min(100%,180px);display:flex;flex-direction:column;gap:9px">
+            <label for="f-budget" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Budget</label>
+            <input id="f-budget" name="budget" type="text" placeholder="Optional" style="background:transparent;border:0;border-bottom:1px solid var(--r34);padding:10px 0;font-size:16px;color:var(--ink);font-family:'Newsreader',Georgia,serif">
+          </p>
+        </div>
+      </sc-if>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+        <button type="submit" style="background:var(--accent);border:0;padding:15px 24px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-inv);cursor:pointer" style-hover="background:var(--ink)">Send Message →</button>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <span role="status" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)">Received — TODO: connect form handler</span>
+        </sc-if>
+      </div>
+    </form>
+
+    <aside style="flex:0 1 min(100%,300px)">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:24px">Direct</p>
+      <ul style="display:flex;flex-direction:column">
+        <li style="border-top:1px solid var(--r16);padding:16px 0"><a href="{{ emailHref }}" style="display:flex;justify-content:space-between;gap:16px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--ink)" style-hover="color:var(--accent)"><span>Email</span><span style="color:var(--ink-2)">{{ email }}</span></a></li>
+        <li style="border-top:1px solid var(--r16);padding:16px 0"><a href="{{ linkedin }}" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;gap:16px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--ink)" style-hover="color:var(--accent)"><span>LinkedIn</span><span style="color:var(--ink-2)">↗</span></a></li>
+        <li style="border-top:1px solid var(--r16);padding:16px 0"><a href="{{ github }}" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;gap:16px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--ink)" style-hover="color:var(--accent)"><span>GitHub</span><span style="color:var(--ink-2)">↗</span></a></li>
+        <li style="border-top:1px solid var(--r16);border-bottom:1px solid var(--r16);padding:16px 0"><a href="{{ calcom }}" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;gap:16px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--ink)" style-hover="color:var(--accent)"><span>Book a call</span><span style="color:var(--ink-2)">Cal.com ↗</span></a></li>
+      </ul>
+      <p style="margin-top:26px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);line-height:1.9">TODO — replace placeholder GitHub and Cal.com links</p>
+    </aside>
+  </section>
+</div>
+</sc-if>
+
+</main>
+
+<footer style="border-top:1px solid var(--r16);background:var(--bg-2)">
+  <div style="max-width:1440px;margin:0 auto;padding:clamp(40px,5vw,64px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,64px);justify-content:space-between">
+    <div>
+      <p style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(20px,2.2vw,26px);letter-spacing:-.022em;color:var(--ink)">Chukwuebuka Onyemelukwe</p>
+      <p style="margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Design Engineer × AI Engineer · United Kingdom</p>
+    </div>
+    <nav aria-label="Footer" style="display:flex;flex-wrap:wrap;gap:14px 28px;align-items:flex-start;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase">
+      <a href="#/work" style="color:var(--ink-2)" style-hover="color:var(--accent)">Work</a>
+      <a href="#/about" style="color:var(--ink-2)" style-hover="color:var(--accent)">About</a>
+      <a href="{{ resumeUrl }}" target="_blank" rel="noopener" style="color:var(--ink-2)" style-hover="color:var(--accent)">Résumé ↗</a>
+      <a href="#/contact" style="color:var(--ink-2)" style-hover="color:var(--accent)">Contact</a>
+      <a href="{{ emailHref }}" style="color:var(--ink-2)" style-hover="color:var(--accent)">Email</a>
+      <a href="{{ linkedin }}" target="_blank" rel="noopener" style="color:var(--ink-2)" style-hover="color:var(--accent)">LinkedIn</a>
+      <a href="{{ github }}" target="_blank" rel="noopener" style="color:var(--ink-2)" style-hover="color:var(--accent)">GitHub</a>
+    </nav>
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);align-self:flex-end">© {{ year }} · Open to permanent UK roles</p>
+  </div>
+</footer>
+
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CO">
+    <rect width="200" height="200" fill="var(--bg)"></rect>
+    <text x="100" y="118" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-weight="600" font-size="62" letter-spacing="-2" fill="var(--accent)">CO</text>
+    <rect x="60" y="140" width="80" height="2" fill="var(--ink)"></rect>
+  </svg>
+</template>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;\&quot;light\&quot; | \&quot;dark\&quot;&quot;,&quot;section&quot;:&quot;Theme&quot;},&quot;rotatePhrase&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;rotateInterval&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:2600,&quot;min&quot;:1200,&quot;max&quot;:6000,&quot;step&quot;:200,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;workPreviews&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Work index&quot;}}">
+const RESUME_URL = "./uploads/Chukwuebuka_CV_.docx.pdf";
+const EMAIL = "chukwuebukaspad@gmail.com";
+const LINKEDIN = "https://www.linkedin.com/in/chukwuebuka-onyemelukwe-43b751177/";
+const GITHUB = "https://github.com/TODO"; // TODO
+const CALCOM = "https://cal.com/TODO"; // TODO
+
+const WORDS = ["digital products", "web experiences", "intelligent systems", "AI workflows"];
+
+const CASES = [
+  {
+    slug: "budgetview", number: "01", name: "BudgetView", industry: "Fintech",
+    status: "In development", statusNote: "TODO — set to LIVE PRODUCT once deployed",
+    year: "2025", role: "Design Engineer / Product Engineer",
+    discipline: "Product Engineering",
+    headline: "See where the month is going before the money does.",
+    summary: "BudgetView brings transactions, bills, subscriptions and budgets from multiple accounts into one clear monthly financial plan.",
+    tech: ["Next.js", "Python", "FastAPI", "Figma", "AI"],
+    areas: ["Product Engineering", "UI/UX", "Data Modelling"],
+    overview: "BudgetView is a personal financial planning product. It reads activity from multiple accounts, separates committed money from discretionary money, and resolves the month into one number a person can actually act on.",
+    problem: "Most budgeting tools report the past. They categorise transactions after the money has already left, then show a chart of it. But a month is not a list of transactions — it is a set of commitments that have already claimed part of the balance. The number people need is not what they spent last month; it is what is genuinely safe to spend for the rest of this one.",
+    flowLabel: "The reduction",
+    flow: ["Money in", "Bills", "Subscriptions", "Budget", "Safe to spend"],
+    approach: "The product is built around a single reduction. Income enters, known commitments are subtracted in a fixed order, and what survives is discretionary. Every screen in the product is a view onto one stage of that reduction, which keeps the mental model constant as the interface gets denser.",
+    decisions: [
+      { t: "One number, always visible", d: "Safe-to-spend is the primary figure on every screen. Detail views explain it rather than replace it." },
+      { t: "Commitments before categories", d: "Bills and subscriptions are modelled as scheduled obligations, not spending categories, so future dates are as real as past ones." },
+      { t: "Explain, don’t just classify", d: "Where the system infers something — a recurring charge, a merchant match — the interface says why, and the inference stays editable." }
+    ],
+    engineering: "A Next.js application handles the interface and account state. A Python and FastAPI service owns ingestion, merchant normalisation, recurrence detection and the monthly projection, so the calculation lives in one place and can be tested independently of the UI. AI is applied narrowly: normalising untidy merchant strings and proposing recurring-charge groupings for the person to confirm.",
+    arch: [["Client", "Next.js · React"], ["API", "FastAPI"], ["Engine", "Python · projection & recurrence"], ["Assist", "LLM · normalisation, grouping"]],
+    outcome: "TODO — replace with real outcome once the product has shipped and there is measured evidence. No metrics are claimed here.",
+    reflection: "The hardest part was restraint. Every additional chart made the month feel more analysed and less decided. Removing views improved the product more than adding them did."
+  },
+  {
+    slug: "siteresolve", number: "02", name: "SiteResolve", industry: "Construction Tech",
+    status: "In development", statusNote: "TODO — confirm current status",
+    year: "2025", role: "Design Engineer / Product Engineer",
+    discipline: "Product Engineering",
+    headline: "Construction defects should end in resolution, not paperwork.",
+    summary: "SiteResolve connects defect management, snagging, inspections, documentation and task coordination through one traceable workflow.",
+    tech: ["Next.js", "TypeScript", "Python", "FastAPI", "Figma", "AI"],
+    areas: ["Product Research", "UI/UX", "Brand Expression", "Content"],
+    overview: "SiteResolve is a defect and snagging product for construction teams. A defect is raised once on site, then carried through assignment, inspection, documentation and verification as a single record rather than a chain of messages, spreadsheets and photo folders.",
+    problem: "On site, the defect is obvious. The difficulty is everything after it: who owns it, what evidence exists, whether it was actually fixed, and who signed that off. When that history is spread across email, WhatsApp and a spreadsheet, resolution becomes an administrative exercise and the same defect is re-reported weeks later.",
+    flowLabel: "One record, six states",
+    flow: ["Report", "Assign", "Inspect", "Document", "Resolve", "Verify"],
+    approach: "Each defect is one record moving through an explicit state machine. States cannot be skipped, every transition captures who and when, and evidence attaches to the transition rather than to a folder. The interface makes the current state and the next required action legible at a glance, on a phone, outdoors.",
+    decisions: [
+      { t: "Capture first, structure later", d: "Reporting is a photo, a location and a sentence. Categorisation happens afterwards so nothing blocks the person standing in front of the defect." },
+      { t: "Verification is a separate state", d: "‘Fixed’ and ‘verified’ are different claims made by different people. Collapsing them is what lets defects reopen." },
+      { t: "The record is the report", d: "Documentation is assembled from the trail the workflow already produced, not re-typed at the end of the week." }
+    ],
+    engineering: "Next.js and TypeScript for the client, with a typed defect schema shared across capture, list, detail and export views. A FastAPI service holds the state machine, permissions and document assembly. AI drafts a defect title and category from the photo and note, which the reporter edits or discards.",
+    arch: [["Client", "Next.js · TypeScript"], ["API", "FastAPI"], ["Core", "State machine · permissions"], ["Assist", "LLM · defect drafting"]],
+    outcome: "TODO — replace with real deployment detail and any measured outcome. No metrics or client names are claimed here.",
+    reflection: "Traceability sounds like an admin feature until you watch someone try to prove a defect was fixed. Designing the audit trail as the primary object, rather than a log behind the product, changed the whole information architecture."
+  },
+  {
+    slug: "referralview", number: "03", name: "ReferralView", industry: "Healthtech",
+    status: "In development", statusNote: "TODO — confirm current status",
+    year: "2025", role: "Product Designer / Design Engineer",
+    discipline: "Product Design",
+    headline: "Every referral. Every step. One clear timeline.",
+    summary: "ReferralView brings referrals, appointments, documents, updates and actions into one comprehensive timeline so teams can understand exactly where each case stands.",
+    tech: ["Next.js", "TypeScript", "Figma", "AI"],
+    areas: ["UI/UX", "Product Research", "Content Design"],
+    overview: "ReferralView is a case-tracking interface for referral pathways. Instead of a status field and a document store, each case is presented as a chronological record: what arrived, what was reviewed, what was scheduled, what changed and what is owed next.",
+    problem: "A referral’s status is rarely the useful question. Teams need to know how a case got where it is and what is currently blocking it. That history usually exists — in letters, notes, attachments and system events — but it is scattered, so answering a simple question takes a phone call.",
+    flowLabel: "The case timeline",
+    flow: ["Referral received", "Documents reviewed", "Appointment", "Update", "Decision", "Next action"],
+    approach: "The timeline is the product, not a tab within it. Every event has a type, an actor, a timestamp and an optional attachment, which makes the same component usable for triage, for a clinic list and for a single case. Open actions are pinned above the record so the next step is never buried in history.",
+    decisions: [
+      { t: "Chronology over status", d: "Status is derived from the latest events rather than stored and maintained by hand, so it cannot drift from what actually happened." },
+      { t: "Events, not documents", d: "A letter is an event with an attachment. That one decision removes the separate document area and its parallel navigation." },
+      { t: "Language checked, not softened", d: "Content design was treated as interface: labels follow the words teams already use for each step." }
+    ],
+    engineering: "Next.js and TypeScript, with the timeline modelled as a typed event union so new event kinds can be added without touching the rendering logic. AI is used to summarise long attached correspondence into a short event caption, with the source always one click away.",
+    arch: [["Client", "Next.js · TypeScript"], ["Model", "Typed event union"], ["View", "Timeline · triage · case"], ["Assist", "LLM · correspondence summary"]],
+    outcome: "TODO — replace with real pilot detail and any measured outcome. No metrics, clients or testimonials are claimed here.",
+    reflection: "Designing this made the shape of the whole portfolio clearer: the work is usually not adding capability, it is making an existing sequence of events readable in one place."
+  }
+];
+
+class Component extends DCLogic {
+  state = { route: "/", menu: false, rot: 0, hover: -1, type: "", sent: false, theme: "light" };
+
+  capVals() {
+    const cap = this.state.cap ?? -1;
+    const v = { capLeave: () => this.setState({ cap: -1 }) };
+    for (let i = 0; i < 4; i++) {
+      const on = cap === i;
+      v["capEnter" + i] = () => this.setState({ cap: i });
+      v["capBg" + i] = on ? "var(--bg-2)" : "transparent";
+      v["capShadow" + i] = on ? "inset 2px 0 0 var(--accent)" : "inset 0 0 0 var(--accent)";
+      v["capNum" + i] = on ? "var(--accent)" : "var(--ink-2)";
+      v["capX" + i] = on ? "6px" : "0px";
+      v["capOp" + i] = on ? 1 : 0;
+      v["capRows" + i] = on ? "1fr" : "0fr";
+      v["capArrow" + i] = on ? "0px" : "-6px";
+    }
+    return v;
+  }
+
+  applyTheme(t) {
+    document.body.setAttribute("data-theme", t);
+    const m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.setAttribute("content", t === "light" ? "#FFFFFF" : "#0E172A");
+  }
+
+  componentDidMount() {
+    let t = null;
+    try { t = localStorage.getItem("co-theme"); } catch (e) {}
+    if (t !== "light" && t !== "dark") {
+      t = (this.props.defaultTheme ?? "light") === "dark" ? "dark" : "light";
+    }
+    this.setState({ theme: t });
+    this.applyTheme(t);
+    this.reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    this.syncRoute();
+    this.onHash = () => this.syncRoute();
+    window.addEventListener("hashchange", this.onHash);
+    if (!this.reduced && (this.props.rotatePhrase ?? true)) {
+      this.timer = setInterval(() => this.setState(s => ({ rot: s.rot + 1 })), this.props.rotateInterval ?? 2600);
+    }
+    this.observe();
+  }
+  componentDidUpdate(p, s) {
+    if (s.route !== this.state.route) this.observe();
+  }
+  componentWillUnmount() {
+    window.removeEventListener("hashchange", this.onHash);
+    clearInterval(this.timer);
+    if (this.io) this.io.disconnect();
+  }
+
+  observe() {
+    if (this.io) this.io.disconnect();
+    if (this.reduced) return;
+    setTimeout(() => {
+      document.querySelectorAll("#main > div > section, #main > div > article, #main > article, #main > article > section, #main > article > header, #main > article > dl")
+        .forEach(el => { if (!el.hasAttribute("data-reveal")) el.setAttribute("data-reveal", "1"); });
+      const nodes = document.querySelectorAll("[data-reveal]");
+      this.io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const el = e.target;
+          const i = Number(el.getAttribute("data-reveal-i") || 0);
+          el.style.transition = "opacity .8s cubic-bezier(.22,1,.36,1) " + (i * 60) + "ms, transform .8s cubic-bezier(.22,1,.36,1) " + (i * 60) + "ms";
+          el.style.opacity = "1";
+          el.style.transform = "none";
+          this.io.unobserve(el);
+        });
+      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+      nodes.forEach((el, i) => {
+        if (el.dataset.revealed) return;
+        el.dataset.revealed = "1";
+        el.setAttribute("data-reveal-i", String(i % 6));
+        el.style.opacity = "0";
+        el.style.transform = "translateY(18px)";
+        this.io.observe(el);
+      });
+    }, 30);
+  }
+
+  syncRoute() {
+    const raw = (window.location.hash || "").replace(/^#/, "");
+    if (raw && raw.charAt(0) !== "/") return; // in-page anchor, not a route
+    const h = raw || "/";
+    if (h !== this.state.route) {
+      this.setState({ route: h, menu: false, hover: -1 });
+      if (h.indexOf("#") !== 0) window.scrollTo({ top: 0, behavior: "auto" });
+    }
+  }
+  go(route) {
+    return e => {
+      if (e) e.preventDefault();
+      if (window.location.hash !== "#" + route) window.location.hash = route;
+      else this.setState({ menu: false });
+      window.scrollTo({ top: 0, behavior: "auto" });
+    };
+  }
+
+  renderVals() {
+    const r = this.state.route;
+    const csIndex = CASES.findIndex(c => r === "/work/" + c.slug);
+    const cs = csIndex > -1 ? CASES[csIndex] : null;
+    const next = cs ? CASES[(csIndex + 1) % CASES.length] : null;
+    const projectEnquiry = this.state.type !== "" && this.state.type !== "Hiring / Career Opportunity";
+
+    return {
+      resumeUrl: RESUME_URL, email: EMAIL, emailHref: "mailto:" + EMAIL,
+      linkedin: LINKEDIN, github: GITHUB, calcom: CALCOM,
+      menuOpen: this.state.menu, menuLabel: this.state.menu ? "Close" : "Menu",
+      toggleMenu: () => this.setState(s => ({ menu: !s.menu })),
+      ...this.capVals(),
+      isLight: this.state.theme === "light",
+      themeLabel: this.state.theme === "light" ? "Dark" : "Light",
+      themeTitle: this.state.theme === "light" ? "Switch to dark mode" : "Switch to light mode",
+      themeDot: this.state.theme === "light" ? "transparent" : "var(--accent)",
+      toggleTheme: () => this.setState(s => {
+        const t = s.theme === "light" ? "dark" : "light";
+        try { localStorage.setItem("co-theme", t); } catch (e) {}
+        this.applyTheme(t);
+        return { theme: t };
+      }),
+      goHome: this.go("/"), goWork: this.go("/work"), goAbout: this.go("/about"), goContact: this.go("/contact"),
+      cWork: r.indexOf("/work") === 0 ? "var(--ink)" : "var(--ink-2)",
+      cAbout: r === "/about" ? "var(--ink)" : "var(--ink-2)",
+      isHome: r === "/", isWork: r === "/work", isAbout: r === "/about", isContact: r === "/contact",
+      isCase: !!cs, cs, next,
+      isBudget: !!cs && cs.slug === "budgetview",
+      isSite: !!cs && cs.slug === "siteresolve",
+      isReferral: !!cs && cs.slug === "referralview",
+      goNext: next ? this.go("/work/" + next.slug) : null,
+      cases: CASES,
+      csFlow: cs ? cs.flow.map((f, i) => ({ label: f, n: String(i + 1).padStart(2, "0") })) : [],
+      csArch: cs ? cs.arch.map(a => ({ k: a[0], v: a[1] })) : [],
+      csTech: cs ? cs.tech.map(t => ({ t })) : [],
+      csAreas: cs ? cs.areas.map(t => ({ t })) : [],
+      csDecisions: cs ? cs.decisions.map((d, i) => ({ ...d, n: String(i + 1).padStart(2, "0") })) : [],
+      nextHref: next ? "#/work/" + next.slug : "#/work",
+      caseLinks: CASES.map(c => ({ ...c, href: "#/work/" + c.slug, flowText: c.flow.join("  →  "), open: this.props.workPreviews ?? true,
+        onClick: this.go("/work/" + c.slug) })),
+      scrollWork: e => { e.preventDefault(); const el = document.getElementById("selected-work"); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 40, behavior: this.reduced ? "auto" : "smooth" }); },
+      year: new Date().getFullYear(),
+      enquiryType: this.state.type,
+      setType: e => this.setState({ type: e.target.value }),
+      projectEnquiry,
+      sent: this.state.sent, notSent: !this.state.sent,
+      onSubmit: e => { e.preventDefault(); this.setState({ sent: true }); },
+      rotEl: React.createElement("span", {
+        key: this.state.rot,
+        style: {
+          display: "inline-block", color: "var(--accent)",
+          animation: this.reduced ? "none" : "wordIn .62s cubic-bezier(.22,1,.36,1) both"
+        }
+      }, WORDS[this.state.rot % WORDS.length])
+    };
+  }
+}
+
+</script>
+</body>
+</html>

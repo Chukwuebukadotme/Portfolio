@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chukwuebuka Onyemelukwe — Design Engineer × AI Engineer</title>
+<meta name="description" content="Chukwuebuka Onyemelukwe — Design Engineer × AI Engineer based in the United Kingdom. Product engineering, product design, AI engineering and web engineering.">
+<meta name="theme-color" content="#FFFFFF">
+<meta property="og:title" content="Chukwuebuka Onyemelukwe — Design Engineer × AI Engineer">
+<meta property="og:description" content="I design and engineer digital products that make complex work simpler.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&amp;family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body data-theme="light">
+
+
+<a href="#main" style="position:absolute;left:-9999px;top:0;padding:10px 16px;background:var(--accent);color:var(--on-inv);font-family:'IBM Plex Mono',monospace;font-size:12px;z-index:99" data-fx="x0">Skip to content</a>
+
+<header style="position:sticky;top:0;z-index:40;background:var(--bg-blur);backdrop-filter:blur(14px);border-bottom:1px solid var(--r16)">
+  <div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,72px);height:64px;display:flex;align-items:center;justify-content:space-between;gap:20px">
+    <a href="#/" aria-label="Chukwuebuka Onyemelukwe — home" style="display:flex;align-items:baseline;gap:10px;color:var(--ink)">
+      <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:19px;letter-spacing:-.02em">CO</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--ink-2)">DESIGN ENG × AI ENG</span>
+    </a>
+    <div data-nav="wide">
+      <nav aria-label="Primary" style="display:flex;align-items:center;flex-wrap:nowrap;gap:clamp(14px,1.8vw,30px)">
+        <a href="#/work" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)" data-fx="x1">Work</a>
+        <a href="#/about" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)" data-fx="x1">About</a>
+        <a href="./uploads/Chukwuebuka_CV_.docx.pdf" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap" data-fx="x1">Résumé <span style="color:var(--accent)">↗</span></a>
+        <button type="button" data-theme-toggle aria-pressed="true" title="Switch to dark mode" style="display:flex;align-items:center;gap:8px;background:none;border:1px solid var(--r30);padding:7px 12px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);cursor:pointer;white-space:nowrap;flex:none" data-fx="x2">
+          <span style="width:7px;height:7px;border:1px solid var(--accent);background:transparent" data-theme-dot=";border-radius:50%;flex:none"></span><span data-theme-label=""><span data-theme-text>Dark</span></span>
+        </button>
+        <a href="#/contact" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-inv);background:var(--accent);padding:8px 16px" data-fx="x3">Contact</a>
+      </nav>
+    </div>
+    <div data-nav="narrow">
+      <button type="button" data-menu-toggle aria-expanded="false" style="background:none;border:1px solid var(--r30);padding:9px 14px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);cursor:pointer"><span data-menu-label>Menu</span></button>
+    </div>
+  </div>
+</header>
+
+<nav data-mobile-nav hidden aria-label="Mobile" style="position:fixed;inset:64px 0 0 0;z-index:39;background:var(--bg-2);padding:clamp(28px,7vw,56px);display:flex;flex-direction:column;justify-content:space-between">
+    <ul style="display:flex;flex-direction:column;gap:6px">
+      <li style="border-top:1px solid var(--r18);padding:18px 0"><a href="#/work" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,10vw,44px);letter-spacing:-.03em;color:var(--ink)">Work</a></li>
+      <li style="border-top:1px solid var(--r18);padding:18px 0"><a href="#/about" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,10vw,44px);letter-spacing:-.03em;color:var(--ink)">About</a></li>
+      <li style="border-top:1px solid var(--r18);padding:18px 0"><a href="./uploads/Chukwuebuka_CV_.docx.pdf" target="_blank" rel="noopener" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,10vw,44px);letter-spacing:-.03em;color:var(--ink)">Résumé ↗</a></li>
+      <li style="border-top:1px solid var(--r18);border-bottom:1px solid var(--r18);padding:18px 0"><a href="#/contact" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,10vw,44px);letter-spacing:-.03em;color:var(--accent)">Contact</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)">UK Based · Open to permanent UK roles</p>
+      <button type="button" data-theme-toggle aria-pressed="true" style="display:flex;align-items:center;gap:8px;background:none;border:1px solid var(--r30);padding:9px 14px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);cursor:pointer">
+        <span style="width:7px;height:7px;border:1px solid var(--accent);background:transparent" data-theme-dot=";border-radius:50%;flex:none"></span><span data-theme-text>Dark</span>
+      </button>
+    </div>
+  </nav>
+
+<main id="main">
+<div data-route="/">
+<div>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(48px,8vw,104px) clamp(20px,5vw,72px) clamp(40px,6vw,80px);min-height:calc(100svh - 76px);display:flex;flex-direction:column;justify-content:center">
+    
+
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,72px)">
+      <h1 style="flex:1 1 min(100%,640px);font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(38px,7.4vw,92px);line-height:.98;letter-spacing:-.035em;color:var(--ink);text-wrap:balance">
+        I design and engineer <span style="display:inline-block;overflow:hidden;vertical-align:bottom"><span data-rot style="display:inline-block;color:var(--accent)">digital products</span></span> that make complex work simpler.
+      </h1>
+      <div style="flex:0 1 min(100%,420px);display:flex;flex-direction:column;gap:clamp(24px,3vw,36px);align-self:flex-end">
+        <p style="font-size:clamp(16px,1.2vw,18px);line-height:1.62;color:var(--ink-2);max-width:42ch">I’m naturally curious about how things work and how they could work better. I combine product thinking, design and engineering to build fast, usable and durable websites, applications and intelligent systems.</p>
+        <div style="display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:12px">
+          <a href="#selected-work" data-scroll-work style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-inv);background:var(--accent);padding:14px 18px;white-space:nowrap" data-fx="x3">Explore Selected Work ↓</a>
+          <a href="./uploads/Chukwuebuka_CV_.docx.pdf" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);border:1px solid var(--r34);padding:14px 18px;white-space:nowrap" data-fx="x4">View Résumé ↗</a>
+        </div>
+        <p style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">
+          <span style="width:6px;height:6px;background:var(--accent);border-radius:50%;flex:none"></span>UK based · Open to permanent UK roles
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Professional proof" style="border-top:1px solid var(--r16);border-bottom:1px solid var(--r16);background:var(--bg-2)">
+    <dl style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,72px);display:flex;flex-wrap:wrap">
+      <div data-reveal="1" style="flex:1 1 min(100%,220px);padding:clamp(28px,4vw,44px) clamp(18px,2.4vw,32px) clamp(28px,4vw,44px) 0;border-right:1px solid var(--r14)">
+        <dt style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(40px,5vw,64px);line-height:1;letter-spacing:-.04em;color:var(--ink)">5+</dt>
+        <dd style="margin:12px 0 0;font-size:15px;line-height:1.5;color:var(--ink-2);max-width:24ch">Years across design, AI &amp; engineering</dd>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,220px);padding:clamp(28px,4vw,44px) clamp(18px,2.4vw,32px);border-right:1px solid var(--r14)">
+        <dt style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(40px,5vw,64px);line-height:1;letter-spacing:-.04em;color:var(--ink)">20+</dt>
+        <dd style="margin:12px 0 0;font-size:15px;line-height:1.5;color:var(--ink-2);max-width:24ch">Projects across product, web &amp; AI</dd>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,220px);padding:clamp(28px,4vw,44px) clamp(18px,2.4vw,32px);border-right:1px solid var(--r14)">
+        <dt style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(40px,5vw,64px);line-height:1;letter-spacing:-.04em;color:var(--accent)">UK</dt>
+        <dd style="margin:12px 0 0;font-size:15px;line-height:1.5;color:var(--ink-2);max-width:24ch">Based in the United Kingdom</dd>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,220px);padding:clamp(28px,4vw,44px) 0 clamp(28px,4vw,44px) clamp(18px,2.4vw,32px)">
+        <dt style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(40px,5vw,64px);line-height:1;letter-spacing:-.04em;color:var(--ink)">Global</dt>
+        <dd style="margin:12px 0 0;font-size:15px;line-height:1.5;color:var(--ink-2);max-width:26ch">Available for remote collaboration</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section id="selected-work" style="max-width:1440px;margin:0 auto;padding:clamp(64px,9vw,132px) clamp(20px,5vw,72px) clamp(32px,4vw,56px)">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,72px);align-items:flex-end">
+      <div style="flex:1 1 min(100%,560px)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:clamp(20px,3vw,32px)">Selected Work / 01—03</p>
+        <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,4.6vw,60px);line-height:1.02;letter-spacing:-.032em;color:var(--ink);text-wrap:balance">Designed with intent.<br>Built to solve real problems.</h2>
+      </div>
+      <p style="flex:0 1 min(100%,340px);font-size:clamp(15px,1.1vw,17px);line-height:1.62;color:var(--ink-2);max-width:40ch">Selected digital products across financial technology, construction technology and healthcare.</p>
+    </div>
+  </section>
+
+  <article style="max-width:1440px;margin:0 auto;padding:clamp(32px,5vw,64px) clamp(20px,5vw,72px);border-top:1px solid var(--r16)">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+      <div data-reveal="1" style="flex:1 1 min(100%,400px)">
+        <div style="display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;margin-bottom:clamp(20px,3vw,30px)">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--ink-2)">01</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);border:1px solid var(--acc40);padding:4px 9px">Fintech</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)">BudgetView</span>
+          
+        </div>
+        <a href="#/work/budgetview" style="display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(28px,3.8vw,50px);line-height:1.04;letter-spacing:-.03em;color:var(--ink);max-width:22ch" data-fx="x5">See where the month is going before the money does.</a>
+        <p style="margin-top:clamp(20px,3vw,28px);font-size:clamp(15px,1.1vw,17px);line-height:1.62;color:var(--ink-2);max-width:48ch">BudgetView brings transactions, bills, subscriptions and budgets from multiple accounts into one clear monthly financial plan.</p>
+        <dl style="margin:clamp(24px,3.4vw,36px) 0 0;display:flex;flex-wrap:wrap;gap:20px 44px;border-top:1px solid var(--r16);padding-top:20px">
+          <div><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Role</dt><dd style="margin:8px 0 0;font-size:15px;color:var(--ink)">Design Engineer / Product Engineer</dd></div>
+          <div><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Stack</dt><dd style="margin:8px 0 0;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-2)">Next.js · Python · FastAPI · Figma · AI</dd></div>
+        </dl>
+        <a href="#/work/budgetview" style="display:inline-block;margin-top:clamp(24px,3vw,32px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--acc40);padding-bottom:4px" data-fx="x2">Read case study →</a>
+      </div>
+      <figure data-reveal="1" data-figleft="" style="flex:0 1 min(100%,380px);max-width:380px;display:flex;flex-direction:column;gap:clamp(16px,2vw,22px)">
+        <div style="aspect-ratio:4/3;border:1px solid var(--r16);background:var(--bg-2)">
+          <video-slot id="home-bv-anim"></video-slot>
+        </div>
+        
+        
+      </figure>
+    </div>
+  </article>
+
+  <article style="max-width:1440px;margin:0 auto;padding:clamp(32px,5vw,64px) clamp(20px,5vw,72px);border-top:1px solid var(--r16)">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+      <div data-reveal="1" style="flex:1 1 min(100%,400px)">
+        <div style="display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;margin-bottom:clamp(20px,3vw,30px)">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--ink-2)">02</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);border:1px solid var(--acc40);padding:4px 9px">Construction Tech</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)">SiteResolve</span>
+        </div>
+        <a href="#/work/siteresolve" style="display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,4.4vw,58px);line-height:1.02;letter-spacing:-.032em;color:var(--ink);max-width:22ch" data-fx="x5">Construction defects should end in resolution, not paperwork.</a>
+        <p style="margin-top:clamp(20px,3vw,28px);font-size:clamp(15px,1.1vw,17px);line-height:1.62;color:var(--ink-2);max-width:52ch">SiteResolve connects defect management, snagging, inspections, documentation and task coordination through one traceable workflow.</p>
+        <dl style="margin:clamp(24px,3.4vw,36px) 0 0;display:flex;flex-wrap:wrap;gap:20px 44px;border-top:1px solid var(--r16);padding-top:20px">
+          <div><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Role</dt><dd style="margin:8px 0 0;font-size:15px;color:var(--ink)">Design Engineer / Product Engineer</dd></div>
+          <div><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Stack</dt><dd style="margin:8px 0 0;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-2)">Next.js · TypeScript · Python · FastAPI · Figma · AI</dd></div>
+          <div><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Also</dt><dd style="margin:8px 0 0;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-2)">Product Research · UI/UX · Brand Expression · Content</dd></div>
+        </dl>
+        <a href="#/work/siteresolve" style="display:inline-block;margin-top:clamp(24px,3vw,32px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--acc40);padding-bottom:4px" data-fx="x2">Read case study →</a>
+      </div>
+      <figure data-reveal="1" data-figleft="" style="flex:0 1 min(100%,380px);max-width:380px;display:flex;flex-direction:column;gap:clamp(16px,2vw,22px)">
+        <div style="aspect-ratio:4/3;border:1px solid var(--r16);background:var(--bg-2)">
+          <video-slot id="home-sr-anim"></video-slot>
+        </div>
+        
+      </figure>
+    </div>
+  </article>
+
+  <article style="max-width:1440px;margin:0 auto;padding:clamp(32px,5vw,64px) clamp(20px,5vw,72px) clamp(64px,8vw,110px);border-top:1px solid var(--r16)">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+      <figure data-reveal="1" data-figleft="" style="flex:0 1 min(100%,380px);max-width:380px;display:flex;flex-direction:column;gap:clamp(16px,2vw,22px)">
+        <div style="aspect-ratio:4/3;border:1px solid var(--r16);background:var(--bg-2)">
+          <video-slot id="home-rv-anim"></video-slot>
+        </div>
+        
+        
+      </figure>
+      <div data-reveal="1" style="flex:1 1 min(100%,400px)">
+        <div style="display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;margin-bottom:clamp(20px,3vw,30px)">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--ink-2)">03</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);border:1px solid var(--acc40);padding:4px 9px">Healthtech</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)">ReferralView</span>
+        </div>
+        <a href="#/work/referralview" style="display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,4.4vw,58px);line-height:1.02;letter-spacing:-.032em;color:var(--ink);max-width:20ch" data-fx="x5">Every referral. Every step. One clear timeline.</a>
+        <p style="margin-top:clamp(20px,3vw,28px);font-size:clamp(15px,1.1vw,17px);line-height:1.62;color:var(--ink-2);max-width:52ch">ReferralView brings referrals, appointments, documents, updates and actions into one comprehensive timeline so teams can understand exactly where each case stands.</p>
+        <dl style="margin:clamp(24px,3.4vw,36px) 0 0;display:flex;flex-wrap:wrap;gap:20px 44px;border-top:1px solid var(--r16);padding-top:20px">
+          <div><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Role</dt><dd style="margin:8px 0 0;font-size:15px;color:var(--ink)">Product Designer / Design Engineer</dd></div>
+          <div><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Stack</dt><dd style="margin:8px 0 0;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-2)">Next.js · TypeScript · Figma · AI</dd></div>
+        </dl>
+        <a href="#/work/referralview" style="display:inline-block;margin-top:clamp(24px,3vw,32px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--acc40);padding-bottom:4px" data-fx="x2">Read case study →</a>
+      </div>
+    </div>
+  </article>
+
+  <section style="background:var(--bg-2);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16)">
+    <div style="max-width: 1440px; margin: 0 auto; padding: clamp(48px,6vw,88px) clamp(20px,5vw,72px); display: none">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:clamp(24px,3vw,36px)">Common thread</p>
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(24px,3vw,48px)">
+        <p data-reveal="1" style="flex:1 1 min(100%,240px);font-size:clamp(15px,1.1vw,17px);line-height:1.6;color:var(--ink-2)"><strong style="color:var(--ink);font-weight:600">BudgetView</strong><br>Financial complexity <span style="color:var(--accent)">→</span> clarity</p>
+        <p data-reveal="1" style="flex:1 1 min(100%,240px);font-size:clamp(15px,1.1vw,17px);line-height:1.6;color:var(--ink-2)"><strong style="color:var(--ink);font-weight:600">SiteResolve</strong><br>Construction complexity <span style="color:var(--accent)">→</span> traceable resolution</p>
+        <p data-reveal="1" style="flex:1 1 min(100%,240px);font-size:clamp(15px,1.1vw,17px);line-height:1.6;color:var(--ink-2)"><strong style="color:var(--ink);font-weight:600">ReferralView</strong><br>Healthcare workflow complexity <span style="color:var(--accent)">→</span> one comprehensible timeline</p>
+      </div>
+      <p data-reveal="1" style="margin-top:clamp(36px,4.5vw,64px);font-family:'Bricolage Grotesque',sans-serif;font-weight:400;font-size:clamp(22px,2.6vw,34px);line-height:1.22;letter-spacing:-.02em;color:var(--ink);max-width:26ch">I make complicated systems easier to understand and operate.</p>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,120px) clamp(20px,5vw,72px)">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:clamp(20px,3vw,32px)">Capabilities</p>
+    <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,4.4vw,58px);line-height:1.02;letter-spacing:-.032em;color:var(--ink);max-width:24ch;margin-bottom:clamp(40px,5vw,72px)">From ambiguous problems to working products.</h2>
+    <div style="display:flex;flex-direction:column">
+      <div data-cap data-reveal="1" style="position:relative;display:flex;flex-wrap:wrap;align-items:baseline;gap:12px clamp(24px,4vw,64px);border-top:1px solid var(--r16);padding:clamp(24px,3vw,36px) clamp(16px,2vw,28px);margin:0 calc(-1 * clamp(16px,2vw,28px));transition:background .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s cubic-bezier(.2,.7,.2,1)">
+        <span data-cap-num style="flex:none;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;width:34px;transition:color .35s ease">01</span>
+        <h3 data-cap-title style="flex:1 1 min(100%,240px);max-width:280px;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(20px,2.1vw,28px);letter-spacing:-.02em;color:var(--ink);transition:transform .45s cubic-bezier(.2,.7,.2,1)">Digital Products</h3>
+        <p style="flex:2 1 min(100%,320px);padding-right:34px;font-size:clamp(15px,1.1vw,17px);line-height:1.6;color:var(--ink-2);max-width:56ch">Applications, SaaS products, internal tools, dashboards, portals and MVPs.</p>
+        <span data-cap-arrow aria-hidden="true" style="position:absolute;bottom:clamp(24px,3vw,36px);right:clamp(16px,2vw,28px);font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);transition:opacity .4s ease,transform .45s cubic-bezier(.2,.7,.2,1)">↗</span>
+        <div data-cap-panel style="flex:0 0 100%;display:grid;overflow:hidden;transition:grid-template-rows .5s cubic-bezier(.2,.7,.2,1),opacity .4s ease">
+          <div style="min-height:0;padding:0"><div style="display:flex;flex-wrap:wrap;gap:8px;padding-top:20px;margin-left:calc(34px + clamp(24px,4vw,64px))">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">SaaS</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Dashboards</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Internal Tools</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Portals</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">MVPs</span>
+          </div></div>
+        </div>
+      </div>
+      <div data-cap data-reveal="1" style="position:relative;display:flex;flex-wrap:wrap;align-items:baseline;gap:12px clamp(24px,4vw,64px);border-top:1px solid var(--r16);padding:clamp(24px,3vw,36px) clamp(16px,2vw,28px);margin:0 calc(-1 * clamp(16px,2vw,28px));transition:background .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s cubic-bezier(.2,.7,.2,1)">
+        <span data-cap-num style="flex:none;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;width:34px;transition:color .35s ease">02</span>
+        <h3 data-cap-title style="flex:1 1 min(100%,240px);max-width:280px;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(20px,2.1vw,28px);letter-spacing:-.02em;color:var(--ink);transition:transform .45s cubic-bezier(.2,.7,.2,1)">Web Experiences</h3>
+        <p style="flex:2 1 min(100%,320px);padding-right:34px;font-size:clamp(15px,1.1vw,17px);line-height:1.6;color:var(--ink-2);max-width:56ch">High-performance websites, landing pages, CMS experiences, e-commerce and interactive web experiences.</p>
+        <span data-cap-arrow aria-hidden="true" style="position:absolute;bottom:clamp(24px,3vw,36px);right:clamp(16px,2vw,28px);font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);transition:opacity .4s ease,transform .45s cubic-bezier(.2,.7,.2,1)">↗</span>
+        <div data-cap-panel style="flex:0 0 100%;display:grid;overflow:hidden;transition:grid-template-rows .5s cubic-bezier(.2,.7,.2,1),opacity .4s ease">
+          <div style="min-height:0;padding:0"><div style="display:flex;flex-wrap:wrap;gap:8px;padding-top:20px;margin-left:calc(34px + clamp(24px,4vw,64px))">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Landing Pages</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">CMS</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">E-commerce</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Performance</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Interaction</span>
+          </div></div>
+        </div>
+      </div>
+      <div data-cap data-reveal="1" style="position:relative;display:flex;flex-wrap:wrap;align-items:baseline;gap:12px clamp(24px,4vw,64px);border-top:1px solid var(--r16);padding:clamp(24px,3vw,36px) clamp(16px,2vw,28px);margin:0 calc(-1 * clamp(16px,2vw,28px));transition:background .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s cubic-bezier(.2,.7,.2,1)">
+        <span data-cap-num style="flex:none;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;width:34px;transition:color .35s ease">03</span>
+        <h3 data-cap-title style="flex:1 1 min(100%,240px);max-width:280px;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(20px,2.1vw,28px);letter-spacing:-.02em;color:var(--ink);transition:transform .45s cubic-bezier(.2,.7,.2,1)">AI &amp; Automation</h3>
+        <p style="flex:2 1 min(100%,320px);padding-right:34px;font-size:clamp(15px,1.1vw,17px);line-height:1.6;color:var(--ink-2);max-width:56ch">AI agents, intelligent product features, workflow automation, LLM integrations, APIs and AI-enabled systems.</p>
+        <span data-cap-arrow aria-hidden="true" style="position:absolute;bottom:clamp(24px,3vw,36px);right:clamp(16px,2vw,28px);font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);transition:opacity .4s ease,transform .45s cubic-bezier(.2,.7,.2,1)">↗</span>
+        <div data-cap-panel style="flex:0 0 100%;display:grid;overflow:hidden;transition:grid-template-rows .5s cubic-bezier(.2,.7,.2,1),opacity .4s ease">
+          <div style="min-height:0;padding:0"><div style="display:flex;flex-wrap:wrap;gap:8px;padding-top:20px;margin-left:calc(34px + clamp(24px,4vw,64px))">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Agents</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">LLM Integration</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Workflow Automation</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">APIs</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Evaluation</span>
+          </div></div>
+        </div>
+      </div>
+      <div data-cap data-reveal="1" style="position:relative;display:flex;flex-wrap:wrap;align-items:baseline;gap:12px clamp(24px,4vw,64px);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16);padding:clamp(24px,3vw,36px) clamp(16px,2vw,28px);margin:0 calc(-1 * clamp(16px,2vw,28px));transition:background .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s cubic-bezier(.2,.7,.2,1)">
+        <span data-cap-num style="flex:none;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;width:34px;transition:color .35s ease">04</span>
+        <h3 data-cap-title style="flex:1 1 min(100%,240px);max-width:280px;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(20px,2.1vw,28px);letter-spacing:-.02em;color:var(--ink);transition:transform .45s cubic-bezier(.2,.7,.2,1)">Product Design</h3>
+        <p style="flex:2 1 min(100%,320px);padding-right:34px;font-size:clamp(15px,1.1vw,17px);line-height:1.6;color:var(--ink-2);max-width:56ch">Product research, information architecture, UX/UI, interaction design, prototyping and design systems.</p>
+        <span data-cap-arrow aria-hidden="true" style="position:absolute;bottom:clamp(24px,3vw,36px);right:clamp(16px,2vw,28px);font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);transition:opacity .4s ease,transform .45s cubic-bezier(.2,.7,.2,1)">↗</span>
+        <div data-cap-panel style="flex:0 0 100%;display:grid;overflow:hidden;transition:grid-template-rows .5s cubic-bezier(.2,.7,.2,1),opacity .4s ease">
+          <div style="min-height:0;padding:0"><div style="display:flex;flex-wrap:wrap;gap:8px;padding-top:20px;margin-left:calc(34px + clamp(24px,4vw,64px))">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Research</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Information Architecture</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">UX / UI</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Prototyping</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--r22);padding:6px 11px;white-space:nowrap">Design Systems</span>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--bg-2);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16)">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,110px) clamp(20px,5vw,72px)">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,64px);align-items:flex-end;margin-bottom:clamp(40px,5vw,72px)">
+        <div style="flex:1 1 min(100%,420px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:clamp(20px,3vw,32px)">Process / 01—05</p>
+          <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(28px,4vw,52px);line-height:1.04;letter-spacing:-.032em;color:var(--ink)">Understand. Shape. Build. Launch. Learn.</h2>
+        </div>
+      </div>
+      <ol style="display:flex;flex-wrap:wrap;gap:1px;background:var(--r16)">
+        <li data-reveal="1" style="flex:1 1 min(100%,200px);background:var(--bg-2);padding:clamp(24px,2.6vw,32px) clamp(20px,2.2vw,28px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--accent);margin-bottom:18px">01 — Discover</p>
+          <ul style="display:flex;flex-direction:column;gap:8px;font-size:15px;color:var(--ink-2)"><li>Goals</li><li>Product Research</li><li>User Research</li><li>Early Concepts</li></ul>
+        </li>
+        <li data-reveal="1" style="flex:1 1 min(100%,200px);background:var(--bg-2);padding:clamp(24px,2.6vw,32px) clamp(20px,2.2vw,28px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--ink-2);margin-bottom:18px">02 — Design</p>
+          <ul style="display:flex;flex-direction:column;gap:8px;font-size:15px;color:var(--ink-2)"><li>Information Architecture</li><li>Interfaces</li><li>Flows</li><li>Prototypes</li></ul>
+        </li>
+        <li data-reveal="1" style="flex:1 1 min(100%,200px);background:var(--bg-2);padding:clamp(24px,2.6vw,32px) clamp(20px,2.2vw,28px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--ink-2);margin-bottom:18px">03 — Build</p>
+          <ul style="display:flex;flex-direction:column;gap:8px;font-size:15px;color:var(--ink-2)"><li>Development</li><li>Integration</li><li>Production Code</li><li>Testing</li></ul>
+        </li>
+        <li data-reveal="1" style="flex:1 1 min(100%,200px);background:var(--bg-2);padding:clamp(24px,2.6vw,32px) clamp(20px,2.2vw,28px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--ink-2);margin-bottom:18px">04 — Launch</p>
+          <ul style="display:flex;flex-direction:column;gap:8px;font-size:15px;color:var(--ink-2)"><li>Deployment</li><li>QA</li><li>Performance</li><li>Production Checks</li></ul>
+        </li>
+        <li data-reveal="1" style="flex:1 1 min(100%,200px);background:var(--bg-2);padding:clamp(24px,2.6vw,32px) clamp(20px,2.2vw,28px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--ink-2);margin-bottom:18px">05 — Evolve</p>
+          <ul style="display:flex;flex-direction:column;gap:8px;font-size:15px;color:var(--ink-2)"><li>Feedback</li><li>Analysis</li><li>Iteration</li><li>Improvement</li></ul>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,120px) clamp(20px,5vw,72px)">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px);margin-bottom:clamp(40px,5vw,72px)">
+      <h2 style="flex:1 1 min(100%,480px);font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,4.6vw,60px);line-height:1.02;letter-spacing:-.032em;color:var(--ink);max-width:22ch">The interface is only half the product.</h2>
+      <p style="flex:1 1 min(100%,320px);align-self:flex-end;font-size:clamp(15px,1.1vw,17px);line-height:1.62;color:var(--ink-2);max-width:48ch">Visual quality matters, but so do architecture, accessibility, performance, reliability and maintainability. I work across both sides so that what looks considered also behaves considered.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:1px;background:var(--r16);border:1px solid var(--r16)">
+      <div data-reveal="1" style="flex:1 1 min(100%,260px);background:var(--bg);padding:clamp(26px,3vw,40px)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:20px">Discipline 01</p>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(19px,1.9vw,24px);letter-spacing:-.02em;color:var(--ink);margin-bottom:20px">Product Design</h3>
+        <ul style="display:flex;flex-direction:column;gap:9px;font-size:15px;color:var(--ink-2)"><li>Research</li><li>UX/UI</li><li>Information Architecture</li><li>Prototyping</li><li>Design Systems</li></ul>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,260px);background:var(--bg);padding:clamp(26px,3vw,40px)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:20px">Discipline 02</p>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(19px,1.9vw,24px);letter-spacing:-.02em;color:var(--ink);margin-bottom:20px">Product Engineering</h3>
+        <ul style="display:flex;flex-direction:column;gap:9px;font-size:15px;color:var(--ink-2)"><li>Next.js</li><li>TypeScript</li><li>Full Stack</li><li>APIs</li><li>Cloud Infrastructure</li></ul>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,260px);background:var(--bg);padding:clamp(26px,3vw,40px)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:20px">Discipline 03</p>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(19px,1.9vw,24px);letter-spacing:-.02em;color:var(--ink);margin-bottom:20px">AI &amp; Automation</h3>
+        <ul style="display:flex;flex-direction:column;gap:9px;font-size:15px;color:var(--ink-2)"><li>Python</li><li>AI Agents</li><li>LLMs</li><li>Automation</li><li>Intelligent Integrations</li></ul>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,220px);background:var(--bg-2);padding:clamp(26px,3vw,40px);display:flex;flex-direction:column;justify-content:flex-end;gap:14px">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)">Intersection</p>
+        <p style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(24px,2.6vw,34px);line-height:1.08;letter-spacing:-.028em;color:var(--ink)">Useful<br>Products</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid var(--r16)">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,100px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(32px,4vw,64px)">
+      <div style="flex:1 1 min(100%,240px)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:22px">Capabilities</p>
+        <ul style="display:flex;flex-direction:column;gap:11px;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(16px,1.35vw,19px);color:var(--ink);letter-spacing:-.01em"><li>Product Research</li><li>Product Design</li><li>UI/UX</li><li>Design Engineering</li><li>Product Engineering</li><li>AI Engineering</li><li>Full-Stack Development</li><li>AI Automation</li></ul>
+      </div>
+      <div style="flex:1 1 min(100%,240px)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:22px">Technology</p>
+        <ul style="display:flex;flex-direction:column;gap:11px;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--ink-2)"><li>Next.js</li><li>TypeScript</li><li>Python</li><li>FastAPI</li><li>Supabase</li><li>APIs</li><li>Cloud Infrastructure</li></ul>
+      </div>
+      <div style="flex:1 1 min(100%,240px)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:22px">Tools</p>
+        <ul style="display:flex;flex-direction:column;gap:11px;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--ink-2)"><li>Figma</li><li>Webflow</li><li>Claude</li><li>ChatGPT / Codex</li><li>GitHub</li><li>Vercel</li><li>n8n</li><li>Google AI Studio</li><li>Microsoft 365</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--bg-2);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16)">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,100px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+      <div data-reveal="1" style="flex:0 1 min(100%,300px);aspect-ratio:4/5;border:1px solid var(--r22);padding:clamp(22px,2.6vw,32px);display:flex;flex-direction:column;justify-content:space-between">
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(28px,3vw,40px);letter-spacing:-.03em;color:var(--accent)">CO</span>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(26px,3.2vw,42px);line-height:1.02;letter-spacing:-.03em;color:var(--ink)">Making<br>systems<br>better.</span>
+      </div>
+      <div style="flex:1 1 min(100%,420px)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:clamp(22px,3vw,32px)">About / CO</p>
+        <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(28px,4vw,52px);line-height:1.02;letter-spacing:-.032em;color:var(--ink)">Different disciplines.<br>Same question.</h2>
+        <p style="margin-top:18px;font-family:'Bricolage Grotesque',sans-serif;font-weight:400;font-size:clamp(24px,3.4vw,44px);line-height:1.04;letter-spacing:-.03em;color:var(--accent)">How can this work better?</p>
+        <div style="margin-top:clamp(26px,3.4vw,40px);display:flex;flex-direction:column;gap:16px;max-width:52ch">
+          <p style="font-size:clamp(15px,1.1vw,17px);line-height:1.62;color:var(--ink-2)">I work at the intersection of design, engineering and product, turning complicated business and user problems into digital systems that are useful, fast and built to last.</p>
+          <p style="font-size:clamp(15px,1.1vw,17px);line-height:1.62;color:var(--ink-2)">Curiosity, experimentation and multidisciplinary thinking shape how I approach products and systems.</p>
+        </div>
+        <a href="#/about" style="display:inline-block;margin-top:clamp(26px,3vw,36px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--acc40);padding-bottom:4px" data-fx="x2">More About Me →</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(72px,10vw,150px) clamp(20px,5vw,72px)">
+    <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(32px,5.4vw,72px);line-height:1;letter-spacing:-.035em;color:var(--ink);max-width:20ch">Think we could build something useful together?</h2>
+    <p style="margin-top:clamp(24px,3vw,36px);font-size:clamp(16px,1.2vw,18px);line-height:1.62;color:var(--ink-2);max-width:46ch">I’m open to permanent opportunities across the UK and selected product collaborations globally.</p>
+    <div style="margin-top:clamp(32px,4vw,48px);display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+      <a href="./uploads/Chukwuebuka_CV_.docx.pdf" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-inv);background:var(--accent);padding:15px 22px" data-fx="x3">View Résumé ↗</a>
+      <a href="#/contact" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);border:1px solid var(--r34);padding:15px 22px" data-fx="x4">Start a Conversation →</a>
+      <span style="display:flex;gap:18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-left:8px">
+        
+        
+      </span>
+    </div>
+  </section>
+
+</div>
+</div>
+<div data-route="/work" hidden>
+<div>
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(48px,7vw,100px) clamp(20px,5vw,72px) clamp(40px,5vw,72px)">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:clamp(22px,3vw,34px)">Work / 001—003</p>
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px);align-items:flex-end">
+      <h1 style="flex:1 1 min(100%,520px);font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(34px,5.6vw,76px);line-height:1;letter-spacing:-.035em;color:var(--ink);max-width:20ch">Products designed around problems worth solving.</h1>
+      <p style="flex:0 1 min(100%,340px);font-size:clamp(15px,1.1vw,17px);line-height:1.62;color:var(--ink-2);max-width:42ch">Selected work across financial technology, construction technology, healthcare, product engineering and intelligent systems.</p>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,72px) clamp(72px,9vw,130px)">
+    <div style="display:flex;flex-wrap:wrap;gap:12px clamp(20px,3vw,48px);border-bottom:1px solid var(--r16);padding-bottom:14px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)">
+      <span style="flex:none;width:34px">No.</span>
+      <span style="flex:1 1 160px">Project</span>
+      <span style="flex:1 1 160px">Industry</span>
+      <span style="flex:1 1 160px">Discipline</span>
+    </div>
+    <ol>
+      
+        <li style="border-bottom:1px solid var(--r16)">
+          <a href="#/work/budgetview" style="display:block;padding:clamp(22px,3vw,34px) 0;color:var(--ink)" data-fx="x5">
+            <div style="display:flex;flex-wrap:wrap;gap:10px clamp(20px,3vw,48px);align-items:baseline">
+              <span style="flex:none;width:34px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-2)">01</span>
+              <span style="flex:1 1 160px;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(22px,2.8vw,36px);letter-spacing:-.028em">BudgetView</span>
+              <span style="flex:1 1 160px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)">Fintech</span>
+              <span style="flex:1 1 160px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)">Product Engineering</span>
+            </div>
+            
+              <div style="display:flex;flex-wrap:wrap;gap:16px clamp(24px,4vw,64px);padding:clamp(18px,2.4vw,28px) 0 6px;margin-left:clamp(0px,4vw,54px)">
+                <p style="flex:1 1 min(100%,300px);font-size:clamp(15px,1.05vw,16px);line-height:1.6;color:var(--ink-2);max-width:52ch">BudgetView brings transactions, bills, subscriptions and budgets from multiple accounts into one clear monthly financial plan.</p>
+                <p style="flex:1 1 min(100%,240px);font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:2;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)">Money in  →  Bills  →  Subscriptions  →  Budget  →  Safe to spend</p>
+              </div>
+            
+          </a>
+        </li>
+      
+        <li style="border-bottom:1px solid var(--r16)">
+          <a href="#/work/siteresolve" style="display:block;padding:clamp(22px,3vw,34px) 0;color:var(--ink)" data-fx="x5">
+            <div style="display:flex;flex-wrap:wrap;gap:10px clamp(20px,3vw,48px);align-items:baseline">
+              <span style="flex:none;width:34px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-2)">02</span>
+              <span style="flex:1 1 160px;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(22px,2.8vw,36px);letter-spacing:-.028em">SiteResolve</span>
+              <span style="flex:1 1 160px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)">Construction Tech</span>
+              <span style="flex:1 1 160px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)">Product Engineering</span>
+            </div>
+            
+              <div style="display:flex;flex-wrap:wrap;gap:16px clamp(24px,4vw,64px);padding:clamp(18px,2.4vw,28px) 0 6px;margin-left:clamp(0px,4vw,54px)">
+                <p style="flex:1 1 min(100%,300px);font-size:clamp(15px,1.05vw,16px);line-height:1.6;color:var(--ink-2);max-width:52ch">SiteResolve connects defect management, snagging, inspections, documentation and task coordination through one traceable workflow.</p>
+                <p style="flex:1 1 min(100%,240px);font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:2;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)">Report  →  Assign  →  Inspect  →  Document  →  Resolve  →  Verify</p>
+              </div>
+            
+          </a>
+        </li>
+      
+        <li style="border-bottom:1px solid var(--r16)">
+          <a href="#/work/referralview" style="display:block;padding:clamp(22px,3vw,34px) 0;color:var(--ink)" data-fx="x5">
+            <div style="display:flex;flex-wrap:wrap;gap:10px clamp(20px,3vw,48px);align-items:baseline">
+              <span style="flex:none;width:34px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-2)">03</span>
+              <span style="flex:1 1 160px;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(22px,2.8vw,36px);letter-spacing:-.028em">ReferralView</span>
+              <span style="flex:1 1 160px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)">Healthtech</span>
+              <span style="flex:1 1 160px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)">Product Design</span>
+            </div>
+            
+              <div style="display:flex;flex-wrap:wrap;gap:16px clamp(24px,4vw,64px);padding:clamp(18px,2.4vw,28px) 0 6px;margin-left:clamp(0px,4vw,54px)">
+                <p style="flex:1 1 min(100%,300px);font-size:clamp(15px,1.05vw,16px);line-height:1.6;color:var(--ink-2);max-width:52ch">ReferralView brings referrals, appointments, documents, updates and actions into one comprehensive timeline so teams can understand exactly where each case stands.</p>
+                <p style="flex:1 1 min(100%,240px);font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:2;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)">Referral received  →  Documents reviewed  →  Appointment  →  Update  →  Decision  →  Next action</p>
+              </div>
+            
+          </a>
+        </li>
+      
+    </ol>
+    <p style="margin-top:clamp(32px,4vw,56px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)">TODO — further projects to be added</p>
+  </section>
+</div>
+</div>
+<div data-route="/about" hidden>
+<div>
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(48px,7vw,100px) clamp(20px,5vw,72px) clamp(40px,5vw,72px)">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:clamp(22px,3vw,34px)">About / CO</p>
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+      <div style="flex:1 1 min(100%,480px)">
+        <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(34px,5.4vw,74px);line-height:1;letter-spacing:-.035em;color:var(--ink);max-width:16ch">Designer. Engineer. Product thinker.</h1>
+        <p style="margin-top:clamp(24px,3vw,36px);font-size:clamp(16px,1.25vw,19px);line-height:1.6;color:var(--ink-2);max-width:54ch">I work at the intersection of design, engineering and product, taking complicated problems and turning them into digital systems that are useful, understandable and durable.</p>
+      </div>
+      <div style="flex:0 1 min(100%,300px);aspect-ratio:4/5;border:1px solid var(--r22);padding:clamp(22px,2.6vw,32px);display:flex;flex-direction:column;justify-content:space-between;background:var(--bg-2)">
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(28px,3vw,40px);letter-spacing:-.03em;color:var(--accent)">CO</span>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(26px,3.2vw,42px);line-height:1.02;letter-spacing:-.03em;color:var(--ink)">Making<br>systems<br>better.</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--bg-2);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16)">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+      <div style="flex:1 1 min(100%,380px)">
+        <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(28px,3.8vw,50px);line-height:1.02;letter-spacing:-.032em;color:var(--ink)">Different disciplines. Same question.</h2>
+        <p style="margin-top:18px;font-family:'Bricolage Grotesque',sans-serif;font-weight:400;font-size:clamp(26px,3.4vw,46px);line-height:1.02;letter-spacing:-.03em;color:var(--accent)">How can this work better?</p>
+      </div>
+      <p style="flex:1 1 min(100%,360px);align-self:center;font-family:'Newsreader',Georgia,serif;font-size:clamp(17px,1.45vw,21px);line-height:1.56;color:var(--ink-2);max-width:52ch">Curiosity has consistently pushed me across disciplines. Design helps me understand how people experience a system. Engineering helps me understand how it works. Artificial intelligence expands what that system can do. Product thinking keeps the work connected to a real problem.</p>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px)">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:clamp(32px,4vw,52px)">The practice</p>
+    <div style="display:flex;flex-wrap:wrap;gap:1px;background:var(--r16);border:1px solid var(--r16)">
+      <div data-reveal="1" style="flex:1 1 min(100%,230px);background:var(--bg);padding:clamp(26px,3vw,38px)">
+        <h3 style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--accent);margin-bottom:16px">DESIGN</h3>
+        <p style="font-family:'Bricolage Grotesque',sans-serif;font-weight:400;font-size:clamp(17px,1.6vw,21px);line-height:1.28;letter-spacing:-.018em;color:var(--ink)">Understand and shape the experience.</p>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,230px);background:var(--bg);padding:clamp(26px,3vw,38px)">
+        <h3 style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--ink-2);margin-bottom:16px">ENGINEERING</h3>
+        <p style="font-family:'Bricolage Grotesque',sans-serif;font-weight:400;font-size:clamp(17px,1.6vw,21px);line-height:1.28;letter-spacing:-.018em;color:var(--ink)">Make the experience real and reliable.</p>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,230px);background:var(--bg);padding:clamp(26px,3vw,38px)">
+        <h3 style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--ink-2);margin-bottom:16px">INTELLIGENCE</h3>
+        <p style="font-family:'Bricolage Grotesque',sans-serif;font-weight:400;font-size:clamp(17px,1.6vw,21px);line-height:1.28;letter-spacing:-.018em;color:var(--ink)">Make the system more capable.</p>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,230px);background:var(--bg);padding:clamp(26px,3vw,38px)">
+        <h3 style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--ink-2);margin-bottom:16px">PRODUCT</h3>
+        <p style="font-family:'Bricolage Grotesque',sans-serif;font-weight:400;font-size:clamp(17px,1.6vw,21px);line-height:1.28;letter-spacing:-.018em;color:var(--ink)">Make sure the right problem is being solved.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,72px) clamp(56px,7vw,104px);display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+    <div style="flex:1 1 min(100%,380px)">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:26px">Journey</p>
+      <ol style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px">
+        <li style="display:flex;align-items:center;gap:16px"><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(17px,1.7vw,22px);letter-spacing:-.02em;color:var(--ink-2)">Design</span><span style="color:var(--accent)">→</span></li>
+        <li style="display:flex;align-items:center;gap:16px"><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(17px,1.7vw,22px);letter-spacing:-.02em;color:var(--ink-2)">Product</span><span style="color:var(--accent)">→</span></li>
+        <li style="display:flex;align-items:center;gap:16px"><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(17px,1.7vw,22px);letter-spacing:-.02em;color:var(--ink-2)">Engineering</span><span style="color:var(--accent)">→</span></li>
+        <li><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(17px,1.7vw,22px);letter-spacing:-.02em;color:var(--ink)">Artificial Intelligence</span></li>
+      </ol>
+      <div style="margin-top:clamp(36px,4.5vw,60px);border-top:1px solid var(--r16);padding-top:26px">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:18px">Education</p>
+        <p style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(20px,2.2vw,28px);line-height:1.16;letter-spacing:-.022em;color:var(--ink)">MSc Artificial Intelligence</p>
+        <p style="margin-top:10px;font-size:16px;line-height:1.5;color:var(--ink-2)">Nottingham Trent University<br>United Kingdom</p>
+      </div>
+    </div>
+    <div style="flex:1 1 min(100%,320px);border-left:1px solid var(--acc35);padding-left:clamp(20px,3vw,36px);align-self:center">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:20px">Availability</p>
+      <p style="font-family:'Newsreader',Georgia,serif;font-size:clamp(17px,1.5vw,22px);line-height:1.5;color:var(--ink);max-width:40ch">Based in the UK and open to permanent roles across Design Engineering, Product Engineering and AI Engineering.</p>
+      <p style="margin-top:18px;font-size:15px;line-height:1.6;color:var(--ink-2);max-width:40ch">Available for selected global remote collaborations.</p>
+      <a href="#/contact" style="display:inline-block;margin-top:clamp(24px,3vw,34px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-inv);background:var(--accent);padding:14px 20px" data-fx="x3">Start a Conversation →</a>
+    </div>
+  </section>
+</div>
+</div>
+<div data-route="/contact" hidden>
+<div>
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(48px,7vw,100px) clamp(20px,5vw,72px) clamp(36px,4.5vw,64px)">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:clamp(22px,3vw,34px)">Contact</p>
+    <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(44px,8vw,110px);line-height:.96;letter-spacing:-.04em;color:var(--ink)">Let’s talk.</h1>
+  </section>
+
+  <section style="border-top:1px solid var(--r16);border-bottom:1px solid var(--r16);background:var(--bg-2)">
+    <div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,72px);display:flex;flex-wrap:wrap">
+      <div style="flex:1 1 min(100%,340px);padding:clamp(36px,4.5vw,64px) clamp(20px,3vw,48px) clamp(36px,4.5vw,64px) 0;border-right:1px solid var(--r16)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:22px">Hiring</p>
+        <p style="font-family:'Newsreader',Georgia,serif;font-size:clamp(17px,1.5vw,22px);line-height:1.5;color:var(--ink);max-width:40ch">Building a product, design engineering or AI team? I’m open to permanent opportunities across the UK.</p>
+        <div style="margin-top:clamp(24px,3vw,34px);display:flex;flex-wrap:wrap;gap:10px">
+          <a href="./uploads/Chukwuebuka_CV_.docx.pdf" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-inv);background:var(--accent);padding:14px 20px" data-fx="x3">View Résumé</a>
+          <a href="mailto:chukwuebukaspad@gmail.com" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);border:1px solid var(--r34);padding:14px 20px" data-fx="x4">Email</a>
+          <a href="https://www.linkedin.com/in/chukwuebuka-onyemelukwe-43b751177/" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);border:1px solid var(--r34);padding:14px 20px" data-fx="x4">LinkedIn</a>
+        </div>
+      </div>
+      <div style="flex:1 1 min(100%,340px);padding:clamp(36px,4.5vw,64px) 0 clamp(36px,4.5vw,64px) clamp(20px,3vw,48px)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:22px">Project enquiries</p>
+        <p style="font-family:'Newsreader',Georgia,serif;font-size:clamp(17px,1.5vw,22px);line-height:1.5;color:var(--ink);max-width:40ch">Have a product, website or intelligent system you want to bring to life?</p>
+        <a href="#enquiry" style="display:inline-block;margin-top:clamp(24px,3vw,34px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);border:1px solid var(--r34);padding:14px 20px" data-fx="x4">Start Project →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="enquiry" style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,100px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(36px,5vw,80px)">
+    <form data-contact-form style="flex:1 1 min(100%,440px);display:flex;flex-direction:column;gap:clamp(20px,2.4vw,28px)">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)">Send a message</p>
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,2vw,24px)">
+        <p style="flex:1 1 min(100%,200px);display:flex;flex-direction:column;gap:9px">
+          <label for="f-name" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Name</label>
+          <input id="f-name" name="name" type="text" required="required" autoComplete="name" style="background:transparent;border:0;border-bottom:1px solid var(--r34);padding:10px 0;font-size:16px;color:var(--ink);font-family:'Newsreader',Georgia,serif">
+        </p>
+        <p style="flex:1 1 min(100%,200px);display:flex;flex-direction:column;gap:9px">
+          <label for="f-email" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Email</label>
+          <input id="f-email" name="email" type="email" required="required" autoComplete="email" style="background:transparent;border:0;border-bottom:1px solid var(--r34);padding:10px 0;font-size:16px;color:var(--ink);font-family:'Newsreader',Georgia,serif">
+        </p>
+      </div>
+      <p style="display:flex;flex-direction:column;gap:9px">
+        <label for="f-company" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Company / Organisation</label>
+        <input id="f-company" name="company" type="text" autoComplete="organization" style="background:transparent;border:0;border-bottom:1px solid var(--r34);padding:10px 0;font-size:16px;color:var(--ink);font-family:'Newsreader',Georgia,serif">
+      </p>
+      <p style="display:flex;flex-direction:column;gap:9px">
+        <label for="f-type" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Enquiry type</label>
+        <select id="f-type" name="enquiry" required="required" value="" data-type-select style="background:var(--bg-2);border:1px solid var(--r34);padding:12px 10px;font-size:15px;color:var(--ink);font-family:'IBM Plex Mono',monospace">
+          <option value="">Select…</option>
+          <option value="Hiring / Career Opportunity">Hiring / Career Opportunity</option>
+          <option value="Digital Product">Digital Product</option>
+          <option value="Website">Website</option>
+          <option value="AI &amp; Automation">AI &amp; Automation</option>
+          <option value="Product Design">Product Design</option>
+          <option value="Other">Other</option>
+        </select>
+      </p>
+      <p style="display:flex;flex-direction:column;gap:9px">
+        <label for="f-message" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Message</label>
+        <textarea id="f-message" name="message" rows="5" required="required" style="background:transparent;border:1px solid var(--r34);padding:12px;font-size:16px;line-height:1.55;color:var(--ink);font-family:'Newsreader',Georgia,serif;resize:vertical"></textarea>
+      </p>
+      <div data-project-fields hidden style="display:flex;flex-wrap:wrap;gap:clamp(16px,2vw,24px);border-left:1px solid var(--acc40);padding-left:clamp(16px,2vw,24px)">
+          <p style="flex:1 1 min(100%,180px);display:flex;flex-direction:column;gap:9px">
+            <label for="f-timeline" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Timeline</label>
+            <input id="f-timeline" name="timeline" type="text" placeholder="e.g. Q1, 6 weeks" style="background:transparent;border:0;border-bottom:1px solid var(--r34);padding:10px 0;font-size:16px;color:var(--ink);font-family:'Newsreader',Georgia,serif">
+          </p>
+          <p style="flex:1 1 min(100%,180px);display:flex;flex-direction:column;gap:9px">
+            <label for="f-budget" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Budget</label>
+            <input id="f-budget" name="budget" type="text" placeholder="Optional" style="background:transparent;border:0;border-bottom:1px solid var(--r34);padding:10px 0;font-size:16px;color:var(--ink);font-family:'Newsreader',Georgia,serif">
+          </p>
+        </div>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+        <button type="submit" style="background:var(--accent);border:0;padding:15px 24px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-inv);cursor:pointer" data-fx="x3">Send Message →</button>
+        <span data-sent hidden role="status" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)">Received — TODO: connect form handler</span>
+      </div>
+    </form>
+
+    <aside style="flex:0 1 min(100%,300px)">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:24px">Direct</p>
+      <ul style="display:flex;flex-direction:column">
+        <li style="border-top:1px solid var(--r16);padding:16px 0"><a href="mailto:chukwuebukaspad@gmail.com" style="display:flex;justify-content:space-between;gap:16px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--ink)" data-fx="x5"><span>Email</span><span style="color:var(--ink-2)">chukwuebukaspad@gmail.com</span></a></li>
+        <li style="border-top:1px solid var(--r16);padding:16px 0"><a href="https://www.linkedin.com/in/chukwuebuka-onyemelukwe-43b751177/" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;gap:16px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--ink)" data-fx="x5"><span>LinkedIn</span><span style="color:var(--ink-2)">↗</span></a></li>
+        <li style="border-top:1px solid var(--r16);padding:16px 0"><a href="https://github.com/TODO" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;gap:16px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--ink)" data-fx="x5"><span>GitHub</span><span style="color:var(--ink-2)">↗</span></a></li>
+        <li style="border-top:1px solid var(--r16);border-bottom:1px solid var(--r16);padding:16px 0"><a href="https://cal.com/TODO" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;gap:16px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--ink)" data-fx="x5"><span>Book a call</span><span style="color:var(--ink-2)">Cal.com ↗</span></a></li>
+      </ul>
+      <p style="margin-top:26px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);line-height:1.9">TODO — replace placeholder GitHub and Cal.com links</p>
+    </aside>
+  </section>
+</div>
+</div>
+<div data-route="/work/budgetview" hidden>
+<article>
+  <header style="max-width:1440px;margin:0 auto;padding:clamp(40px,6vw,88px) clamp(20px,5vw,72px) clamp(32px,4vw,56px)">
+    <p style="display:flex;flex-wrap:wrap;gap:10px 18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:clamp(24px,3.4vw,40px)">
+      <a href="#/work" style="color:var(--ink-2)" data-fx="x5">Work</a>
+      <span style="color:var(--ink-2)">/</span>
+      <span style="color:var(--ink-2)">01 — BudgetView</span>
+      <span style="color:var(--accent)">Fintech</span>
+    </p>
+    <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(32px,5.4vw,74px);line-height:1;letter-spacing:-.035em;color:var(--ink);max-width:22ch">See where the month is going before the money does.</h1>
+    <p style="margin-top:clamp(24px,3vw,36px);font-size:clamp(16px,1.25vw,19px);line-height:1.6;color:var(--ink-2);max-width:54ch">BudgetView brings transactions, bills, subscriptions and budgets from multiple accounts into one clear monthly financial plan.</p>
+  </header>
+
+  <dl style="max-width:1440px;margin:0 auto;padding:clamp(24px,3vw,36px) clamp(20px,5vw,72px);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16);display:flex;flex-wrap:wrap;gap:24px clamp(28px,4vw,64px);background:var(--bg-2)">
+    <div style="flex:1 1 150px"><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Role</dt><dd style="margin:9px 0 0;font-size:15px;color:var(--ink);line-height:1.45">Design Engineer / Product Engineer</dd></div>
+    <div style="flex:0 1 90px"><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Year</dt><dd style="margin:9px 0 0;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--ink)">2025</dd></div>
+    <div style="flex:0 1 160px"><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Status</dt><dd style="margin:9px 0 0;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--accent)">In development</dd><dd style="margin:6px 0 0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--ink-2)">TODO — set to LIVE PRODUCT once deployed</dd></div>
+    <div style="flex:1 1 240px"><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Technology</dt>
+      <dd style="margin:9px 0 0;display:flex;flex-wrap:wrap;gap:8px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2);border:1px solid var(--r24);padding:5px 9px">Next.js</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2);border:1px solid var(--r24);padding:5px 9px">Python</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2);border:1px solid var(--r24);padding:5px 9px">FastAPI</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2);border:1px solid var(--r24);padding:5px 9px">Figma</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2);border:1px solid var(--r24);padding:5px 9px">AI</span>
+      </dd>
+    </div>
+    <div style="flex:1 1 240px"><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Areas</dt>
+      <dd style="margin:9px 0 0;display:flex;flex-wrap:wrap;gap:8px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2)">Product Engineering</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2)">UI/UX</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2)">Data Modelling</span>
+      </dd>
+    </div>
+  </dl>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px)">
+    <h2 style="flex:0 1 min(100%,220px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);padding-top:6px">Overview</h2>
+    <p style="flex:1 1 min(100%,420px);font-family:'Newsreader',Georgia,serif;font-size:clamp(18px,1.6vw,23px);line-height:1.52;color:var(--ink);max-width:56ch">BudgetView is a personal financial planning product. It reads activity from multiple accounts, separates committed money from discretionary money, and resolves the month into one number a person can actually act on.</p>
+  </section>
+
+  <section style="background:var(--bg-2);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16)">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px)">
+      <h2 style="flex:0 1 min(100%,220px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);padding-top:6px">Problem</h2>
+      <p style="flex:1 1 min(100%,420px);font-size:clamp(16px,1.2vw,18px);line-height:1.66;color:var(--ink-2);max-width:62ch">Most budgeting tools report the past. They categorise transactions after the money has already left, then show a chart of it. But a month is not a list of transactions — it is a set of commitments that have already claimed part of the balance. The number people need is not what they spent last month; it is what is genuinely safe to spend for the rest of this one.</p>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px)">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px)">
+      <h2 style="flex:0 1 min(100%,220px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);padding-top:6px">Product approach</h2>
+      <div style="flex:1 1 min(100%,420px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,56px)">
+        <p style="flex:1 1 min(100%,320px);font-size:clamp(16px,1.2vw,18px);line-height:1.66;color:var(--ink-2);max-width:56ch">The product is built around a single reduction. Income enters, known commitments are subtracted in a fixed order, and what survives is discretionary. Every screen in the product is a view onto one stage of that reduction, which keeps the mental model constant as the interface gets denser.</p>
+        <figure style="flex:0 1 min(100%,280px)">
+          <figcaption style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:20px">The reduction</figcaption>
+          <ol style="border-left:1px solid var(--acc40);padding-left:20px;display:flex;flex-direction:column;gap:16px">
+            
+              <li style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-2)">01</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)">Money in</span></li>
+            
+              <li style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-2)">02</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)">Bills</span></li>
+            
+              <li style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-2)">03</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)">Subscriptions</span></li>
+            
+              <li style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-2)">04</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)">Budget</span></li>
+            
+              <li style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-2)">05</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)">Safe to spend</span></li>
+            
+          </ol>
+        </figure>
+      </div>
+    </div>
+    <ol style="margin-top:clamp(48px,6vw,88px);display:flex;flex-wrap:wrap;gap:1px;background:var(--r16);border:1px solid var(--r16)">
+      
+        <li data-reveal="1" style="flex:1 1 min(100%,260px);background:var(--bg);padding:clamp(24px,3vw,36px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--accent);margin-bottom:16px">Decision 01</p>
+          <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(18px,1.8vw,22px);letter-spacing:-.02em;color:var(--ink);margin-bottom:12px">One number, always visible</h3>
+          <p style="font-size:15px;line-height:1.6;color:var(--ink-2)">Safe-to-spend is the primary figure on every screen. Detail views explain it rather than replace it.</p>
+        </li>
+      
+        <li data-reveal="1" style="flex:1 1 min(100%,260px);background:var(--bg);padding:clamp(24px,3vw,36px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--accent);margin-bottom:16px">Decision 02</p>
+          <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(18px,1.8vw,22px);letter-spacing:-.02em;color:var(--ink);margin-bottom:12px">Commitments before categories</h3>
+          <p style="font-size:15px;line-height:1.6;color:var(--ink-2)">Bills and subscriptions are modelled as scheduled obligations, not spending categories, so future dates are as real as past ones.</p>
+        </li>
+      
+        <li data-reveal="1" style="flex:1 1 min(100%,260px);background:var(--bg);padding:clamp(24px,3vw,36px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--accent);margin-bottom:16px">Decision 03</p>
+          <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(18px,1.8vw,22px);letter-spacing:-.02em;color:var(--ink);margin-bottom:12px">Explain, don’t just classify</h3>
+          <p style="font-size:15px;line-height:1.6;color:var(--ink-2)">Where the system infers something — a recurring charge, a merchant match — the interface says why, and the inference stays editable.</p>
+        </li>
+      
+    </ol>
+  </section>
+
+  <section style="background:var(--bg-2);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16)">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px)">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,64px);align-items:baseline;margin-bottom:clamp(28px,3.4vw,44px)">
+        <h2 style="flex:0 1 min(100%,220px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)">Product experience</h2>
+        <p style="flex:1 1 min(100%,320px);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)">TODO — replace slots with final interface screenshots</p>
+      </div>
+      
+        <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,2vw,28px)">
+          <div style="flex:2 1 min(100%,420px);aspect-ratio:16/10"><image-slot id="bv-main" shape="rect" placeholder="Monthly plan — primary screen"></image-slot></div>
+          <div style="flex:1 1 min(100%,240px);aspect-ratio:4/5"><image-slot id="bv-detail" shape="rect" placeholder="Subscriptions detail"></image-slot></div>
+        </div>
+      
+      
+      
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px)">
+    <h2 style="flex:0 1 min(100%,220px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);padding-top:6px">Engineering</h2>
+    <div style="flex:1 1 min(100%,420px)">
+      <p style="font-size:clamp(16px,1.2vw,18px);line-height:1.66;color:var(--ink-2);max-width:62ch">A Next.js application handles the interface and account state. A Python and FastAPI service owns ingestion, merchant normalisation, recurrence detection and the monthly projection, so the calculation lives in one place and can be tested independently of the UI. AI is applied narrowly: normalising untidy merchant strings and proposing recurring-charge groupings for the person to confirm.</p>
+      <ol style="margin-top:clamp(32px,4vw,52px);display:flex;flex-direction:column">
+        
+          <li style="display:flex;flex-wrap:wrap;gap:8px 24px;border-top:1px solid var(--r16);padding:16px 0">
+            <span style="flex:0 1 110px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)">Client</span>
+            <span style="flex:1 1 200px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink)">Next.js · React</span>
+          </li>
+        
+          <li style="display:flex;flex-wrap:wrap;gap:8px 24px;border-top:1px solid var(--r16);padding:16px 0">
+            <span style="flex:0 1 110px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)">API</span>
+            <span style="flex:1 1 200px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink)">FastAPI</span>
+          </li>
+        
+          <li style="display:flex;flex-wrap:wrap;gap:8px 24px;border-top:1px solid var(--r16);padding:16px 0">
+            <span style="flex:0 1 110px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)">Engine</span>
+            <span style="flex:1 1 200px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink)">Python · projection &amp; recurrence</span>
+          </li>
+        
+          <li style="display:flex;flex-wrap:wrap;gap:8px 24px;border-top:1px solid var(--r16);padding:16px 0">
+            <span style="flex:0 1 110px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)">Assist</span>
+            <span style="flex:1 1 200px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink)">LLM · normalisation, grouping</span>
+          </li>
+        
+      </ol>
+    </div>
+  </section>
+
+  <section style="background:var(--bg-2);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16)">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+      <div style="flex:1 1 min(100%,320px)">
+        <h2 style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:22px">Outcome</h2>
+        <p style="font-size:clamp(15px,1.1vw,17px);line-height:1.64;color:var(--ink-2);max-width:48ch">TODO — replace with real outcome once the product has shipped and there is measured evidence. No metrics are claimed here.</p>
+      </div>
+      <div style="flex:1 1 min(100%,320px)">
+        <h2 style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:22px">Reflection</h2>
+        <p style="font-family:'Newsreader',Georgia,serif;font-size:clamp(17px,1.4vw,21px);line-height:1.52;color:var(--ink);max-width:48ch">The hardest part was restraint. Every additional chart made the month feel more analysed and less decided. Removing views improved the product more than adding them did.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px)">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:20px">Next project — 02</p>
+    <a href="#/work/siteresolve" style="display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,4.6vw,62px);line-height:1.02;letter-spacing:-.032em;color:var(--ink);max-width:24ch" data-fx="x5">SiteResolve <span style="color:var(--accent)">→</span></a>
+    <p style="margin-top:18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)">Construction Tech</p>
+  </section>
+</article>
+</div>
+<div data-route="/work/siteresolve" hidden>
+<article>
+  <header style="max-width:1440px;margin:0 auto;padding:clamp(40px,6vw,88px) clamp(20px,5vw,72px) clamp(32px,4vw,56px)">
+    <p style="display:flex;flex-wrap:wrap;gap:10px 18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:clamp(24px,3.4vw,40px)">
+      <a href="#/work" style="color:var(--ink-2)" data-fx="x5">Work</a>
+      <span style="color:var(--ink-2)">/</span>
+      <span style="color:var(--ink-2)">02 — SiteResolve</span>
+      <span style="color:var(--accent)">Construction Tech</span>
+    </p>
+    <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(32px,5.4vw,74px);line-height:1;letter-spacing:-.035em;color:var(--ink);max-width:22ch">Construction defects should end in resolution, not paperwork.</h1>
+    <p style="margin-top:clamp(24px,3vw,36px);font-size:clamp(16px,1.25vw,19px);line-height:1.6;color:var(--ink-2);max-width:54ch">SiteResolve connects defect management, snagging, inspections, documentation and task coordination through one traceable workflow.</p>
+  </header>
+
+  <dl style="max-width:1440px;margin:0 auto;padding:clamp(24px,3vw,36px) clamp(20px,5vw,72px);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16);display:flex;flex-wrap:wrap;gap:24px clamp(28px,4vw,64px);background:var(--bg-2)">
+    <div style="flex:1 1 150px"><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Role</dt><dd style="margin:9px 0 0;font-size:15px;color:var(--ink);line-height:1.45">Design Engineer / Product Engineer</dd></div>
+    <div style="flex:0 1 90px"><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Year</dt><dd style="margin:9px 0 0;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--ink)">2025</dd></div>
+    <div style="flex:0 1 160px"><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Status</dt><dd style="margin:9px 0 0;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--accent)">In development</dd><dd style="margin:6px 0 0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--ink-2)">TODO — confirm current status</dd></div>
+    <div style="flex:1 1 240px"><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Technology</dt>
+      <dd style="margin:9px 0 0;display:flex;flex-wrap:wrap;gap:8px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2);border:1px solid var(--r24);padding:5px 9px">Next.js</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2);border:1px solid var(--r24);padding:5px 9px">TypeScript</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2);border:1px solid var(--r24);padding:5px 9px">Python</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2);border:1px solid var(--r24);padding:5px 9px">FastAPI</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2);border:1px solid var(--r24);padding:5px 9px">Figma</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2);border:1px solid var(--r24);padding:5px 9px">AI</span>
+      </dd>
+    </div>
+    <div style="flex:1 1 240px"><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Areas</dt>
+      <dd style="margin:9px 0 0;display:flex;flex-wrap:wrap;gap:8px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2)">Product Research</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2)">UI/UX</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2)">Brand Expression</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2)">Content</span>
+      </dd>
+    </div>
+  </dl>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px)">
+    <h2 style="flex:0 1 min(100%,220px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);padding-top:6px">Overview</h2>
+    <p style="flex:1 1 min(100%,420px);font-family:'Newsreader',Georgia,serif;font-size:clamp(18px,1.6vw,23px);line-height:1.52;color:var(--ink);max-width:56ch">SiteResolve is a defect and snagging product for construction teams. A defect is raised once on site, then carried through assignment, inspection, documentation and verification as a single record rather than a chain of messages, spreadsheets and photo folders.</p>
+  </section>
+
+  <section style="background:var(--bg-2);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16)">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px)">
+      <h2 style="flex:0 1 min(100%,220px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);padding-top:6px">Problem</h2>
+      <p style="flex:1 1 min(100%,420px);font-size:clamp(16px,1.2vw,18px);line-height:1.66;color:var(--ink-2);max-width:62ch">On site, the defect is obvious. The difficulty is everything after it: who owns it, what evidence exists, whether it was actually fixed, and who signed that off. When that history is spread across email, WhatsApp and a spreadsheet, resolution becomes an administrative exercise and the same defect is re-reported weeks later.</p>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px)">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px)">
+      <h2 style="flex:0 1 min(100%,220px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);padding-top:6px">Product approach</h2>
+      <div style="flex:1 1 min(100%,420px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,56px)">
+        <p style="flex:1 1 min(100%,320px);font-size:clamp(16px,1.2vw,18px);line-height:1.66;color:var(--ink-2);max-width:56ch">Each defect is one record moving through an explicit state machine. States cannot be skipped, every transition captures who and when, and evidence attaches to the transition rather than to a folder. The interface makes the current state and the next required action legible at a glance, on a phone, outdoors.</p>
+        <figure style="flex:0 1 min(100%,280px)">
+          <figcaption style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:20px">One record, six states</figcaption>
+          <ol style="border-left:1px solid var(--acc40);padding-left:20px;display:flex;flex-direction:column;gap:16px">
+            
+              <li style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-2)">01</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)">Report</span></li>
+            
+              <li style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-2)">02</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)">Assign</span></li>
+            
+              <li style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-2)">03</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)">Inspect</span></li>
+            
+              <li style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-2)">04</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)">Document</span></li>
+            
+              <li style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-2)">05</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)">Resolve</span></li>
+            
+              <li style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-2)">06</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)">Verify</span></li>
+            
+          </ol>
+        </figure>
+      </div>
+    </div>
+    <ol style="margin-top:clamp(48px,6vw,88px);display:flex;flex-wrap:wrap;gap:1px;background:var(--r16);border:1px solid var(--r16)">
+      
+        <li data-reveal="1" style="flex:1 1 min(100%,260px);background:var(--bg);padding:clamp(24px,3vw,36px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--accent);margin-bottom:16px">Decision 01</p>
+          <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(18px,1.8vw,22px);letter-spacing:-.02em;color:var(--ink);margin-bottom:12px">Capture first, structure later</h3>
+          <p style="font-size:15px;line-height:1.6;color:var(--ink-2)">Reporting is a photo, a location and a sentence. Categorisation happens afterwards so nothing blocks the person standing in front of the defect.</p>
+        </li>
+      
+        <li data-reveal="1" style="flex:1 1 min(100%,260px);background:var(--bg);padding:clamp(24px,3vw,36px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--accent);margin-bottom:16px">Decision 02</p>
+          <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(18px,1.8vw,22px);letter-spacing:-.02em;color:var(--ink);margin-bottom:12px">Verification is a separate state</h3>
+          <p style="font-size:15px;line-height:1.6;color:var(--ink-2)">‘Fixed’ and ‘verified’ are different claims made by different people. Collapsing them is what lets defects reopen.</p>
+        </li>
+      
+        <li data-reveal="1" style="flex:1 1 min(100%,260px);background:var(--bg);padding:clamp(24px,3vw,36px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--accent);margin-bottom:16px">Decision 03</p>
+          <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(18px,1.8vw,22px);letter-spacing:-.02em;color:var(--ink);margin-bottom:12px">The record is the report</h3>
+          <p style="font-size:15px;line-height:1.6;color:var(--ink-2)">Documentation is assembled from the trail the workflow already produced, not re-typed at the end of the week.</p>
+        </li>
+      
+    </ol>
+  </section>
+
+  <section style="background:var(--bg-2);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16)">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px)">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,64px);align-items:baseline;margin-bottom:clamp(28px,3.4vw,44px)">
+        <h2 style="flex:0 1 min(100%,220px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)">Product experience</h2>
+        <p style="flex:1 1 min(100%,320px);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)">TODO — replace slots with final interface screenshots</p>
+      </div>
+      
+      
+        <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,2vw,28px)">
+          <div style="flex:1 1 min(100%,240px);aspect-ratio:4/5"><image-slot id="sr-capture" shape="rect" placeholder="Defect capture — mobile"></image-slot></div>
+          <div style="flex:2 1 min(100%,420px);aspect-ratio:16/10"><image-slot id="sr-board" shape="rect" placeholder="Defect board / workflow view"></image-slot></div>
+        </div>
+      
+      
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px)">
+    <h2 style="flex:0 1 min(100%,220px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);padding-top:6px">Engineering</h2>
+    <div style="flex:1 1 min(100%,420px)">
+      <p style="font-size:clamp(16px,1.2vw,18px);line-height:1.66;color:var(--ink-2);max-width:62ch">Next.js and TypeScript for the client, with a typed defect schema shared across capture, list, detail and export views. A FastAPI service holds the state machine, permissions and document assembly. AI drafts a defect title and category from the photo and note, which the reporter edits or discards.</p>
+      <ol style="margin-top:clamp(32px,4vw,52px);display:flex;flex-direction:column">
+        
+          <li style="display:flex;flex-wrap:wrap;gap:8px 24px;border-top:1px solid var(--r16);padding:16px 0">
+            <span style="flex:0 1 110px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)">Client</span>
+            <span style="flex:1 1 200px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink)">Next.js · TypeScript</span>
+          </li>
+        
+          <li style="display:flex;flex-wrap:wrap;gap:8px 24px;border-top:1px solid var(--r16);padding:16px 0">
+            <span style="flex:0 1 110px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)">API</span>
+            <span style="flex:1 1 200px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink)">FastAPI</span>
+          </li>
+        
+          <li style="display:flex;flex-wrap:wrap;gap:8px 24px;border-top:1px solid var(--r16);padding:16px 0">
+            <span style="flex:0 1 110px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)">Core</span>
+            <span style="flex:1 1 200px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink)">State machine · permissions</span>
+          </li>
+        
+          <li style="display:flex;flex-wrap:wrap;gap:8px 24px;border-top:1px solid var(--r16);padding:16px 0">
+            <span style="flex:0 1 110px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)">Assist</span>
+            <span style="flex:1 1 200px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink)">LLM · defect drafting</span>
+          </li>
+        
+      </ol>
+    </div>
+  </section>
+
+  <section style="background:var(--bg-2);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16)">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+      <div style="flex:1 1 min(100%,320px)">
+        <h2 style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:22px">Outcome</h2>
+        <p style="font-size:clamp(15px,1.1vw,17px);line-height:1.64;color:var(--ink-2);max-width:48ch">TODO — replace with real deployment detail and any measured outcome. No metrics or client names are claimed here.</p>
+      </div>
+      <div style="flex:1 1 min(100%,320px)">
+        <h2 style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:22px">Reflection</h2>
+        <p style="font-family:'Newsreader',Georgia,serif;font-size:clamp(17px,1.4vw,21px);line-height:1.52;color:var(--ink);max-width:48ch">Traceability sounds like an admin feature until you watch someone try to prove a defect was fixed. Designing the audit trail as the primary object, rather than a log behind the product, changed the whole information architecture.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px)">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:20px">Next project — 03</p>
+    <a href="#/work/referralview" style="display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,4.6vw,62px);line-height:1.02;letter-spacing:-.032em;color:var(--ink);max-width:24ch" data-fx="x5">ReferralView <span style="color:var(--accent)">→</span></a>
+    <p style="margin-top:18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)">Healthtech</p>
+  </section>
+</article>
+</div>
+<div data-route="/work/referralview" hidden>
+<article>
+  <header style="max-width:1440px;margin:0 auto;padding:clamp(40px,6vw,88px) clamp(20px,5vw,72px) clamp(32px,4vw,56px)">
+    <p style="display:flex;flex-wrap:wrap;gap:10px 18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:clamp(24px,3.4vw,40px)">
+      <a href="#/work" style="color:var(--ink-2)" data-fx="x5">Work</a>
+      <span style="color:var(--ink-2)">/</span>
+      <span style="color:var(--ink-2)">03 — ReferralView</span>
+      <span style="color:var(--accent)">Healthtech</span>
+    </p>
+    <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(32px,5.4vw,74px);line-height:1;letter-spacing:-.035em;color:var(--ink);max-width:22ch">Every referral. Every step. One clear timeline.</h1>
+    <p style="margin-top:clamp(24px,3vw,36px);font-size:clamp(16px,1.25vw,19px);line-height:1.6;color:var(--ink-2);max-width:54ch">ReferralView brings referrals, appointments, documents, updates and actions into one comprehensive timeline so teams can understand exactly where each case stands.</p>
+  </header>
+
+  <dl style="max-width:1440px;margin:0 auto;padding:clamp(24px,3vw,36px) clamp(20px,5vw,72px);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16);display:flex;flex-wrap:wrap;gap:24px clamp(28px,4vw,64px);background:var(--bg-2)">
+    <div style="flex:1 1 150px"><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Role</dt><dd style="margin:9px 0 0;font-size:15px;color:var(--ink);line-height:1.45">Product Designer / Design Engineer</dd></div>
+    <div style="flex:0 1 90px"><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Year</dt><dd style="margin:9px 0 0;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--ink)">2025</dd></div>
+    <div style="flex:0 1 160px"><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Status</dt><dd style="margin:9px 0 0;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--accent)">In development</dd><dd style="margin:6px 0 0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--ink-2)">TODO — confirm current status</dd></div>
+    <div style="flex:1 1 240px"><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Technology</dt>
+      <dd style="margin:9px 0 0;display:flex;flex-wrap:wrap;gap:8px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2);border:1px solid var(--r24);padding:5px 9px">Next.js</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2);border:1px solid var(--r24);padding:5px 9px">TypeScript</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2);border:1px solid var(--r24);padding:5px 9px">Figma</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2);border:1px solid var(--r24);padding:5px 9px">AI</span>
+      </dd>
+    </div>
+    <div style="flex:1 1 240px"><dt style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Areas</dt>
+      <dd style="margin:9px 0 0;display:flex;flex-wrap:wrap;gap:8px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2)">UI/UX</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2)">Product Research</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-2)">Content Design</span>
+      </dd>
+    </div>
+  </dl>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px)">
+    <h2 style="flex:0 1 min(100%,220px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);padding-top:6px">Overview</h2>
+    <p style="flex:1 1 min(100%,420px);font-family:'Newsreader',Georgia,serif;font-size:clamp(18px,1.6vw,23px);line-height:1.52;color:var(--ink);max-width:56ch">ReferralView is a case-tracking interface for referral pathways. Instead of a status field and a document store, each case is presented as a chronological record: what arrived, what was reviewed, what was scheduled, what changed and what is owed next.</p>
+  </section>
+
+  <section style="background:var(--bg-2);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16)">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px)">
+      <h2 style="flex:0 1 min(100%,220px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);padding-top:6px">Problem</h2>
+      <p style="flex:1 1 min(100%,420px);font-size:clamp(16px,1.2vw,18px);line-height:1.66;color:var(--ink-2);max-width:62ch">A referral’s status is rarely the useful question. Teams need to know how a case got where it is and what is currently blocking it. That history usually exists — in letters, notes, attachments and system events — but it is scattered, so answering a simple question takes a phone call.</p>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px)">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px)">
+      <h2 style="flex:0 1 min(100%,220px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);padding-top:6px">Product approach</h2>
+      <div style="flex:1 1 min(100%,420px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,56px)">
+        <p style="flex:1 1 min(100%,320px);font-size:clamp(16px,1.2vw,18px);line-height:1.66;color:var(--ink-2);max-width:56ch">The timeline is the product, not a tab within it. Every event has a type, an actor, a timestamp and an optional attachment, which makes the same component usable for triage, for a clinic list and for a single case. Open actions are pinned above the record so the next step is never buried in history.</p>
+        <figure style="flex:0 1 min(100%,280px)">
+          <figcaption style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:20px">The case timeline</figcaption>
+          <ol style="border-left:1px solid var(--acc40);padding-left:20px;display:flex;flex-direction:column;gap:16px">
+            
+              <li style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-2)">01</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)">Referral received</span></li>
+            
+              <li style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-2)">02</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)">Documents reviewed</span></li>
+            
+              <li style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-2)">03</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)">Appointment</span></li>
+            
+              <li style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-2)">04</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)">Update</span></li>
+            
+              <li style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-2)">05</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)">Decision</span></li>
+            
+              <li style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-2)">06</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)">Next action</span></li>
+            
+          </ol>
+        </figure>
+      </div>
+    </div>
+    <ol style="margin-top:clamp(48px,6vw,88px);display:flex;flex-wrap:wrap;gap:1px;background:var(--r16);border:1px solid var(--r16)">
+      
+        <li data-reveal="1" style="flex:1 1 min(100%,260px);background:var(--bg);padding:clamp(24px,3vw,36px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--accent);margin-bottom:16px">Decision 01</p>
+          <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(18px,1.8vw,22px);letter-spacing:-.02em;color:var(--ink);margin-bottom:12px">Chronology over status</h3>
+          <p style="font-size:15px;line-height:1.6;color:var(--ink-2)">Status is derived from the latest events rather than stored and maintained by hand, so it cannot drift from what actually happened.</p>
+        </li>
+      
+        <li data-reveal="1" style="flex:1 1 min(100%,260px);background:var(--bg);padding:clamp(24px,3vw,36px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--accent);margin-bottom:16px">Decision 02</p>
+          <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(18px,1.8vw,22px);letter-spacing:-.02em;color:var(--ink);margin-bottom:12px">Events, not documents</h3>
+          <p style="font-size:15px;line-height:1.6;color:var(--ink-2)">A letter is an event with an attachment. That one decision removes the separate document area and its parallel navigation.</p>
+        </li>
+      
+        <li data-reveal="1" style="flex:1 1 min(100%,260px);background:var(--bg);padding:clamp(24px,3vw,36px)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--accent);margin-bottom:16px">Decision 03</p>
+          <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(18px,1.8vw,22px);letter-spacing:-.02em;color:var(--ink);margin-bottom:12px">Language checked, not softened</h3>
+          <p style="font-size:15px;line-height:1.6;color:var(--ink-2)">Content design was treated as interface: labels follow the words teams already use for each step.</p>
+        </li>
+      
+    </ol>
+  </section>
+
+  <section style="background:var(--bg-2);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16)">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px)">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,64px);align-items:baseline;margin-bottom:clamp(28px,3.4vw,44px)">
+        <h2 style="flex:0 1 min(100%,220px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)">Product experience</h2>
+        <p style="flex:1 1 min(100%,320px);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)">TODO — replace slots with final interface screenshots</p>
+      </div>
+      
+      
+      
+        <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,2vw,28px)">
+          <div style="flex:2 1 min(100%,420px);aspect-ratio:16/10"><image-slot id="rv-timeline" shape="rect" placeholder="Case timeline view"></image-slot></div>
+          <div style="flex:1 1 min(100%,240px);aspect-ratio:4/5"><image-slot id="rv-triage" shape="rect" placeholder="Triage list"></image-slot></div>
+        </div>
+      
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px)">
+    <h2 style="flex:0 1 min(100%,220px);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);padding-top:6px">Engineering</h2>
+    <div style="flex:1 1 min(100%,420px)">
+      <p style="font-size:clamp(16px,1.2vw,18px);line-height:1.66;color:var(--ink-2);max-width:62ch">Next.js and TypeScript, with the timeline modelled as a typed event union so new event kinds can be added without touching the rendering logic. AI is used to summarise long attached correspondence into a short event caption, with the source always one click away.</p>
+      <ol style="margin-top:clamp(32px,4vw,52px);display:flex;flex-direction:column">
+        
+          <li style="display:flex;flex-wrap:wrap;gap:8px 24px;border-top:1px solid var(--r16);padding:16px 0">
+            <span style="flex:0 1 110px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)">Client</span>
+            <span style="flex:1 1 200px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink)">Next.js · TypeScript</span>
+          </li>
+        
+          <li style="display:flex;flex-wrap:wrap;gap:8px 24px;border-top:1px solid var(--r16);padding:16px 0">
+            <span style="flex:0 1 110px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)">Model</span>
+            <span style="flex:1 1 200px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink)">Typed event union</span>
+          </li>
+        
+          <li style="display:flex;flex-wrap:wrap;gap:8px 24px;border-top:1px solid var(--r16);padding:16px 0">
+            <span style="flex:0 1 110px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)">View</span>
+            <span style="flex:1 1 200px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink)">Timeline · triage · case</span>
+          </li>
+        
+          <li style="display:flex;flex-wrap:wrap;gap:8px 24px;border-top:1px solid var(--r16);padding:16px 0">
+            <span style="flex:0 1 110px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)">Assist</span>
+            <span style="flex:1 1 200px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink)">LLM · correspondence summary</span>
+          </li>
+        
+      </ol>
+    </div>
+  </section>
+
+  <section style="background:var(--bg-2);border-top:1px solid var(--r16);border-bottom:1px solid var(--r16)">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+      <div style="flex:1 1 min(100%,320px)">
+        <h2 style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:22px">Outcome</h2>
+        <p style="font-size:clamp(15px,1.1vw,17px);line-height:1.64;color:var(--ink-2);max-width:48ch">TODO — replace with real pilot detail and any measured outcome. No metrics, clients or testimonials are claimed here.</p>
+      </div>
+      <div style="flex:1 1 min(100%,320px)">
+        <h2 style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:22px">Reflection</h2>
+        <p style="font-family:'Newsreader',Georgia,serif;font-size:clamp(17px,1.4vw,21px);line-height:1.52;color:var(--ink);max-width:48ch">Designing this made the shape of the whole portfolio clearer: the work is usually not adding capability, it is making an existing sequence of events readable in one place.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px)">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:20px">Next project — 01</p>
+    <a href="#/work/budgetview" style="display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,4.6vw,62px);line-height:1.02;letter-spacing:-.032em;color:var(--ink);max-width:24ch" data-fx="x5">BudgetView <span style="color:var(--accent)">→</span></a>
+    <p style="margin-top:18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)">Fintech</p>
+  </section>
+</article>
+</div>
+</main>
+
+<footer style="border-top:1px solid var(--r16);background:var(--bg-2)">
+  <div style="max-width:1440px;margin:0 auto;padding:clamp(40px,5vw,64px) clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,64px);justify-content:space-between">
+    <div>
+      <p style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(20px,2.2vw,26px);letter-spacing:-.022em;color:var(--ink)">Chukwuebuka Onyemelukwe</p>
+      <p style="margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)">Design Engineer × AI Engineer · United Kingdom</p>
+    </div>
+    <nav aria-label="Footer" style="display:flex;flex-wrap:wrap;gap:14px 28px;align-items:flex-start;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase">
+      <a href="#/work" style="color:var(--ink-2)" data-fx="x5">Work</a>
+      <a href="#/about" style="color:var(--ink-2)" data-fx="x5">About</a>
+      <a href="./uploads/Chukwuebuka_CV_.docx.pdf" target="_blank" rel="noopener" style="color:var(--ink-2)" data-fx="x5">Résumé ↗</a>
+      <a href="#/contact" style="color:var(--ink-2)" data-fx="x5">Contact</a>
+      <a href="mailto:chukwuebukaspad@gmail.com" style="color:var(--ink-2)" data-fx="x5">Email</a>
+      <a href="https://www.linkedin.com/in/chukwuebuka-onyemelukwe-43b751177/" target="_blank" rel="noopener" style="color:var(--ink-2)" data-fx="x5">LinkedIn</a>
+      <a href="https://github.com/TODO" target="_blank" rel="noopener" style="color:var(--ink-2)" data-fx="x5">GitHub</a>
+    </nav>
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);align-self:flex-end">© <span data-year>2026</span> · Open to permanent UK roles</p>
+  </div>
+</footer>
+
+
+
+
+<script src="./assets/image-slot.js"></script>
+<script src="./assets/video-slot.js"></script>
+<script src="./assets/app.js"></script>
+</body>
+</html>
