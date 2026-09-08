@@ -1,0 +1,80 @@
+/* Semantic aliases. Components reference only these, never the primitives.
+   Light and dark are the same world under different environmental lighting:
+   identical structure, identical ratios, different incident light. */
+:root{
+  --surface-page:var(--cool-000);
+  --surface-raised:var(--cool-025);
+  --surface-sunken:var(--cool-050);
+  --surface-recessed:var(--cool-100);
+  --surface-inverse:var(--void-1000);
+  --surface-deep:var(--water-1000);
+  --surface-field:var(--field-light); /* @kind other */
+
+  --text-primary:var(--n-darkest);
+  --text-secondary:var(--n-dark);
+  --text-tertiary:var(--n-base);
+  --text-disabled:var(--n-light);
+  --text-inverse:var(--n-white);
+  --text-accent:var(--cyan-accessible);
+  --text-link:var(--cyan-ink);
+  --text-link-hover:var(--n-darkest);
+  --text-danger:var(--signal-danger);
+
+  --border-strong:var(--n-darkest);
+  --border-primary:var(--n-darkest);
+  --border-hairline:rgba(8,22,51,.12);
+  --border-subtle:rgba(27,25,25,.1);
+  --border-accent:var(--cyan-accessible);
+  --border-disabled:var(--cool-200);
+
+  --accent-signal:var(--cyan-signal);
+  --accent-ice:var(--water-100);
+  --accent-cobalt:var(--water-900);
+
+  --state-surface:rgba(22,22,22,.06);
+  --state-dark-surface:rgba(22,22,22,.06);
+  --state-hover:rgba(22,22,22,.04);
+  --state-press:rgba(22,22,22,.12);
+  --state-selected:rgba(22,22,22,.08);
+  --state-drag:rgba(22,22,22,.16);
+  --focus-ring:var(--cyan-accessible);
+  --focus-ring-offset:2px; /* @kind other */
+  --focus-ring-width:2px; /* @kind other */
+
+  --swatch-canvas:var(--cool-050);
+}
+:root[data-theme="dark"],.dark{
+  --surface-page:var(--void-1000);
+  --surface-raised:var(--void-900);
+  --surface-sunken:#000000;
+  --surface-recessed:var(--void-800);
+  --surface-inverse:var(--n-white);
+  --surface-deep:var(--water-1000);
+  --surface-field:var(--field-dark); /* @kind other */
+
+  --text-primary:var(--n-white);
+  --text-secondary:var(--n-light);
+  --text-tertiary:var(--n-base);
+  --text-disabled:var(--n-dark);
+  --text-inverse:var(--n-darkest);
+  --text-accent:var(--cyan-signal);
+  --text-link:var(--water-200);
+  --text-link-hover:var(--n-white);
+
+  --border-strong:var(--n-white);
+  --border-primary:var(--n-white);
+  --border-hairline:rgba(255,255,255,.14);
+  --border-subtle:rgba(255,255,255,.06);
+  --border-accent:var(--cyan-signal);
+  --border-disabled:var(--void-700);
+
+  --state-surface:rgba(255,255,255,.1);
+  --state-dark-surface:rgba(255,255,255,.1);
+  --state-hover:rgba(255,255,255,.06);
+  --state-press:rgba(255,255,255,.24);
+  --state-selected:rgba(255,255,255,.12);
+  --state-drag:rgba(255,255,255,.16);
+  --focus-ring:var(--cyan-signal);
+
+  --swatch-canvas:var(--void-800);
+}

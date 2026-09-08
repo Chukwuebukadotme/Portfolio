@@ -1,0 +1,9 @@
+/* Typefaces.
+   The .fig carried no font binaries. Geist / Geist Mono are the families the
+   source Variables collection names (--typography-font-name-heading: "Geist");
+   both are served here from Google Fonts. Material Symbols Outlined is the
+   icon family the source Icons page names.
+   Swap these @import lines for self-hosted @font-face rules once licensed
+   binaries are supplied. */
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,24,40,48,100..700,0..1,-50..200&display=block");

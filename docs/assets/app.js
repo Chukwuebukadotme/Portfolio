@@ -1,34 +1,44 @@
 /**
  * Runtime behaviour for the portfolio.
  *
- * The build step bakes every route into the page as a [data-route] block and turns the
- * design's interactive bindings into data-* hooks. This file is the whole client: hash
- * routing, theme, mobile nav, the rotating hero word, scroll reveal and the contact form.
- * No framework, no build dependency.
+ * The build bakes every route into the page as a [data-route] block and turns the
+ * design's interactive bindings into data-* hooks. This file is the whole client:
+ * hash routing, theme, mobile nav, the rotating hero word, scroll reveal, the glass
+ * specular tracking and the contact form. No framework.
  */
 (function () {
   'use strict';
 
   var doc = document;
+  var root = doc.documentElement;
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  doc.documentElement.classList.add('js');
+  root.classList.add('js');
+
+  function each(sel, fn) {
+    Array.prototype.forEach.call(doc.querySelectorAll(sel), fn);
+  }
 
   /* ---------------------------------------------------------------- *
-   * Theme
+   * Theme — the design system resolves dark from :root[data-theme="dark"].
    * ---------------------------------------------------------------- */
 
   var STORE = 'co-theme';
 
   function applyTheme(t) {
+    root.setAttribute('data-theme', t);
     doc.body.setAttribute('data-theme', t);
 
     var meta = doc.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', t === 'light' ? '#FFFFFF' : '#0E172A');
+    if (meta) meta.setAttribute('content', t === 'light' ? '#FFFFFF' : '#050608');
+
+    // The hero visual crossfades between its two textures on this attribute.
+    each('glass-ribbon', function (el) { el.setAttribute('theme', t); });
 
     var light = t === 'light';
     each('[data-theme-text]', function (el) { el.textContent = light ? 'Dark' : 'Light'; });
-    each('[data-theme-dot]', function (el) { el.style.background = light ? 'transparent' : 'var(--accent)'; });
+    each('[data-icon-light]', function (el) { el.hidden = !light; });
+    each('[data-icon-dark]', function (el) { el.hidden = light; });
     each('[data-theme-toggle]', function (el) {
       el.setAttribute('aria-pressed', String(light));
       el.setAttribute('title', light ? 'Switch to dark mode' : 'Switch to light mode');
@@ -43,7 +53,7 @@
   }
 
   function toggleTheme() {
-    var t = doc.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    var t = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
     try { localStorage.setItem(STORE, t); } catch (e) {}
     applyTheme(t);
   }
@@ -54,8 +64,7 @@
 
   function currentRoute() {
     var raw = (window.location.hash || '').replace(/^#/, '');
-    // An in-page anchor (#selected-work) is not a route.
-    if (raw && raw.charAt(0) !== '/') return null;
+    if (raw && raw.charAt(0) !== '/') return null; // in-page anchor, not a route
     return raw || '/';
   }
 
@@ -68,7 +77,6 @@
     });
 
     if (!found) {
-      // Unknown hash — fall back to home rather than showing an empty page.
       var home = doc.querySelector('[data-route="/"]');
       if (home) home.hidden = false;
       route = '/';
@@ -83,13 +91,13 @@
   function syncNav(route) {
     var work = doc.querySelector('[data-nav="wide"] a[href="#/work"]');
     var about = doc.querySelector('[data-nav="wide"] a[href="#/about"]');
-    if (work) work.style.color = route.indexOf('/work') === 0 ? 'var(--ink)' : 'var(--ink-2)';
-    if (about) about.style.color = route === '/about' ? 'var(--ink)' : 'var(--ink-2)';
+    if (work) work.style.color = route.indexOf('/work') === 0 ? 'var(--text-primary)' : 'var(--text-tertiary)';
+    if (about) about.style.color = route === '/about' ? 'var(--text-primary)' : 'var(--text-tertiary)';
   }
 
   function onHashChange() {
     var r = currentRoute();
-    if (r === null) return; // in-page anchor
+    if (r === null) return;
     showRoute(r, true);
   }
 
@@ -123,11 +131,34 @@
       i = (i + 1) % WORDS.length;
       var span = doc.createElement('span');
       span.setAttribute('data-rot', '');
-      span.style.cssText = 'display:inline-block;color:var(--accent);animation:wordIn .62s cubic-bezier(.22,1,.36,1) both';
+      span.style.cssText = 'display:inline-block;color:var(--text-accent);' +
+        'animation:wordIn var(--dur-slow) var(--ease-glass) both';
       span.textContent = WORDS[i];
       el.replaceWith(span);
       el = span;
     }, 2600);
+  }
+
+  /* ---------------------------------------------------------------- *
+   * Glass specular — the one bit of GlassPanel that tracked the pointer.
+   * ---------------------------------------------------------------- */
+
+  function initGlass() {
+    if (reduced) return;
+    each('.ds-glass', function (panel) {
+      var spec = panel.querySelector('[data-glass-specular]');
+      if (!spec) return; // refract={false}
+      panel.addEventListener('mousemove', function (e) {
+        var r = panel.getBoundingClientRect();
+        if (!r.width || !r.height) return;
+        var x = (e.clientX - r.left) / r.width;
+        var y = (e.clientY - r.top) / r.height;
+        spec.style.transform = 'translate3d(' + ((x - .5) * 6) + '%,' + ((y - .5) * 6) + '%,0)';
+      });
+      panel.addEventListener('mouseleave', function () {
+        spec.style.transform = 'translate3d(-1.08%,-2.16%,0)';
+      });
+    });
   }
 
   /* ---------------------------------------------------------------- *
@@ -147,13 +178,13 @@
     var active = doc.querySelector('[data-route]:not([hidden])');
     if (!active) return;
 
-    // Mirror the design: sections of the live route animate in as they enter view.
-    var sel = ':scope > section, :scope > article, :scope > article > section, :scope > article > header, :scope > article > dl';
+    var sel = ':scope > section, :scope > article, :scope > article > section,' +
+      ':scope > article > header, :scope > article > dl';
     try {
       active.querySelectorAll(sel).forEach(function (el) {
         if (!el.hasAttribute('data-reveal')) el.setAttribute('data-reveal', '1');
       });
-    } catch (e) { /* :scope unsupported — the explicit data-reveal marks still apply */ }
+    } catch (e) { /* :scope unsupported — explicit marks still apply */ }
 
     var nodes = active.querySelectorAll('[data-reveal]');
     io = new IntersectionObserver(function (entries) {
@@ -187,6 +218,8 @@
       var sync = function () {
         var v = select.value;
         extra.hidden = !(v !== '' && v !== 'Hiring / Career Opportunity');
+        // The DS Select greys its own text until something is chosen.
+        select.style.color = v ? 'var(--text-primary)' : '';
       };
       select.addEventListener('change', sync);
       sync();
@@ -194,8 +227,7 @@
 
     if (form) {
       form.addEventListener('submit', function (e) {
-        // TODO: connect a form handler (Formspree, Resend, a serverless function...).
-        // Until then the mailto link in the sidebar is the working path.
+        // TODO: connect a form handler. Until then the mailto link is the working path.
         e.preventDefault();
         if (sent) sent.hidden = false;
       });
@@ -206,21 +238,13 @@
    * Wiring
    * ---------------------------------------------------------------- */
 
-  function each(sel, fn) {
-    Array.prototype.forEach.call(doc.querySelectorAll(sel), fn);
-  }
-
   doc.addEventListener('click', function (e) {
     var t = e.target;
 
-    var themeBtn = t.closest('[data-theme-toggle]');
-    if (themeBtn) { toggleTheme(); return; }
+    if (t.closest('[data-theme-toggle]')) { toggleTheme(); return; }
+    if (t.closest('[data-menu-toggle]')) { setMenu(menuEl() ? menuEl().hidden : false); return; }
 
-    var menuBtn = t.closest('[data-menu-toggle]');
-    if (menuBtn) { setMenu(menuEl() ? menuEl().hidden : false); return; }
-
-    var scrollBtn = t.closest('[data-scroll-work]');
-    if (scrollBtn) {
+    if (t.closest('[data-scroll-work]')) {
       e.preventDefault();
       var target = doc.getElementById('selected-work');
       if (target) {
@@ -232,7 +256,6 @@
       return;
     }
 
-    // Any route link closes the mobile nav; hashchange does the rest.
     var link = t.closest('a[href^="#/"]');
     if (link) {
       closeMenu();
@@ -251,6 +274,7 @@
   initTheme();
   initForm();
   initRotator();
+  initGlass();
   showRoute(currentRoute() || '/', false);
 
   each('[data-year]', function (el) { el.textContent = String(new Date().getFullYear()); });

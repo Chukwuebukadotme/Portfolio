@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="stylesheet" href="_ds/chukwuebuka-onyemelukwe-portfolio-design-8d801576-559a-418a-9b07-f8a25bd6bbcf/tokens/palette.css">
+<link rel="stylesheet" href="_ds/chukwuebuka-onyemelukwe-portfolio-design-8d801576-559a-418a-9b07-f8a25bd6bbcf/tokens/typography.css">
+<link rel="stylesheet" href="_ds/chukwuebuka-onyemelukwe-portfolio-design-8d801576-559a-418a-9b07-f8a25bd6bbcf/tokens/space.css">
+<link rel="stylesheet" href="_ds/chukwuebuka-onyemelukwe-portfolio-design-8d801576-559a-418a-9b07-f8a25bd6bbcf/tokens/shape.css">
+<link rel="stylesheet" href="_ds/chukwuebuka-onyemelukwe-portfolio-design-8d801576-559a-418a-9b07-f8a25bd6bbcf/tokens/elevation.css">
+<link rel="stylesheet" href="_ds/chukwuebuka-onyemelukwe-portfolio-design-8d801576-559a-418a-9b07-f8a25bd6bbcf/tokens/material.css">
+<link rel="stylesheet" href="_ds/chukwuebuka-onyemelukwe-portfolio-design-8d801576-559a-418a-9b07-f8a25bd6bbcf/tokens/motion.css">
+<link rel="stylesheet" href="_ds/chukwuebuka-onyemelukwe-portfolio-design-8d801576-559a-418a-9b07-f8a25bd6bbcf/tokens/semantic.css">
+<link rel="stylesheet" href="_ds/chukwuebuka-onyemelukwe-portfolio-design-8d801576-559a-418a-9b07-f8a25bd6bbcf/tokens/base.css">
+<link rel="stylesheet" href="_ds/chukwuebuka-onyemelukwe-portfolio-design-8d801576-559a-418a-9b07-f8a25bd6bbcf/styles.css">
+<script src="_ds/chukwuebuka-onyemelukwe-portfolio-design-8d801576-559a-418a-9b07-f8a25bd6bbcf/_ds_bundle.js"></script>
+<script src="video-slot.js"></script>
+<script src="image-slot.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--surface-page);
+    color: var(--text-primary);
+    font-family: var(--font-text);
+    transition: background-color var(--dur-slow) var(--ease-glass), color var(--dur-slow) var(--ease-glass);
+  }
+  h1, h2, h3, h4, p, dl, dd, dt, ul, ol, figure, figcaption, blockquote { margin: 0; }
+  ul, ol { list-style: none; padding: 0; }
+  a { color: var(--text-link); text-decoration: none; }
+  .ds-eyebrow, .ds-mono { font-family: var(--font-text); }
+  [data-flat-glass] { --glass-caustic: none; --glass-specular: none; }
+  [data-flat-glass] > * { --glass-caustic: none; --glass-specular: none; }
+  :root, :root[data-theme="light"] { --text-accent: #22D3EE; }
+  a:hover { color: var(--text-link-hover); }
+  @keyframes wordIn { from { opacity: 0; transform: translateY(.42em); } to { opacity: 1; transform: none; } }
+  .co-btn { transition: background var(--dur-base) var(--ease-glass), box-shadow var(--dur-base) var(--ease-glass), color var(--dur-base) var(--ease-glass), transform var(--dur-base) var(--ease-glass) !important; }
+  .co-btn:hover { transform: translateY(var(--lift-hover)) !important; box-shadow: 0 0 0 var(--stroke-border) var(--border-accent), inset 0 -2px 0 0 var(--accent-signal), var(--shadow-small) !important; }
+  .co-btn:active { transform: translateY(0) scale(var(--press-scale)) !important; }
+  [data-nav="narrow"] { display: none; }
+  @media (max-width: 880px) {
+    [data-nav="wide"] { display: none; }
+    [data-nav="narrow"] { display: block; }
+  }
+  [data-figleft] { order: 0; }
+  @media (min-width: 880px) { [data-figleft] { order: -1; } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</helmet>
+
+<a href="#main" style="position:absolute;left:-9999px;top:0;background:var(--surface-page);color:var(--text-primary);padding:var(--space-12) var(--space-20);z-index:99;font-family:var(--font-text);font-size:var(--size-text-tiny)" style-focus="left:var(--space-12);top:var(--space-12)">Skip to content</a>
+
+<button type="button" onClick="{{ toggleTheme }}" aria-pressed="{{ isLight }}" aria-label="{{ themeTitle }}" title="{{ themeTitle }}" style="position:fixed;right:var(--space-24);bottom:var(--space-24);z-index:70;width:48px;height:48px;display:flex;align-items:center;justify-content:center;padding:0;background:var(--surface-raised);border:0;border-radius:var(--radius-8);box-shadow:inset 0 0 0 1px var(--border-hairline),var(--shadow-small);color:var(--text-secondary);cursor:pointer;transition:color var(--dur-fast) var(--ease-glass),box-shadow var(--dur-fast) var(--ease-glass),transform var(--dur-fast) var(--ease-glass)" style-hover="color:var(--text-primary);box-shadow:inset 0 0 0 1px var(--border-accent),inset 0 -2px 0 var(--accent-signal),var(--shadow-medium);transform:translateY(var(--lift-hover))">
+  <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Icon" name="{{ themeIcon }}" size="{{ 20 }}" hint-size="20px,20px"></x-import>
+</button>
+
+<div style="position:sticky;top:var(--space-12);z-index:60;display:flex;justify-content:center;padding:0 var(--page-margin);pointer-events:none">
+  <div data-flat-glass="" style="pointer-events:auto;width:100%;max-width:var(--container-large);--glass-caustic:none;--glass-specular:none">
+    <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.GlassPanel" thickness="regular" radius="var(--radius-8)" refract="{{ false }}" hint-size="100%,60px">
+    <div style="display:flex;align-items:center;gap:var(--space-24);padding:var(--space-12) var(--space-20)">
+      <a href="#/" onClick="{{ goHome }}" style="display:inline-flex;align-items:baseline;gap:var(--space-6);font-size:17px;line-height:1;letter-spacing:var(--track-heading);white-space:nowrap;color:var(--text-primary)"><span style="font-weight:var(--weight-bold)">Chukwuebuka</span><span style="font-weight:var(--weight-light);color:var(--text-tertiary)">Onyemelukwe</span></a>
+      <span style="flex:1"></span>
+      <div data-nav="wide">
+        <nav aria-label="Primary" style="display:flex;align-items:center;flex-wrap:nowrap;gap:var(--space-20)">
+          <a href="#/work" onClick="{{ goWork }}" class="ds-eyebrow" style="color:{{ cWork }};white-space:nowrap" style-hover="color:var(--text-primary)">Work</a>
+          <a href="#/about" onClick="{{ goAbout }}" class="ds-eyebrow" style="color:{{ cAbout }};white-space:nowrap" style-hover="color:var(--text-primary)">About</a>
+          <a href="#/contact" onClick="{{ goContact }}" class="ds-eyebrow" style="color:{{ cContact }};white-space:nowrap" style-hover="color:var(--text-primary)">Contact</a>
+          <a href="{{ resumeUrl }}" target="_blank" rel="noopener" class="ds-eyebrow" style="color:var(--text-tertiary);white-space:nowrap" style-hover="color:var(--text-primary)">Résumé <span style="color:var(--text-accent)">↗</span></a>
+        </nav>
+      </div>
+      <div data-nav="narrow">
+        <button type="button" onClick="{{ toggleMenu }}" aria-expanded="{{ menuOpen }}" style="min-height:40px;background:none;border:0;box-shadow:inset 0 0 0 1px var(--border-hairline);border-radius:var(--radius-8);padding:var(--space-8) var(--space-12);font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;color:var(--text-primary);cursor:pointer">{{ menuLabel }}</button>
+      </div>
+      </div>
+    </x-import>
+  </div>
+</div>
+
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+  <nav aria-label="Mobile" style="position:fixed;inset:0;z-index:59;overflow-y:auto;overscroll-behavior:contain;background:var(--surface-page);background-image:var(--surface-field);padding:var(--space-80) var(--page-margin) var(--space-40);display:flex;flex-direction:column;justify-content:space-between;gap:var(--space-40)">
+    <ul style="display:flex;flex-direction:column">
+      <li style="border-top:1px solid var(--border-hairline);padding:var(--space-20) 0"><a href="#/work" onClick="{{ goWork }}" style="font-size:var(--size-h3);font-weight:var(--weight-bold);letter-spacing:var(--track-display);color:var(--text-primary)">Work</a></li>
+      <li style="border-top:1px solid var(--border-hairline);padding:var(--space-20) 0"><a href="#/about" onClick="{{ goAbout }}" style="font-size:var(--size-h3);font-weight:var(--weight-bold);letter-spacing:var(--track-display);color:var(--text-primary)">About</a></li>
+      <li style="border-top:1px solid var(--border-hairline);padding:var(--space-20) 0"><a href="{{ resumeUrl }}" target="_blank" rel="noopener" style="font-size:var(--size-h3);font-weight:var(--weight-bold);letter-spacing:var(--track-display);color:var(--text-primary)">Résumé ↗</a></li>
+      <li style="border-top:1px solid var(--border-hairline);border-bottom:1px solid var(--border-hairline);padding:var(--space-20) 0"><a href="#/contact" onClick="{{ goContact }}" style="font-size:var(--size-h3);font-weight:var(--weight-bold);letter-spacing:var(--track-display);color:var(--text-accent)">Contact</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-20);flex-wrap:wrap">
+      <p class="ds-eyebrow">UK based · Open to permanent UK roles</p>
+    </div>
+  </nav>
+</sc-if>
+
+<main id="main">
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<div>
+
+  <section style="position:relative;isolation:isolate;overflow:hidden;background:var(--surface-field);margin-top:calc(-1 * (60px + var(--space-24)))">
+    <div aria-hidden="true" style="position:absolute;inset:0;background:var(--texture-pixel-fine) top left / 40px 40px repeat;opacity:.4;pointer-events:none"></div>
+    <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;pointer-events:none">
+      <x-import component-from-global-scope="glass-ribbon" from="./glass-ribbon.js" data-light-src="assets/ribbon-light" data-dark-src="assets/ribbon-dark" theme="{{ theme }}" fade="both" amp="0.006" opacity="0.68" hint-size="100%,100%" style="position:absolute;inset:0;width:100%;height:100%"></x-import>
+    </div>
+    <div style="position:relative;z-index:1;max-width:var(--container-large);margin:0 auto;padding:calc(60px + var(--space-80)) var(--page-margin) var(--space-80);min-height:100svh;display:flex;flex-direction:column;justify-content:center">
+      <div style="display:flex;flex-wrap:wrap;gap:var(--space-48)">
+        <h1 style="flex:1 1 min(100%,620px);font-size:clamp(44px,7vw,96px);font-weight:var(--weight-bold);line-height:1.02;letter-spacing:-0.04em;color:var(--text-primary);text-wrap:balance">
+          I design and engineer {{ rotEl }} that make complex work simpler.
+        </h1>
+        <div style="flex:0 1 min(100%,420px);display:flex;flex-direction:column;gap:var(--space-32);align-self:flex-end">
+          <p style="font-size:var(--size-text-large);line-height:var(--leading-body);color:var(--text-secondary);max-width:var(--measure-small);text-wrap:pretty">I’m naturally curious about how things work and how they could work better. I combine product thinking, design and engineering to build fast, usable and durable websites, applications and intelligent systems.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:var(--space-12);align-items:center">
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Button" class="co-btn" as="a" href="#selected-work" onClick="{{ scrollWork }}" hint-size="200px,48px" data-comment-anchor="42d160856f-a">Selected work</x-import>
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Button" class="co-btn" style="secondary" as="a" href="{{ resumeUrl }}" target="_blank" rel="noopener" hint-size="150px,48px">Résumé</x-import>
+          </div>
+          <p style="display:flex;align-items:center;gap:var(--space-8);font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;color:var(--text-secondary)">
+            <span style="width:6px;height:6px;background:var(--accent-signal);border-radius:var(--radius-circle);flex:none"></span>UK based · Open to permanent UK roles
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Professional proof" style="border-top:1px solid var(--border-hairline);border-bottom:1px solid var(--border-hairline)">
+    <dl style="max-width:var(--container-large);margin:0 auto;padding:0 var(--page-margin);display:flex;flex-wrap:wrap">
+      <div data-reveal="1" style="flex:1 1 min(100%,220px);padding:var(--space-48) var(--space-32) var(--space-48) 0;box-shadow:inset -1px 0 0 var(--border-hairline)">
+        <dt style="font-size:clamp(40px,5vw,56px);font-weight:var(--weight-bold);line-height:1.1;letter-spacing:var(--track-display);color:var(--text-primary);font-variant-numeric:tabular-nums">5+</dt>
+        <dd style="margin-top:var(--space-12);font-size:var(--size-text-small);line-height:var(--leading-body);color:var(--text-secondary);max-width:24ch">Years across design, AI &amp; engineering</dd>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,220px);padding:var(--space-48) var(--space-32);box-shadow:inset -1px 0 0 var(--border-hairline)">
+        <dt style="font-size:clamp(40px,5vw,56px);font-weight:var(--weight-bold);line-height:1.1;letter-spacing:var(--track-display);color:var(--text-primary);font-variant-numeric:tabular-nums">20+</dt>
+        <dd style="margin-top:var(--space-12);font-size:var(--size-text-small);line-height:var(--leading-body);color:var(--text-secondary);max-width:24ch">Projects across product, web &amp; AI</dd>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,220px);padding:var(--space-48) var(--space-32);box-shadow:inset -1px 0 0 var(--border-hairline)">
+        <dt style="font-size:clamp(40px,5vw,56px);font-weight:var(--weight-bold);line-height:1.1;letter-spacing:var(--track-display);color:var(--text-accent)">UK</dt>
+        <dd style="margin-top:var(--space-12);font-size:var(--size-text-small);line-height:var(--leading-body);color:var(--text-secondary);max-width:24ch">Based in the United Kingdom</dd>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,220px);padding:var(--space-48) 0 var(--space-48) var(--space-32)">
+        <dt style="font-size:clamp(40px,5vw,56px);font-weight:var(--weight-bold);line-height:1.1;letter-spacing:var(--track-display);color:var(--text-primary)">Global</dt>
+        <dd style="margin-top:var(--space-12);font-size:var(--size-text-small);line-height:var(--leading-body);color:var(--text-secondary);max-width:26ch">Available for remote collaboration</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section id="selected-work" style="max-width:var(--container-large);margin:0 auto;padding:var(--section-gap) var(--page-margin) var(--space-48)">
+    <div style="display:flex;flex-wrap:wrap;gap:var(--space-48);align-items:flex-end">
+      <div style="flex:1 1 min(100%,560px)">
+        <p class="ds-eyebrow" style="color:var(--text-accent);margin-bottom:var(--space-24)">Selected work — 01 / 03</p>
+        <h2 style="font-size:clamp(32px,4.6vw,48px);font-weight:var(--weight-bold);line-height:var(--leading-h2);letter-spacing:var(--track-display);color:var(--text-primary);text-wrap:balance">Designed with intent.<br>Built to solve real problems.</h2>
+      </div>
+      <p style="flex:0 1 min(100%,340px);font-size:var(--size-text-medium);line-height:var(--leading-body);color:var(--text-secondary);max-width:40ch;text-wrap:pretty">Selected digital products across financial technology, construction technology and healthcare.</p>
+    </div>
+  </section>
+
+  <article style="max-width:var(--container-large);margin:0 auto;padding:var(--space-48) var(--page-margin);border-top:1px solid var(--border-hairline)">
+    <div style="display:flex;flex-wrap:wrap;gap:var(--space-64)">
+      <div data-reveal="1" style="flex:1 1 min(100%,400px)">
+        <div style="display:flex;flex-wrap:wrap;gap:var(--space-8) var(--space-20);align-items:center;margin-bottom:var(--space-24);font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase">
+          <span style="color:var(--text-tertiary);font-variant-numeric:tabular-nums">01</span>
+          <span style="color:var(--text-tertiary)">2025</span>
+          <span style="color:var(--text-accent)">Fintech</span>
+          <span style="color:var(--text-tertiary)">BudgetView</span>
+        </div>
+        <a href="#/work/budgetview" style="display:block;font-size:clamp(28px,3.8vw,40px);font-weight:var(--weight-bold);line-height:var(--leading-h3);letter-spacing:var(--track-display);color:var(--text-primary);max-width:22ch" style-hover="color:var(--text-accent)">See where the month is going before the money does.</a>
+        <p style="margin-top:var(--space-24);font-size:var(--size-text-medium);line-height:var(--leading-body);color:var(--text-secondary);max-width:48ch;text-wrap:pretty">BudgetView brings transactions, bills, subscriptions and budgets from multiple accounts into one clear monthly financial plan.</p>
+        <dl style="margin-top:var(--space-32);display:flex;flex-wrap:wrap;gap:var(--space-20) var(--space-48);border-top:1px solid var(--border-hairline);padding-top:var(--space-20)">
+          <div><dt class="ds-eyebrow">Role</dt><dd style="margin-top:var(--space-8);font-size:var(--size-text-small);color:var(--text-primary)">Design Engineer / Product Engineer</dd></div>
+          <div><dt class="ds-eyebrow">Stack</dt><dd style="margin-top:var(--space-8);font-family:var(--font-text);font-size:var(--size-text-tiny);color:var(--text-secondary)">Next.js · Python · FastAPI · Figma · AI</dd></div>
+        </dl>
+        <a href="#/work/budgetview" class="ds-eyebrow" style="display:inline-block;margin-top:var(--space-32);color:var(--text-accent);box-shadow:inset 0 -1px 0 var(--border-accent);padding-bottom:var(--space-4)" style-hover="color:var(--text-primary);box-shadow:inset 0 -1px 0 var(--border-strong)">View case study →</a>
+      </div>
+      <figure data-reveal="1" data-figleft="" style="flex:0 1 min(100%,420px);max-width:420px;align-self:stretch;display:flex">
+        <div style="flex:1;min-height:300px;display:flex;box-shadow:inset 0 0 0 1px var(--border-hairline);background:var(--surface-recessed)">
+          <video-slot id="v2-bv-anim"></video-slot>
+        </div>
+      </figure>
+    </div>
+  </article>
+
+  <article style="max-width:var(--container-large);margin:0 auto;padding:var(--space-48) var(--page-margin);border-top:1px solid var(--border-hairline)">
+    <div style="display:flex;flex-wrap:wrap;gap:var(--space-64)">
+      <div data-reveal="1" style="flex:1 1 min(100%,400px)">
+        <div style="display:flex;flex-wrap:wrap;gap:var(--space-8) var(--space-20);align-items:center;margin-bottom:var(--space-24);font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase">
+          <span style="color:var(--text-tertiary);font-variant-numeric:tabular-nums">02</span>
+          <span style="color:var(--text-tertiary)">2025</span>
+          <span style="color:var(--text-accent)">Construction tech</span>
+          <span style="color:var(--text-tertiary)">SiteResolve</span>
+        </div>
+        <a href="#/work/siteresolve" style="display:block;font-size:clamp(28px,3.8vw,40px);font-weight:var(--weight-bold);line-height:var(--leading-h3);letter-spacing:var(--track-display);color:var(--text-primary);max-width:22ch" style-hover="color:var(--text-accent)">Construction defects should end in resolution, not paperwork.</a>
+        <p style="margin-top:var(--space-24);font-size:var(--size-text-medium);line-height:var(--leading-body);color:var(--text-secondary);max-width:48ch;text-wrap:pretty">SiteResolve connects defect management, snagging, inspections, documentation and task coordination through one traceable workflow.</p>
+        <dl style="margin-top:var(--space-32);display:flex;flex-wrap:wrap;gap:var(--space-20) var(--space-48);border-top:1px solid var(--border-hairline);padding-top:var(--space-20)">
+          <div><dt class="ds-eyebrow">Role</dt><dd style="margin-top:var(--space-8);font-size:var(--size-text-small);color:var(--text-primary)">Design Engineer / Product Engineer</dd></div>
+          <div><dt class="ds-eyebrow">Stack</dt><dd style="margin-top:var(--space-8);font-family:var(--font-text);font-size:var(--size-text-tiny);color:var(--text-secondary)">Next.js · TypeScript · Python · FastAPI · Figma · AI</dd></div>
+        </dl>
+        <a href="#/work/siteresolve" class="ds-eyebrow" style="display:inline-block;margin-top:var(--space-32);color:var(--text-accent);box-shadow:inset 0 -1px 0 var(--border-accent);padding-bottom:var(--space-4)" style-hover="color:var(--text-primary);box-shadow:inset 0 -1px 0 var(--border-strong)">View case study →</a>
+      </div>
+      <figure data-reveal="1" data-figleft="" style="flex:0 1 min(100%,420px);max-width:420px;align-self:stretch;display:flex">
+        <div style="flex:1;min-height:300px;display:flex;box-shadow:inset 0 0 0 1px var(--border-hairline);background:var(--surface-recessed)">
+          <video-slot id="v2-sr-anim"></video-slot>
+        </div>
+      </figure>
+    </div>
+  </article>
+
+  <article style="max-width:var(--container-large);margin:0 auto;padding:var(--space-48) var(--page-margin) var(--section-gap);border-top:1px solid var(--border-hairline)">
+    <div style="display:flex;flex-wrap:wrap;gap:var(--space-64)">
+      
+      <div data-reveal="1" style="flex:1 1 min(100%,400px)">
+        <div style="display:flex;flex-wrap:wrap;gap:var(--space-8) var(--space-20);align-items:center;margin-bottom:var(--space-24);font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase">
+          <span style="color:var(--text-tertiary);font-variant-numeric:tabular-nums">03</span>
+          <span style="color:var(--text-tertiary)">2025</span>
+          <span style="color:var(--text-accent)">Healthtech</span>
+          <span style="color:var(--text-tertiary)">ReferralView</span>
+        </div>
+        <a href="#/work/referralview" style="display:block;font-size:clamp(28px,3.8vw,40px);font-weight:var(--weight-bold);line-height:var(--leading-h3);letter-spacing:var(--track-display);color:var(--text-primary);max-width:20ch" style-hover="color:var(--text-accent)">Every referral. Every step. One clear timeline.</a>
+        <p style="margin-top:var(--space-24);font-size:var(--size-text-medium);line-height:var(--leading-body);color:var(--text-secondary);max-width:48ch;text-wrap:pretty">ReferralView brings referrals, appointments, documents, updates and actions into one comprehensive timeline so teams can understand exactly where each case stands.</p>
+        <dl style="margin-top:var(--space-32);display:flex;flex-wrap:wrap;gap:var(--space-20) var(--space-48);border-top:1px solid var(--border-hairline);padding-top:var(--space-20)">
+          <div><dt class="ds-eyebrow">Role</dt><dd style="margin-top:var(--space-8);font-size:var(--size-text-small);color:var(--text-primary)">Product Designer / Design Engineer</dd></div>
+          <div><dt class="ds-eyebrow">Stack</dt><dd style="margin-top:var(--space-8);font-family:var(--font-text);font-size:var(--size-text-tiny);color:var(--text-secondary)">Next.js · TypeScript · Figma · AI</dd></div>
+        </dl>
+        <a href="#/work/referralview" class="ds-eyebrow" style="display:inline-block;margin-top:var(--space-32);color:var(--text-accent);box-shadow:inset 0 -1px 0 var(--border-accent);padding-bottom:var(--space-4)" style-hover="color:var(--text-primary);box-shadow:inset 0 -1px 0 var(--border-strong)">View case study →</a>
+      </div><figure data-reveal="1" style="flex:0 1 min(100%,420px);max-width:420px;align-self:stretch;display:flex">
+        <div style="flex:1;min-height:300px;display:flex;box-shadow:inset 0 0 0 1px var(--border-hairline);background:var(--surface-recessed)">
+          <video-slot id="v2-rv-anim"></video-slot>
+        </div>
+      </figure>
+    </div>
+  </article>
+
+  <section style="max-width:var(--container-large);margin:0 auto;padding:0 var(--page-margin) var(--section-gap)">
+    <p class="ds-eyebrow" style="color:var(--text-accent);margin-bottom:var(--space-24)">Capabilities</p>
+    <h2 style="font-size:clamp(32px,4.6vw,48px);font-weight:var(--weight-bold);line-height:var(--leading-h2);letter-spacing:var(--track-display);color:var(--text-primary);max-width:24ch;margin-bottom:var(--space-48);text-wrap:pretty">From ambiguous problems to working products.</h2>
+    <div style="display:flex;flex-direction:column">
+      <div data-reveal="1" onMouseEnter="{{ capEnter0 }}" onMouseLeave="{{ capLeave }}" style="position:relative;display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--space-12) var(--space-48);border-top:1px solid var(--border-hairline);padding:var(--space-32) var(--space-24);margin:0 calc(-1 * var(--space-24));transition:background var(--dur-slow) var(--ease-glass),box-shadow var(--dur-slow) var(--ease-glass);background:{{ capBg0 }};box-shadow:{{ capShadow0 }}">
+        <span style="flex:none;width:34px;font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);font-variant-numeric:tabular-nums;transition:color var(--dur-base) var(--ease-glass);color:{{ capNum0 }}">01</span>
+        <h3 style="flex:1 1 min(100%,240px);max-width:280px;font-size:var(--size-h5);font-weight:var(--weight-semibold);letter-spacing:var(--track-heading);color:var(--text-primary);transition:transform var(--dur-slow) var(--ease-glass);transform:translateX({{ capX0 }})">Digital products</h3>
+        <p style="flex:2 1 min(100%,320px);padding-right:34px;font-size:var(--size-text-regular);line-height:var(--leading-body);color:var(--text-secondary);max-width:56ch;text-wrap:pretty">Applications, SaaS products, internal tools, dashboards, portals and MVPs.</p>
+        <span aria-hidden="true" style="position:absolute;bottom:var(--space-32);right:var(--space-24);font-family:var(--font-text);font-size:var(--size-text-tiny);color:var(--text-accent);transition:opacity var(--dur-base) var(--ease-glass),transform var(--dur-slow) var(--ease-glass);opacity:{{ capOp0 }};transform:translateX({{ capArrow0 }})">↗</span>
+        <div style="flex:0 0 100%;display:grid;overflow:hidden;transition:grid-template-rows var(--dur-slow) var(--ease-glass),opacity var(--dur-base) var(--ease-glass);opacity:{{ capOp0 }};grid-template-rows:{{ capRows0 }}">
+          <div style="min-height:0"><div style="display:flex;flex-wrap:wrap;gap:var(--space-8);padding-top:var(--space-20);margin-left:calc(34px + var(--space-48))">
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Tag" hint-size="auto,28px">SaaS</x-import>
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Tag" hint-size="auto,28px">Dashboards</x-import>
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Tag" hint-size="auto,28px">Internal tools</x-import>
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Tag" hint-size="auto,28px">Portals</x-import>
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Tag" hint-size="auto,28px">MVPs</x-import>
+          </div></div>
+        </div>
+      </div>
+      <div data-reveal="1" onMouseEnter="{{ capEnter1 }}" onMouseLeave="{{ capLeave }}" style="position:relative;display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--space-12) var(--space-48);border-top:1px solid var(--border-hairline);padding:var(--space-32) var(--space-24);margin:0 calc(-1 * var(--space-24));transition:background var(--dur-slow) var(--ease-glass),box-shadow var(--dur-slow) var(--ease-glass);background:{{ capBg1 }};box-shadow:{{ capShadow1 }}">
+        <span style="flex:none;width:34px;font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);font-variant-numeric:tabular-nums;transition:color var(--dur-base) var(--ease-glass);color:{{ capNum1 }}">02</span>
+        <h3 style="flex:1 1 min(100%,240px);max-width:280px;font-size:var(--size-h5);font-weight:var(--weight-semibold);letter-spacing:var(--track-heading);color:var(--text-primary);transition:transform var(--dur-slow) var(--ease-glass);transform:translateX({{ capX1 }})">Web experiences</h3>
+        <p style="flex:2 1 min(100%,320px);padding-right:34px;font-size:var(--size-text-regular);line-height:var(--leading-body);color:var(--text-secondary);max-width:56ch;text-wrap:pretty">High-performance websites, landing pages, CMS experiences, e-commerce and interactive web experiences.</p>
+        <span aria-hidden="true" style="position:absolute;bottom:var(--space-32);right:var(--space-24);font-family:var(--font-text);font-size:var(--size-text-tiny);color:var(--text-accent);transition:opacity var(--dur-base) var(--ease-glass),transform var(--dur-slow) var(--ease-glass);opacity:{{ capOp1 }};transform:translateX({{ capArrow1 }})">↗</span>
+        <div style="flex:0 0 100%;display:grid;overflow:hidden;transition:grid-template-rows var(--dur-slow) var(--ease-glass),opacity var(--dur-base) var(--ease-glass);opacity:{{ capOp1 }};grid-template-rows:{{ capRows1 }}">
+          <div style="min-height:0"><div style="display:flex;flex-wrap:wrap;gap:var(--space-8);padding-top:var(--space-20);margin-left:calc(34px + var(--space-48))">
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Tag" hint-size="auto,28px">Landing pages</x-import>
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Tag" hint-size="auto,28px">CMS</x-import>
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Tag" hint-size="auto,28px">E-commerce</x-import>
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Tag" hint-size="auto,28px">Performance</x-import>
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Tag" hint-size="auto,28px">Interaction</x-import>
+          </div></div>
+        </div>
+      </div>
+      <div data-reveal="1" onMouseEnter="{{ capEnter2 }}" onMouseLeave="{{ capLeave }}" style="position:relative;display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--space-12) var(--space-48);border-top:1px solid var(--border-hairline);padding:var(--space-32) var(--space-24);margin:0 calc(-1 * var(--space-24));transition:background var(--dur-slow) var(--ease-glass),box-shadow var(--dur-slow) var(--ease-glass);background:{{ capBg2 }};box-shadow:{{ capShadow2 }}">
+        <span style="flex:none;width:34px;font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);font-variant-numeric:tabular-nums;transition:color var(--dur-base) var(--ease-glass);color:{{ capNum2 }}">03</span>
+        <h3 style="flex:1 1 min(100%,240px);max-width:280px;font-size:var(--size-h5);font-weight:var(--weight-semibold);letter-spacing:var(--track-heading);color:var(--text-primary);transition:transform var(--dur-slow) var(--ease-glass);transform:translateX({{ capX2 }})">AI &amp; automation</h3>
+        <p style="flex:2 1 min(100%,320px);padding-right:34px;font-size:var(--size-text-regular);line-height:var(--leading-body);color:var(--text-secondary);max-width:56ch;text-wrap:pretty">AI agents, intelligent product features, workflow automation, LLM integrations, APIs and AI-enabled systems.</p>
+        <span aria-hidden="true" style="position:absolute;bottom:var(--space-32);right:var(--space-24);font-family:var(--font-text);font-size:var(--size-text-tiny);color:var(--text-accent);transition:opacity var(--dur-base) var(--ease-glass),transform var(--dur-slow) var(--ease-glass);opacity:{{ capOp2 }};transform:translateX({{ capArrow2 }})">↗</span>
+        <div style="flex:0 0 100%;display:grid;overflow:hidden;transition:grid-template-rows var(--dur-slow) var(--ease-glass),opacity var(--dur-base) var(--ease-glass);opacity:{{ capOp2 }};grid-template-rows:{{ capRows2 }}">
+          <div style="min-height:0"><div style="display:flex;flex-wrap:wrap;gap:var(--space-8);padding-top:var(--space-20);margin-left:calc(34px + var(--space-48))">
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Tag" hint-size="auto,28px">Agents</x-import>
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Tag" hint-size="auto,28px">LLM integration</x-import>
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Tag" hint-size="auto,28px">Workflow automation</x-import>
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Tag" hint-size="auto,28px">APIs</x-import>
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Tag" hint-size="auto,28px">Evaluation</x-import>
+          </div></div>
+        </div>
+      </div>
+      <div data-reveal="1" onMouseEnter="{{ capEnter3 }}" onMouseLeave="{{ capLeave }}" style="position:relative;display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--space-12) var(--space-48);border-top:1px solid var(--border-hairline);border-bottom:1px solid var(--border-hairline);padding:var(--space-32) var(--space-24);margin:0 calc(-1 * var(--space-24));transition:background var(--dur-slow) var(--ease-glass),box-shadow var(--dur-slow) var(--ease-glass);background:{{ capBg3 }};box-shadow:{{ capShadow3 }}">
+        <span style="flex:none;width:34px;font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);font-variant-numeric:tabular-nums;transition:color var(--dur-base) var(--ease-glass);color:{{ capNum3 }}">04</span>
+        <h3 style="flex:1 1 min(100%,240px);max-width:280px;font-size:var(--size-h5);font-weight:var(--weight-semibold);letter-spacing:var(--track-heading);color:var(--text-primary);transition:transform var(--dur-slow) var(--ease-glass);transform:translateX({{ capX3 }})">Product design</h3>
+        <p style="flex:2 1 min(100%,320px);padding-right:34px;font-size:var(--size-text-regular);line-height:var(--leading-body);color:var(--text-secondary);max-width:56ch;text-wrap:pretty">Product research, information architecture, UX/UI, interaction design, prototyping and design systems.</p>
+        <span aria-hidden="true" style="position:absolute;bottom:var(--space-32);right:var(--space-24);font-family:var(--font-text);font-size:var(--size-text-tiny);color:var(--text-accent);transition:opacity var(--dur-base) var(--ease-glass),transform var(--dur-slow) var(--ease-glass);opacity:{{ capOp3 }};transform:translateX({{ capArrow3 }})">↗</span>
+        <div style="flex:0 0 100%;display:grid;overflow:hidden;transition:grid-template-rows var(--dur-slow) var(--ease-glass),opacity var(--dur-base) var(--ease-glass);opacity:{{ capOp3 }};grid-template-rows:{{ capRows3 }}">
+          <div style="min-height:0"><div style="display:flex;flex-wrap:wrap;gap:var(--space-8);padding-top:var(--space-20);margin-left:calc(34px + var(--space-48))">
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Tag" hint-size="auto,28px">Research</x-import>
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Tag" hint-size="auto,28px">Information architecture</x-import>
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Tag" hint-size="auto,28px">UX / UI</x-import>
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Tag" hint-size="auto,28px">Prototyping</x-import>
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Tag" hint-size="auto,28px">Design systems</x-import>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--surface-field);border-top:1px solid var(--border-hairline);border-bottom:1px solid var(--border-hairline)">
+    <div style="max-width:var(--container-large);margin:0 auto;padding:var(--section-gap) var(--page-margin)">
+      <p class="ds-eyebrow" style="color:var(--text-accent);margin-bottom:var(--space-24)">Process — 01 / 05</p>
+      <h2 style="font-size:clamp(30px,4.2vw,48px);font-weight:var(--weight-bold);line-height:var(--leading-h2);letter-spacing:var(--track-display);color:var(--text-primary);margin-bottom:var(--space-48)">Understand. Shape. Build. Launch. Learn.</h2>
+      <ol style="display:flex;flex-wrap:wrap;gap:1px;background:var(--border-hairline)">
+        <li data-reveal="1" style="flex:1 1 min(100%,200px);background:var(--surface-page);padding:var(--space-32) var(--space-24)">
+          <p style="font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;color:var(--text-accent);margin-bottom:var(--space-20)">01 — Discover</p>
+          <ul style="display:flex;flex-direction:column;gap:var(--space-8);font-size:var(--size-text-small);color:var(--text-secondary)"><li>Goals</li><li>Product research</li><li>User research</li><li>Early concepts</li></ul>
+        </li>
+        <li data-reveal="1" style="flex:1 1 min(100%,200px);background:var(--surface-page);padding:var(--space-32) var(--space-24)">
+          <p style="font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;color:var(--text-tertiary);margin-bottom:var(--space-20)">02 — Design</p>
+          <ul style="display:flex;flex-direction:column;gap:var(--space-8);font-size:var(--size-text-small);color:var(--text-secondary)"><li>Information architecture</li><li>Interfaces</li><li>Flows</li><li>Prototypes</li></ul>
+        </li>
+        <li data-reveal="1" style="flex:1 1 min(100%,200px);background:var(--surface-page);padding:var(--space-32) var(--space-24)">
+          <p style="font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;color:var(--text-tertiary);margin-bottom:var(--space-20)">03 — Build</p>
+          <ul style="display:flex;flex-direction:column;gap:var(--space-8);font-size:var(--size-text-small);color:var(--text-secondary)"><li>Development</li><li>Integration</li><li>Production code</li><li>Testing</li></ul>
+        </li>
+        <li data-reveal="1" style="flex:1 1 min(100%,200px);background:var(--surface-page);padding:var(--space-32) var(--space-24)">
+          <p style="font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;color:var(--text-tertiary);margin-bottom:var(--space-20)">04 — Launch</p>
+          <ul style="display:flex;flex-direction:column;gap:var(--space-8);font-size:var(--size-text-small);color:var(--text-secondary)"><li>Deployment</li><li>QA</li><li>Performance</li><li>Production checks</li></ul>
+        </li>
+        <li data-reveal="1" style="flex:1 1 min(100%,200px);background:var(--surface-page);padding:var(--space-32) var(--space-24)">
+          <p style="font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;color:var(--text-tertiary);margin-bottom:var(--space-20)">05 — Evolve</p>
+          <ul style="display:flex;flex-direction:column;gap:var(--space-8);font-size:var(--size-text-small);color:var(--text-secondary)"><li>Feedback</li><li>Analysis</li><li>Iteration</li><li>Improvement</li></ul>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section style="max-width:var(--container-large);margin:0 auto;padding:var(--section-gap) var(--page-margin)">
+    <div style="display:flex;flex-wrap:wrap;gap:var(--space-48);margin-bottom:var(--space-48)">
+      <h2 style="flex:1 1 min(100%,480px);font-size:clamp(32px,4.6vw,48px);font-weight:var(--weight-bold);line-height:var(--leading-h2);letter-spacing:var(--track-display);color:var(--text-primary);max-width:22ch;text-wrap:pretty">The interface is only half the product.</h2>
+      <p style="flex:1 1 min(100%,320px);align-self:flex-end;font-size:var(--size-text-medium);line-height:var(--leading-body);color:var(--text-secondary);max-width:48ch;text-wrap:pretty">Visual quality matters, but so do architecture, accessibility, performance, reliability and maintainability. I work across both sides so that what looks considered also behaves considered.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:1px;background:var(--border-hairline);box-shadow:inset 0 0 0 1px var(--border-hairline)">
+      <div data-reveal="1" onMouseEnter="{{ discEnter0 }}" onMouseLeave="{{ discLeave }}" style="position:relative;overflow:hidden;flex:1 1 min(100%,260px);padding:var(--space-40) var(--space-32);transition:background var(--dur-slow) var(--ease-glass);background:{{ discBg0 }}">
+        <span aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent-signal);transform-origin:left;transition:transform var(--dur-slow) var(--ease-glass);transform:scaleX({{ discRule0 }})"></span>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);margin-bottom:var(--space-20)">
+          <p style="font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;transition:color var(--dur-base) var(--ease-glass);color:{{ discLabel0 }}">Discipline 01</p>
+          <span aria-hidden="true" style="font-family:var(--font-text);font-size:var(--size-text-tiny);color:var(--text-accent);transition:opacity var(--dur-base) var(--ease-glass),transform var(--dur-slow) var(--ease-glass);opacity:{{ discOp0 }};transform:translateX({{ discArrow0 }})">→</span>
+        </div>
+        <h3 style="font-size:var(--size-h5);font-weight:var(--weight-semibold);letter-spacing:var(--track-heading);color:var(--text-primary);margin-bottom:var(--space-20);transition:transform var(--dur-slow) var(--ease-glass);transform:translateX({{ discX0 }})">Product design</h3>
+        <ul style="display:flex;flex-direction:column;gap:var(--space-8);font-size:var(--size-text-small);color:var(--text-secondary);transition:transform var(--dur-slow) var(--ease-glass);transform:translateX({{ discX0 }})"><li>Research</li><li>UX/UI</li><li>Information architecture</li><li>Prototyping</li><li>Design systems</li></ul>
+      </div>
+      <div data-reveal="1" onMouseEnter="{{ discEnter1 }}" onMouseLeave="{{ discLeave }}" style="position:relative;overflow:hidden;flex:1 1 min(100%,260px);padding:var(--space-40) var(--space-32);transition:background var(--dur-slow) var(--ease-glass);background:{{ discBg1 }}">
+        <span aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent-signal);transform-origin:left;transition:transform var(--dur-slow) var(--ease-glass);transform:scaleX({{ discRule1 }})"></span>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);margin-bottom:var(--space-20)">
+          <p style="font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;transition:color var(--dur-base) var(--ease-glass);color:{{ discLabel1 }}">Discipline 02</p>
+          <span aria-hidden="true" style="font-family:var(--font-text);font-size:var(--size-text-tiny);color:var(--text-accent);transition:opacity var(--dur-base) var(--ease-glass),transform var(--dur-slow) var(--ease-glass);opacity:{{ discOp1 }};transform:translateX({{ discArrow1 }})">→</span>
+        </div>
+        <h3 style="font-size:var(--size-h5);font-weight:var(--weight-semibold);letter-spacing:var(--track-heading);color:var(--text-primary);margin-bottom:var(--space-20);transition:transform var(--dur-slow) var(--ease-glass);transform:translateX({{ discX1 }})">Product engineering</h3>
+        <ul style="display:flex;flex-direction:column;gap:var(--space-8);font-size:var(--size-text-small);color:var(--text-secondary);transition:transform var(--dur-slow) var(--ease-glass);transform:translateX({{ discX1 }})"><li>Next.js</li><li>TypeScript</li><li>Full stack</li><li>APIs</li><li>Cloud infrastructure</li></ul>
+      </div>
+      <div data-reveal="1" onMouseEnter="{{ discEnter2 }}" onMouseLeave="{{ discLeave }}" style="position:relative;overflow:hidden;flex:1 1 min(100%,260px);padding:var(--space-40) var(--space-32);transition:background var(--dur-slow) var(--ease-glass);background:{{ discBg2 }}">
+        <span aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent-signal);transform-origin:left;transition:transform var(--dur-slow) var(--ease-glass);transform:scaleX({{ discRule2 }})"></span>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);margin-bottom:var(--space-20)">
+          <p style="font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;transition:color var(--dur-base) var(--ease-glass);color:{{ discLabel2 }}">Discipline 03</p>
+          <span aria-hidden="true" style="font-family:var(--font-text);font-size:var(--size-text-tiny);color:var(--text-accent);transition:opacity var(--dur-base) var(--ease-glass),transform var(--dur-slow) var(--ease-glass);opacity:{{ discOp2 }};transform:translateX({{ discArrow2 }})">→</span>
+        </div>
+        <h3 style="font-size:var(--size-h5);font-weight:var(--weight-semibold);letter-spacing:var(--track-heading);color:var(--text-primary);margin-bottom:var(--space-20);transition:transform var(--dur-slow) var(--ease-glass);transform:translateX({{ discX2 }})">AI &amp; automation</h3>
+        <ul style="display:flex;flex-direction:column;gap:var(--space-8);font-size:var(--size-text-small);color:var(--text-secondary);transition:transform var(--dur-slow) var(--ease-glass);transform:translateX({{ discX2 }})"><li>Python</li><li>AI agents</li><li>LLMs</li><li>Automation</li><li>Intelligent integrations</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid var(--border-hairline)">
+    <div style="max-width:var(--container-large);margin:0 auto;padding:var(--block-gap) var(--page-margin);display:flex;flex-wrap:wrap;gap:var(--space-48)">
+      <div style="flex:1 1 min(100%,240px)">
+        <p class="ds-eyebrow" style="color:var(--text-accent);margin-bottom:var(--space-24)">Capabilities</p>
+        <ul style="display:flex;flex-direction:column;gap:var(--space-12);font-family:var(--font-text);font-size:var(--size-text-regular);color:var(--text-primary)"><li>Product research</li><li>Product design</li><li>UI/UX</li><li>Design engineering</li><li>Product engineering</li><li>AI engineering</li><li>Full-stack development</li><li>AI automation</li></ul>
+      </div>
+      <div style="flex:1 1 min(100%,240px)">
+        <p class="ds-eyebrow" style="margin-bottom:var(--space-24)">Technology</p>
+        <ul style="display:flex;flex-direction:column;gap:var(--space-12);font-family:var(--font-text);font-size:var(--size-text-regular);color:var(--text-primary)"><li>Next.js</li><li>TypeScript</li><li>Python</li><li>FastAPI</li><li>Supabase</li><li>APIs</li><li>Cloud infrastructure</li></ul>
+      </div>
+      <div style="flex:1 1 min(100%,240px)">
+        <p class="ds-eyebrow" style="margin-bottom:var(--space-24)">Tools</p>
+        <ul style="display:flex;flex-direction:column;gap:var(--space-12);font-family:var(--font-text);font-size:var(--size-text-regular);color:var(--text-primary)"><li>Figma</li><li>Webflow</li><li>Claude</li><li>ChatGPT / Codex</li><li>GitHub</li><li>Vercel</li><li>n8n</li><li>Google AI Studio</li><li>Microsoft 365</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section style="position:relative;overflow:hidden;background:var(--surface-field);border-top:1px solid var(--border-hairline);border-bottom:1px solid var(--border-hairline)">
+    <div aria-hidden="true" style="position:absolute;inset:0;background:var(--texture-pixel-fine) top left / 40px 40px repeat;opacity:.35;pointer-events:none"></div>
+    <div style="position:relative;max-width:var(--container-large);margin:0 auto;padding:var(--section-gap) var(--page-margin);display:flex;flex-wrap:wrap;gap:var(--space-64)">
+      <div style="flex:0 1 min(100%,300px)">
+        <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.GlassPanel" thickness="heavy" tone="cool" radius="var(--radius-8)" hint-size="100%,375px">
+        <div style="aspect-ratio:4/5;padding:var(--space-32);display:flex;flex-direction:column;justify-content:space-between">
+          <span style="font-size:var(--size-h4);font-weight:var(--weight-extrabold);letter-spacing:var(--track-display);color:var(--text-accent)">CO</span>
+          <span style="font-size:clamp(26px,3.2vw,40px);font-weight:var(--weight-bold);line-height:var(--leading-tight);letter-spacing:var(--track-display);color:var(--text-primary)">Making<br>systems<br>better.</span>
+        </div>
+        </x-import>
+      </div>
+      <div style="flex:1 1 min(100%,420px)">
+        <p class="ds-eyebrow" style="margin-bottom:var(--space-24)">About — CO</p>
+        <h2 style="font-size:clamp(30px,4.2vw,48px);font-weight:var(--weight-bold);line-height:var(--leading-h2);letter-spacing:var(--track-display);color:var(--text-primary)">Different disciplines.<br>Same question.</h2>
+        <p style="margin-top:var(--space-20);font-size:clamp(24px,3.2vw,40px);font-weight:var(--weight-light);line-height:var(--leading-tight);letter-spacing:var(--track-display);color:var(--text-accent)">How can this work better?</p>
+        <div style="margin-top:var(--space-32);display:flex;flex-direction:column;gap:var(--space-20);max-width:52ch">
+          <p style="font-size:var(--size-text-medium);line-height:var(--leading-body);color:var(--text-secondary);text-wrap:pretty">I work at the intersection of design, engineering and product, turning complicated business and user problems into digital systems that are useful, fast and built to last.</p>
+          <p style="font-size:var(--size-text-medium);line-height:var(--leading-body);color:var(--text-secondary);text-wrap:pretty">Curiosity, experimentation and multidisciplinary thinking shape how I approach products and systems.</p>
+        </div>
+        <a href="#/about" onClick="{{ goAbout }}" class="ds-eyebrow" style="display:inline-block;margin-top:var(--space-32);color:var(--text-accent);box-shadow:inset 0 -1px 0 var(--border-accent);padding-bottom:var(--space-4)" style-hover="color:var(--text-primary);box-shadow:inset 0 -1px 0 var(--border-strong)">More about me →</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="position:relative;overflow:hidden;background:var(--surface-field)">
+    <div aria-hidden="true" style="position:absolute;inset:0;background:var(--texture-pixel-fine) top left / 40px 40px repeat;opacity:.4;pointer-events:none"></div>
+    <div style="position:relative;max-width:var(--container-large);margin:0 auto;padding:var(--section-gap) var(--page-margin)">
+      <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.GlassPanel" thickness="heavy" radius="var(--radius-8)" hint-size="100%,280px">
+        <div style="padding:var(--space-64) var(--space-48);display:flex;flex-wrap:wrap;gap:var(--space-48);align-items:flex-end;justify-content:space-between">
+          <div style="flex:1 1 min(100%,420px)">
+            <p class="ds-eyebrow" style="color:var(--text-accent);margin-bottom:var(--space-24)">Open to permanent UK roles</p>
+            <h2 style="font-size:clamp(30px,4.6vw,56px);font-weight:var(--weight-bold);line-height:var(--leading-h2);letter-spacing:var(--track-display);color:var(--text-primary);max-width:20ch;text-wrap:balance">Think we could build something useful together?</h2>
+            <p style="margin-top:var(--space-24);font-size:var(--size-text-large);line-height:var(--leading-body);color:var(--text-secondary);max-width:46ch;text-wrap:pretty">I’m open to permanent opportunities across the UK and selected product collaborations globally.</p>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:var(--space-12);align-items:center">
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Button" class="co-btn" as="a" href="#/contact" onClick="{{ goContact }}" hint-size="220px,48px">Start a conversation</x-import>
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Button" class="co-btn" style="secondary" as="a" href="{{ resumeUrl }}" target="_blank" rel="noopener" hint-size="150px,48px">Résumé</x-import>
+          </div>
+        </div>
+      </x-import>
+    </div>
+  </section>
+
+</div>
+</sc-if>
+
+<sc-if value="{{ isWork }}" hint-placeholder-val="{{ false }}">
+<div>
+  <section style="max-width:var(--container-large);margin:0 auto;padding:var(--block-gap) var(--page-margin) var(--space-48)">
+    <p class="ds-eyebrow" style="color:var(--text-accent);margin-bottom:var(--space-32)">Work, 2024 — 2026</p>
+    <div style="display:flex;flex-wrap:wrap;gap:var(--space-48);align-items:flex-end">
+      <h1 style="flex:1 1 min(100%,520px);font-size:clamp(40px,6vw,72px);font-weight:var(--weight-bold);line-height:1.04;letter-spacing:-0.04em;color:var(--text-primary);max-width:20ch;text-wrap:balance">Products designed around problems worth solving.</h1>
+      <p style="flex:0 1 min(100%,340px);font-size:var(--size-text-medium);line-height:var(--leading-body);color:var(--text-secondary);max-width:42ch;text-wrap:pretty">Selected work across financial technology, construction technology, healthcare, product engineering and intelligent systems.</p>
+    </div>
+  </section>
+
+  <section style="max-width:var(--container-large);margin:0 auto;padding:0 var(--page-margin) var(--section-gap)">
+    <div style="display:flex;flex-wrap:wrap;gap:var(--space-12) var(--space-32);border-bottom:1px solid var(--border-hairline);padding-bottom:var(--space-12);font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;color:var(--text-tertiary)">
+      <span style="flex:none;width:34px">No.</span>
+      <span style="flex:1 1 160px">Project</span>
+      <span style="flex:1 1 160px">Industry</span>
+      <span style="flex:1 1 160px">Discipline</span>
+    </div>
+    <ol>
+      <sc-for list="{{ caseLinks }}" as="c" hint-placeholder-count="3">
+        <li style="border-bottom:1px solid var(--border-hairline)">
+          <a href="{{ c.href }}" style="display:block;padding:var(--space-32) 0;color:var(--text-primary)" style-hover="color:var(--text-accent)">
+            <div style="display:flex;flex-wrap:wrap;gap:var(--space-12) var(--space-32);align-items:baseline">
+              <span style="flex:none;width:34px;font-family:var(--font-text);font-size:var(--size-text-tiny);color:var(--text-tertiary);font-variant-numeric:tabular-nums">{{ c.number }}</span>
+              <span style="flex:1 1 160px;font-size:clamp(22px,2.8vw,32px);font-weight:var(--weight-bold);letter-spacing:var(--track-heading)">{{ c.name }}</span>
+              <span style="flex:1 1 160px;font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;color:var(--text-accent)">{{ c.industry }}</span>
+              <span style="flex:1 1 160px;font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;color:var(--text-tertiary)">{{ c.discipline }}</span>
+            </div>
+            <sc-if value="{{ c.open }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-wrap:wrap;gap:var(--space-20) var(--space-48);padding:var(--space-24) 0 var(--space-6);margin-left:calc(34px + var(--space-32))">
+                <p style="flex:1 1 min(100%,300px);font-size:var(--size-text-regular);line-height:var(--leading-body);color:var(--text-secondary);max-width:52ch;text-wrap:pretty">{{ c.summary }}</p>
+                <p style="flex:1 1 min(100%,240px);font-family:var(--font-text);font-size:var(--size-text-tiny);line-height:2;letter-spacing:var(--track-meta);text-transform:uppercase;color:var(--text-tertiary)">{{ c.flowText }}</p>
+              </div>
+            </sc-if>
+          </a>
+        </li>
+      </sc-for>
+    </ol>
+    <p class="ds-eyebrow" style="margin-top:var(--space-48)">TODO — further projects to be added</p>
+  </section>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCase }}" hint-placeholder-val="{{ false }}">
+<article>
+  <header style="max-width:var(--container-large);margin:0 auto;padding:var(--block-gap) var(--page-margin) var(--space-48)">
+    <p style="display:flex;flex-wrap:wrap;gap:var(--space-8) var(--space-20);font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;margin-bottom:var(--space-32)">
+      <a href="#/work" onClick="{{ goWork }}" style="color:var(--text-tertiary)" style-hover="color:var(--text-accent)">Work</a>
+      <span style="color:var(--text-tertiary)">/</span>
+      <span style="color:var(--text-tertiary)">{{ cs.number }} — {{ cs.name }}</span>
+      <span style="color:var(--text-accent)">{{ cs.industry }}</span>
+    </p>
+    <h1 style="font-size:clamp(36px,5.6vw,72px);font-weight:var(--weight-bold);line-height:1.04;letter-spacing:-0.04em;color:var(--text-primary);max-width:22ch;text-wrap:balance">{{ cs.headline }}</h1>
+    <p style="margin-top:var(--space-32);font-size:var(--size-text-large);line-height:var(--leading-body);color:var(--text-secondary);max-width:54ch;text-wrap:pretty">{{ cs.summary }}</p>
+  </header>
+
+  <div style="position:relative;overflow:hidden;background:var(--surface-field);border-top:1px solid var(--border-hairline);border-bottom:1px solid var(--border-hairline)">
+    <div aria-hidden="true" style="position:absolute;inset:0;background:var(--texture-pixel-fine) top left / 40px 40px repeat;opacity:.35;pointer-events:none"></div>
+    <div style="position:relative;max-width:var(--container-large);margin:0 auto;padding:var(--space-48) var(--page-margin)">
+      <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.GlassPanel" thickness="regular" tone="cool" radius="var(--radius-8)" hint-size="100%,180px">
+        <dl style="padding:var(--space-32);display:flex;flex-wrap:wrap;gap:var(--space-24) var(--space-48)">
+          <div style="flex:1 1 150px"><dt class="ds-eyebrow">Role</dt><dd style="margin-top:var(--space-8);font-size:var(--size-text-small);color:var(--text-primary);line-height:1.45">{{ cs.role }}</dd></div>
+          <div style="flex:0 1 90px"><dt class="ds-eyebrow">Year</dt><dd style="margin-top:var(--space-8);font-family:var(--font-text);font-size:var(--size-text-small);color:var(--text-primary);font-variant-numeric:tabular-nums">{{ cs.year }}</dd></div>
+          <div style="flex:0 1 170px"><dt class="ds-eyebrow">Status</dt><dd style="margin-top:var(--space-8);font-family:var(--font-text);font-size:var(--size-text-small);color:var(--text-accent)">{{ cs.status }}</dd><dd style="margin-top:var(--space-6);font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-meta);color:var(--text-tertiary)">{{ cs.statusNote }}</dd></div>
+          <div style="flex:1 1 240px"><dt class="ds-eyebrow">Technology</dt>
+            <dd style="margin-top:var(--space-8);display:flex;flex-wrap:wrap;gap:var(--space-6)">
+              <sc-for list="{{ csTech }}" as="x" hint-placeholder-count="4"><span style="font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-meta);color:var(--text-secondary);box-shadow:inset 0 0 0 1px var(--border-hairline);padding:var(--space-4) var(--space-8)">{{ x.t }}</span></sc-for>
+            </dd>
+          </div>
+          <div style="flex:1 1 240px"><dt class="ds-eyebrow">Areas</dt>
+            <dd style="margin-top:var(--space-8);display:flex;flex-wrap:wrap;gap:var(--space-4) var(--space-12)">
+              <sc-for list="{{ csAreas }}" as="x" hint-placeholder-count="3"><span style="font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-meta);color:var(--text-secondary)">{{ x.t }}</span></sc-for>
+            </dd>
+          </div>
+        </dl>
+      </x-import>
+    </div>
+  </div>
+
+  <section style="max-width:var(--container-large);margin:0 auto;padding:var(--block-gap) var(--page-margin);display:flex;flex-wrap:wrap;gap:var(--space-48)">
+    <h2 class="ds-eyebrow" style="flex:0 1 min(100%,220px);color:var(--text-accent);padding-top:var(--space-6)">Overview</h2>
+    <p style="flex:1 1 min(100%,420px);font-size:clamp(19px,1.6vw,24px);line-height:1.42;letter-spacing:var(--track-subhead);color:var(--text-primary);max-width:56ch;text-wrap:pretty">{{ cs.overview }}</p>
+  </section>
+
+  <section style="background:var(--surface-field);border-top:1px solid var(--border-hairline);border-bottom:1px solid var(--border-hairline)">
+    <div style="max-width:var(--container-large);margin:0 auto;padding:var(--block-gap) var(--page-margin);display:flex;flex-wrap:wrap;gap:var(--space-48)">
+      <h2 class="ds-eyebrow" style="flex:0 1 min(100%,220px);padding-top:var(--space-6)">Problem</h2>
+      <p style="flex:1 1 min(100%,420px);font-size:var(--size-text-medium);line-height:1.62;color:var(--text-secondary);max-width:62ch;text-wrap:pretty">{{ cs.problem }}</p>
+    </div>
+  </section>
+
+  <section style="max-width:var(--container-large);margin:0 auto;padding:var(--block-gap) var(--page-margin)">
+    <div style="display:flex;flex-wrap:wrap;gap:var(--space-48)">
+      <h2 class="ds-eyebrow" style="flex:0 1 min(100%,220px);color:var(--text-accent);padding-top:var(--space-6)">Product approach</h2>
+      <div style="flex:1 1 min(100%,420px);display:flex;flex-wrap:wrap;gap:var(--space-48)">
+        <p style="flex:1 1 min(100%,320px);font-size:var(--size-text-medium);line-height:1.62;color:var(--text-secondary);max-width:56ch;text-wrap:pretty">{{ cs.approach }}</p>
+        <figure style="flex:0 1 min(100%,280px)">
+          <figcaption class="ds-eyebrow" style="margin-bottom:var(--space-20)">{{ cs.flowLabel }}</figcaption>
+          <ol style="box-shadow:inset 1px 0 0 var(--border-accent);padding-left:var(--space-20);display:flex;flex-direction:column;gap:var(--space-20)">
+            <sc-for list="{{ csFlow }}" as="f" hint-placeholder-count="5">
+              <li style="display:flex;gap:var(--space-12);align-items:baseline"><span style="font-family:var(--font-text);font-size:var(--size-text-tiny);color:var(--text-tertiary);font-variant-numeric:tabular-nums">{{ f.n }}</span><span style="font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;color:var(--text-primary)">{{ f.label }}</span></li>
+            </sc-for>
+          </ol>
+        </figure>
+      </div>
+    </div>
+    <ol style="margin-top:var(--block-gap);display:flex;flex-wrap:wrap;gap:1px;background:var(--border-hairline);box-shadow:inset 0 0 0 1px var(--border-hairline)">
+      <sc-for list="{{ csDecisions }}" as="d" hint-placeholder-count="3">
+        <li data-reveal="1" style="flex:1 1 min(100%,260px);background:var(--surface-page);padding:var(--space-32)">
+          <p style="font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;color:var(--text-accent);margin-bottom:var(--space-20)">Decision {{ d.n }}</p>
+          <h3 style="font-size:var(--size-h6);font-weight:var(--weight-semibold);letter-spacing:var(--track-heading);color:var(--text-primary);margin-bottom:var(--space-12)">{{ d.t }}</h3>
+          <p style="font-size:var(--size-text-small);line-height:var(--leading-body);color:var(--text-secondary);text-wrap:pretty">{{ d.d }}</p>
+        </li>
+      </sc-for>
+    </ol>
+  </section>
+
+  <section style="background:var(--surface-field);border-top:1px solid var(--border-hairline);border-bottom:1px solid var(--border-hairline)">
+    <div style="max-width:var(--container-large);margin:0 auto;padding:var(--block-gap) var(--page-margin)">
+      <div style="display:flex;flex-wrap:wrap;gap:var(--space-24) var(--space-48);align-items:baseline;margin-bottom:var(--space-32)">
+        <h2 class="ds-eyebrow" style="flex:0 1 min(100%,220px)">Product experience</h2>
+        <p class="ds-eyebrow" style="flex:1 1 min(100%,320px)">TODO — replace slots with final interface screenshots</p>
+      </div>
+      <sc-if value="{{ isBudget }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-wrap:wrap;gap:var(--space-24)">
+          <div style="flex:2 1 min(100%,420px);aspect-ratio:16/10"><image-slot id="v2-bv-main" shape="rect" placeholder="Monthly plan — primary screen"></image-slot></div>
+          <div style="flex:1 1 min(100%,240px);aspect-ratio:4/5"><image-slot id="v2-bv-detail" shape="rect" placeholder="Subscriptions detail"></image-slot></div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isSite }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-wrap:wrap;gap:var(--space-24)">
+          <div style="flex:1 1 min(100%,240px);aspect-ratio:4/5"><image-slot id="v2-sr-capture" shape="rect" placeholder="Defect capture — mobile"></image-slot></div>
+          <div style="flex:2 1 min(100%,420px);aspect-ratio:16/10"><image-slot id="v2-sr-board" shape="rect" placeholder="Defect board / workflow view"></image-slot></div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isReferral }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-wrap:wrap;gap:var(--space-24)">
+          <div style="flex:2 1 min(100%,420px);aspect-ratio:16/10"><image-slot id="v2-rv-timeline" shape="rect" placeholder="Case timeline view"></image-slot></div>
+          <div style="flex:1 1 min(100%,240px);aspect-ratio:4/5"><image-slot id="v2-rv-triage" shape="rect" placeholder="Triage list"></image-slot></div>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <section style="max-width:var(--container-large);margin:0 auto;padding:var(--block-gap) var(--page-margin);display:flex;flex-wrap:wrap;gap:var(--space-48)">
+    <h2 class="ds-eyebrow" style="flex:0 1 min(100%,220px);color:var(--text-accent);padding-top:var(--space-6)">Engineering</h2>
+    <div style="flex:1 1 min(100%,420px)">
+      <p style="font-size:var(--size-text-medium);line-height:1.62;color:var(--text-secondary);max-width:62ch;text-wrap:pretty">{{ cs.engineering }}</p>
+      <ol style="margin-top:var(--space-40);display:flex;flex-direction:column">
+        <sc-for list="{{ csArch }}" as="a" hint-placeholder-count="4">
+          <li style="display:flex;flex-wrap:wrap;gap:var(--space-8) var(--space-24);border-top:1px solid var(--border-hairline);padding:var(--space-20) 0">
+            <span style="flex:0 1 110px;font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;color:var(--text-accent)">{{ a.k }}</span>
+            <span style="flex:1 1 200px;font-family:var(--font-text);font-size:var(--size-text-small);color:var(--text-primary)">{{ a.v }}</span>
+          </li>
+        </sc-for>
+      </ol>
+    </div>
+  </section>
+
+  <section style="background:var(--surface-field);border-top:1px solid var(--border-hairline);border-bottom:1px solid var(--border-hairline)">
+    <div style="max-width:var(--container-large);margin:0 auto;padding:var(--block-gap) var(--page-margin);display:flex;flex-wrap:wrap;gap:var(--space-64)">
+      <div style="flex:1 1 min(100%,320px)">
+        <h2 class="ds-eyebrow" style="margin-bottom:var(--space-24)">Outcome</h2>
+        <p style="font-size:var(--size-text-regular);line-height:1.62;color:var(--text-secondary);max-width:48ch;text-wrap:pretty">{{ cs.outcome }}</p>
+      </div>
+      <div style="flex:1 1 min(100%,320px)">
+        <h2 class="ds-eyebrow" style="margin-bottom:var(--space-24)">Reflection</h2>
+        <p style="font-size:var(--size-text-large);line-height:1.48;letter-spacing:var(--track-subhead);color:var(--text-primary);max-width:48ch;text-wrap:pretty">{{ cs.reflection }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:var(--container-large);margin:0 auto;padding:var(--block-gap) var(--page-margin)">
+    <p class="ds-eyebrow" style="margin-bottom:var(--space-20)">Next project — {{ next.number }}</p>
+    <a href="{{ nextHref }}" style="display:block;font-size:clamp(30px,4.6vw,56px);font-weight:var(--weight-bold);line-height:var(--leading-h2);letter-spacing:var(--track-display);color:var(--text-primary);max-width:24ch" style-hover="color:var(--text-accent)">{{ next.name }} <span style="color:var(--text-accent)">→</span></a>
+    <p class="ds-eyebrow" style="margin-top:var(--space-20);color:var(--text-accent)">{{ next.industry }}</p>
+  </section>
+</article>
+</sc-if>
+
+<sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+<div>
+  <section style="max-width:var(--container-large);margin:0 auto;padding:var(--block-gap) var(--page-margin) var(--space-48)">
+    <p class="ds-eyebrow" style="color:var(--text-accent);margin-bottom:var(--space-32)">About — CO</p>
+    <div style="display:flex;flex-wrap:wrap;gap:var(--space-64)">
+      <div style="flex:1 1 min(100%,480px)">
+        <h1 style="font-size:clamp(40px,6vw,72px);font-weight:var(--weight-bold);line-height:1.04;letter-spacing:-0.04em;color:var(--text-primary);max-width:16ch;text-wrap:balance">Designer. Engineer. Product thinker.</h1>
+        <p style="margin-top:var(--space-32);font-size:var(--size-text-large);line-height:var(--leading-body);color:var(--text-secondary);max-width:54ch;text-wrap:pretty">I work at the intersection of design, engineering and product, taking complicated problems and turning them into digital systems that are useful, understandable and durable.</p>
+      </div>
+      <div style="flex:0 1 min(100%,300px);aspect-ratio:4/5;box-shadow:inset 0 0 0 1px var(--border-hairline);background:var(--surface-field);padding:var(--space-32);display:flex;flex-direction:column;justify-content:space-between">
+        <span style="font-size:var(--size-h4);font-weight:var(--weight-extrabold);letter-spacing:var(--track-display);color:var(--text-accent)">CO</span>
+        <span style="font-size:clamp(26px,3.2vw,40px);font-weight:var(--weight-bold);line-height:var(--leading-tight);letter-spacing:var(--track-display);color:var(--text-primary)">Making<br>systems<br>better.</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--surface-field);border-top:1px solid var(--border-hairline);border-bottom:1px solid var(--border-hairline)">
+    <div style="max-width:var(--container-large);margin:0 auto;padding:var(--block-gap) var(--page-margin);display:flex;flex-wrap:wrap;gap:var(--space-64)">
+      <div style="flex:1 1 min(100%,380px)">
+        <h2 style="font-size:clamp(30px,4vw,48px);font-weight:var(--weight-bold);line-height:var(--leading-h2);letter-spacing:var(--track-display);color:var(--text-primary)">Different disciplines. Same question.</h2>
+        <p style="margin-top:var(--space-20);font-size:clamp(26px,3.4vw,40px);font-weight:var(--weight-light);line-height:var(--leading-tight);letter-spacing:var(--track-display);color:var(--text-accent)">How can this work better?</p>
+      </div>
+      <p style="flex:1 1 min(100%,360px);align-self:center;font-size:var(--size-text-large);line-height:1.48;color:var(--text-secondary);max-width:52ch;text-wrap:pretty">Curiosity has consistently pushed me across disciplines. Design helps me understand how people experience a system. Engineering helps me understand how it works. Artificial intelligence expands what that system can do. Product thinking keeps the work connected to a real problem.</p>
+    </div>
+  </section>
+
+  <section style="max-width:var(--container-large);margin:0 auto;padding:var(--block-gap) var(--page-margin)">
+    <p class="ds-eyebrow" style="margin-bottom:var(--space-40)">The practice</p>
+    <div style="display:flex;flex-wrap:wrap;gap:1px;background:var(--border-hairline);box-shadow:inset 0 0 0 1px var(--border-hairline)">
+      <div data-reveal="1" style="flex:1 1 min(100%,230px);background:var(--surface-page);padding:var(--space-32)">
+        <h3 style="font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;color:var(--text-accent);margin-bottom:var(--space-20)">Design</h3>
+        <p style="font-size:var(--size-h6);font-weight:var(--weight-regular);line-height:1.28;letter-spacing:var(--track-subhead);color:var(--text-primary)">Understand and shape the experience.</p>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,230px);background:var(--surface-page);padding:var(--space-32)">
+        <h3 style="font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;color:var(--text-tertiary);margin-bottom:var(--space-20)">Engineering</h3>
+        <p style="font-size:var(--size-h6);font-weight:var(--weight-regular);line-height:1.28;letter-spacing:var(--track-subhead);color:var(--text-primary)">Make the experience real and reliable.</p>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,230px);background:var(--surface-page);padding:var(--space-32)">
+        <h3 style="font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;color:var(--text-tertiary);margin-bottom:var(--space-20)">Intelligence</h3>
+        <p style="font-size:var(--size-h6);font-weight:var(--weight-regular);line-height:1.28;letter-spacing:var(--track-subhead);color:var(--text-primary)">Make the system more capable.</p>
+      </div>
+      <div data-reveal="1" style="flex:1 1 min(100%,230px);background:var(--surface-page);padding:var(--space-32)">
+        <h3 style="font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;color:var(--text-tertiary);margin-bottom:var(--space-20)">Product</h3>
+        <p style="font-size:var(--size-h6);font-weight:var(--weight-regular);line-height:1.28;letter-spacing:var(--track-subhead);color:var(--text-primary)">Make sure the right problem is being solved.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:var(--container-large);margin:0 auto;padding:0 var(--page-margin) var(--section-gap);display:flex;flex-wrap:wrap;gap:var(--space-64)">
+    <div style="flex:1 1 min(100%,380px)">
+      <p class="ds-eyebrow" style="margin-bottom:var(--space-24)">Journey</p>
+      <ol style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-12) var(--space-20)">
+        <li style="display:flex;align-items:center;gap:var(--space-20)"><span style="font-size:var(--size-h6);font-weight:var(--weight-semibold);letter-spacing:var(--track-heading);color:var(--text-secondary)">Design</span><span style="color:var(--text-accent)">→</span></li>
+        <li style="display:flex;align-items:center;gap:var(--space-20)"><span style="font-size:var(--size-h6);font-weight:var(--weight-semibold);letter-spacing:var(--track-heading);color:var(--text-secondary)">Product</span><span style="color:var(--text-accent)">→</span></li>
+        <li style="display:flex;align-items:center;gap:var(--space-20)"><span style="font-size:var(--size-h6);font-weight:var(--weight-semibold);letter-spacing:var(--track-heading);color:var(--text-secondary)">Engineering</span><span style="color:var(--text-accent)">→</span></li>
+        <li><span style="font-size:var(--size-h6);font-weight:var(--weight-semibold);letter-spacing:var(--track-heading);color:var(--text-primary)">Artificial intelligence</span></li>
+      </ol>
+      <div style="margin-top:var(--space-48);border-top:1px solid var(--border-hairline);padding-top:var(--space-24)">
+        <p class="ds-eyebrow" style="margin-bottom:var(--space-20)">Education</p>
+        <p style="font-size:var(--size-h5);font-weight:var(--weight-semibold);line-height:1.16;letter-spacing:var(--track-heading);color:var(--text-primary)">MSc Artificial Intelligence</p>
+        <p style="margin-top:var(--space-8);font-size:var(--size-text-regular);line-height:var(--leading-body);color:var(--text-secondary)">Nottingham Trent University<br>United Kingdom</p>
+      </div>
+    </div>
+    <div style="flex:1 1 min(100%,320px);box-shadow:inset 1px 0 0 var(--border-accent);padding-left:var(--space-32);align-self:center">
+      <p class="ds-eyebrow" style="color:var(--text-accent);margin-bottom:var(--space-20)">Availability</p>
+      <p style="font-size:var(--size-text-large);line-height:var(--leading-body);color:var(--text-primary);max-width:40ch;text-wrap:pretty">Based in the UK and open to permanent roles across Design Engineering, Product Engineering and AI Engineering.</p>
+      <p style="margin-top:var(--space-20);font-size:var(--size-text-regular);line-height:var(--leading-body);color:var(--text-secondary);max-width:40ch">Available for selected global remote collaborations.</p>
+      <div style="margin-top:var(--space-32)">
+        <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Button" class="co-btn" as="a" href="#/contact" onClick="{{ goContact }}" hint-size="220px,48px">Start a conversation</x-import>
+      </div>
+    </div>
+  </section>
+</div>
+</sc-if>
+
+<sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+<div>
+  <section style="max-width:var(--container-large);margin:0 auto;padding:var(--block-gap) var(--page-margin) var(--space-48)">
+    <p class="ds-eyebrow" style="color:var(--text-accent);margin-bottom:var(--space-32)">Contact</p>
+    <h1 style="font-size:clamp(48px,8vw,110px);font-weight:var(--weight-bold);line-height:.98;letter-spacing:-0.045em;color:var(--text-primary)">Let’s talk.</h1>
+  </section>
+
+  <section style="background:var(--surface-field);border-top:1px solid var(--border-hairline);border-bottom:1px solid var(--border-hairline)">
+    <div style="max-width:var(--container-large);margin:0 auto;padding:0 var(--page-margin);display:flex;flex-wrap:wrap">
+      <div style="flex:1 1 min(100%,340px);padding:var(--block-gap) var(--space-48) var(--block-gap) 0;box-shadow:inset -1px 0 0 var(--border-hairline)">
+        <p class="ds-eyebrow" style="color:var(--text-accent);margin-bottom:var(--space-24)">Hiring</p>
+        <p style="font-size:var(--size-text-large);line-height:var(--leading-body);color:var(--text-primary);max-width:40ch;text-wrap:pretty">Building a product, design engineering or AI team? I’m open to permanent opportunities across the UK.</p>
+        <div style="margin-top:var(--space-32);display:flex;flex-wrap:wrap;gap:var(--space-12)">
+          <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Button" class="co-btn" as="a" href="{{ resumeUrl }}" target="_blank" rel="noopener" hint-size="150px,48px">Résumé</x-import>
+          <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Button" class="co-btn" style="secondary" as="a" href="{{ emailHref }}" hint-size="120px,48px">Email</x-import>
+          <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Button" class="co-btn" style="secondary" as="a" href="{{ linkedin }}" target="_blank" rel="noopener" hint-size="140px,48px">LinkedIn</x-import>
+        </div>
+      </div>
+      <div style="flex:1 1 min(100%,340px);padding:var(--block-gap) 0 var(--block-gap) var(--space-48)">
+        <p class="ds-eyebrow" style="margin-bottom:var(--space-24)">Project enquiries</p>
+        <p style="font-size:var(--size-text-large);line-height:var(--leading-body);color:var(--text-primary);max-width:40ch;text-wrap:pretty">Have a product, website or intelligent system you want to bring to life?</p>
+        <div style="margin-top:var(--space-32)">
+          <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Button" class="co-btn" style="secondary" as="a" href="#enquiry" hint-size="170px,48px">Start a project</x-import>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="enquiry" style="max-width:var(--container-large);margin:0 auto;padding:var(--block-gap) var(--page-margin);display:flex;flex-wrap:wrap;gap:var(--space-64)">
+    <form onSubmit="{{ onSubmit }}" style="flex:1 1 min(100%,440px);display:flex;flex-direction:column;gap:var(--space-24)">
+      <p class="ds-eyebrow">Send a message</p>
+      <div style="display:flex;flex-wrap:wrap;gap:var(--space-24)">
+        <p style="flex:1 1 min(100%,200px);display:flex;flex-direction:column;gap:var(--space-8)">
+          <label for="f-name" class="ds-eyebrow">Name</label>
+          <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.TextInput" id="f-name" name="name" required="{{ true }}" autoComplete="name" placeholder="Your name" hint-size="100%,48px"></x-import>
+        </p>
+        <p style="flex:1 1 min(100%,200px);display:flex;flex-direction:column;gap:var(--space-8)">
+          <label for="f-email" class="ds-eyebrow">Email</label>
+          <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.TextInput" id="f-email" name="email" inputType="email" required="{{ true }}" autoComplete="email" placeholder="you@company.com" hint-size="100%,48px"></x-import>
+        </p>
+      </div>
+      <p style="display:flex;flex-direction:column;gap:var(--space-8)">
+        <label for="f-company" class="ds-eyebrow">Company / organisation</label>
+        <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.TextInput" id="f-company" name="company" autoComplete="organization" placeholder="Optional" hint-size="100%,48px"></x-import>
+      </p>
+      <p style="display:flex;flex-direction:column;gap:var(--space-8)">
+        <label for="f-type" class="ds-eyebrow">Enquiry type</label>
+        <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Select" id="f-type" name="enquiry" required="{{ true }}" placeholder="Select…" options="{{ enquiryOptions }}" value="{{ enquiryType }}" onChange="{{ setType }}" hint-size="100%,48px"></x-import>
+      </p>
+      <p style="display:flex;flex-direction:column;gap:var(--space-8)">
+        <label for="f-message" class="ds-eyebrow">Message</label>
+        <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.TextArea" id="f-message" name="message" rows="{{ 5 }}" required="{{ true }}" placeholder="What are you building, and what is currently in the way?" hint-size="100%,140px"></x-import>
+      </p>
+      <sc-if value="{{ projectEnquiry }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-wrap:wrap;gap:var(--space-24);box-shadow:inset 1px 0 0 var(--border-accent);padding-left:var(--space-24)">
+          <p style="flex:1 1 min(100%,180px);display:flex;flex-direction:column;gap:var(--space-8)">
+            <label for="f-timeline" class="ds-eyebrow">Timeline</label>
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.TextInput" id="f-timeline" name="timeline" placeholder="e.g. Q1, 6 weeks" hint-size="100%,48px"></x-import>
+          </p>
+          <p style="flex:1 1 min(100%,180px);display:flex;flex-direction:column;gap:var(--space-8)">
+            <label for="f-budget" class="ds-eyebrow">Budget</label>
+            <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.TextInput" id="f-budget" name="budget" placeholder="Optional" hint-size="100%,48px"></x-import>
+          </p>
+        </div>
+      </sc-if>
+      <div style="display:flex;flex-wrap:wrap;gap:var(--space-20);align-items:center">
+        <x-import component-from-global-scope="ChukwuebukaOnyemelukwePortfolioDesignSystem_8d8015.Button" class="co-btn" as="button" type="submit" hint-size="180px,48px">Send</x-import>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <span role="status" class="ds-eyebrow" style="color:var(--text-accent)">Received — TODO: connect form handler</span>
+        </sc-if>
+      </div>
+    </form>
+
+    <aside style="flex:0 1 min(100%,300px)">
+      <p class="ds-eyebrow" style="margin-bottom:var(--space-24)">Direct</p>
+      <ul style="display:flex;flex-direction:column">
+        <li style="border-top:1px solid var(--border-hairline)"><a href="{{ emailHref }}" style="display:flex;justify-content:space-between;gap:var(--space-20);padding:var(--space-20) 0;font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-meta);color:var(--text-primary)" style-hover="color:var(--text-accent)"><span>Email</span><span style="color:var(--text-tertiary)">{{ email }}</span></a></li>
+        <li style="border-top:1px solid var(--border-hairline)"><a href="{{ linkedin }}" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;gap:var(--space-20);padding:var(--space-20) 0;font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-meta);color:var(--text-primary)" style-hover="color:var(--text-accent)"><span>LinkedIn</span><span style="color:var(--text-tertiary)">↗</span></a></li>
+        <li style="border-top:1px solid var(--border-hairline)"><a href="{{ github }}" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;gap:var(--space-20);padding:var(--space-20) 0;font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-meta);color:var(--text-primary)" style-hover="color:var(--text-accent)"><span>GitHub</span><span style="color:var(--text-tertiary)">↗</span></a></li>
+        <li style="border-top:1px solid var(--border-hairline);border-bottom:1px solid var(--border-hairline)"><a href="{{ calcom }}" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;gap:var(--space-20);padding:var(--space-20) 0;font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-meta);color:var(--text-primary)" style-hover="color:var(--text-accent)"><span>Book a call</span><span style="color:var(--text-tertiary)">Cal.com ↗</span></a></li>
+      </ul>
+      <p class="ds-eyebrow" style="margin-top:var(--space-24);line-height:1.9">TODO — replace placeholder Cal.com link</p>
+    </aside>
+  </section>
+</div>
+</sc-if>
+
+</main>
+
+<footer style="border-top:1px solid var(--border-hairline)">
+  <div style="max-width:var(--container-large);margin:0 auto;padding:var(--space-64) var(--page-margin);display:flex;flex-wrap:wrap;gap:var(--space-48);justify-content:space-between;align-items:flex-end">
+    <div style="max-width:320px">
+      <span style="display:inline-flex;align-items:baseline;gap:var(--space-8);font-size:var(--size-h6);line-height:1;letter-spacing:var(--track-heading);color:var(--text-primary)"><span style="font-weight:var(--weight-bold)">Chukwuebuka</span><span style="font-weight:var(--weight-light);color:var(--text-tertiary)">Onyemelukwe</span></span>
+      <p class="ds-eyebrow" style="margin-top:var(--space-12)">Design engineer × AI engineer · United Kingdom</p>
+    </div>
+    <nav aria-label="Footer" style="display:flex;flex-wrap:wrap;gap:var(--space-12) var(--space-32);align-items:flex-start;font-family:var(--font-text);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase">
+      <a href="#/work" onClick="{{ goWork }}" style="color:var(--text-tertiary)" style-hover="color:var(--text-accent)">Work</a>
+      <a href="#/about" onClick="{{ goAbout }}" style="color:var(--text-tertiary)" style-hover="color:var(--text-accent)">About</a>
+      <a href="{{ resumeUrl }}" target="_blank" rel="noopener" style="color:var(--text-tertiary)" style-hover="color:var(--text-accent)">Résumé ↗</a>
+      <a href="#/contact" onClick="{{ goContact }}" style="color:var(--text-tertiary)" style-hover="color:var(--text-accent)">Contact</a>
+      <a href="{{ emailHref }}" style="color:var(--text-tertiary)" style-hover="color:var(--text-accent)">Email</a>
+      <a href="{{ linkedin }}" target="_blank" rel="noopener" style="color:var(--text-tertiary)" style-hover="color:var(--text-accent)">LinkedIn</a>
+      <a href="{{ github }}" target="_blank" rel="noopener" style="color:var(--text-tertiary)" style-hover="color:var(--text-accent)">GitHub</a>
+    </nav>
+    <p class="ds-eyebrow">© {{ year }} · Open to permanent UK roles</p>
+  </div>
+</footer>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CO">
+    <rect width="200" height="200" fill="#EDF6FB"></rect>
+    <text x="100" y="118" text-anchor="middle" font-family="Geist, Helvetica, Arial, sans-serif" font-weight="700" font-size="62" letter-spacing="-3" fill="#058CAA">CO</text>
+    <rect x="60" y="140" width="80" height="2" fill="#000000"></rect>
+  </svg>
+</template>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;\&quot;light\&quot; | \&quot;dark\&quot;&quot;,&quot;section&quot;:&quot;Theme&quot;},&quot;rotatePhrase&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;rotateInterval&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:2600,&quot;min&quot;:1200,&quot;max&quot;:6000,&quot;step&quot;:200,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;workPreviews&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Work index&quot;}}">
+const RESUME_URL = "./uploads/Chukwuebuka_CV_.docx.pdf";
+const EMAIL = "chukwuebukaspad@gmail.com";
+const LINKEDIN = "https://www.linkedin.com/in/chukwuebuka-onyemelukwe-43b751177/";
+const GITHUB = "https://github.com/Chukwuebukadotme";
+const CALCOM = "https://cal.com/TODO"; // TODO
+
+const WORDS = ["digital products", "web experiences", "intelligent systems", "AI workflows"];
+
+const ENQUIRY_OPTIONS = [
+  "Hiring / Career Opportunity",
+  "Digital Product",
+  "Website",
+  "AI & Automation",
+  "Product Design",
+  "Other"
+];
+
+const CASES = [
+  {
+    slug: "budgetview", number: "01", name: "BudgetView", industry: "Fintech",
+    status: "In development", statusNote: "TODO — set to LIVE PRODUCT once deployed",
+    year: "2025", role: "Design Engineer / Product Engineer",
+    discipline: "Product Engineering",
+    headline: "See where the month is going before the money does.",
+    summary: "BudgetView brings transactions, bills, subscriptions and budgets from multiple accounts into one clear monthly financial plan.",
+    tech: ["Next.js", "Python", "FastAPI", "Figma", "AI"],
+    areas: ["Product Engineering", "UI/UX", "Data Modelling"],
+    overview: "BudgetView is a personal financial planning product. It reads activity from multiple accounts, separates committed money from discretionary money, and resolves the month into one number a person can actually act on.",
+    problem: "Most budgeting tools report the past. They categorise transactions after the money has already left, then show a chart of it. But a month is not a list of transactions — it is a set of commitments that have already claimed part of the balance. The number people need is not what they spent last month; it is what is genuinely safe to spend for the rest of this one.",
+    flowLabel: "The reduction",
+    flow: ["Money in", "Bills", "Subscriptions", "Budget", "Safe to spend"],
+    approach: "The product is built around a single reduction. Income enters, known commitments are subtracted in a fixed order, and what survives is discretionary. Every screen in the product is a view onto one stage of that reduction, which keeps the mental model constant as the interface gets denser.",
+    decisions: [
+      { t: "One number, always visible", d: "Safe-to-spend is the primary figure on every screen. Detail views explain it rather than replace it." },
+      { t: "Commitments before categories", d: "Bills and subscriptions are modelled as scheduled obligations, not spending categories, so future dates are as real as past ones." },
+      { t: "Explain, don’t just classify", d: "Where the system infers something — a recurring charge, a merchant match — the interface says why, and the inference stays editable." }
+    ],
+    engineering: "A Next.js application handles the interface and account state. A Python and FastAPI service owns ingestion, merchant normalisation, recurrence detection and the monthly projection, so the calculation lives in one place and can be tested independently of the UI. AI is applied narrowly: normalising untidy merchant strings and proposing recurring-charge groupings for the person to confirm.",
+    arch: [["Client", "Next.js · React"], ["API", "FastAPI"], ["Engine", "Python · projection & recurrence"], ["Assist", "LLM · normalisation, grouping"]],
+    outcome: "TODO — replace with real outcome once the product has shipped and there is measured evidence. No metrics are claimed here.",
+    reflection: "The hardest part was restraint. Every additional chart made the month feel more analysed and less decided. Removing views improved the product more than adding them did."
+  },
+  {
+    slug: "siteresolve", number: "02", name: "SiteResolve", industry: "Construction Tech",
+    status: "In development", statusNote: "TODO — confirm current status",
+    year: "2025", role: "Design Engineer / Product Engineer",
+    discipline: "Product Engineering",
+    headline: "Construction defects should end in resolution, not paperwork.",
+    summary: "SiteResolve connects defect management, snagging, inspections, documentation and task coordination through one traceable workflow.",
+    tech: ["Next.js", "TypeScript", "Python", "FastAPI", "Figma", "AI"],
+    areas: ["Product Research", "UI/UX", "Brand Expression", "Content"],
+    overview: "SiteResolve is a defect and snagging product for construction teams. A defect is raised once on site, then carried through assignment, inspection, documentation and verification as a single record rather than a chain of messages, spreadsheets and photo folders.",
+    problem: "On site, the defect is obvious. The difficulty is everything after it: who owns it, what evidence exists, whether it was actually fixed, and who signed that off. When that history is spread across email, WhatsApp and a spreadsheet, resolution becomes an administrative exercise and the same defect is re-reported weeks later.",
+    flowLabel: "One record, six states",
+    flow: ["Report", "Assign", "Inspect", "Document", "Resolve", "Verify"],
+    approach: "Each defect is one record moving through an explicit state machine. States cannot be skipped, every transition captures who and when, and evidence attaches to the transition rather than to a folder. The interface makes the current state and the next required action legible at a glance, on a phone, outdoors.",
+    decisions: [
+      { t: "Capture first, structure later", d: "Reporting is a photo, a location and a sentence. Categorisation happens afterwards so nothing blocks the person standing in front of the defect." },
+      { t: "Verification is a separate state", d: "‘Fixed’ and ‘verified’ are different claims made by different people. Collapsing them is what lets defects reopen." },
+      { t: "The record is the report", d: "Documentation is assembled from the trail the workflow already produced, not re-typed at the end of the week." }
+    ],
+    engineering: "Next.js and TypeScript for the client, with a typed defect schema shared across capture, list, detail and export views. A FastAPI service holds the state machine, permissions and document assembly. AI drafts a defect title and category from the photo and note, which the reporter edits or discards.",
+    arch: [["Client", "Next.js · TypeScript"], ["API", "FastAPI"], ["Core", "State machine · permissions"], ["Assist", "LLM · defect drafting"]],
+    outcome: "TODO — replace with real deployment detail and any measured outcome. No metrics or client names are claimed here.",
+    reflection: "Traceability sounds like an admin feature until you watch someone try to prove a defect was fixed. Designing the audit trail as the primary object, rather than a log behind the product, changed the whole information architecture."
+  },
+  {
+    slug: "referralview", number: "03", name: "ReferralView", industry: "Healthtech",
+    status: "In development", statusNote: "TODO — confirm current status",
+    year: "2025", role: "Product Designer / Design Engineer",
+    discipline: "Product Design",
+    headline: "Every referral. Every step. One clear timeline.",
+    summary: "ReferralView brings referrals, appointments, documents, updates and actions into one comprehensive timeline so teams can understand exactly where each case stands.",
+    tech: ["Next.js", "TypeScript", "Figma", "AI"],
+    areas: ["UI/UX", "Product Research", "Content Design"],
+    overview: "ReferralView is a case-tracking interface for referral pathways. Instead of a status field and a document store, each case is presented as a chronological record: what arrived, what was reviewed, what was scheduled, what changed and what is owed next.",
+    problem: "A referral’s status is rarely the useful question. Teams need to know how a case got where it is and what is currently blocking it. That history usually exists — in letters, notes, attachments and system events — but it is scattered, so answering a simple question takes a phone call.",
+    flowLabel: "The case timeline",
+    flow: ["Referral received", "Documents reviewed", "Appointment", "Update", "Decision", "Next action"],
+    approach: "The timeline is the product, not a tab within it. Every event has a type, an actor, a timestamp and an optional attachment, which makes the same component usable for triage, for a clinic list and for a single case. Open actions are pinned above the record so the next step is never buried in history.",
+    decisions: [
+      { t: "Chronology over status", d: "Status is derived from the latest events rather than stored and maintained by hand, so it cannot drift from what actually happened." },
+      { t: "Events, not documents", d: "A letter is an event with an attachment. That one decision removes the separate document area and its parallel navigation." },
+      { t: "Language checked, not softened", d: "Content design was treated as interface: labels follow the words teams already use for each step." }
+    ],
+    engineering: "Next.js and TypeScript, with the timeline modelled as a typed event union so new event kinds can be added without touching the rendering logic. AI is used to summarise long attached correspondence into a short event caption, with the source always one click away.",
+    arch: [["Client", "Next.js · TypeScript"], ["Model", "Typed event union"], ["View", "Timeline · triage · case"], ["Assist", "LLM · correspondence summary"]],
+    outcome: "TODO — replace with real pilot detail and any measured outcome. No metrics, clients or testimonials are claimed here.",
+    reflection: "Designing this made the shape of the whole portfolio clearer: the work is usually not adding capability, it is making an existing sequence of events readable in one place."
+  }
+];
+
+class Component extends DCLogic {
+  state = { route: "/", menu: false, rot: 0, type: "", sent: false, theme: "light", cap: -1, disc: -1 };
+
+  capVals() {
+    const cap = this.state.cap;
+    const v = { capLeave: () => this.setState({ cap: -1 }) };
+    for (let i = 0; i < 4; i++) {
+      const on = cap === i;
+      v["capEnter" + i] = () => this.setState({ cap: i });
+      v["capBg" + i] = on ? "var(--state-hover)" : "transparent";
+      v["capShadow" + i] = on
+        ? "inset 0 -1px 0 var(--accent-signal), inset 2px 0 0 var(--border-accent)"
+        : "inset 0 0 0 var(--accent-signal), inset 0 0 0 var(--border-accent)";
+      v["capNum" + i] = on ? "var(--text-accent)" : "var(--text-tertiary)";
+      v["capX" + i] = on ? "6px" : "0px";
+      v["capOp" + i] = on ? 1 : 0;
+      v["capRows" + i] = on ? "1fr" : "0fr";
+      v["capArrow" + i] = on ? "0px" : "-6px";
+    }
+    return v;
+  }
+
+  discVals() {
+    const d = this.state.disc;
+    const v = { discLeave: () => this.setState({ disc: -1 }) };
+    for (let i = 0; i < 3; i++) {
+      const on = d === i;
+      v["discEnter" + i] = () => this.setState({ disc: i });
+      v["discBg" + i] = on ? "var(--state-hover)" : "var(--surface-page)";
+      v["discRule" + i] = on ? 1 : 0;
+      v["discLabel" + i] = on ? "var(--text-accent)" : "var(--text-tertiary)";
+      v["discOp" + i] = on ? 1 : 0;
+      v["discArrow" + i] = on ? "0px" : "-6px";
+      v["discX" + i] = on ? "6px" : "0px";
+    }
+    return v;
+  }
+
+  applyTheme(t) {
+    document.documentElement.setAttribute("data-theme", t);
+    document.body.setAttribute("data-theme", t);
+    document.querySelectorAll("glass-ribbon").forEach(el => el.setAttribute("theme", t));
+    const m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.setAttribute("content", t === "light" ? "#FFFFFF" : "#050608");
+  }
+
+  componentDidMount() {
+    let t = null;
+    try { t = localStorage.getItem("co-theme"); } catch (e) {}
+    if (t !== "light" && t !== "dark") {
+      t = (this.props.defaultTheme ?? "light") === "dark" ? "dark" : "light";
+    }
+    this.setState({ theme: t });
+    this.applyTheme(t);
+    this.reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    this.syncRoute();
+    this.onHash = () => this.syncRoute();
+    window.addEventListener("hashchange", this.onHash);
+    if (!this.reduced && (this.props.rotatePhrase ?? true)) {
+      this.timer = setInterval(() => this.setState(s => ({ rot: s.rot + 1 })), this.props.rotateInterval ?? 2600);
+    }
+    this.observe();
+  }
+
+  componentDidUpdate(p, s) {
+    if (s.route !== this.state.route) this.observe();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("hashchange", this.onHash);
+    clearInterval(this.timer);
+    if (this.io) this.io.disconnect();
+  }
+
+  observe() {
+    if (this.io) this.io.disconnect();
+    if (this.reduced) return;
+    setTimeout(() => {
+      document.querySelectorAll("#main > div > section, #main > div > article, #main > article, #main > article > section, #main > article > header, #main > article > div")
+        .forEach(el => { if (!el.hasAttribute("data-reveal")) el.setAttribute("data-reveal", "1"); });
+      const nodes = document.querySelectorAll("[data-reveal]");
+      this.io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const el = e.target;
+          const i = Number(el.getAttribute("data-reveal-i") || 0);
+          el.style.transition = "opacity .7s cubic-bezier(.22,1,.36,1) " + (i * 60) + "ms, transform .7s cubic-bezier(.22,1,.36,1) " + (i * 60) + "ms";
+          el.style.opacity = "1";
+          el.style.transform = "none";
+          this.io.unobserve(el);
+        });
+      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+      nodes.forEach((el, i) => {
+        if (el.dataset.revealed) return;
+        el.dataset.revealed = "1";
+        el.setAttribute("data-reveal-i", String(i % 6));
+        el.style.opacity = "0";
+        el.style.transform = "translateY(18px)";
+        this.io.observe(el);
+      });
+    }, 30);
+  }
+
+  syncRoute() {
+    const raw = (window.location.hash || "").replace(/^#/, "");
+    if (raw && raw.charAt(0) !== "/") return;
+    const h = raw || "/";
+    if (h !== this.state.route) {
+      this.setState({ route: h, menu: false, cap: -1, disc: -1 });
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
+  }
+
+  go(route) {
+    return e => {
+      if (e) e.preventDefault();
+      if (window.location.hash !== "#" + route) window.location.hash = route;
+      else this.setState({ menu: false });
+      window.scrollTo({ top: 0, behavior: "auto" });
+    };
+  }
+
+  renderVals() {
+    const r = this.state.route;
+    const csIndex = CASES.findIndex(c => r === "/work/" + c.slug);
+    const cs = csIndex > -1 ? CASES[csIndex] : null;
+    const next = cs ? CASES[(csIndex + 1) % CASES.length] : null;
+    const projectEnquiry = this.state.type !== "" && this.state.type !== "Hiring / Career Opportunity";
+
+    return {
+      resumeUrl: RESUME_URL, email: EMAIL, emailHref: "mailto:" + EMAIL,
+      linkedin: LINKEDIN, github: GITHUB, calcom: CALCOM,
+      menuOpen: this.state.menu, menuLabel: this.state.menu ? "Close" : "Menu",
+      toggleMenu: () => this.setState(s => ({ menu: !s.menu })),
+      ...this.capVals(),
+      ...this.discVals(),
+      theme: this.state.theme,
+      isLight: this.state.theme === "light",
+      themeLabel: this.state.theme === "light" ? "Dark" : "Light",
+      themeTitle: this.state.theme === "light" ? "Switch to dark mode" : "Switch to light mode",
+      themeIcon: this.state.theme === "light" ? "DarkMode" : "LightMode",
+      toggleTheme: () => this.setState(s => {
+        const t = s.theme === "light" ? "dark" : "light";
+        try { localStorage.setItem("co-theme", t); } catch (e) {}
+        this.applyTheme(t);
+        return { theme: t };
+      }),
+      goHome: this.go("/"), goWork: this.go("/work"), goAbout: this.go("/about"), goContact: this.go("/contact"),
+      cWork: r.indexOf("/work") === 0 ? "var(--text-primary)" : "var(--text-tertiary)",
+      cAbout: r === "/about" ? "var(--text-primary)" : "var(--text-tertiary)",
+      cContact: r === "/contact" ? "var(--text-primary)" : "var(--text-tertiary)",
+      isHome: r === "/", isWork: r === "/work", isAbout: r === "/about", isContact: r === "/contact",
+      isCase: !!cs, cs, next,
+      isBudget: !!cs && cs.slug === "budgetview",
+      isSite: !!cs && cs.slug === "siteresolve",
+      isReferral: !!cs && cs.slug === "referralview",
+      csFlow: cs ? cs.flow.map((f, i) => ({ label: f, n: String(i + 1).padStart(2, "0") })) : [],
+      csArch: cs ? cs.arch.map(a => ({ k: a[0], v: a[1] })) : [],
+      csTech: cs ? cs.tech.map(t => ({ t })) : [],
+      csAreas: cs ? cs.areas.map(t => ({ t })) : [],
+      csDecisions: cs ? cs.decisions.map((d, i) => ({ ...d, n: String(i + 1).padStart(2, "0") })) : [],
+      nextHref: next ? "#/work/" + next.slug : "#/work",
+      caseLinks: CASES.map(c => ({
+        ...c, href: "#/work/" + c.slug, flowText: c.flow.join("  →  "),
+        open: this.props.workPreviews ?? true
+      })),
+      scrollWork: e => {
+        e.preventDefault();
+        const el = document.getElementById("selected-work");
+        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 40, behavior: this.reduced ? "auto" : "smooth" });
+      },
+      year: new Date().getFullYear(),
+      enquiryOptions: ENQUIRY_OPTIONS,
+      enquiryType: this.state.type,
+      setType: e => this.setState({ type: e.target.value }),
+      projectEnquiry,
+      sent: this.state.sent,
+      onSubmit: e => { e.preventDefault(); this.setState({ sent: true }); },
+      rotEl: React.createElement("span", {
+        key: this.state.rot,
+        style: {
+          display: "inline-block", color: "var(--text-accent)",
+          animation: this.reduced ? "none" : "wordIn .62s cubic-bezier(.22,1,.36,1) both"
+        }
+      }, WORDS[this.state.rot % WORDS.length])
+    };
+  }
+}
+
+</script>
+</body>
+</html>

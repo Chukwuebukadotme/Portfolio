@@ -1,73 +1,60 @@
 *, *::before, *::after { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body, body[data-theme="dark"] {
-    --bg: #0E172A; --bg-2: #09111F; --bg-blur: rgba(14,23,42,.86);
-    --ink: #F4F1EA; --ink-2: #94A3B8; --accent: #22D3EE; --on-inv: #09111F;
-    --r14: rgba(148,163,184,.14); --r16: rgba(148,163,184,.16); --r18: rgba(148,163,184,.18);
-    --r22: rgba(148,163,184,.22); --r24: rgba(148,163,184,.24); --r30: rgba(148,163,184,.3);
-    --r34: rgba(148,163,184,.34);
-    --acc40: rgba(34,211,238,.4); --acc35: rgba(34,211,238,.35);
-  }
-  body[data-theme="light"] {
-    --bg: #FFFFFF; --bg-2: #F1F4F7; --bg-blur: rgba(255,255,255,.88);
-    --ink: #0F172A; --ink-2: #4B5768; --accent: #0B6E82; --on-inv: #FFFFFF;
-    --r14: rgba(16,26,44,.14); --r16: rgba(16,26,44,.17); --r18: rgba(16,26,44,.19);
-    --r22: rgba(16,26,44,.22); --r24: rgba(16,26,44,.24); --r30: rgba(16,26,44,.3);
-    --r34: rgba(16,26,44,.34);
-    --acc40: rgba(11,110,130,.45); --acc35: rgba(11,110,130,.4);
-  }
   body {
-    transition: background-color .35s ease, color .35s ease;
     margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'Newsreader', Georgia, serif;
-    font-size: 17px;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+    background: var(--surface-page);
+    color: var(--text-primary);
+    font-family: var(--font-text);
+    transition: background-color var(--dur-slow) var(--ease-glass), color var(--dur-slow) var(--ease-glass);
   }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { color: var(--ink); }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-  ::selection { background: var(--accent); color: var(--on-inv); }
-  h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
-  ul, ol { margin: 0; padding: 0; list-style: none; }
-  button, input, select, textarea { font: inherit; color: inherit; }
-  @keyframes wordIn {
-    from { transform: translateY(0.9em); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
-  @keyframes drawLine { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-  [data-figleft] { order: 0; }
-  @media (min-width: 760px) { [data-figleft] { order: -1; } }
+  h1, h2, h3, h4, p, dl, dd, dt, ul, ol, figure, figcaption, blockquote { margin: 0; }
+  ul, ol { list-style: none; padding: 0; }
+  a { color: var(--text-link); text-decoration: none; }
+  .ds-eyebrow, .ds-mono { font-family: var(--font-text); }
+  [data-flat-glass] { --glass-caustic: none; --glass-specular: none; }
+  [data-flat-glass] > * { --glass-caustic: none; --glass-specular: none; }
+  :root, :root[data-theme="light"] { --text-accent: #22D3EE; }
+  a:hover { color: var(--text-link-hover); }
+  @keyframes wordIn { from { opacity: 0; transform: translateY(.42em); } to { opacity: 1; transform: none; } }
+  .co-btn { transition: background var(--dur-base) var(--ease-glass), box-shadow var(--dur-base) var(--ease-glass), color var(--dur-base) var(--ease-glass), transform var(--dur-base) var(--ease-glass) !important; }
+  .co-btn:hover { transform: translateY(var(--lift-hover)) !important; box-shadow: 0 0 0 var(--stroke-border) var(--border-accent), inset 0 -2px 0 0 var(--accent-signal), var(--shadow-small) !important; }
+  .co-btn:active { transform: translateY(0) scale(var(--press-scale)) !important; }
   [data-nav="narrow"] { display: none; }
-  @media (max-width: 1000px) { [data-theme-label] { display: none; } }
-  @media (max-width: 759px) {
+  @media (max-width: 880px) {
     [data-nav="wide"] { display: none; }
     [data-nav="narrow"] { display: block; }
   }
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
-  }
+  [data-figleft] { order: 0; }
+  @media (min-width: 880px) { [data-figleft] { order: -1; } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 /* --- generated from style-hover / style-focus --- */
-[data-fx~="x0"]:focus{left:12px;top:12px}
-[data-fx~="x1"]:hover{color:var(--ink)}
-[data-fx~="x2"]:hover{color:var(--ink);border-color:var(--ink)}
-[data-fx~="x3"]:hover{background:var(--ink)}
-[data-fx~="x4"]:hover{border-color:var(--accent);color:var(--accent)}
-[data-fx~="x5"]:hover{color:var(--accent)}
+[data-fx~="x0"]:focus{left:var(--space-12);top:var(--space-12)}
+[data-fx~="x1"]:hover{color:var(--text-primary);box-shadow:inset 0 0 0 1px var(--border-accent),inset 0 -2px 0 var(--accent-signal),var(--shadow-medium);transform:translateY(var(--lift-hover))}
+[data-fx~="x2"]:hover{color:var(--text-primary)}
+[data-fx~="x3"]:hover{color:var(--text-accent)}
+[data-fx~="x4"]:hover{color:var(--text-primary);box-shadow:inset 0 -1px 0 var(--border-strong)}
 
-/* --- the canvas host supplied this reset; a standalone page must carry its own.
-       Several toggled elements set display inline, which otherwise beats [hidden]. --- */
+/* --- the canvas host supplied this reset; a standalone page carries its own --- */
 [hidden]{display:none!important}
 
-/* --- capability accordion: hover state that was JS in the canvas --- */
-[data-cap]{background:transparent;box-shadow:inset 0 0 0 var(--accent)}
-[data-cap]:hover,[data-cap]:focus-within{background:var(--bg-2);box-shadow:inset 2px 0 0 var(--accent)}
-[data-cap-num]{color:var(--ink-2)}
-[data-cap]:hover [data-cap-num],[data-cap]:focus-within [data-cap-num]{color:var(--accent)}
+/* --- design-system interaction that was React state in the bundle --- */
+.ds-btn-primary:hover{box-shadow:0 0 0 var(--stroke-border) var(--text-primary),inset 0 -1px 0 0 var(--glass-rim-bottom)}
+.ds-btn-secondary:hover{background:var(--state-hover);box-shadow:0 0 0 var(--stroke-border) var(--border-strong),inset 0 -1px 0 0 var(--glass-rim-bottom)}
+.ds-btn:active{transform:translateY(0) scale(var(--press-scale))}
+.ds-field:focus-within{box-shadow:0 0 0 var(--stroke-border) var(--border-accent),inset 0 -1px 0 0 var(--glass-rim-bottom)}
+.ds-field-el:focus,.ds-field-el select:focus,textarea.ds-field-el:focus{box-shadow:0 0 0 var(--stroke-border) var(--border-accent),inset 0 -1px 0 0 var(--glass-rim-bottom)}
+.ds-field input::placeholder,textarea.ds-field-el::placeholder{color:rgba(14,23,42,.6)}
+:root[data-theme="dark"] .ds-field input::placeholder,
+:root[data-theme="dark"] textarea.ds-field-el::placeholder{color:rgba(255,255,255,.65)}
+:root[data-theme="dark"] .ds-field-el select{color:rgba(255,255,255,.65)}
+.ds-field-el select:valid{color:var(--text-primary)}
+
+/* --- capability / discipline rows: hover that the canvas drove from JS --- */
+[data-cap]{background:transparent;box-shadow:inset 0 0 0 var(--accent-signal)}
+[data-cap]:hover,[data-cap]:focus-within{background:var(--state-hover);box-shadow:inset 2px 0 0 var(--accent-signal)}
+[data-cap-num]{color:var(--text-tertiary)}
+[data-cap]:hover [data-cap-num],[data-cap]:focus-within [data-cap-num]{color:var(--text-accent)}
 [data-cap-title]{transform:translateX(0)}
 [data-cap]:hover [data-cap-title],[data-cap]:focus-within [data-cap-title]{transform:translateX(6px)}
 [data-cap-arrow]{opacity:0;transform:translateX(-6px)}
@@ -75,9 +62,19 @@
 [data-cap-panel]{opacity:0;grid-template-rows:0fr}
 [data-cap]:hover [data-cap-panel],[data-cap]:focus-within [data-cap-panel]{opacity:1;grid-template-rows:1fr}
 
-/* --- reveal-on-scroll: hidden only when the script can run --- */
+/* --- discipline cards: a cyan top edge, label to accent, 6px nudge --- */
+[data-disc]{background:var(--surface-page)}
+[data-disc]:hover,[data-disc]:focus-within{background:var(--state-hover)}
+[data-disc-rule]{transform:scaleX(0)}
+[data-disc]:hover [data-disc-rule],[data-disc]:focus-within [data-disc-rule]{transform:scaleX(1)}
+[data-disc-label]{color:var(--text-tertiary)}
+[data-disc]:hover [data-disc-label],[data-disc]:focus-within [data-disc-label]{color:var(--text-accent)}
+[data-disc-title]{transform:translateX(0)}
+[data-disc]:hover [data-disc-title],[data-disc]:focus-within [data-disc-title]{transform:translateX(6px)}
+[data-disc-arrow]{opacity:0;transform:translateX(-6px)}
+[data-disc]:hover [data-disc-arrow],[data-disc]:focus-within [data-disc-arrow]{opacity:1;transform:translateX(0)}
+
+/* --- reveal on scroll, only when the script can run --- */
 .js [data-reveal]:not(.is-in){opacity:0;transform:translateY(18px)}
-[data-reveal]{transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
-@media (prefers-reduced-motion: reduce){
-  .js [data-reveal]:not(.is-in){opacity:1;transform:none}
-}
+[data-reveal]{transition:opacity var(--dur-ambient) var(--ease-glass),transform var(--dur-ambient) var(--ease-glass)}
+@media (prefers-reduced-motion: reduce){.js [data-reveal]:not(.is-in){opacity:1;transform:none}}

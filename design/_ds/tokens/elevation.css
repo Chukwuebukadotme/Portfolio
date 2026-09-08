@@ -1,0 +1,25 @@
+/* Elevation. Seven steps, xxsmall → xxlarge, matching the source Shadows
+   page and its exact alpha values (0.03 / 0.05 / 0.06 / 0.1 / 0.14 / 0.18). */
+:root{
+  --shadow-xxsmall:0 1px 2px 0 rgba(0,0,0,.05);
+  --shadow-xsmall:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06);
+  --shadow-small:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);
+  --shadow-medium:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -2px rgba(0,0,0,.05);
+  --shadow-large:0 20px 25px -5px rgba(0,0,0,.1),0 10px 10px -5px rgba(0,0,0,.03);
+  --shadow-xlarge:0 25px 50px -12px rgba(0,0,0,.18);
+  --shadow-xxlarge:0 32px 64px -12px rgba(0,0,0,.14);
+  --shadow-none:none;
+
+  /* Inset hairline — the source draws every border this way
+     (boxShadow: inset 0 0 0 1px) rather than with a border property. */
+  --inset-hairline:inset 0 0 0 1px currentColor;
+}
+:root[data-theme="dark"],.dark{
+  --shadow-xxsmall:0 1px 2px 0 rgba(0,0,0,.4);
+  --shadow-xsmall:0 1px 3px 0 rgba(0,0,0,.5),0 1px 2px 0 rgba(0,0,0,.4);
+  --shadow-small:0 4px 6px -1px rgba(0,0,0,.5),0 2px 4px -1px rgba(0,0,0,.4);
+  --shadow-medium:0 10px 15px -3px rgba(0,0,0,.55),0 4px 6px -2px rgba(0,0,0,.4);
+  --shadow-large:0 20px 25px -5px rgba(0,0,0,.6),0 10px 10px -5px rgba(0,0,0,.35);
+  --shadow-xlarge:0 25px 50px -12px rgba(0,0,0,.7);
+  --shadow-xxlarge:0 32px 64px -12px rgba(0,0,0,.7);
+}
