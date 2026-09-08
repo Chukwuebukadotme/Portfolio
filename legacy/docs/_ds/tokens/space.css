@@ -1,0 +1,54 @@
+/* Spacing, grid and layout.
+   The step list is the source "Dimension" collection, verbatim — note it
+   jumps 12 → 20 with no 16. Keep it; it is the file's rhythm.
+   80 and 128 are the section gaps the source style-guide frames use. */
+:root{
+  --space-0:0px;
+  --space-2:2px;
+  --space-4:4px;
+  --space-6:6px;
+  --space-8:8px;
+  --space-12:12px;
+  --space-20:20px;
+  --space-24:24px;
+  --space-32:32px;
+  --space-40:40px;
+  --space-48:48px;
+  --space-64:64px;
+  --space-80:80px;
+  --space-128:128px;
+
+  /* Source aliases */
+  --gap-none:var(--space-0);
+  --gap-xs3:var(--space-2);
+  --gap-xs2:var(--space-4);
+  --gap-xs:var(--space-4);
+  --gap-sm:var(--space-6);
+  --gap-md:var(--space-8);
+  --gap-default:var(--space-8);
+  --gap-lg:var(--space-12);
+  --gap-xl:var(--space-24);
+  --gap-2xl:var(--space-32);
+  --gap-3xl:var(--space-48);
+  --gap-4xl:var(--space-64);
+
+  /* Grid — 12 columns, 32px gutter and 64px page margin as used in the
+     source frames (1440 canvas, 1312 content width). */
+  --grid-columns:12; /* @kind other */
+  --grid-gutter:var(--space-32);
+  --page-margin:var(--space-64);
+  --page-margin-mobile:var(--space-24);
+  --canvas-width:1440px;
+  --container-large:1280px;
+  --container-content:1312px;
+  --measure-large:768px;
+  --measure-small:480px;
+
+  /* Vertical rhythm */
+  --section-gap:var(--space-128);
+  --block-gap:var(--space-80);
+  --group-gap:var(--space-40);
+}
+@media (max-width:767px){
+  :root{--page-margin:var(--space-24);--section-gap:var(--space-80);--block-gap:var(--space-48)}
+}

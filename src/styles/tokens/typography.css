@@ -1,0 +1,61 @@
+/* Typography. Sizes are the source "Text Sizes" collection, verbatim,
+   including the Desktop / Mobile modes. Tracking is derived: bold grotesk
+   at display sizes needs negative optical tracking. */
+:root{
+  --font-display:var(--font-geist),"Geist",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  --font-text:var(--font-display);
+  --font-mono:var(--font-geist-mono),"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --font-icon:"Material Symbols Outlined";
+
+  --weight-light:300; /* @kind font */
+  --weight-regular:400; /* @kind font */
+  --weight-medium:500; /* @kind font */
+  --weight-semibold:600; /* @kind font */
+  --weight-bold:700; /* @kind font */
+  --weight-extrabold:800; /* @kind font */
+
+  /* Desktop scale — source Text Sizes, Desktop mode */
+  --size-h1:56px;
+  --size-h2:48px;
+  --size-h3:40px;
+  --size-h4:32px;
+  --size-h5:24px;
+  --size-h6:20px;
+  --size-text-large:20px;
+  --size-text-medium:18px;
+  --size-text-regular:16px;
+  --size-text-small:14px;
+  --size-text-tiny:12px;
+
+  /* Line heights — source */
+  --leading-h1:1.2; /* @kind font */
+  --leading-h2:1.2; /* @kind font */
+  --leading-h3:1.2; /* @kind font */
+  --leading-h4:1.3; /* @kind font */
+  --leading-h5:1.4; /* @kind font */
+  --leading-h6:1.4; /* @kind font */
+  --leading-body:1.5; /* @kind font */
+  --leading-tight:1.1; /* @kind font */
+
+  /* Optical tracking — derived */
+  --track-display:-0.032em; /* @kind font */
+  --track-heading:-0.022em; /* @kind font */
+  --track-subhead:-0.012em; /* @kind font */
+  --track-body:0em; /* @kind font */
+  --track-meta:0.02em; /* @kind font */
+  --track-eyebrow:0.14em; /* @kind font */
+}
+
+/* Source Mobile mode. Applied at the source's own breakpoint intent. */
+@media (max-width:767px){
+  :root{
+    --size-h1:40px;
+    --size-h2:36px;
+    --size-h3:32px;
+    --size-h4:24px;
+    --size-h5:20px;
+    --size-h6:18px;
+    --size-text-large:18px;
+    --size-text-medium:16px;
+  }
+}

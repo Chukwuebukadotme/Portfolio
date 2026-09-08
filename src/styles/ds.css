@@ -1,0 +1,12 @@
+/* The bound design system, copied verbatim from design/_ds.
+   Values live here; globals.css maps them onto Tailwind's theme.
+   Fonts are loaded by next/font in layout.tsx, not by tokens/fonts.css. */
+@import "./tokens/palette.css";
+@import "./tokens/typography.css";
+@import "./tokens/space.css";
+@import "./tokens/shape.css";
+@import "./tokens/elevation.css";
+@import "./tokens/material.css";
+@import "./tokens/motion.css";
+@import "./tokens/semantic.css";
+@import "./tokens/base.css";
