@@ -97,9 +97,40 @@ a real dependency rather than a runtime CDN import, and the render loop is
 demand-driven — it stops when the hero scrolls out of view, when the tab is
 hidden, and under `prefers-reduced-motion`.
 
-A static `<img>` renders first and always. The canvas fades in over it once
-there is a context and the textures decode, so a missing WebGL context, a lost
-context, or a failed texture leaves the hero as an image rather than a hole.
+**The uniforms gotcha.** `THREE.ShaderMaterial`
+*clones* the uniforms object it is constructed with. In the old vanilla build I
+built the material myself and kept the reference, so mutating my object drove
+the shader. Under R3F the material is built from props, three.js clones them,
+and the object React holds is no longer the object the GPU samples. The symptom
+is deceptive: the frame loop runs, `useFrame` fires ~45 times a second and every
+draw call happens, but nothing moves, because each uniform is pinned to whatever
+it was at construction. Every write therefore goes through
+`matRef.current.uniforms`, never through the `uniforms` prop.
+
+Worth knowing when debugging this: `canvas.toDataURL()` reads a cleared buffer
+unless the context was created with `preserveDrawingBuffer`, so screenshotting
+the canvas is not a reliable way to tell whether it is animating. Read the
+uniform values instead.
+
+Both static textures render first and always, with **CSS** choosing between them
+rather than JavaScript. `resolvedTheme` is undefined during SSR and the first
+client render, so selecting the source in JS put the white ribbon on a dark page
+until hydration caught up. The `dark:` variant keys off the attribute the
+blocking script sets before first paint, so the correct one shows from the first
+frame — and still does with JavaScript disabled entirely.
+
+The canvas fades in over them once there is a context and the textures decode,
+so a missing WebGL context, a lost context, or a failed texture leaves the hero
+as an image rather than a hole.
+
+## Divergences from the bound design system
+
+The token files in `src/styles/tokens` are copied from `design/_ds` verbatim,
+with one deliberate exception, marked in place with a comment: the dark-mode
+`--glass-rim-*` values. The source ships cyan rims at 55% alpha, which read as a
+blue outline drawn around every glass surface rather than as light catching an
+edge. They are softened to white at low alpha. Re-importing the design system
+will overwrite this.
 
 ## Routing
 

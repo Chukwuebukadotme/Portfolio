@@ -43,9 +43,14 @@
   --glass-brightness:1.12; /* @kind other */
   --glass-saturate:200%; /* @kind other */
 
-  --glass-rim-top:rgba(152,234,253,.55);
-  --glass-rim-bottom:rgba(34,211,238,.55);
-  --glass-rim-side:rgba(78,219,245,.2);
+  /* DIVERGENCE from design/_ds: the source ships cyan rims in dark mode
+     (152,234,253 / 34,211,238 at .55), which read as a blue outline around
+     every glass surface rather than as light on an edge. Softened to white at
+     low alpha so the material still catches an edge without drawing a border.
+     Re-importing the design system will overwrite this. */
+  --glass-rim-top:rgba(255,255,255,.16);
+  --glass-rim-bottom:rgba(255,255,255,.07);
+  --glass-rim-side:rgba(255,255,255,.05);
   --glass-edge:rgba(255,255,255,.1);
 
   --glass-specular:linear-gradient(115deg,rgba(152,234,253,.3) 0%,rgba(255,255,255,0) 36%,rgba(255,255,255,0) 60%,rgba(34,211,238,.22) 100%); /* @kind other */

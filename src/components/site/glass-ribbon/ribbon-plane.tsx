@@ -18,6 +18,13 @@ type RibbonPlaneProps = {
  * The animated quad. Pointer position and scroll boost are read from refs
  * updated by window listeners rather than React state, so neither re-renders
  * the tree — they only move uniforms inside the frame loop.
+ *
+ * Every write goes through `matRef.current.uniforms`, never through the object
+ * passed to the `uniforms` prop. THREE.ShaderMaterial *clones* the uniforms it
+ * is constructed with, so the object handed to React and the object the GPU
+ * samples are two different things. Mutating the former animates nothing: the
+ * loop still runs and the frames still draw, but every value stays at whatever
+ * it was when the material was built — no drift, no refraction, no crossfade.
  */
 export function RibbonPlane({
   mixTarget,
@@ -31,6 +38,7 @@ export function RibbonPlane({
 
   const { size, invalidate } = useThree();
 
+  const matRef = useRef<THREE.ShaderMaterial>(null);
   const pointer = useRef({ x: 0.5, y: 0.5, amt: 0, target: 0 });
   const boost = useRef(0);
   const clock = useRef(0);
@@ -46,7 +54,8 @@ export function RibbonPlane({
     }
   }, [texLight, texDark]);
 
-  const uniforms = useMemo(
+  /** Seed values only. The material clones these; the frame loop owns the rest. */
+  const initialUniforms = useMemo(
     () => ({
       uTexA: { value: texLight },
       uTexB: { value: texDark },
@@ -57,30 +66,34 @@ export function RibbonPlane({
       uPointerAmt: { value: 0 },
       uPointer: { value: new THREE.Vector2(0.5, 0.5) },
       uRes: { value: new THREE.Vector2(1, 1) },
-      uTexRes: { value: new THREE.Vector2(1440, 1440) },
+      uTexRes: { value: new THREE.Vector2(1440, 810) },
     }),
-    // Uniform objects are mutated in the frame loop, never recreated.
+    // Rebuilding this would rebuild the material, so only a texture swap should.
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [texLight, texDark],
   );
 
-  // Texture aspect drives the cover fit; the images may not be square.
+  // Texture aspect drives the cover fit; the images rarely match the viewport.
   useEffect(() => {
     const img = texLight.image as { width?: number; height?: number } | undefined;
-    if (img?.width && img?.height) {
-      uniforms.uTexRes.value.set(img.width, img.height);
+    const u = matRef.current?.uniforms;
+    if (u && img?.width && img?.height) {
+      u.uTexRes.value.set(img.width, img.height);
       invalidate();
     }
-  }, [texLight, uniforms, invalidate]);
+  }, [texLight, invalidate]);
 
   useEffect(() => {
-    uniforms.uRes.value.set(size.width, size.height);
+    const u = matRef.current?.uniforms;
+    if (!u) return;
+    u.uRes.value.set(size.width, size.height);
     invalidate();
-  }, [size, uniforms, invalidate]);
+  }, [size, invalidate]);
 
   useEffect(() => {
-    uniforms.uAmp.value = amplitude;
-  }, [amplitude, uniforms]);
+    const u = matRef.current?.uniforms;
+    if (u) u.uAmp.value = amplitude;
+  }, [amplitude]);
 
   // Pointer disturbance and scroll boost. Passive listeners, refs only.
   useEffect(() => {
@@ -111,8 +124,10 @@ export function RibbonPlane({
   }, [reduced, invalidate]);
 
   useFrame((_, rawDelta) => {
+    const u = matRef.current?.uniforms;
+    if (!u) return;
+
     const dt = Math.min(rawDelta, 0.05);
-    const u = uniforms;
 
     if (!reduced) {
       clock.current += dt * (1 + boost.current * 1.6);
@@ -141,9 +156,10 @@ export function RibbonPlane({
     <mesh frustumCulled={false}>
       <planeGeometry args={[2, 2]} />
       <shaderMaterial
+        ref={matRef}
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
-        uniforms={uniforms}
+        uniforms={initialUniforms}
         depthTest={false}
         depthWrite={false}
       />

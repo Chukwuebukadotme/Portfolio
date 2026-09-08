@@ -32,10 +32,16 @@ function hasWebGL() {
 }
 
 /**
- * The hero visual. A static <img> renders first and always; the canvas fades in
- * over it once three.js has a context and the textures are decoded. If WebGL is
- * unavailable, the context is lost, or the textures fail, the image simply
- * stays — the hero degrades rather than disappearing.
+ * The hero visual. Both static textures render first and always, with CSS
+ * choosing between them — not JavaScript. `resolvedTheme` is undefined during
+ * SSR and the first client render, so picking the source in JS showed the light
+ * ribbon on a dark page until hydration caught up. The `dark:` variant keys off
+ * the data-theme attribute that the blocking script in <head> sets before first
+ * paint, so the right one is showing from the very first frame.
+ *
+ * The canvas fades in over them once there is a context and the textures
+ * decode. If WebGL is unavailable, the context is lost, or a texture fails, the
+ * image simply stays — the hero degrades rather than disappearing.
  */
 export function GlassRibbon({
   className,
@@ -47,6 +53,7 @@ export function GlassRibbon({
   const isDark = resolvedTheme === "dark";
 
   const [gl, setGl] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [ready, setReady] = useState(false);
   const [reduced, setReduced] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -54,6 +61,7 @@ export function GlassRibbon({
 
   useEffect(() => {
     setGl(hasWebGL());
+    setMounted(true);
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReduced(mq.matches);
     const onChange = () => setReduced(mq.matches);
@@ -61,7 +69,7 @@ export function GlassRibbon({
     return () => mq.removeEventListener("change", onChange);
   }, []);
 
-  // Off-screen heroes cost nothing: the loop is only allowed to run in view.
+  // Off-screen heroes cost nothing: the loop only runs in view.
   useEffect(() => {
     const el = hostRef.current;
     if (!el) return;
@@ -92,18 +100,32 @@ export function GlassRibbon({
       }
     >
       <Image
-        src={isDark ? "/assets/ribbon-dark-1440.webp" : "/assets/ribbon-light-1440.webp"}
+        src="/assets/ribbon-light-1440.webp"
         alt=""
         fill
         priority
         sizes="100vw"
         className={cn(
-          "object-cover transition-opacity duration-[var(--dur-scene)] ease-[var(--ease-glass)]",
-          ready ? "opacity-0" : "opacity-100",
+          "object-cover transition-opacity duration-[var(--dur-scene)] ease-[var(--ease-glass)] dark:opacity-0",
+          ready && "opacity-0",
+        )}
+      />
+      <Image
+        src="/assets/ribbon-dark-1440.webp"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className={cn(
+          "object-cover opacity-0 transition-opacity duration-[var(--dur-scene)] ease-[var(--ease-glass)] dark:opacity-100",
+          ready && "dark:opacity-0",
         )}
       />
 
-      {gl ? (
+      {/* Mounting is deferred until the theme is known, so the plane is built
+          with the correct starting mix rather than crossfading out of the
+          wrong texture on load. */}
+      {gl && mounted ? (
         <Canvas
           // Motion is demand-driven: the plane invalidates when it needs a
           // frame, so a still hero in a background tab renders nothing.
@@ -114,8 +136,7 @@ export function GlassRibbon({
             position: "absolute",
             inset: 0,
             opacity: ready ? opacity : 0,
-            transition:
-              "opacity var(--dur-scene) var(--ease-glass)",
+            transition: "opacity var(--dur-scene) var(--ease-glass)",
           }}
           onCreated={({ gl: renderer }) => {
             renderer.domElement.addEventListener("webglcontextlost", () =>

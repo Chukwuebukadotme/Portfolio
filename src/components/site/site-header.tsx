@@ -39,14 +39,14 @@ export function SiteHeader() {
           className="pointer-events-auto w-full max-w-[var(--container-large)]"
         >
           <div className="flex items-center gap-3 px-5 py-3 sm:gap-6">
+            {/* An initials mark, with the full name still announced to screen
+                readers and kept intact in the footer. */}
             <Link
               href="/"
-              className="inline-flex items-baseline gap-1.5 whitespace-nowrap text-[17px] leading-none tracking-[var(--track-heading)] text-text-primary no-underline"
+              aria-label="Chukwuebuka Onyemelukwe — home"
+              className="inline-flex items-baseline whitespace-nowrap text-[19px] font-bold leading-none tracking-[var(--track-heading)] text-text-primary no-underline"
             >
-              <span className="font-bold">Chukwuebuka</span>
-              <span className="hidden font-light text-text-tertiary sm:inline">
-                Onyemelukwe
-              </span>
+              CO
             </Link>
 
             <span className="flex-1" />
