@@ -1,0 +1,260 @@
+@import "tailwindcss";
+@import "../styles/ds.css" layer(base);
+
+/* The design system resolves dark from :root[data-theme="dark"] or .dark.
+   next-themes writes both, so Tailwind's dark: variant follows the same rule
+   rather than prefers-color-scheme. */
+@custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
+
+/* ------------------------------------------------------------------ *
+ * shadcn/ui contract.
+ *
+ * shadcn components reference a fixed set of semantic variables. Rather
+ * than let them ship their own neutral/zinc palette, each one is defined
+ * here in terms of a design-system token, so the primitives inherit the
+ * site's material instead of replacing it. Change a token in
+ * src/styles/tokens and every shadcn component moves with it.
+ * ------------------------------------------------------------------ */
+:root {
+  --background: var(--surface-page);
+  --foreground: var(--text-primary);
+
+  --card: var(--surface-raised);
+  --card-foreground: var(--text-primary);
+  --popover: var(--surface-raised);
+  --popover-foreground: var(--text-primary);
+
+  /* The site's primary action is ink-on-page, not a brand fill. */
+  --primary: var(--text-primary);
+  --primary-foreground: var(--text-inverse);
+
+  --secondary: var(--surface-sunken);
+  --secondary-foreground: var(--text-primary);
+
+  --muted: var(--surface-sunken);
+  --muted-foreground: var(--text-tertiary);
+
+  --accent: var(--state-hover);
+  --accent-foreground: var(--text-primary);
+
+  --destructive: var(--signal-danger);
+  --destructive-foreground: var(--n-white);
+
+  --border: var(--border-hairline);
+  --input: var(--border-hairline);
+  --ring: var(--focus-ring);
+
+  /* Corners are architectural in this system — sharp is the default. */
+  --radius: var(--radius-medium);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Design-system surfaces and text, addressable as Tailwind utilities:
+     bg-surface-raised, text-secondary, border-hairline, … */
+  --color-surface-page: var(--surface-page);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-surface-recessed: var(--surface-recessed);
+  --color-surface-inverse: var(--surface-inverse);
+  --color-surface-deep: var(--surface-deep);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-text-disabled: var(--text-disabled);
+  --color-text-inverse: var(--text-inverse);
+  --color-text-accent: var(--text-accent);
+  --color-text-link: var(--text-link);
+
+  --color-border-hairline: var(--border-hairline);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+  --color-border-accent: var(--border-accent);
+
+  --color-accent-signal: var(--accent-signal);
+  --color-accent-ice: var(--accent-ice);
+  --color-accent-cobalt: var(--accent-cobalt);
+
+  --color-state-hover: var(--state-hover);
+  --color-state-press: var(--state-press);
+  --color-state-selected: var(--state-selected);
+
+  /* Type scale — the source Text Sizes collection. */
+  --font-sans: var(--font-display);
+  --font-mono: var(--font-mono);
+
+  --text-h1: var(--size-h1);
+  --text-h1--line-height: var(--leading-h1);
+  --text-h1--letter-spacing: var(--track-display);
+  --text-h2: var(--size-h2);
+  --text-h2--line-height: var(--leading-h2);
+  --text-h2--letter-spacing: var(--track-heading);
+  --text-h3: var(--size-h3);
+  --text-h3--line-height: var(--leading-h3);
+  --text-h3--letter-spacing: var(--track-heading);
+  --text-h4: var(--size-h4);
+  --text-h4--line-height: var(--leading-h4);
+  --text-h4--letter-spacing: var(--track-subhead);
+  --text-h5: var(--size-h5);
+  --text-h5--line-height: var(--leading-h5);
+  --text-h5--letter-spacing: var(--track-subhead);
+  --text-h6: var(--size-h6);
+  --text-h6--line-height: var(--leading-h6);
+  --text-h6--letter-spacing: var(--track-subhead);
+  --text-large: var(--size-text-large);
+  --text-large--line-height: var(--leading-body);
+  --text-medium: var(--size-text-medium);
+  --text-medium--line-height: var(--leading-body);
+  --text-regular: var(--size-text-regular);
+  --text-regular--line-height: var(--leading-body);
+  --text-small: var(--size-text-small);
+  --text-small--line-height: var(--leading-body);
+  --text-tiny: var(--size-text-tiny);
+  --text-tiny--line-height: var(--leading-body);
+
+
+  --radius-none: var(--radius-none);
+  --radius-sm: var(--radius-4);
+  --radius-md: var(--radius-medium);
+  --radius-lg: var(--radius-large);
+  --radius-pill: var(--radius-pill);
+
+  --shadow-xxsmall: var(--shadow-xxsmall);
+  --shadow-xsmall: var(--shadow-xsmall);
+  --shadow-small: var(--shadow-small);
+  --shadow-medium: var(--shadow-medium);
+  --shadow-large: var(--shadow-large);
+  --shadow-xlarge: var(--shadow-xlarge);
+  --shadow-glass: var(--glass-shadow);
+
+  --ease-glass: var(--ease-glass);
+  --ease-standard: var(--ease-standard);
+  --container-content: var(--container-content);
+  --container-measure: var(--measure-large);
+}
+
+@layer base {
+  * {
+    border-color: var(--border-hairline);
+  }
+
+  /* The design system underlines and recolours every <a>, which is right for
+     prose and wrong for an anchor rendered as a control. shadcn stamps
+     data-slot on its primitives, so controls opt out by structure rather than
+     by every call site remembering to pass no-underline. */
+  a[data-slot="button"] {
+    color: inherit;
+    text-decoration-line: none;
+  }
+  a[data-slot="button"]:hover {
+    color: inherit;
+  }
+  body {
+    background: var(--surface-page);
+    color: var(--text-primary);
+  }
+  /* Tailwind's preflight neutralises heading sizes; the DS scale is applied
+     per-component, so headings stay unstyled here by design. */
+}
+
+@layer components {
+  /* The signature surface. Water engineered into glass: a body that blurs
+     and saturates what is behind it, a bright lensed top rim, a cyan
+     refraction along the bottom edge, and one specular sweep. Ratios come
+     entirely from tokens/material.css. */
+  .glass {
+    position: relative;
+    background: var(--glass-body);
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate))
+      brightness(var(--glass-brightness));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate))
+      brightness(var(--glass-brightness));
+    box-shadow: var(--glass-inner), var(--glass-shadow);
+    isolation: isolate;
+  }
+  .glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--glass-caustic);
+    pointer-events: none;
+    z-index: -1;
+  }
+  .glass-specular {
+    position: absolute;
+    inset: 0;
+    background: var(--glass-specular);
+    opacity: 0;
+    transition: opacity var(--dur-base) var(--ease-glass);
+    pointer-events: none;
+  }
+  .glass:hover .glass-specular {
+    opacity: 1;
+  }
+
+  /* The measurement grid. Drawn as its own layer rather than as a background
+     on the section, so it can sit under the content at a low opacity instead
+     of competing with the type. */
+  .ds-grid-overlay {
+    background-image: var(--texture-pixel-fine);
+    background-size: 360px 360px;
+    opacity: 0.35;
+  }
+  :root[data-theme="dark"] .ds-grid-overlay,
+  .dark .ds-grid-overlay {
+    opacity: 0.12;
+    filter: invert(1);
+  }
+}
+
+/* Scroll reveal. Elements start displaced and settle once observed;
+   with reduced motion they are simply present. */
+@media (prefers-reduced-motion: no-preference) {
+  /* Gated on .js: the class is set by a blocking script in <head>, so if
+     scripting is off or fails, the displaced start state is never applied and
+     the content is simply there. Hiding content by default and relying on an
+     observer to reveal it would make a JS failure a blank page. */
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  .js [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--dur-ambient) var(--ease-glass) var(--reveal-delay, 0ms),
+      transform var(--dur-ambient) var(--ease-glass) var(--reveal-delay, 0ms);
+  }
+}
+
+/* The hero's rotating noun enters on a short rise. */
+@keyframes ribbon-word {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,0 +1,51 @@
+/* Primitive palette.
+   NEUTRALS and WATER are transcribed verbatim from the source file's Variables
+   collection. COOL and VOID are derived (see readme.md → Intentional additions). */
+:root{
+  /* Neutrals — source "Primitive Variables / Neutrals", verbatim */
+  --n-white:#FFFFFF;
+  --n-lightest:#EEEEEE;
+  --n-lighter:#CCCCCC;
+  --n-light:#AAAAAA;
+  --n-base:#666666;
+  --n-dark:#444444;
+  --n-darker:#222222;
+  --n-darkest:#000000;
+
+  /* Water — source Color/Blue + Color/Teal, verbatim. The optical material family. */
+  --water-100:#98EAFD;  /* Blue 200 — ice, the fill behind the source's product shots */
+  --water-200:#4EDBF5;  /* Blue 300 — cyan */
+  --water-400:#00B8ED;  /* Blue 500 — signal blue */
+  --water-600:#06AED4;  /* Teal 500 */
+  --water-900:#102D66;  /* Blue 800 — cobalt */
+  --water-1000:#081633; /* Blue 900 — deep navy */
+
+  /* Cyan working ramp — --cyan-signal is the brief's highlight cyan;
+     -accessible (3.9:1 on white) and -ink (6.2:1 on white) are darkened
+     steps of source Teal 500 for type and UI that must pass contrast. */
+  --cyan-signal:#22D3EE;
+  --cyan-accessible:#058CAA;
+  --cyan-ink:#04697F;
+
+  /* Cool neutrals — derived from the hue of source Blue 900 (#081633).
+     Light-mode surfaces. The source's own #F1F0EE is warm; the brief calls
+     for extremely light COOL neutrals, so this ramp replaces it. */
+  --cool-000:#FFFFFF;
+  --cool-025:#FAFBFC;
+  --cool-050:#F5F7F9;
+  --cool-100:#EDF0F3;
+  --cool-200:#DFE4E9;
+  --cool-300:#C7CED6;
+
+  /* Void — dark-mode environment. -800 is source Neutral 1000 (#101010);
+     -1000 / -900 are derived near-blacks carrying the same cool cast. */
+  --void-1000:#050608;
+  --void-900:#0A0C10;
+  --void-800:#101010;
+  --void-700:#161616;
+
+  /* Semantic hues — source Color/Red 500, Green 500-2, Yellow 500 */
+  --signal-danger:#FF4848;
+  --signal-success:#16B364;
+  --signal-warning:#FFDC00;
+}

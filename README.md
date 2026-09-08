@@ -2,115 +2,157 @@
 
 Personal site for Chukwuebuka Onyemelukwe — Design Engineer × AI Engineer.
 
-Built from a [Claude Design](https://claude.ai/design) canvas. The design is the source of
-truth; `build.js` compiles it into a static site with no framework and no dependencies.
+Next.js (App Router) and TypeScript, with shadcn/ui themed by the site's own
+design system and a React Three Fiber hero.
+
+## Stack
+
+| | |
+|---|---|
+| Framework | Next.js 16, App Router, React 19 |
+| Language | TypeScript, strict |
+| Styling | Tailwind CSS v4 (CSS-first config) |
+| Components | shadcn/ui (Radix primitives) |
+| 3D | three.js via React Three Fiber + drei |
+| Forms | Server Actions + Zod + shadcn form controls |
+| Theming | next-themes |
 
 ## Layout
 
 ```
-design/                    source of truth, imported from Claude Design
-  Portfolio v2.dc.html       current site
-  Portfolio.dc.html          previous version, kept for reference — not built
-  _ds/                       the bound design system: styles.css + tokens/ + textures
-  glass-ribbon.js            WebGL liquid-glass hero visual
-  image-slot.js              web component: fillable image placeholders
-  video-slot.js              web component: drag-drop video placeholders
-  icons.json                 the three DS icons the page uses, lifted from the bundle
-  assets/                    ribbon textures (light/dark, 720/1440)
-  uploads/                   résumé PDF
-  .image-slots.state.json    filled image-slot contents
 src/
-  app.js                   client runtime: routing, theme, nav, reveal, glass, form
-build.js                   compiles design/ + src/ -> docs/
-docs/                      build output — this is what gets served
+  app/
+    layout.tsx           shell: fonts, theme, header/footer, js gate
+    page.tsx             home
+    work/page.tsx        work index
+    work/[slug]/page.tsx case studies (prerendered from content.ts)
+    about/page.tsx
+    contact/
+      page.tsx
+      actions.ts         server action — validation, honeypot, delivery
+    globals.css          Tailwind entry + the design-system bridge
+  components/
+    ui/                  shadcn primitives, stock apart from their theming
+    site/                site components (header, footer, glass, reveal, form)
+      glass-ribbon/      the WebGL hero: shaders.ts + ribbon-plane.tsx
+  lib/
+    content.ts           all copy and case-study data, typed
+    contact-schema.ts    Zod schema shared by client and server
+    utils.ts             cn(), with the design system's type scale registered
+  styles/
+    ds.css               imports the token files
+    tokens/              the bound design system, copied from design/_ds
+design/                  the original Claude Design canvas — reference only
+legacy/                  the previous zero-dependency static build
+public/                  ribbon textures, grid texture, résumé
 ```
 
-## Build
+## Develop
 
 ```sh
-node build.js       # or: npm run build
-npm run serve       # build, then serve docs/ at http://localhost:8899
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build
+npm run typecheck  # tsc --noEmit
 ```
 
-No install step — the build uses only the Node standard library.
+## How the design system binds to Tailwind
 
-## How the build works
+The site has its own design system — palette, type scale, spacing, elevation,
+material and motion — as CSS custom properties in `src/styles/tokens`. Those
+files are copied verbatim from `design/_ds` and are the source of truth for
+every value.
 
-`Portfolio v2.dc.html` is a design-canvas document. Its markup is a small template DSL —
-`{{ bindings }}`, `<sc-if>`, `<sc-for>`, `style-hover` — plus `<x-import>` tags that pull
-React components out of the design system's `_ds_bundle.js`. The canvas renders all of that
-through React and `support.js`.
+`src/app/globals.css` is the bridge, and it does three things:
 
-Shipping that runtime would mean React plus a 220KB component bundle to draw markup that
-never changes after load. The build resolves it ahead of time instead:
+1. **Imports the tokens into Tailwind's `base` layer.** The layer matters:
+   unlayered CSS outranks every `@layer`, so importing the design system
+   normally would make its `a { text-decoration: underline }` unbeatable by
+   `no-underline`.
+2. **Defines shadcn's variables in terms of design-system tokens.** `--primary`,
+   `--border`, `--ring` and the rest all resolve to a token, so Radix primitives
+   inherit the site's material rather than shipping a neutral palette beside it.
+   Change a token and every shadcn component moves with it.
+3. **Exposes the system to Tailwind via `@theme inline`,** which generates real
+   utilities: `text-h1`, `text-text-secondary`, `bg-surface-raised`,
+   `border-border-hairline`, `shadow-glass`.
 
-- **Every route is rendered to static HTML**, so content is present before any JS runs.
-- **Each `<x-import>` is expanded to the markup its JSX produces.** `GlassPanel`, `Button`,
-  `Tag`, `TextInput`, `TextArea`, `Select` and `Icon` are reproduced from their source in
-  the bundle — see the `S` object in `build.js`, where each is annotated with the component
-  file it mirrors.
-- **React state that only drove styling becomes CSS.** Button hover/press, field focus
-  rings, the capability rows and the discipline cards were all `useState` in the canvas;
-  here they are `:hover` / `:focus-within`, which also makes them keyboard-reachable.
-- **`style-hover` attributes** are collected, de-duplicated and emitted as real rules.
-- **What is genuinely interactive** becomes a `data-*` hook driven by `src/app.js`: hash
-  routing, theme, mobile nav, the rotating hero word, scroll reveal, the glass specular
-  tracking and the contact form.
+Spacing is deliberately **not** overridden. The design system's steps
+(4, 8, 12, 20, 24, 32, 40, 48, 64, 80, 128 px) already sit on Tailwind's native
+4px grid, so `p-6` is the system's 24px step. Redefining `--spacing-*` to the
+pixel values instead breaks every shadcn component, whose stock spacing assumes
+the default scale.
 
-The design system's stylesheets are copied verbatim and linked, so colour, type, spacing,
-material and motion still come from the system rather than from this repo. Geist and Geist
-Mono load from Google Fonts via the system's own `tokens/fonts.css`.
+One related trap worth knowing about: `tailwind-merge` classifies `text-h3` as a
+*colour* rather than a size, because it is not a t-shirt size. Left alone, that
+made `cn("text-h3", "text-text-primary")` silently drop the size. The scale is
+registered with `extendTailwindMerge` in `src/lib/utils.ts`.
 
-The hero keeps `<glass-ribbon>`: a WebGL plane sampling two matched ribbon textures with
-slow UV flow, pointer refraction and a theme crossfade. It loads three.js from a CDN at
-runtime and falls back to a static `<img>` when WebGL or the CDN is unavailable, so the
-hero degrades rather than disappearing.
+## The hero
 
-Routing is hash-based (`#/work/budgetview`), matching the design. Every route is present in
-`index.html`; the script toggles which one is visible. That keeps the site one file with no
-server rewrites, and all content stays in the HTML for crawlers.
+`src/components/site/glass-ribbon/` is a plane sampling two matched ribbon
+textures with slow UV flow, pointer refraction and a theme crossfade. The GLSL
+carried over unchanged from the previous build; what changed is that three.js is
+a real dependency rather than a runtime CDN import, and the render loop is
+demand-driven — it stops when the hero scrolls out of view, when the tab is
+hidden, and under `prefers-reduced-motion`.
 
-## Editing
+A static `<img>` renders first and always. The canvas fades in over it once
+there is a context and the textures decode, so a missing WebGL context, a lost
+context, or a failed texture leaves the hero as an image rather than a hole.
 
-Change the design in Claude Design, re-import into `design/`, and rebuild. Content — case
-studies, links, the rotating words, the enquiry options — lives in the
-`<script type="text/x-dc">` block at the bottom of the `.dc.html`, and the build reads it
-directly, so content edits need no changes to `build.js`.
+## Routing
 
-Re-import is always a full-file fetch and a full rebuild; there is no incremental sync. Git
-still diffs the output by content, so a one-line copy edit stays a one-line diff.
+Real routes, prerendered: `/`, `/work`, `/work/{budgetview,siteresolve,referralview}`,
+`/about`, `/contact`.
+
+The previous site routed on the hash (`#/work/budgetview`), and those links are
+already in the wild. `HashRedirect` translates any hash that names a real route
+into the equivalent path, once, on arrival.
+
+## The contact form
+
+The form validates with Zod on the client and again in the server action, keeps a
+honeypot field, and surfaces field-level errors. Delivery is the one piece left
+open: `deliver()` in `src/app/contact/actions.ts` logs the enquiry until a
+provider is configured.
+
+To send real email: `npm i resend`, set `RESEND_API_KEY`, verify a sending
+domain, and complete `deliver()` — the Resend call is written out in a comment
+there. Everything around it is already wired.
+
+## Accessibility and resilience
+
+- Every route is server-rendered, so content is present before any JS runs.
+- The scroll reveal is gated on a `js` class set by a blocking script in
+  `<head>`. Without JavaScript the displaced start state never applies and the
+  page renders plainly, rather than hiding content behind an observer that will
+  never run.
+- `prefers-reduced-motion` stops the hero loop, the reveal and the rotating word.
+- The theme toggle withholds its label until the client knows the stored theme,
+  rather than rendering the wrong one and correcting it.
 
 ## Deploying
 
-`docs/` is committed, so **GitHub Pages** works with no CI: Settings → Pages → deploy from
-branch `main`, folder `/docs`. A `.nojekyll` file is included so the underscore- and
-dot-prefixed assets (`_ds/`, `.image-slots.state.json`) are served.
-
-For **Vercel** or **Netlify**: build command `node build.js`, output directory `docs`.
+Vercel: framework preset Next.js, no configuration needed. Add `RESEND_API_KEY`
+when the form is wired to a provider.
 
 ## Known gaps
 
-Carried over from the design, and marked `TODO` there:
+Carried over from the design, and still open:
 
-- **Case-study image slots are empty.** v2 renamed them to `v2-*` ids while
-  `.image-slots.state.json` still holds the v1 ids, so the six screenshots that the previous
-  version displayed no longer bind. This is listed as an open TODO in the design's own
-  `CLAUDE.md`. Re-keying the sidecar from `bv-main` to `v2-bv-main` (and the other five)
-  would restore them; adding final screenshots in Claude Design is the intended fix.
-- **Cal.com URL** is still a `TODO` placeholder. The GitHub URL is now real.
-- **The contact form has no backend** — submitting only shows a confirmation. The `mailto:`
-  link in the sidebar is the working path.
-- **Homepage project animations** are empty `<video-slot>`s. They accept a dropped MP4, but
-  that is stored per-visitor in IndexedDB; real videos need committing as files.
-- **Case-study outcomes** are placeholders pending real evidence.
-
-Two notes specific to this repo rather than the design:
-
-- **The 720px ribbon textures are copies of the 1440px ones.** The originals could not be
-  transferred intact through the import channel, and no WebP encoder was available locally
-  to downscale them. The hero is visually identical at every viewport; narrow screens just
-  download a larger file than they need. Re-exporting the two `-720.webp` files from Claude
-  Design into `design/assets/` fixes it with no code change.
-- **`_ds/assets/textures/pixel-grid-tile.png` is regenerated,** not the original. It is the
-  measurement grid used as a low-opacity overlay behind two sections, reproduced at the same
-  360×360 geometry. Dropping in the original replaces it with no code change.
+- **Case-study screenshots are placeholders.** `MediaPlaceholder` renders a
+  labelled frame wherever artwork belongs. The v1 sidecar in `legacy/` was
+  checked and does not help: it holds only two distinct images, each repeated
+  three times, and both are a stock third-party invoicing landing page rather
+  than any of these products.
+- **Homepage project animations** are the same placeholders. They were empty
+  `<video-slot>` elements before — a drag-drop component that stored footage per
+  visitor in IndexedDB and shipped nothing.
+- **Cal.com URL** is still a placeholder, so the booking link is withheld from
+  the contact page rather than shipped broken.
+- **Case-study outcomes** are marked TODO in `src/lib/content.ts`, pending real
+  evidence. No metrics, clients or testimonials are claimed.
+- **The 720px ribbon textures are copies of the 1440px ones,** inherited from the
+  previous build. Only the 1440px pair is referenced now, so this costs nothing
+  until a narrow-viewport source is added.

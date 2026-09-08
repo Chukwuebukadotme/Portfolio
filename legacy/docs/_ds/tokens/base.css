@@ -1,0 +1,11 @@
+/* Minimal document defaults. Everything else is a component decision. */
+:root{color-scheme:light dark}
+body{font-family:var(--font-text);font-size:var(--size-text-regular);line-height:var(--leading-body);color:var(--text-primary);background:var(--surface-page);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:var(--text-link);text-decoration-line:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:color-mix(in oklab,var(--text-link) 40%,transparent);transition:color var(--dur-fast) var(--ease-glass),text-decoration-color var(--dur-fast) var(--ease-glass)}
+a:hover{color:var(--text-link-hover);text-decoration-color:currentColor}
+a:active{color:var(--text-link-hover)}
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:var(--focus-ring-width) solid var(--focus-ring);outline-offset:var(--focus-ring-offset)}
+::selection{background:var(--water-100);color:var(--n-darkest)}
+:root[data-theme="dark"] ::selection,.dark ::selection{background:var(--cyan-signal);color:var(--n-darkest)}
+.ds-mono{font-family:var(--font-mono);font-size:var(--size-text-tiny);letter-spacing:var(--track-meta);font-variant-numeric:tabular-nums}
+.ds-eyebrow{font-family:var(--font-mono);font-size:var(--size-text-tiny);letter-spacing:var(--track-eyebrow);text-transform:uppercase;color:var(--text-tertiary)}

@@ -1,0 +1,25 @@
+/* Radius and stroke.
+   The source Variables collection sets Radius/Small = 0 and Default = 8;
+   its containers use 5 and its circular controls use a 50 pill. Sharp is the
+   default here — corners are an architectural decision, not a decoration. */
+:root{
+  --radius-none:0px;
+  --radius-2:2px;
+  --radius-4:4px;
+  --radius-5:5px;
+  --radius-6:6px;
+  --radius-sm-6:6px;
+  --radius-8:8px;
+  --radius-pill:999px;
+  --radius-circle:50%;
+
+  /* Source semantic radii — assigned by element width in columns */
+  --radius-small:0px;   /* elements narrower than 4 columns */
+  --radius-medium:5px;  /* 2–3 columns */
+  --radius-large:8px;   /* 1–2 columns */
+
+  --stroke-hairline:1px;
+  --stroke-border:1px;
+  --stroke-divider:1px;
+  --stroke-emphasis:2px;
+}
