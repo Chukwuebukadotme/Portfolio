@@ -34,7 +34,7 @@ src/
   components/
     ui/                  shadcn primitives, stock apart from their theming
     site/                site components (header, footer, glass, reveal, form)
-      glass-ribbon/      the WebGL hero: shaders.ts + ribbon-plane.tsx
+      hero-mesh/         the WebGL hero: shaders.ts + mesh-plane.tsx
   lib/
     content.ts           all copy and case-study data, typed
     contact-schema.ts    Zod schema shared by client and server
@@ -44,7 +44,7 @@ src/
     tokens/              the bound design system, copied from design/_ds
 design/                  the original Claude Design canvas — reference only
 legacy/                  the previous zero-dependency static build
-public/                  ribbon textures, grid texture, résumé
+public/                  hero grid art, measurement texture, résumé
 ```
 
 ## Develop
@@ -90,22 +90,36 @@ registered with `extendTailwindMerge` in `src/lib/utils.ts`.
 
 ## The hero
 
-`src/components/site/glass-ribbon/` is a plane sampling two matched ribbon
-textures with slow UV flow, pointer refraction and a theme crossfade. The GLSL
-carried over unchanged from the previous build; what changed is that three.js is
-a real dependency rather than a runtime CDN import, and the render loop is
-demand-driven — it stops when the hero scrolls out of view, when the tab is
-hidden, and under `prefers-reduced-motion`.
+`src/components/site/hero-mesh/` is a plane sampling two matched grid-mesh
+textures — one per theme — and disturbing them in two ways: a very slow ambient
+drift so the mesh is never dead still, and a ripple that leaves the pointer and
+decays with distance. three.js is a real dependency rather than a runtime CDN
+import, and the render loop is demand-driven — it stops when the hero scrolls
+out of view, when the tab is hidden, and under `prefers-reduced-motion`.
 
-**The uniforms gotcha.** `THREE.ShaderMaterial`
-*clones* the uniforms object it is constructed with. In the old vanilla build I
-built the material myself and kept the reference, so mutating my object drove
-the shader. Under R3F the material is built from props, three.js clones them,
-and the object React holds is no longer the object the GPU samples. The symptom
-is deceptive: the frame loop runs, `useFrame` fires ~45 times a second and every
-draw call happens, but nothing moves, because each uniform is pinned to whatever
-it was at construction. Every write therefore goes through
-`matRef.current.uniforms`, never through the `uniforms` prop.
+The art is 4:3 while the hero is a wide band, so the shader cover-fits and trims
+the overflow symmetrically. A scrim sits between the art and the text: a side
+gradient on wide screens that clears the left third for the headline, and a
+gentler overall veil on narrow ones, where the text column spans almost the full
+width and a side gradient would leave body copy on bare grid.
+
+**Two things this art needs that the previous ribbon did not.** It is a
+wireframe of roughly one-pixel lines, and that changes the maths:
+
+- *No channel splitting.* The old shader offset the R and B taps for micro
+  refraction. On thin lines that reads as coloured fringing rather than
+  refraction, so each texture is now a single tap.
+- *Mipmaps and anisotropy are mandatory.* Minified onto a smaller viewport
+  without mip levels, one-pixel grid lines alias into a crawling moiré the
+  moment anything moves. `LinearMipmapLinearFilter` plus max anisotropy is what
+  keeps the mesh still when it should be still.
+
+**The uniforms gotcha.** `THREE.ShaderMaterial` *clones* the uniforms object it
+is constructed with, so the object React holds is not the object the GPU
+samples. The symptom is deceptive: the frame loop runs, `useFrame` fires ~45
+times a second and every draw call happens, but nothing moves, because each
+uniform is pinned to whatever it was at construction. Every write therefore goes
+through `matRef.current.uniforms`, never through the `uniforms` prop.
 
 Worth knowing when debugging this: `canvas.toDataURL()` reads a cleared buffer
 unless the context was created with `preserveDrawingBuffer`, so screenshotting
@@ -114,14 +128,14 @@ uniform values instead.
 
 Both static textures render first and always, with **CSS** choosing between them
 rather than JavaScript. `resolvedTheme` is undefined during SSR and the first
-client render, so selecting the source in JS put the white ribbon on a dark page
+client render, so selecting the source in JS put the light art on a dark page
 until hydration caught up. The `dark:` variant keys off the attribute the
 blocking script sets before first paint, so the correct one shows from the first
 frame — and still does with JavaScript disabled entirely.
 
 The canvas fades in over them once there is a context and the textures decode,
 so a missing WebGL context, a lost context, or a failed texture leaves the hero
-as an image rather than a hole.
+as the artwork rather than a hole.
 
 ## Divergences from the bound design system
 
@@ -184,6 +198,3 @@ Carried over from the design, and still open:
   the contact page rather than shipped broken.
 - **Case-study outcomes** are marked TODO in `src/lib/content.ts`, pending real
   evidence. No metrics, clients or testimonials are claimed.
-- **The 720px ribbon textures are copies of the 1440px ones,** inherited from the
-  previous build. Only the 1440px pair is referenced now, so this costs nothing
-  until a narrow-viewport source is added.

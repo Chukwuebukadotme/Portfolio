@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { GlassRibbon } from "@/components/site/glass-ribbon";
+import { HeroMesh } from "@/components/site/hero-mesh";
 import {
   Container,
   Eyebrow,
@@ -11,6 +11,7 @@ import {
 import { Reveal } from "@/components/site/reveal";
 import { RotatingWord } from "@/components/site/rotating-word";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import {
   about,
   capabilities,
@@ -31,8 +32,30 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative min-h-[86svh] overflow-hidden">
-        <GlassRibbon className="absolute inset-0 -z-10" mask="both" />
+      <section
+        data-hero
+        className="relative min-h-[86svh] overflow-hidden"
+      >
+        <HeroMesh className="absolute inset-0 -z-10" />
+
+        {/* The art now carries grid detail across the whole frame, including
+            the left where the headline sits. This scrim lifts contrast behind
+            the text only, and softens the seam where the hero meets the page,
+            without masking away a third of the composition. */}
+        <div
+          aria-hidden
+          className={cn(
+            "pointer-events-none absolute inset-0 -z-10",
+            // Narrow screens: the text column spans almost the full width, so a
+            // side gradient leaves the body copy sitting on bare grid. A gentle
+            // overall veil is what keeps it readable here.
+            "bg-[linear-gradient(to_bottom,color-mix(in_oklab,var(--surface-page)_76%,transparent)_0%,color-mix(in_oklab,var(--surface-page)_68%,transparent)_55%,var(--surface-page)_100%)]",
+            // Wide screens: clear the left third for the headline and let the
+            // right side of the composition stand on its own.
+            "md:bg-[linear-gradient(to_right,var(--surface-page)_0%,color-mix(in_oklab,var(--surface-page)_82%,transparent)_38%,transparent_68%),linear-gradient(to_bottom,transparent_60%,var(--surface-page)_100%)]",
+          )}
+        />
+
         <Container className="flex min-h-[86svh] items-center pt-32">
           <div className="max-w-[var(--measure-large)]">
             <h1 className="text-h1 font-extrabold text-text-primary">

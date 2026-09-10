@@ -6,12 +6,11 @@ import Image from "next/image";
 import { Suspense, useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
-import { masks, type MaskName } from "./shaders";
-import { RibbonPlane } from "./ribbon-plane";
+import { MeshPlane } from "./mesh-plane";
 
-type GlassRibbonProps = {
+type HeroMeshProps = {
   className?: string;
-  mask?: MaskName;
+  /** Ambient drift amplitude, in UV units. Kept small — see shaders.ts. */
   amplitude?: number;
   opacity?: number;
 };
@@ -34,21 +33,20 @@ function hasWebGL() {
 /**
  * The hero visual. Both static textures render first and always, with CSS
  * choosing between them — not JavaScript. `resolvedTheme` is undefined during
- * SSR and the first client render, so picking the source in JS showed the light
- * ribbon on a dark page until hydration caught up. The `dark:` variant keys off
- * the data-theme attribute that the blocking script in <head> sets before first
- * paint, so the right one is showing from the very first frame.
+ * SSR and the first client render, so selecting the source in JS showed the
+ * light art on a dark page until hydration caught up. The `dark:` variant keys
+ * off the data-theme attribute that the blocking script in <head> sets before
+ * first paint, so the right one is showing from the very first frame.
  *
  * The canvas fades in over them once there is a context and the textures
  * decode. If WebGL is unavailable, the context is lost, or a texture fails, the
- * image simply stays — the hero degrades rather than disappearing.
+ * image simply stays — the hero degrades to the artwork rather than a hole.
  */
-export function GlassRibbon({
+export function HeroMesh({
   className,
-  mask = "both",
-  amplitude = 0.006,
+  amplitude = 0.0035,
   opacity = 1,
-}: GlassRibbonProps) {
+}: HeroMeshProps) {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
 
@@ -81,26 +79,14 @@ export function GlassRibbon({
     return () => io.disconnect();
   }, []);
 
-  const maskImage = masks[mask];
-
   return (
     <div
       ref={hostRef}
       aria-hidden
       className={cn("pointer-events-none relative overflow-hidden", className)}
-      style={
-        maskImage
-          ? {
-              maskImage,
-              WebkitMaskImage: maskImage,
-              maskComposite: "intersect",
-              WebkitMaskComposite: "source-in",
-            }
-          : undefined
-      }
     >
       <Image
-        src="/assets/ribbon-light-1440.webp"
+        src="/assets/grid-light-1600.webp"
         alt=""
         fill
         priority
@@ -111,7 +97,7 @@ export function GlassRibbon({
         )}
       />
       <Image
-        src="/assets/ribbon-dark-1440.webp"
+        src="/assets/grid-dark-1600.webp"
         alt=""
         fill
         priority
@@ -146,7 +132,7 @@ export function GlassRibbon({
           }}
         >
           <Suspense fallback={null}>
-            <RibbonPlane
+            <MeshPlane
               mixTarget={isDark ? 1 : 0}
               amplitude={amplitude}
               reduced={reduced}
