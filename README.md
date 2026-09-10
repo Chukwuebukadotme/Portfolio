@@ -34,7 +34,7 @@ src/
   components/
     ui/                  shadcn primitives, stock apart from their theming
     site/                site components (header, footer, glass, reveal, form)
-      hero-mesh/         the WebGL hero: shaders.ts + grid-surface.tsx
+      hero-network/      the hero: network.ts (layout) + SVG + canvas
   lib/
     content.ts           all copy and case-study data, typed
     contact-schema.ts    Zod schema shared by client and server
@@ -44,7 +44,7 @@ src/
     tokens/              the bound design system, copied from design/_ds
 design/                  the original Claude Design canvas — reference only
 legacy/                  the previous zero-dependency static build
-public/                  hero grid art, measurement texture, résumé
+public/                  measurement texture, résumé
 ```
 
 ## Develop
@@ -90,68 +90,65 @@ registered with `extendTailwindMerge` in `src/lib/utils.ts`.
 
 ## The hero
 
-`src/components/site/hero-mesh/` is a finely subdivided plane, displaced along
-Z and drawn with its grid painted on in the fragment stage. three.js is a real
-dependency rather than a runtime CDN import, and the render loop is
-demand-driven — it stops when the hero scrolls out of view, when the tab is
-hidden, and under `prefers-reduced-motion`.
+A network of nodes and the links between them. **There is no image anywhere in
+it** — no photograph, no exported artwork, nothing to download. The hero is
+drawn twice from one shared description:
 
-**The grid is geometry, not a picture, and that is the whole point.** The
-earlier version sampled the supplied artwork as a texture and offset its UVs on
-hover. UV displacement can only ever warp the whole sheet, because to a texture
-lookup there are no lines — only pixels — so it read as rippling paper rather
-than a mesh. Now the lines are painted onto a surface that actually deforms, so
-displacing vertices moves the lines through perspective, and hovering genuinely
-bends the grid.
+```
+network.ts        the layout: node positions, edges, arcs, palette
+network-svg.tsx   renders it as inline SVG, on the server
+network-canvas.tsx renders it live in WebGL, on the client
+```
 
-The composition is built around a **centreline** that snakes across the width.
-Everything is expressed relative to it: the surface rises into a ridge along it,
-the flow lines are contours parallel to it (which is why they fan and crowd the
-way the artwork does), and the glow is a tight band on it. Its frequency is
-chosen so about one and a half periods cross the plane — fewer, and the band
-reads as a single arc leaving a corner rather than a wave sweeping the width.
+`network.ts` generates the layout **deterministically** — a seeded PRNG, never
+`Math.random` — because the server and the client must agree exactly. The SVG is
+drawn at `t = 0`, which is precisely where the canvas begins, so the handover
+has nothing to jump between. Measured, the two renderings differ on 0.8% of
+pixels.
 
-Two details worth keeping:
+**What paints when.** The SVG ships inside the HTML, so the hero is there on
+first paint with no request to wait for. The canvas fades in over it once it has
+rendered a frame, and the SVG's live group fades out; the background arcs stay,
+since the canvas is transparent. If WebGL is missing, the context is lost, or
+JavaScript never runs, the SVG simply remains — a complete hero, not a
+placeholder.
 
-- *`fwidth` for line width.* Anti-aliasing each line against its own screen-space
-  derivative keeps the stroke a constant weight however far the surface turns
-  away from the camera. Without it the mesh aliases into a crawling moiré.
-- *Glow mixes, it does not only add.* Purely additive light blows out to white on
-  a pale ground. The spine blends toward the accent colour in both themes, with
-  a small additive bloom scaled in only for the dark palette.
+**Motion.** Nodes drift on slow deterministic orbits while the graph itself
+stays fixed, so lines stretch and breathe but the composition never churns
+behind the text. Hovering makes the cursor a node: it links to the nearest few
+and brightens them, so the gesture reads as joining the network rather than
+disturbing it.
 
-The supplied artwork still ships as the still fallback for both themes, chosen
-by **CSS** rather than JavaScript. `resolvedTheme` is undefined during SSR and
-the first client render, so selecting the source in JS put the light art on a
-dark page until hydration caught up. The `dark:` variant keys off the attribute
-the blocking script sets before first paint, so the correct one shows from the
-first frame — and still does with JavaScript disabled entirely.
+**One animation, both themes.** The geometry, motion and interaction are
+identical in light and dark; only the palette differs, and it lerps on a theme
+change rather than switching. The palette lives in `network.ts` and is emitted
+as CSS custom properties for the SVG and read directly by the canvas, so there
+is a single source for it.
 
-**Why the hero used to flash dark on a light page.** `ready` was set in
-`onCreated`, which fires as soon as the *renderer* exists — before anything had
-been drawn. With `alpha: false` the canvas clears to opaque black, so for a few
-hundred milliseconds a black rectangle sat at full opacity over the artwork
-while the still image faded out beneath it. Measured on a throttled load, hero
-brightness ran 238 → **34** → 219. `ready` now waits for the first *rendered
-frame*, and the clear colour is set to the theme's own ground, so no frame can
-show as black even if one is dropped.
+Two things that were subtly wrong and are worth not repeating:
 
-**The uniforms gotcha.** `THREE.ShaderMaterial` *clones* the uniforms object it
-is constructed with, so the object React holds is not the object the GPU
-samples. The symptom is deceptive: the frame loop runs, `useFrame` fires ~45
-times a second and every draw call happens, but nothing moves, because each
-uniform is pinned to whatever it was at construction. Every write therefore goes
-through `matRef.current.uniforms`, never through the `uniforms` prop.
+- *Frustum culling kills geometry you rewrite every frame.* The cursor links
+  start collapsed at a single point, so Three computes a zero-radius bounding
+  sphere on the first frame and then culls the whole object the moment the
+  cursor moves. Everything here sets `frustumCulled={false}`.
+- *Point size must match the SVG's cover mapping.* Deriving it from viewport
+  height alone made canvas dots ~20% smaller than the SVG's whenever width is
+  the limiting dimension — which is the usual case on a wide hero — so the
+  handover visibly shrank.
 
-Worth knowing when debugging this: `canvas.toDataURL()` reads a cleared buffer
-unless the context was created with `preserveDrawingBuffer`, so screenshotting
-the canvas is not a reliable way to tell whether it is animating. Read the
-uniform values instead.
+**The uniforms gotcha**, still true of anything using `ShaderMaterial`:
+`THREE.ShaderMaterial` *clones* the uniforms object it is constructed with, so
+the object React holds is not the one the GPU samples. The loop runs, every draw
+call happens, and nothing moves. Write through `matRef.current.uniforms`.
 
-A scrim sits between the hero and the text: a side gradient on wide screens that
-clears the left third for the headline, and a gentler overall veil on narrow
-ones, where the text column spans almost the full width and a side gradient
-would leave body copy on bare grid.
+Worth knowing when debugging: `canvas.toDataURL()` reads a cleared buffer unless
+the context was created with `preserveDrawingBuffer`, so screenshotting the
+canvas will not tell you whether it is animating. Read the values instead.
+
+The network is weighted to the right and thins before it reaches the headline,
+so the scrim only has to soften its edge and blend the hero into the page — far
+lighter than earlier heroes needed, which is why the artwork reads at full
+strength.
 
 ## Divergences from the bound design system
 
