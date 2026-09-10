@@ -5,6 +5,7 @@ import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 import { HashRedirect } from "@/components/site/hash-redirect";
 import { ThemeProvider } from "@/components/site/theme-provider";
+import { ThemeToggle } from "@/components/site/theme-toggle";
 import { site } from "@/lib/content";
 
 import "./globals.css";
@@ -81,6 +82,7 @@ export default function RootLayout({
           <SiteHeader />
           <main id="main">{children}</main>
           <SiteFooter />
+          <ThemeToggle />
         </ThemeProvider>
       </body>
     </html>

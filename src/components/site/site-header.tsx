@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { GlassPanel } from "@/components/site/glass-panel";
-import { ThemeToggle } from "@/components/site/theme-toggle";
 import { site } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
@@ -78,11 +77,9 @@ export function SiteHeader() {
               >
                 Résumé <span className="text-text-accent">↗</span>
               </a>
-              <ThemeToggle />
             </nav>
 
             <div className="flex items-center gap-1.5 md:hidden">
-              <ThemeToggle />
               <button
                 type="button"
                 onClick={() => setOpen((v) => !v)}

@@ -34,7 +34,7 @@ src/
   components/
     ui/                  shadcn primitives, stock apart from their theming
     site/                site components (header, footer, glass, reveal, form)
-      hero-mesh/         the WebGL hero: shaders.ts + mesh-plane.tsx
+      hero-mesh/         the WebGL hero: shaders.ts + grid-surface.tsx
   lib/
     content.ts           all copy and case-study data, typed
     contact-schema.ts    Zod schema shared by client and server
@@ -90,29 +90,51 @@ registered with `extendTailwindMerge` in `src/lib/utils.ts`.
 
 ## The hero
 
-`src/components/site/hero-mesh/` is a plane sampling two matched grid-mesh
-textures — one per theme — and disturbing them in two ways: a very slow ambient
-drift so the mesh is never dead still, and a ripple that leaves the pointer and
-decays with distance. three.js is a real dependency rather than a runtime CDN
-import, and the render loop is demand-driven — it stops when the hero scrolls
-out of view, when the tab is hidden, and under `prefers-reduced-motion`.
+`src/components/site/hero-mesh/` is a finely subdivided plane, displaced along
+Z and drawn with its grid painted on in the fragment stage. three.js is a real
+dependency rather than a runtime CDN import, and the render loop is
+demand-driven — it stops when the hero scrolls out of view, when the tab is
+hidden, and under `prefers-reduced-motion`.
 
-The art is 4:3 while the hero is a wide band, so the shader cover-fits and trims
-the overflow symmetrically. A scrim sits between the art and the text: a side
-gradient on wide screens that clears the left third for the headline, and a
-gentler overall veil on narrow ones, where the text column spans almost the full
-width and a side gradient would leave body copy on bare grid.
+**The grid is geometry, not a picture, and that is the whole point.** The
+earlier version sampled the supplied artwork as a texture and offset its UVs on
+hover. UV displacement can only ever warp the whole sheet, because to a texture
+lookup there are no lines — only pixels — so it read as rippling paper rather
+than a mesh. Now the lines are painted onto a surface that actually deforms, so
+displacing vertices moves the lines through perspective, and hovering genuinely
+bends the grid.
 
-**Two things this art needs that the previous ribbon did not.** It is a
-wireframe of roughly one-pixel lines, and that changes the maths:
+The composition is built around a **centreline** that snakes across the width.
+Everything is expressed relative to it: the surface rises into a ridge along it,
+the flow lines are contours parallel to it (which is why they fan and crowd the
+way the artwork does), and the glow is a tight band on it. Its frequency is
+chosen so about one and a half periods cross the plane — fewer, and the band
+reads as a single arc leaving a corner rather than a wave sweeping the width.
 
-- *No channel splitting.* The old shader offset the R and B taps for micro
-  refraction. On thin lines that reads as coloured fringing rather than
-  refraction, so each texture is now a single tap.
-- *Mipmaps and anisotropy are mandatory.* Minified onto a smaller viewport
-  without mip levels, one-pixel grid lines alias into a crawling moiré the
-  moment anything moves. `LinearMipmapLinearFilter` plus max anisotropy is what
-  keeps the mesh still when it should be still.
+Two details worth keeping:
+
+- *`fwidth` for line width.* Anti-aliasing each line against its own screen-space
+  derivative keeps the stroke a constant weight however far the surface turns
+  away from the camera. Without it the mesh aliases into a crawling moiré.
+- *Glow mixes, it does not only add.* Purely additive light blows out to white on
+  a pale ground. The spine blends toward the accent colour in both themes, with
+  a small additive bloom scaled in only for the dark palette.
+
+The supplied artwork still ships as the still fallback for both themes, chosen
+by **CSS** rather than JavaScript. `resolvedTheme` is undefined during SSR and
+the first client render, so selecting the source in JS put the light art on a
+dark page until hydration caught up. The `dark:` variant keys off the attribute
+the blocking script sets before first paint, so the correct one shows from the
+first frame — and still does with JavaScript disabled entirely.
+
+**Why the hero used to flash dark on a light page.** `ready` was set in
+`onCreated`, which fires as soon as the *renderer* exists — before anything had
+been drawn. With `alpha: false` the canvas clears to opaque black, so for a few
+hundred milliseconds a black rectangle sat at full opacity over the artwork
+while the still image faded out beneath it. Measured on a throttled load, hero
+brightness ran 238 → **34** → 219. `ready` now waits for the first *rendered
+frame*, and the clear colour is set to the theme's own ground, so no frame can
+show as black even if one is dropped.
 
 **The uniforms gotcha.** `THREE.ShaderMaterial` *clones* the uniforms object it
 is constructed with, so the object React holds is not the object the GPU
@@ -126,16 +148,10 @@ unless the context was created with `preserveDrawingBuffer`, so screenshotting
 the canvas is not a reliable way to tell whether it is animating. Read the
 uniform values instead.
 
-Both static textures render first and always, with **CSS** choosing between them
-rather than JavaScript. `resolvedTheme` is undefined during SSR and the first
-client render, so selecting the source in JS put the light art on a dark page
-until hydration caught up. The `dark:` variant keys off the attribute the
-blocking script sets before first paint, so the correct one shows from the first
-frame — and still does with JavaScript disabled entirely.
-
-The canvas fades in over them once there is a context and the textures decode,
-so a missing WebGL context, a lost context, or a failed texture leaves the hero
-as the artwork rather than a hole.
+A scrim sits between the hero and the text: a side gradient on wide screens that
+clears the left third for the headline, and a gentler overall veil on narrow
+ones, where the text column spans almost the full width and a side gradient
+would leave body copy on bare grid.
 
 ## Divergences from the bound design system
 
@@ -175,7 +191,9 @@ there. Everything around it is already wired.
   never run.
 - `prefers-reduced-motion` stops the hero loop, the reveal and the rotating word.
 - The theme toggle withholds its label until the client knows the stored theme,
-  rather than rendering the wrong one and correcting it.
+  rather than rendering the wrong one and correcting it. It is a floating
+  control fixed to the bottom-right, so the theme stays one click away on every
+  page without occupying the navbar or requiring a scroll to the footer.
 
 ## Deploying
 

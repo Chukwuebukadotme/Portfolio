@@ -3,15 +3,14 @@
 import { Canvas } from "@react-three/fiber";
 import { useTheme } from "next-themes";
 import Image from "next/image";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
-import { MeshPlane } from "./mesh-plane";
+import { GridSurface } from "./grid-surface";
+import { palette } from "./shaders";
 
 type HeroMeshProps = {
   className?: string;
-  /** Ambient drift amplitude, in UV units. Kept small — see shaders.ts. */
-  amplitude?: number;
   opacity?: number;
 };
 
@@ -31,22 +30,23 @@ function hasWebGL() {
 }
 
 /**
- * The hero visual. Both static textures render first and always, with CSS
- * choosing between them — not JavaScript. `resolvedTheme` is undefined during
- * SSR and the first client render, so selecting the source in JS showed the
- * light art on a dark page until hydration caught up. The `dark:` variant keys
- * off the data-theme attribute that the blocking script in <head> sets before
- * first paint, so the right one is showing from the very first frame.
+ * The hero visual. The supplied artwork renders first and always as a still
+ * image, with CSS choosing between the two — not JavaScript. `resolvedTheme` is
+ * undefined during SSR and the first client render, so selecting the source in
+ * JS showed the light art on a dark page until hydration caught up. The `dark:`
+ * variant keys off the data-theme attribute that the blocking script in <head>
+ * sets before first paint, so the right one shows from the very first frame.
  *
- * The canvas fades in over them once there is a context and the textures
- * decode. If WebGL is unavailable, the context is lost, or a texture fails, the
- * image simply stays — the hero degrades to the artwork rather than a hole.
+ * The live mesh fades in over it once it has actually drawn a frame.
+ *
+ * That last part is load-bearing. `ready` used to be set in `onCreated`, which
+ * fires as soon as the *renderer* exists — before anything had been drawn. With
+ * an opaque clear colour that meant a black canvas at full opacity sitting over
+ * the artwork, which on a light page read as a dark flash midway through load.
+ * `ready` now waits for the first rendered frame, and the clear colour matches
+ * the theme's own ground, so even a dropped frame cannot show as black.
  */
-export function HeroMesh({
-  className,
-  amplitude = 0.0035,
-  opacity = 1,
-}: HeroMeshProps) {
+export function HeroMesh({ className, opacity = 1 }: HeroMeshProps) {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
 
@@ -108,16 +108,16 @@ export function HeroMesh({
         )}
       />
 
-      {/* Mounting is deferred until the theme is known, so the plane is built
-          with the correct starting mix rather than crossfading out of the
-          wrong texture on load. */}
+      {/* Mounting is deferred until the theme is known, so the surface starts
+          on the correct palette rather than crossfading out of the wrong one. */}
       {gl && mounted ? (
         <Canvas
-          // Motion is demand-driven: the plane invalidates when it needs a
+          // Motion is demand-driven: the surface invalidates when it needs a
           // frame, so a still hero in a background tab renders nothing.
           frameloop={reduced || !visible ? "demand" : "always"}
-          gl={{ alpha: false, antialias: false, powerPreference: "low-power" }}
+          gl={{ alpha: false, antialias: true, powerPreference: "low-power" }}
           dpr={[1, 2]}
+          camera={{ fov: 42, position: [0, 0, 3.2], near: 0.1, far: 20 }}
           style={{
             position: "absolute",
             inset: 0,
@@ -125,19 +125,21 @@ export function HeroMesh({
             transition: "opacity var(--dur-scene) var(--ease-glass)",
           }}
           onCreated={({ gl: renderer }) => {
+            // Clear to the theme's own ground, so no frame can ever show black.
+            renderer.setClearColor(
+              isDark ? palette.dark.bg : palette.light.bg,
+              1,
+            );
             renderer.domElement.addEventListener("webglcontextlost", () =>
               setReady(false),
             );
-            setReady(true);
           }}
         >
-          <Suspense fallback={null}>
-            <MeshPlane
-              mixTarget={isDark ? 1 : 0}
-              amplitude={amplitude}
-              reduced={reduced}
-            />
-          </Suspense>
+          <GridSurface
+            mixTarget={isDark ? 1 : 0}
+            reduced={reduced}
+            onFirstFrame={() => setReady(true)}
+          />
         </Canvas>
       ) : null}
     </div>
