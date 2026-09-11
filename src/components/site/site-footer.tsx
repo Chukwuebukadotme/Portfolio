@@ -2,78 +2,142 @@ import Link from "next/link";
 
 import { site } from "@/lib/content";
 
-const internal = [
+/**
+ * The footer is one inset panel rather than a full-bleed strip: a card with
+ * fastened corners, the contact details across the top, and the name set
+ * enormous along the bottom where the card clips it.
+ *
+ * It carries its own ground in both themes. In dark it is a shade lighter than
+ * the page so it reads as a plate laid on top; in light it is a shade darker,
+ * which is the same relationship inverted rather than a light-mode afterthought.
+ */
+
+const socials = [
+  { href: site.linkedin, label: "LinkedIn", external: true },
+  { href: site.github, label: "GitHub", external: true },
+  { href: site.resume, label: "Résumé", external: true },
+] as const;
+
+const pages = [
   { href: "/work", label: "Work" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] as const;
 
-export function SiteFooter() {
+/** The four fasteners. Small, and deliberately not perfectly bright. */
+function Screw({ className }: { className: string }) {
   return (
-    <footer className="mt-32 border-t border-border-hairline px-[var(--page-margin)] py-12">
-      <div className="mx-auto flex max-w-[var(--container-large)] flex-col gap-8">
-        <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-          <div className="flex flex-col gap-1.5">
-            <p className="inline-flex items-baseline gap-1.5 text-[17px] leading-none tracking-[var(--track-heading)]">
-              <span className="font-bold">Chukwuebuka</span>
-              <span className="font-light text-text-tertiary">
-                Onyemelukwe
-              </span>
-            </p>
-            <p className="ds-eyebrow">
-              Design engineer × AI engineer · {site.location}
-            </p>
-          </div>
+    <span
+      aria-hidden
+      className={`absolute size-[9px] rounded-full bg-[var(--footer-screw)] shadow-[inset_0_1px_1px_rgba(0,0,0,.45)] ${className}`}
+    />
+  );
+}
 
-          <nav
-            aria-label="Footer"
-            className="flex flex-wrap gap-x-6 gap-y-3"
-          >
-            {internal.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="ds-eyebrow text-text-tertiary no-underline transition-colors duration-[var(--dur-fast)] ease-[var(--ease-glass)] hover:text-text-primary"
-              >
-                {item.label}
-              </Link>
-            ))}
-            <a
-              href={site.resume}
-              target="_blank"
-              rel="noopener"
-              className="ds-eyebrow text-text-tertiary no-underline transition-colors duration-[var(--dur-fast)] ease-[var(--ease-glass)] hover:text-text-primary"
-            >
-              Résumé ↗
-            </a>
+function Arrow() {
+  return (
+    <span aria-hidden className="ml-0.5 inline-block">
+      ↗
+    </span>
+  );
+}
+
+export function SiteFooter() {
+  const year = new Date().getFullYear();
+
+  return (
+    <footer className="px-[var(--page-margin)] pb-6 pt-32">
+      <div
+        className="
+          relative isolate overflow-hidden rounded-[18px]
+          bg-[var(--footer-bg)] px-6 pb-0 pt-10
+          shadow-[inset_0_0_0_1px_var(--footer-line)]
+          sm:px-10 sm:pt-12
+        "
+      >
+        <Screw className="left-3 top-3" />
+        <Screw className="right-3 top-3" />
+        <Screw className="bottom-3 left-3" />
+        <Screw className="bottom-3 right-3" />
+
+        <div className="relative z-10 mx-auto flex max-w-[var(--container-large)] flex-col gap-10 text-center md:flex-row md:items-start md:justify-between md:gap-8 md:text-left">
+          <div className="flex flex-col items-center gap-4 md:items-start">
+            <h2 className="text-h2 font-light tracking-[var(--track-heading)] text-[var(--footer-text)]">
+              Contact
+            </h2>
             <a
               href={`mailto:${site.email}`}
-              className="ds-eyebrow text-text-tertiary no-underline transition-colors duration-[var(--dur-fast)] ease-[var(--ease-glass)] hover:text-text-primary"
+              className="
+                text-medium text-[var(--footer-accent)] underline
+                decoration-[var(--footer-accent)]/45 underline-offset-4
+                transition-colors duration-[var(--dur-fast)] ease-[var(--ease-glass)]
+                hover:decoration-[var(--footer-accent)] sm:text-large
+              "
             >
-              Email
+              {site.email}
+              <Arrow />
             </a>
-            <a
-              href={site.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ds-eyebrow text-text-tertiary no-underline transition-colors duration-[var(--dur-fast)] ease-[var(--ease-glass)] hover:text-text-primary"
+
+            <nav
+              aria-label="Footer"
+              className="mt-1 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 md:justify-start"
             >
-              LinkedIn
-            </a>
-            <a
-              href={site.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ds-eyebrow text-text-tertiary no-underline transition-colors duration-[var(--dur-fast)] ease-[var(--ease-glass)] hover:text-text-primary"
+              {pages.map((p) => (
+                <Link
+                  key={p.href}
+                  href={p.href}
+                  className="ds-eyebrow text-[var(--footer-muted)] no-underline transition-colors duration-[var(--dur-fast)] ease-[var(--ease-glass)] hover:text-[var(--footer-text)]"
+                >
+                  {p.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          <div className="flex flex-col items-center gap-5 md:items-end">
+            <p className="text-small text-[var(--footer-muted)]">
+              © {year} {site.name}
+            </p>
+
+            <nav
+              aria-label="Elsewhere"
+              className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2"
             >
-              GitHub
-            </a>
-          </nav>
+              {socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-medium text-[var(--footer-text)] no-underline transition-opacity duration-[var(--dur-fast)] ease-[var(--ease-glass)] hover:opacity-70"
+                >
+                  {s.label}
+                  <Arrow />
+                </a>
+              ))}
+            </nav>
+          </div>
         </div>
 
-        <p className="ds-eyebrow">
-          © {new Date().getFullYear()} · Open to permanent UK roles
-        </p>
+        {/* The name, set large enough that the card has to clip it. Pushed
+            down so only the upper two thirds show, which is what stops it
+            reading as a heading and lets it sit as a watermark. */}
+        <div
+          aria-hidden
+          className="pointer-events-none relative z-0 mt-8 select-none overflow-hidden"
+          style={{ height: "clamp(64px, 13vw, 190px)" }}
+        >
+          <span
+            className="
+              absolute left-0 top-0 block
+              whitespace-nowrap font-extrabold leading-[0.8]
+              tracking-[-0.05em] text-[var(--footer-mark)]
+            "
+            style={{ fontSize: "clamp(76px, 16vw, 240px)" }}
+          >
+            chukwuebuka
+          </span>
+        </div>
       </div>
     </footer>
   );

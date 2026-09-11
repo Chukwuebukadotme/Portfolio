@@ -2,13 +2,14 @@
   "name": "portfolio",
   "version": "2.0.0",
   "private": true,
-  "description": "Chukwuebuka Onyemelukwe — portfolio site. Next.js + TypeScript.",
+  "description": "Chukwuebuka Onyemelukwe \u2014 portfolio site. Next.js + TypeScript.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:email": "node scripts/test-email.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",

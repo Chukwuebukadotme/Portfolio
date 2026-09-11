@@ -178,6 +178,33 @@
 }
 
 @layer components {
+  /* ------------------------------------------------------------------ *
+   * Footer panel.
+   *
+   * The footer is a plate laid on the page rather than a strip cut out of
+   * it, so it needs its own ground in both themes: a shade lighter than the
+   * page in dark, a shade darker in light. Same relationship, inverted.
+   * ------------------------------------------------------------------ */
+  :root {
+    --footer-bg: #14191F;
+    --footer-text: #F2F5F7;
+    --footer-muted: #8A97A3;
+    --footer-accent: var(--water-200);
+    --footer-line: rgba(255, 255, 255, 0.07);
+    --footer-screw: #4A545E;
+    --footer-mark: rgba(255, 255, 255, 0.045);
+  }
+  :root[data-theme="dark"],
+  .dark {
+    --footer-bg: #10161E;
+    --footer-text: #EAF0F5;
+    --footer-muted: #7E8C99;
+    --footer-accent: var(--cyan-signal);
+    --footer-line: rgba(255, 255, 255, 0.06);
+    --footer-screw: #3A444F;
+    --footer-mark: rgba(255, 255, 255, 0.038);
+  }
+
   /* The signature surface. Water engineered into glass: a body that blurs
      and saturates what is behind it, a bright lensed top rim, a cyan
      refraction along the bottom edge, and one specular sweep. Ratios come
