@@ -29,15 +29,15 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://chukwuebuka.dev"),
   title: {
-    default: `${site.name} — ${site.role}`,
-    template: `%s — ${site.name}`,
+    default: `${site.name}, ${site.role}`,
+    template: `%s | ${site.name}`,
   },
   description:
     "I design and engineer digital products that make complex work simpler. Product thinking, design and engineering for websites, applications and intelligent systems.",
   openGraph: {
     type: "website",
     siteName: site.name,
-    title: `${site.name} — ${site.role}`,
+    title: `${site.name}, ${site.role}`,
     description:
       "Design engineering, product engineering and AI engineering. UK based.",
   },

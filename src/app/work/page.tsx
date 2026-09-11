@@ -105,7 +105,7 @@ export default function WorkPage() {
                     </Link>
                   </div>
 
-                  <MediaPlaceholder label={`${c.name} — preview`} />
+                  <MediaPlaceholder label={`${c.name} preview`} />
                 </article>
               </Reveal>
             ))}

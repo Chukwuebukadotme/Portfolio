@@ -1,6 +1,7 @@
 "use server";
 
 import { site } from "@/lib/content";
+import { confirmation, notification } from "@/app/contact/emails";
 import {
   contactSchema,
   type ContactInput,
@@ -10,47 +11,69 @@ import {
 /**
  * Delivery.
  *
- * This is the only thing standing between the form and a real inbox. Add a
- * provider key and send from here; everything upstream — validation, honeypot,
- * error surfacing, the success state — is already wired.
+ * Two mails go out per submission: the enquiry to the inbox, and a
+ * confirmation to whoever sent it so they have a record of what they wrote.
  *
- * With Resend, that is:
+ * The two are not equal in importance. If the notification fails, the enquiry
+ * would be lost, so that failure is surfaced and the person is asked to email
+ * directly. If only the confirmation fails, the enquiry is safely delivered, so
+ * it is logged and the submission still reports success rather than telling
+ * someone their message did not arrive when it did.
  *
- *   const { Resend } = await import("resend");
- *   const resend = new Resend(process.env.RESEND_API_KEY);
- *   await resend.emails.send({
- *     from: "Portfolio <enquiries@your-verified-domain.com>",
- *     to: site.email,
- *     replyTo: input.email,
- *     subject: `${input.type} — ${input.name}`,
- *     text: body,
- *   });
- *
- * npm i resend, set RESEND_API_KEY in the Vercel project, and verify the
- * sending domain. Until then the enquiry is logged so nothing is silently lost.
+ * With no API key configured the enquiry is logged instead, which keeps local
+ * development working without credentials.
  */
 async function deliver(input: ContactInput): Promise<void> {
-  const body = [
-    `From:     ${input.name} <${input.email}>`,
-    input.company ? `Company:  ${input.company}` : null,
-    `Type:     ${input.type}`,
-    input.timeline ? `Timeline: ${input.timeline}` : null,
-    input.budget ? `Budget:   ${input.budget}` : null,
-    "",
-    input.message,
-  ]
-    .filter(Boolean)
-    .join("\n");
+  const key = process.env.RESEND_API_KEY;
 
-  if (!process.env.RESEND_API_KEY) {
-    // TODO — remove once a provider is configured.
-    console.info(`[contact] enquiry for ${site.email}\n${body}`);
+  const from =
+    process.env.CONTACT_FROM ??
+    "Chukwuebuka Onyemelukwe <hello@chukwuebukaonyemelukwe.com>";
+  const to = process.env.CONTACT_TO ?? site.email;
+
+  const note = notification(input);
+
+  if (!key) {
+    console.info(
+      `[contact] no RESEND_API_KEY set; enquiry for ${to}\n${note.text}`,
+    );
     return;
   }
 
-  throw new Error(
-    "RESEND_API_KEY is set but no provider is wired. Complete deliver() in src/app/contact/actions.ts.",
-  );
+  const { Resend } = await import("resend");
+  const resend = new Resend(key);
+
+  // The enquiry itself. replyTo means replying in the inbox goes to the sender.
+  const sent = await resend.emails.send({
+    from,
+    to,
+    replyTo: input.email,
+    subject: note.subject,
+    text: note.text,
+    html: note.html,
+  });
+
+  if (sent.error) {
+    throw new Error(`Resend rejected the notification: ${sent.error.message}`);
+  }
+
+  // The receipt. Best effort: the enquiry is already safely delivered.
+  try {
+    const ack = confirmation(input);
+    const reply = await resend.emails.send({
+      from,
+      to: input.email,
+      replyTo: site.email,
+      subject: ack.subject,
+      text: ack.text,
+      html: ack.html,
+    });
+    if (reply.error) {
+      console.error("[contact] confirmation failed", reply.error);
+    }
+  } catch (error) {
+    console.error("[contact] confirmation threw", error);
+  }
 }
 
 export async function submitContact(
@@ -83,7 +106,7 @@ export async function submitContact(
 
   // A filled honeypot is a bot. Answer as though it worked; do not deliver.
   if (parsed.data.website) {
-    return { status: "success", message: "Thanks — message received." };
+    return { status: "success", message: "Thanks, message received." };
   }
 
   try {
@@ -98,6 +121,6 @@ export async function submitContact(
 
   return {
     status: "success",
-    message: "Thanks — message received. I’ll come back to you shortly.",
+    message: "Thanks, message received. I’ll come back to you shortly.",
   };
 }

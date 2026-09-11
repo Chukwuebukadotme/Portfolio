@@ -42,7 +42,7 @@ export function SiteHeader() {
                 readers and kept intact in the footer. */}
             <Link
               href="/"
-              aria-label="Chukwuebuka Onyemelukwe — home"
+              aria-label="Chukwuebuka Onyemelukwe, home"
               className="inline-flex items-baseline whitespace-nowrap text-[19px] font-bold leading-none tracking-[var(--track-heading)] text-text-primary no-underline"
             >
               CO
@@ -80,14 +80,42 @@ export function SiteHeader() {
             </nav>
 
             <div className="flex items-center gap-1.5 md:hidden">
+              {/* Three bars that rotate into a cross. The bars are the same
+                  element throughout, so open and close are one continuous
+                  movement rather than an icon swap. */}
               <button
                 type="button"
                 onClick={() => setOpen((v) => !v)}
                 aria-expanded={open}
                 aria-controls="mobile-nav"
-                className="min-h-[40px] rounded-lg px-3 py-2 text-tiny uppercase tracking-[var(--track-eyebrow)] text-text-primary shadow-[inset_0_0_0_1px_var(--border-hairline)]"
+                className="relative grid size-11 place-items-center text-text-primary"
               >
-                {open ? "Close" : "Menu"}
+                <span className="sr-only">
+                  {open ? "Close menu" : "Open menu"}
+                </span>
+                <span aria-hidden className="relative block h-[14px] w-[22px]">
+                  <span
+                    className={cn(
+                      "absolute left-0 block h-[1.5px] w-full rounded-full bg-current",
+                      "transition-transform duration-[var(--dur-base)] ease-[var(--ease-glass)]",
+                      open ? "top-1/2 -translate-y-1/2 rotate-45" : "top-0",
+                    )}
+                  />
+                  <span
+                    className={cn(
+                      "absolute left-0 top-1/2 block h-[1.5px] w-full -translate-y-1/2 rounded-full bg-current",
+                      "transition-opacity duration-[var(--dur-fast)] ease-[var(--ease-glass)]",
+                      open ? "opacity-0" : "opacity-100",
+                    )}
+                  />
+                  <span
+                    className={cn(
+                      "absolute left-0 block h-[1.5px] w-full rounded-full bg-current",
+                      "transition-transform duration-[var(--dur-base)] ease-[var(--ease-glass)]",
+                      open ? "top-1/2 -translate-y-1/2 -rotate-45" : "bottom-0",
+                    )}
+                  />
+                </span>
               </button>
             </div>
           </div>

@@ -46,7 +46,7 @@
 :root[data-theme="dark"],.dark{
   --surface-page:var(--void-1000);
   --surface-raised:var(--void-900);
-  --surface-sunken:#000000;
+  --surface-sunken:#0A0F14;
   --surface-recessed:var(--void-800);
   --surface-inverse:var(--n-white);
   --surface-deep:var(--water-1000);

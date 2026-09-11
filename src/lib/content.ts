@@ -89,23 +89,23 @@ export const capabilities = [
 
 export const process = [
   {
-    step: "01 — Discover",
+    step: "01 Discover",
     items: ["Goals", "Product research", "User research", "Early concepts"],
   },
   {
-    step: "02 — Design",
+    step: "02 Design",
     items: ["Information architecture", "Interfaces", "Flows", "Prototypes"],
   },
   {
-    step: "03 — Build",
+    step: "03 Build",
     items: ["Development", "Integration", "Production code", "Testing"],
   },
   {
-    step: "04 — Launch",
+    step: "04 Launch",
     items: ["Deployment", "QA", "Performance", "Production checks"],
   },
   {
-    step: "05 — Evolve",
+    step: "05 Evolve",
     items: ["Feedback", "Analysis", "Iteration", "Improvement"],
   },
 ] as const;
@@ -183,7 +183,7 @@ export const skills = [
 ] as const;
 
 export const about = {
-  eyebrow: "About — CO",
+  eyebrow: "About CO",
   title: "Designer. Engineer. Product thinker.",
   intro:
     "I work at the intersection of design, engineering and product, taking complicated problems and turning them into digital systems that are useful, understandable and durable.",
@@ -243,7 +243,7 @@ export const cases: readonly CaseStudy[] = [
     name: "BudgetView",
     industry: "Fintech",
     status: "In development",
-    statusNote: "TODO — set to LIVE PRODUCT once deployed",
+    statusNote: "TODO: set to LIVE PRODUCT once deployed",
     year: "2025",
     role: "Design Engineer / Product Engineer",
     discipline: "Product Engineering",
@@ -255,7 +255,7 @@ export const cases: readonly CaseStudy[] = [
     overview:
       "BudgetView is a personal financial planning product. It reads activity from multiple accounts, separates committed money from discretionary money, and resolves the month into one number a person can actually act on.",
     problem:
-      "Most budgeting tools report the past. They categorise transactions after the money has already left, then show a chart of it. But a month is not a list of transactions — it is a set of commitments that have already claimed part of the balance. The number people need is not what they spent last month; it is what is genuinely safe to spend for the rest of this one.",
+      "Most budgeting tools report the past. They categorise transactions after the money has already left, then show a chart of it. But a month is not a list of transactions. It is a set of commitments that have already claimed part of the balance. The number people need is not what they spent last month; it is what is genuinely safe to spend for the rest of this one.",
     flowLabel: "The reduction",
     flow: ["Money in", "Bills", "Subscriptions", "Budget", "Safe to spend"],
     approach:
@@ -271,7 +271,7 @@ export const cases: readonly CaseStudy[] = [
       },
       {
         t: "Explain, don’t just classify",
-        d: "Where the system infers something — a recurring charge, a merchant match — the interface says why, and the inference stays editable.",
+        d: "Where the system infers something, such as a recurring charge or a merchant match, the interface says why, and the inference stays editable.",
       },
     ],
     engineering:
@@ -283,7 +283,7 @@ export const cases: readonly CaseStudy[] = [
       ["Assist", "LLM · normalisation, grouping"],
     ],
     outcome:
-      "TODO — replace with real outcome once the product has shipped and there is measured evidence. No metrics are claimed here.",
+      "TODO: replace with real outcome once the product has shipped and there is measured evidence. No metrics are claimed here.",
     reflection:
       "The hardest part was restraint. Every additional chart made the month feel more analysed and less decided. Removing views improved the product more than adding them did.",
   },
@@ -293,7 +293,7 @@ export const cases: readonly CaseStudy[] = [
     name: "SiteResolve",
     industry: "Construction Tech",
     status: "In development",
-    statusNote: "TODO — confirm current status",
+    statusNote: "TODO: confirm current status",
     year: "2025",
     role: "Design Engineer / Product Engineer",
     discipline: "Product Engineering",
@@ -333,7 +333,7 @@ export const cases: readonly CaseStudy[] = [
       ["Assist", "LLM · defect drafting"],
     ],
     outcome:
-      "TODO — replace with real deployment detail and any measured outcome. No metrics or client names are claimed here.",
+      "TODO: replace with real deployment detail and any measured outcome. No metrics or client names are claimed here.",
     reflection:
       "Traceability sounds like an admin feature until you watch someone try to prove a defect was fixed. Designing the audit trail as the primary object, rather than a log behind the product, changed the whole information architecture.",
   },
@@ -343,7 +343,7 @@ export const cases: readonly CaseStudy[] = [
     name: "ReferralView",
     industry: "Healthtech",
     status: "In development",
-    statusNote: "TODO — confirm current status",
+    statusNote: "TODO: confirm current status",
     year: "2025",
     role: "Product Designer / Design Engineer",
     discipline: "Product Design",
@@ -355,7 +355,7 @@ export const cases: readonly CaseStudy[] = [
     overview:
       "ReferralView is a case-tracking interface for referral pathways. Instead of a status field and a document store, each case is presented as a chronological record: what arrived, what was reviewed, what was scheduled, what changed and what is owed next.",
     problem:
-      "A referral’s status is rarely the useful question. Teams need to know how a case got where it is and what is currently blocking it. That history usually exists — in letters, notes, attachments and system events — but it is scattered, so answering a simple question takes a phone call.",
+      "A referral’s status is rarely the useful question. Teams need to know how a case got where it is and what is currently blocking it. That history usually exists in letters, notes, attachments and system events, but it is scattered, so answering a simple question takes a phone call.",
     flowLabel: "The case timeline",
     flow: [
       "Referral received",
@@ -390,7 +390,7 @@ export const cases: readonly CaseStudy[] = [
       ["Assist", "LLM · correspondence summary"],
     ],
     outcome:
-      "TODO — replace with real pilot detail and any measured outcome. No metrics, clients or testimonials are claimed here.",
+      "TODO: replace with real pilot detail and any measured outcome. No metrics, clients or testimonials are claimed here.",
     reflection:
       "Designing this made the shape of the whole portfolio clearer: the work is usually not adding capability, it is making an existing sequence of events readable in one place.",
   },

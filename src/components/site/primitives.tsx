@@ -77,7 +77,7 @@ export function MediaPlaceholder({
   return (
     <div
       role="img"
-      aria-label={`${label} — artwork pending`}
+      aria-label={`${label}, artwork pending`}
       style={{ aspectRatio: ratio }}
       className={cn(
         "relative w-full overflow-hidden rounded-md bg-surface-sunken shadow-[inset_0_0_0_1px_var(--border-hairline)]",

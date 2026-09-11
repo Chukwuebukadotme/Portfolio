@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const study = caseBySlug(slug);
   if (!study) return {};
   return {
-    title: `${study.name} — ${study.industry}`,
+    title: `${study.name}, ${study.industry}`,
     description: study.summary,
     openGraph: { title: study.name, description: study.summary },
   };
@@ -112,7 +112,7 @@ export default async function CaseStudyPage({ params }: Params) {
       <Section>
         <Container>
           <MediaPlaceholder
-            label={`${study.name} — primary screen`}
+            label={`${study.name} primary screen`}
             ratio="16 / 9"
           />
         </Container>
@@ -214,7 +214,7 @@ export default async function CaseStudyPage({ params }: Params) {
       <Section>
         <Container>
           <MediaPlaceholder
-            label={`${study.name} — detail view`}
+            label={`${study.name} detail view`}
             ratio="16 / 10"
           />
         </Container>

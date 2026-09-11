@@ -101,7 +101,7 @@ export default function HomePage() {
         <Container>
           <Reveal className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <Eyebrow>Selected work — 01 / 03</Eyebrow>
+              <Eyebrow>Selected work 01 / 03</Eyebrow>
               <h2 className="mt-3 max-w-[var(--measure-large)] text-h2 font-bold text-text-primary">
                 Designed with intent.
                 <br />
@@ -171,7 +171,7 @@ export default function HomePage() {
                 {/* TODO — replace with a product animation once real footage
                     exists. The previous build used a drag-drop <video-slot>,
                     which stored footage per-visitor and shipped nothing. */}
-                <MediaPlaceholder label={`${c.name} — preview`} />
+                <MediaPlaceholder label={`${c.name} preview`} />
               </Reveal>
             ))}
           </div>
@@ -230,7 +230,7 @@ export default function HomePage() {
       <Section>
         <Container>
           <Reveal>
-            <Eyebrow>Process — 01 / 05</Eyebrow>
+            <Eyebrow>Process 01 / 05</Eyebrow>
             <h2 className="mt-3 text-h3 font-bold text-text-primary">
               Understand. Shape. Build. Launch. Learn.
             </h2>
@@ -337,7 +337,7 @@ export default function HomePage() {
               </p>
             </div>
             <div>
-              <Eyebrow>About — CO</Eyebrow>
+              <Eyebrow>About CO</Eyebrow>
               <h2 className="mt-3 text-h4 font-bold text-text-primary">
                 Different disciplines.
                 <br />

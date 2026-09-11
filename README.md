@@ -153,11 +153,19 @@ strength.
 ## Divergences from the bound design system
 
 The token files in `src/styles/tokens` are copied from `design/_ds` verbatim,
-with one deliberate exception, marked in place with a comment: the dark-mode
-`--glass-rim-*` values. The source ships cyan rims at 55% alpha, which read as a
-blue outline drawn around every glass surface rather than as light catching an
-edge. They are softened to white at low alpha. Re-importing the design system
-will overwrite this.
+with two deliberate exceptions. Re-importing the design system will overwrite
+both.
+
+**Pure black is not used.** `--n-darkest` and `--surface-sunken` are `#0A0F14`
+rather than `#000000`. `--n-darkest` is load-bearing: it drives light-mode body
+text, dark-mode inverse text, strong borders and text selection, so this softens
+type across the whole site rather than changing one swatch. Shadows keep their
+`rgba(0,0,0,…)` values, since a shadow is absence of light rather than a colour.
+
+**The dark-mode glass rims are white, not cyan.** The source ships
+`--glass-rim-*` as cyan at 55% alpha. The source ships cyan rims at 55% alpha, which read as a
+That reads as a blue outline drawn around every glass surface rather than as
+light catching an edge, so it is softened to white at low alpha.
 
 ## Routing
 
@@ -170,14 +178,22 @@ into the equivalent path, once, on arrival.
 
 ## The contact form
 
-The form validates with Zod on the client and again in the server action, keeps a
-honeypot field, and surfaces field-level errors. Delivery is the one piece left
-open: `deliver()` in `src/app/contact/actions.ts` logs the enquiry until a
-provider is configured.
+Validated with Zod on the client and again in the server action, with a honeypot
+field and field-level errors. On success two mails go out through Resend:
 
-To send real email: `npm i resend`, set `RESEND_API_KEY`, verify a sending
-domain, and complete `deliver()` — the Resend call is written out in a comment
-there. Everything around it is already wired.
+- **The enquiry**, to `CONTACT_TO`, with `replyTo` set to the sender, so replying
+  from the inbox goes straight back to them.
+- **A confirmation**, to whoever submitted it, echoing back what they wrote.
+
+The two are not treated as equally important. A failed notification would lose
+the enquiry, so it surfaces an error asking the person to email directly. A
+failed confirmation does not, since the enquiry is already delivered, so it is
+logged and the submission still reports success rather than telling someone
+their message did not arrive when it did.
+
+With no `RESEND_API_KEY` set, the action logs the enquiry instead of sending, so
+local development works without credentials. Copy `.env.example` to `.env.local`
+to configure it; the bodies live in `src/app/contact/emails.ts`.
 
 ## Accessibility and resilience
 
