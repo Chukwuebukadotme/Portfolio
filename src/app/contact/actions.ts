@@ -115,7 +115,7 @@ export async function submitContact(
     console.error("[contact] delivery failed", error);
     return {
       status: "error",
-      message: `Something went wrong sending that. Email ${site.email} directly and it will reach me.`,
+      message: `Something went wrong sending that. Email ${site.contactEmail} directly and it will reach me.`,
     };
   }
 

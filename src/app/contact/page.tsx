@@ -41,7 +41,7 @@ export default function ContactPage() {
                   </a>
                 </Button>
                 <Button asChild variant="outline" size="sm">
-                  <a href={`mailto:${site.email}`}>Email</a>
+                  <a href={`mailto:${site.contactEmail}`}>Email</a>
                 </Button>
                 <Button asChild variant="outline" size="sm">
                   <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
@@ -87,7 +87,7 @@ export default function ContactPage() {
                 <div>
                   <dt className="ds-eyebrow">Email</dt>
                   <dd className="mt-1">
-                    <a href={`mailto:${site.email}`}>{site.email}</a>
+                    <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
                   </dd>
                 </div>
                 <div>

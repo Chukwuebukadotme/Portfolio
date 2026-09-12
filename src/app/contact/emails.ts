@@ -87,7 +87,7 @@ export function confirmation(input: ContactInput) {
     "Replies to this email reach me directly, so feel free to just hit reply.",
     "",
     "Chukwuebuka Onyemelukwe",
-    site.email,
+    site.contactEmail,
   ].join("\n");
 
   const html = shell(

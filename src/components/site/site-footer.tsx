@@ -66,7 +66,7 @@ export function SiteFooter() {
               Let&rsquo;s Connect
             </h2>
             <a
-              href={`mailto:${site.email}`}
+              href={`mailto:${site.contactEmail}`}
               className="
                 text-medium text-[var(--footer-accent)] underline
                 decoration-[var(--footer-accent)]/45 underline-offset-4
@@ -74,7 +74,7 @@ export function SiteFooter() {
                 hover:decoration-[var(--footer-accent)] sm:text-large
               "
             >
-              {site.email}
+              {site.contactEmail}
               <Arrow />
             </a>
 
