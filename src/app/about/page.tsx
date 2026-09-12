@@ -49,7 +49,7 @@ export default function AboutPage() {
             <h2 className="text-h4 font-bold text-text-primary">
               {about.questionLead}
             </h2>
-            <p className="mt-3 text-h3 font-bold text-text-accent">
+            <p className="mt-3 text-h3 font-bold text-gradient-accent">
               {about.question}
             </p>
             <p className="mt-6 text-medium text-text-secondary">

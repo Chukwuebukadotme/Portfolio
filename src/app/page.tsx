@@ -343,7 +343,7 @@ export default function HomePage() {
                 <br />
                 Same question.
               </h2>
-              <p className="mt-3 text-large text-text-accent">
+              <p className="mt-3 text-large text-gradient-accent">
                 {about.question}
               </p>
               <p className="mt-4 text-medium text-text-secondary">

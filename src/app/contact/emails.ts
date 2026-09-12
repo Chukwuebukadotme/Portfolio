@@ -84,6 +84,8 @@ export function confirmation(input: ContactInput) {
     "Message:",
     input.message,
     "",
+    "Replies to this email reach me directly, so feel free to just hit reply.",
+    "",
     "Chukwuebuka Onyemelukwe",
     site.email,
   ].join("\n");
@@ -101,7 +103,8 @@ ${rows
   .join("")}
 </table>
 <p style="margin:22px 0 6px;color:#66798a;font-size:14px;">Message</p>
-<p style="margin:0;font-size:15px;line-height:1.6;white-space:pre-wrap;">${esc(input.message)}</p>`,
+<p style="margin:0;font-size:15px;line-height:1.6;white-space:pre-wrap;">${esc(input.message)}</p>
+<p style="margin:22px 0 0;font-size:13px;color:#66798a;">Replies to this email reach me directly, so feel free to just hit reply.</p>`,
   );
 
   return {

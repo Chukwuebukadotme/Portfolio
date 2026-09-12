@@ -30,7 +30,7 @@ export function RotatingWord() {
       <span
         key={i}
         aria-hidden
-        className="text-text-accent motion-safe:animate-[ribbon-word_var(--dur-slow)_var(--ease-glass)]"
+        className="text-gradient-accent motion-safe:animate-[ribbon-word_var(--dur-slow)_var(--ease-glass)]"
       >
         {words[i]}
       </span>

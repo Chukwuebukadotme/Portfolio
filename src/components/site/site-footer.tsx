@@ -63,7 +63,7 @@ export function SiteFooter() {
         <div className="relative z-10 mx-auto flex max-w-[var(--container-large)] flex-col gap-10 text-center md:flex-row md:items-start md:justify-between md:gap-8 md:text-left">
           <div className="flex flex-col items-center gap-4 md:items-start">
             <h2 className="text-h2 font-light tracking-[var(--track-heading)] text-[var(--footer-text)]">
-              Contact
+              Let&rsquo;s Connect
             </h2>
             <a
               href={`mailto:${site.email}`}
@@ -119,25 +119,41 @@ export function SiteFooter() {
           </div>
         </div>
 
-        {/* The name, set large enough that the card has to clip it. Pushed
-            down so only the upper two thirds show, which is what stops it
-            reading as a heading and lets it sit as a watermark. */}
+        {/* The name, spanning the card and cropped along the bottom edge.
+            Drawn as SVG text with an explicit textLength so it fills the width
+            exactly at any viewport, rather than depending on a font size that
+            happens to fit one screen and overflows the next. The wrapper's
+            aspect ratio is shorter than the artwork, so the crop comes from
+            overflow rather than from guessing pixel heights. */}
         <div
           aria-hidden
           className="pointer-events-none relative z-0 mt-8 select-none overflow-hidden"
-          style={{ height: "clamp(64px, 13vw, 190px)" }}
+          style={{ aspectRatio: "1000 / 132" }}
         >
-          <span
-            className="
-              absolute left-0 top-0 block
-              whitespace-nowrap font-extrabold leading-[0.8]
-              tracking-[-0.05em] text-[var(--footer-mark)]
-            "
-            style={{ fontSize: "clamp(76px, 16vw, 240px)" }}
+          <svg
+            viewBox="0 0 1000 200"
+            preserveAspectRatio="xMidYMin meet"
+            className="block w-full"
           >
-            chukwuebuka
-          </span>
+            <text
+              x="500"
+              y="168"
+              textAnchor="middle"
+              textLength="1000"
+              lengthAdjust="spacingAndGlyphs"
+              fill="var(--footer-mark)"
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "176px",
+                fontWeight: 800,
+                letterSpacing: "-0.03em",
+              }}
+            >
+              Chukwuebuka
+            </text>
+          </svg>
         </div>
+
       </div>
     </footer>
   );

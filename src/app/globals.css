@@ -252,6 +252,24 @@
     opacity: 0.045;
     filter: invert(1);
   }
+
+  /* Signature spectrum. Reserved for the hero and major project moments,
+     not every accent instance — small mono eyebrows and one-glyph arrows
+     stay solid, since a gradient reads as noise at that size. Same three
+     stops in both themes: the point is consistency, not contrast-matching
+     against the surface. */
+  .text-gradient-accent {
+    color: var(--text-accent);
+  }
+  @supports (background-clip: text) or (-webkit-background-clip: text) {
+    .text-gradient-accent {
+      background-image: linear-gradient(90deg, #22d3ee 0%, #38bdf8 50%, #6366f1 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+  }
 }
 
 /* Scroll reveal. Elements start displaced and settle once observed;
