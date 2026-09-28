@@ -4,10 +4,10 @@ import { HeroNetwork } from "@/components/site/hero-network";
 import {
   Container,
   Eyebrow,
-  MediaPlaceholder,
   Section,
   Tag,
 } from "@/components/site/primitives";
+import { ProjectCard } from "@/components/site/project-card";
 import { Reveal } from "@/components/site/reveal";
 import { RotatingWord } from "@/components/site/rotating-word";
 import { Button } from "@/components/ui/button";
@@ -15,18 +15,15 @@ import { cn } from "@/lib/utils";
 import {
   about,
   capabilities,
-  cases,
   disciplines,
-  homeCaseOrder,
   process,
   site,
   skills,
   stats,
 } from "@/lib/content";
+import { featuredProjectCount, projects } from "@/lib/projects";
 
-const ordered = homeCaseOrder
-  .map((slug) => cases.find((c) => c.slug === slug))
-  .filter((c): c is NonNullable<typeof c> => Boolean(c));
+const featured = projects.slice(0, featuredProjectCount);
 
 export default function HomePage() {
   return (
@@ -101,7 +98,7 @@ export default function HomePage() {
         <Container>
           <Reveal className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <Eyebrow>Selected work 01 / 03</Eyebrow>
+              <Eyebrow>Selected work</Eyebrow>
               <h2 className="mt-3 max-w-[var(--measure-large)] text-h2 font-bold text-text-primary">
                 Designed with intent.
                 <br />
@@ -109,72 +106,35 @@ export default function HomePage() {
               </h2>
             </div>
             <p className="max-w-[var(--measure-small)] text-medium text-text-secondary">
-              Selected digital products across financial technology,
-              construction technology and healthcare.
+              A collection of digital products, design systems, machine
+              learning systems and engineering projects spanning product
+              design, frontend development, artificial intelligence and data.
             </p>
           </Reveal>
 
-          <div className="mt-16 flex flex-col gap-20">
-            {ordered.map((c, i) => (
-              <Reveal
-                key={c.slug}
-                index={i}
-                as="article"
-                className="grid items-center gap-10 md:grid-cols-2"
-              >
-                <div className={i % 2 === 1 ? "md:order-2" : undefined}>
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span className="font-mono text-tiny tracking-[var(--track-meta)] text-text-accent">
-                      {c.number}
-                    </span>
-                    <span className="font-mono text-tiny tracking-[var(--track-meta)] text-text-tertiary">
-                      {c.year}
-                    </span>
-                    <span className="font-mono text-tiny tracking-[var(--track-meta)] text-text-tertiary">
-                      {c.industry}
-                    </span>
-                  </div>
-                  <h3 className="mt-3 text-h4 font-bold text-text-primary">
-                    {c.name}
-                  </h3>
-                  <p className="mt-3 text-large text-text-primary">
-                    {c.headline}
-                  </p>
-                  <p className="mt-3 text-medium text-text-secondary">
-                    {c.summary}
-                  </p>
-
-                  <dl className="mt-6 flex flex-col gap-2 text-small">
-                    <div className="flex flex-wrap gap-2">
-                      <dt className="ds-eyebrow">Role</dt>
-                      <dd className="text-text-secondary">{c.role}</dd>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      <dt className="ds-eyebrow">Stack</dt>
-                      <dd className="text-text-secondary">
-                        {c.tech.join(" · ")}
-                      </dd>
-                    </div>
-                  </dl>
-
-                  <Link
-                    href={`/work/${c.slug}`}
-                    className="mt-6 inline-flex items-center gap-1.5 text-medium font-medium text-text-primary no-underline transition-colors duration-[var(--dur-fast)] ease-[var(--ease-glass)] hover:text-text-accent"
-                  >
-                    View case study{" "}
-                    <span aria-hidden className="text-text-accent">
-                      →
-                    </span>
-                  </Link>
-                </div>
-
-                {/* TODO — replace with a product animation once real footage
-                    exists. The previous build used a drag-drop <video-slot>,
-                    which stored footage per-visitor and shipped nothing. */}
-                <MediaPlaceholder label={`${c.name} preview`} />
+          <ul className="project-list mt-16 flex flex-col gap-20 md:gap-28">
+            {featured.map((p, i) => (
+              <Reveal key={p.slug} index={i} as="li">
+                <ProjectCard project={p} />
               </Reveal>
             ))}
-          </div>
+          </ul>
+
+          <Reveal className="mt-20 flex flex-col gap-4 border-t border-border-hairline pt-8 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-medium text-text-secondary">
+              {projects.length - featured.length} more across product design,
+              machine learning, neuromorphic computing and data engineering.
+            </p>
+            <Link
+              href="/work"
+              className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap text-medium font-medium text-text-primary no-underline transition-colors duration-[var(--dur-fast)] ease-[var(--ease-glass)] hover:text-text-accent"
+            >
+              View all {projects.length} projects
+              <span aria-hidden className="text-text-accent">
+                →
+              </span>
+            </Link>
+          </Reveal>
         </Container>
       </Section>
 

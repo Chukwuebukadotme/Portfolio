@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/work/index", destination: "/work", permanent: true },
+      // Retired case studies; links to them still exist in CVs and messages.
+      { source: "/work/budgetview", destination: "/work", permanent: true },
+      { source: "/work/referralview", destination: "/work", permanent: true },
     ];
   },
 };

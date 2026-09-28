@@ -258,6 +258,10 @@
      stay solid, since a gradient reads as noise at that size. Same three
      stops in both themes: the point is consistency, not contrast-matching
      against the surface. */
+  :root {
+    --signature-gradient: linear-gradient(90deg, #22d3ee 0%, #38bdf8 50%, #6366f1 100%);
+  }
+
   .text-gradient-accent {
     color: var(--text-accent);
   }
@@ -289,6 +293,27 @@
     transition:
       opacity var(--dur-ambient) var(--ease-glass) var(--reveal-delay, 0ms),
       transform var(--dur-ambient) var(--ease-glass) var(--reveal-delay, 0ms);
+  }
+}
+
+/* Selected Work rows alternate text and artwork by visible position. */
+@media (min-width: 48rem) {
+  .project-list > :nth-child(even) [data-project-text] {
+    order: 2;
+  }
+}
+
+/* Chart bars in project visuals grow once their card is revealed. Only
+   collapsed while a revealing ancestor is still pending, so a visual outside a
+   Reveal, or with scripting off, always renders at full length. */
+@media (prefers-reduced-motion: no-preference) {
+  .viz-grow {
+    transform-origin: left center;
+    transition: transform 900ms var(--ease-glass)
+      calc(var(--reveal-delay, 0ms) + var(--i, 0) * 70ms + 150ms);
+  }
+  .js [data-reveal]:not(.is-in) .viz-grow {
+    transform: scaleX(0);
   }
 }
 
