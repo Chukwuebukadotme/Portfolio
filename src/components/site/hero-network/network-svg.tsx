@@ -11,6 +11,9 @@ import { VIEW, network, nodeAt, palette } from "./network";
  */
 export function NetworkSvg({ id }: { id: string }) {
   const { nodes, edges, arcs } = network;
+  const [node, hub, edge, arc] = [palette.node, palette.hub, palette.edge, palette.arc].map(
+    (token) => `var(${token})`,
+  );
   const pts = nodes.map((n) => nodeAt(n, 0));
 
   const X = (v: number) => v * VIEW.w;
@@ -18,18 +21,7 @@ export function NetworkSvg({ id }: { id: string }) {
 
   return (
     <>
-      {/* One source for the palette: the values come from network.ts, and the
-          canvas reads the same constants. */}
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-[data-net-scope]{--net-node:${palette.light.node};--net-hub:${palette.light.hub};--net-edge:${palette.light.edge};--net-arc:${palette.light.arc};--net-bg-a:${palette.light.bgA};--net-bg-b:${palette.light.bgB};}
-:root[data-theme="dark"] [data-net-scope],.dark [data-net-scope]{--net-node:${palette.dark.node};--net-hub:${palette.dark.hub};--net-edge:${palette.dark.edge};--net-arc:${palette.dark.arc};--net-bg-a:${palette.dark.bgA};--net-bg-b:${palette.dark.bgB};}
-`,
-        }}
-      />
       <svg
-        data-net-scope
         aria-hidden
         viewBox={`0 0 ${VIEW.w} ${VIEW.h}`}
         preserveAspectRatio="xMidYMid slice"
@@ -37,13 +29,13 @@ export function NetworkSvg({ id }: { id: string }) {
       >
         <defs>
           <radialGradient id={`${id}-glow`}>
-            <stop offset="0%" stopColor="var(--net-hub)" stopOpacity="0.55" />
-            <stop offset="45%" stopColor="var(--net-hub)" stopOpacity="0.16" />
-            <stop offset="100%" stopColor="var(--net-hub)" stopOpacity="0" />
+            <stop offset="0%" stopColor={hub} stopOpacity="0.32" />
+            <stop offset="45%" stopColor={hub} stopOpacity="0.1" />
+            <stop offset="100%" stopColor={hub} stopOpacity="0" />
           </radialGradient>
         </defs>
 
-        <g stroke="var(--net-arc)" fill="none">
+        <g stroke={arc} fill="none">
           {arcs.map((a, i) => (
             <circle
               key={i}
@@ -57,7 +49,7 @@ export function NetworkSvg({ id }: { id: string }) {
         </g>
 
         <g data-net-live>
-          <g stroke="var(--net-edge)">
+          <g stroke={edge}>
             {edges.map((e, i) => (
               <line
                 key={i}
@@ -90,7 +82,7 @@ export function NetworkSvg({ id }: { id: string }) {
                 cx={X(pts[i].x)}
                 cy={Y(pts[i].y)}
                 r={n.r}
-                fill={n.hub ? "var(--net-hub)" : "var(--net-node)"}
+                fill={n.hub ? hub : node}
                 opacity={n.hub ? 1 : 0.8}
               />
             ))}

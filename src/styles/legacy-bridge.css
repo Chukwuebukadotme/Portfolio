@@ -1,0 +1,218 @@
+/* Transitional bridge to Cobalt Light.
+ *
+ * Pages not yet rebuilt still use the previous system's names (text-h1,
+ * text-text-tertiary, --glass-body, ds-eyebrow …). Rather than leave them on
+ * the old palette while the rebuild lands route by route, every old name here
+ * resolves to a Cobalt Light token. Nothing new should reference these names.
+ * Delete this file, ds.css and styles/tokens once no component does.
+ *
+ * Everything sits in the components layer: above ds.css (base), below
+ * utilities, so a utility on the same element still wins.
+ */
+
+@layer components {
+:root {
+  color-scheme: light;
+
+  --surface-page: var(--cl-color-bg-canvas);
+  --surface-raised: var(--cl-color-bg-surface);
+  --surface-sunken: var(--cl-color-bg-subtle);
+  --surface-recessed: var(--cl-color-bg-subtle);
+  --surface-inverse: var(--cl-color-bg-inverse);
+  --surface-deep: var(--cl-color-bg-inverse);
+  --surface-field: none;
+
+  --text-primary: var(--cl-color-text-primary);
+  --text-secondary: var(--cl-color-text-secondary);
+  --text-tertiary: var(--cl-color-text-muted);
+  --text-disabled: var(--cl-color-text-muted);
+  --text-inverse: var(--cl-color-text-inverse);
+  --text-accent: var(--cl-color-brand-default);
+  --text-link: var(--cl-color-brand-default);
+  --text-link-hover: var(--cl-color-brand-hover);
+  --text-danger: var(--cl-color-status-error);
+
+  --border-strong: var(--cl-color-text-primary);
+  --border-primary: var(--cl-color-text-primary);
+  --border-hairline: var(--cl-color-border-default);
+  --border-subtle: var(--cl-color-border-subtle);
+  --border-accent: var(--cl-color-brand-default);
+
+  --accent-signal: var(--cl-color-brand-default);
+  --accent-ice: var(--cl-color-brand-soft);
+  --accent-cobalt: var(--cl-color-brand-default);
+  --signature-gradient: var(--cl-color-brand-default);
+
+  --state-hover: var(--cl-color-bg-subtle);
+  --state-press: var(--cl-color-brand-soft);
+  --state-selected: var(--cl-color-brand-soft);
+  --focus-ring: var(--cl-color-focus);
+  --focus-ring-offset: var(--cl-control-focus-offset);
+
+  --font-display: var(--cl-font-display);
+  --font-text: var(--cl-font-body);
+  --font-mono: var(--cl-font-code);
+
+  --size-h1: var(--cl-type-page-size);
+  --size-h2: var(--cl-type-section-size);
+  --size-h3: var(--cl-type-project-size);
+  --size-h4: var(--cl-type-project-size);
+  --size-h5: var(--cl-type-subheading-size);
+  --size-h6: var(--cl-type-subheading-size);
+  --size-text-large: var(--cl-type-lead-size);
+  --size-text-medium: var(--cl-type-body-size);
+  --size-text-regular: var(--cl-type-body-size);
+  --size-text-small: var(--cl-type-caption-size);
+  --size-text-tiny: var(--cl-type-eyebrow-size);
+  --leading-h1: var(--cl-type-page-line-height);
+  --leading-h2: var(--cl-type-section-line-height);
+  --leading-h3: var(--cl-type-project-line-height);
+  --leading-h4: var(--cl-type-project-line-height);
+  --leading-h5: var(--cl-type-subheading-line-height);
+  --leading-h6: var(--cl-type-subheading-line-height);
+  --leading-body: var(--cl-type-body-line-height);
+  --track-display: var(--cl-type-page-tracking);
+  --track-heading: var(--cl-type-section-tracking);
+  --track-subhead: var(--cl-type-subheading-tracking);
+  --track-meta: 0em;
+  --track-eyebrow: var(--cl-type-eyebrow-tracking);
+
+  --page-margin: var(--cl-gutter);
+  --container-large: var(--cl-layout-content-max);
+  --measure-large: var(--cl-layout-prose-max);
+  --block-gap: var(--cl-section-space);
+  --radius-medium: var(--cl-radius-media);
+  --radius-large: var(--cl-radius-card);
+
+  --dur-fast: var(--cl-motion-duration-micro);
+  --dur-base: var(--cl-motion-duration-standard);
+  --dur-slow: var(--cl-motion-duration-enter);
+  --dur-ambient: var(--cl-motion-duration-layout);
+  --dur-scene: var(--cl-motion-duration-hero);
+  --ease-glass: var(--cl-motion-ease-standard);
+
+  /* The glass surface becomes the spec's floating-header surface. */
+  --glass-body: var(--cl-color-header);
+  --glass-blur: 16px;
+  --glass-saturate: 100%;
+  --glass-brightness: 1;
+  --glass-caustic: none;
+  --glass-specular: none;
+  --glass-rim-top: transparent;
+  --glass-rim-bottom: transparent;
+  --glass-rim-side: transparent;
+  --glass-edge: var(--cl-color-border-default);
+  --glass-shadow: var(--cl-shadow-subtle);
+  --glass-inner: inset 0 0 0 1px var(--cl-color-border-default);
+
+  /* The footer plate takes the inverse palette. */
+  --footer-bg: var(--cl-color-bg-inverse);
+  --footer-text: var(--cl-color-text-inverse);
+  --footer-muted: var(--cl-color-text-inverse-secondary);
+  --footer-accent: var(--cl-color-brand-inverse);
+  --footer-line: rgba(255, 255, 255, 0.08);
+  --footer-screw: transparent;
+  --footer-mark: rgba(255, 255, 255, 0.04);
+
+  /* shadcn's contract, for the select until it becomes a native control. */
+  --background: var(--cl-color-bg-canvas);
+  --foreground: var(--cl-color-text-primary);
+  --popover: var(--cl-color-bg-surface);
+  --popover-foreground: var(--cl-color-text-primary);
+  --accent: var(--cl-color-bg-subtle);
+  --accent-foreground: var(--cl-color-text-primary);
+  --muted-foreground: var(--cl-color-text-muted);
+  --destructive: var(--cl-color-status-error);
+  --input: var(--cl-color-border-control);
+  --ring: var(--cl-color-focus);
+}
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-surface-page: var(--surface-page);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-surface-recessed: var(--surface-recessed);
+  --color-surface-inverse: var(--surface-inverse);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-text-disabled: var(--text-disabled);
+  --color-text-accent: var(--text-accent);
+  --color-text-link: var(--text-link);
+  --color-border-hairline: var(--border-hairline);
+  --color-border-strong: var(--border-strong);
+  --color-border-accent: var(--border-accent);
+  --color-state-hover: var(--state-hover);
+  --color-state-press: var(--state-press);
+  --color-state-selected: var(--state-selected);
+
+  --text-h1: var(--size-h1);
+  --text-h1--line-height: var(--leading-h1);
+  --text-h1--letter-spacing: var(--track-display);
+  --text-h2: var(--size-h2);
+  --text-h2--line-height: var(--leading-h2);
+  --text-h2--letter-spacing: var(--track-heading);
+  --text-h3: var(--size-h3);
+  --text-h3--line-height: var(--leading-h3);
+  --text-h3--letter-spacing: var(--track-heading);
+  --text-h4: var(--size-h4);
+  --text-h4--line-height: var(--leading-h4);
+  --text-h4--letter-spacing: var(--track-subhead);
+  --text-h5: var(--size-h5);
+  --text-h5--line-height: var(--leading-h5);
+  --text-h5--letter-spacing: var(--track-subhead);
+  --text-h6: var(--size-h6);
+  --text-h6--line-height: var(--leading-h6);
+  --text-h6--letter-spacing: var(--track-subhead);
+  --text-large: var(--size-text-large);
+  --text-large--line-height: var(--cl-type-lead-line-height);
+  --text-medium: var(--size-text-medium);
+  --text-medium--line-height: var(--leading-body);
+  --text-regular: var(--size-text-regular);
+  --text-regular--line-height: var(--leading-body);
+  --text-small: var(--size-text-small);
+  --text-small--line-height: var(--cl-type-caption-line-height);
+  --text-tiny: var(--size-text-tiny);
+  --text-tiny--line-height: var(--cl-type-eyebrow-line-height);
+
+  --radius-sm: var(--cl-radius-control);
+  --radius-md: var(--cl-radius-media);
+  --radius-lg: var(--cl-radius-card);
+  --shadow-small: var(--cl-shadow-subtle);
+  --shadow-medium: var(--cl-shadow-raised);
+}
+
+@layer base {
+  :where(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--cl-font-display);
+  }
+}
+
+/* Old component classes, restated in Cobalt terms. */
+@layer components {
+.ds-eyebrow {
+  font-family: var(--cl-font-body);
+  font-size: var(--cl-type-eyebrow-size);
+  font-weight: var(--cl-type-eyebrow-weight);
+  line-height: var(--cl-type-eyebrow-line-height);
+  letter-spacing: var(--cl-type-eyebrow-tracking);
+  text-transform: uppercase;
+  color: var(--cl-color-text-muted);
+}
+.ds-grid-overlay {
+  display: none;
+}
+.text-gradient-accent {
+  color: var(--cl-color-brand-default);
+}
+}

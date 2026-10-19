@@ -1,20 +1,29 @@
-import * as React from "react"
-import { cn } from "cn"
+import * as React from "react";
+
+import { cn } from "@/lib/utils";
+
+/**
+ * C14. A 44px field with a control-contrast border, 16px text so mobile
+ * browsers do not zoom, and an error state that changes the border alongside
+ * the message rather than relying on colour alone.
+ */
+export const fieldClass = cn(
+  "w-full min-w-0 rounded-field border border-border-control bg-bg-surface px-3 py-2.5 text-[1rem] leading-normal text-text-primary",
+  "transition-colors duration-(--cl-motion-duration-micro) ease-standard",
+  "placeholder:text-text-muted",
+  "disabled:cursor-not-allowed disabled:bg-bg-subtle disabled:text-text-muted",
+  "aria-invalid:border-status-error",
+);
 
 function Input({ className, type, ...props }: React.ComponentProps<"input">) {
   return (
     <input
       type={type}
       data-slot="input"
-      className={cn(
-        "h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none selection:bg-primary selection:text-primary-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm dark:bg-input/30",
-        "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
-        "aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
-        className
-      )}
+      className={cn(fieldClass, "min-h-11", className)}
       {...props}
     />
-  )
+  );
 }
 
-export { Input }
+export { Input };

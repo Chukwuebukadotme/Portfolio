@@ -2,15 +2,33 @@ import { clsx, type ClassValue } from "clsx";
 import { extendTailwindMerge } from "tailwind-merge";
 
 /**
- * tailwind-merge only knows Tailwind's stock scales. The design system's type
- * scale (text-h1 … text-tiny) is not a t-shirt size, so out of the box it was
- * classified as a *colour* and silently dropped whenever a size and a colour
- * were combined — `cn("text-h3", "text-text-primary")` returned only the
- * colour. Declaring the scale here keeps size and colour in separate groups.
+ * tailwind-merge only knows Tailwind's stock utilities. Cobalt Light's type
+ * roles (cl-type-display … cl-type-code) are custom utilities, so they are
+ * declared as one group: a later role replaces an earlier one, and a role
+ * replaces any separate size, leading, weight or tracking set before it.
+ *
+ * The h1 … tiny scale belongs to the transitional bridge and goes with it.
  */
-const twMerge = extendTailwindMerge({
+const twMerge = extendTailwindMerge<"cl-type">({
   extend: {
     classGroups: {
+      "cl-type": [
+        {
+          "cl-type": [
+            "display",
+            "page",
+            "section",
+            "project",
+            "subheading",
+            "lead",
+            "body",
+            "ui",
+            "caption",
+            "eyebrow",
+            "code",
+          ],
+        },
+      ],
       "font-size": [
         {
           text: [
@@ -28,6 +46,9 @@ const twMerge = extendTailwindMerge({
           ],
         },
       ],
+    },
+    conflictingClassGroups: {
+      "cl-type": ["font-size", "leading", "font-weight", "tracking", "font-family"],
     },
   },
 });

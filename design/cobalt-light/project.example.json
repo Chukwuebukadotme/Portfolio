@@ -1,0 +1,16 @@
+{
+  "slug": "siteresolve",
+  "title": "SiteResolve",
+  "summary": "A defect-management workflow from report to verified resolution.",
+  "disciplines": ["Product Design", "Design Engineering"],
+  "status": "In development",
+  "role": "Design Engineer / Product Engineer",
+  "contributions": ["Product research", "UX/UI", "Engineering"],
+  "published": false,
+  "homeOrder": 2,
+  "links": [],
+  "media": [],
+  "metrics": [],
+  "evidence": [],
+  "sections": [{"id": "overview", "title": "Overview", "body": "Draft example record. Add and verify actual project evidence, media, contribution details and links before publishing."}]
+}

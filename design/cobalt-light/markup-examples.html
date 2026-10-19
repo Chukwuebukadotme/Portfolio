@@ -1,0 +1,28 @@
+<!-- Semantic starting points; load foundations.css and provide verified font assets. -->
+<!-- These examples demonstrate markup only, not a complete interactive component implementation. -->
+<article class="cl-project" aria-labelledby="plugin-title">
+  <div class="cl-project__content cl-stack">
+    <div>
+      <p class="cl-type-eyebrow">Design engineering</p>
+      <h2 id="plugin-title" class="cl-type-project">Make It Responsive</h2>
+      <p>A Figma plugin for adapting an existing frame across screen sizes.</p>
+    </div>
+    <a class="cl-link" href="/work/make-it-responsive">View Make It Responsive case study</a>
+  </div>
+  <figure class="cl-project__media cl-figure">
+    <!-- Insert the actual demonstration recording or verified screenshot here. -->
+    <figcaption>Use a real project asset with an appropriate text alternative.</figcaption>
+  </figure>
+</article>
+
+<div class="cl-field">
+  <label class="cl-label" for="enquiry-email">Email (required)</label>
+  <input class="cl-input" id="enquiry-email" name="email" type="email" autocomplete="email" required aria-describedby="email-help">
+  <p class="cl-help" id="email-help">Use the address where you would like a reply.</p>
+</div>
+
+<div class="cl-row" role="group" aria-label="Filter projects by discipline">
+  <button class="cl-filter" type="button" aria-pressed="true">All projects</button>
+  <button class="cl-filter" type="button" aria-pressed="false">Design Engineering</button>
+</div>
+<!-- Wire filter state, results, URL query and polite result-count announcement together. -->

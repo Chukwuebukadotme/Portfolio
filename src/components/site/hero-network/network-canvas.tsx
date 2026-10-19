@@ -45,7 +45,7 @@ void main() {
      is expressed as a fraction of the quad rather than in pixels. */
   float spread = mix(2.6, 9.0, vHub) + vBoost * 2.2;
   float core = 1.0 - smoothstep(0.0, 2.0 / spread, d);
-  float halo = exp(-d * d * 7.0) * mix(0.0, 0.85, vHub);
+  float halo = exp(-d * d * 7.0) * mix(0.0, 0.5, vHub);
 
   vec3 c = mix(uNode, uHub, max(vHub, vBoost * 0.85));
   float a = clamp(core * mix(0.80, 1.0, max(vHub, vBoost)) + halo, 0.0, 1.0);
@@ -55,11 +55,9 @@ void main() {
 `;
 
 function Network({
-  isDark,
   reduced,
   onFirstFrame,
 }: {
-  isDark: boolean;
   reduced: boolean;
   onFirstFrame: () => void;
 }) {
@@ -76,16 +74,19 @@ function Network({
   const clock = useRef(0);
   const announced = useRef(false);
   const pointer = useRef({ x: 0, y: 0, amt: 0, target: 0 });
-  const mix = useRef(isDark ? 1 : 0);
 
-  const COL = useMemo(
-    () => ({
-      node: [new THREE.Color(palette.light.node), new THREE.Color(palette.dark.node)],
-      hub: [new THREE.Color(palette.light.hub), new THREE.Color(palette.dark.hub)],
-      edge: [new THREE.Color(palette.light.edge), new THREE.Color(palette.dark.edge)],
-    }),
-    [],
-  );
+  /* The palette is Cobalt Light tokens, resolved once from the document so
+     the canvas paints exactly what the SVG beneath it does. */
+  const COL = useMemo(() => {
+    const css = getComputedStyle(document.documentElement);
+    const color = (token: string) =>
+      new THREE.Color(css.getPropertyValue(token).trim());
+    return {
+      node: color(palette.node),
+      hub: color(palette.hub),
+      edge: color(palette.edge),
+    };
+  }, []);
 
   /* Hero space (0..1, y down) into world units, matching how the SVG maps its
      viewBox — so the two renderings sit exactly on top of each other. */
@@ -230,22 +231,7 @@ function Network({
       linkRef.current.geometry.attributes.position.needsUpdate = true;
     if (linkMatRef.current) linkMatRef.current.opacity = 0.62 * p.amt;
 
-    // Theme crossfade — the palette lerps, the layout never changes.
-    const target = isDark ? 1 : 0;
-    if (mix.current !== target) {
-      const step = dt / 0.7;
-      mix.current += Math.sign(target - mix.current) * step;
-      if (Math.abs(target - mix.current) < step) mix.current = target;
-      invalidate();
-    }
-    const m = mix.current;
-    nodeMat.uniforms.uNode.value.copy(COL.node[0]).lerp(COL.node[1], m);
-    nodeMat.uniforms.uHub.value.copy(COL.hub[0]).lerp(COL.hub[1], m);
     nodeMat.uniforms.uScale.value = pxPerViewUnit;
-    if (edgeMatRef.current)
-      edgeMatRef.current.color.copy(COL.edge[0]).lerp(COL.edge[1], m);
-    if (linkMatRef.current)
-      linkMatRef.current.color.copy(COL.hub[0]).lerp(COL.hub[1], m);
 
     if (!announced.current) {
       announced.current = true;
@@ -265,6 +251,7 @@ function Network({
         </bufferGeometry>
         <lineBasicMaterial
           ref={edgeMatRef}
+          color={COL.edge}
           transparent
           opacity={0.42}
           depthWrite={false}
@@ -281,6 +268,7 @@ function Network({
         </bufferGeometry>
         <lineBasicMaterial
           ref={linkMatRef}
+          color={COL.hub}
           transparent
           opacity={0}
           depthWrite={false}
@@ -311,8 +299,8 @@ function Network({
           uniforms={{
             uScale: { value: 1 },
             uOpacity: { value: 1 },
-            uNode: { value: new THREE.Color(palette.light.node) },
-            uHub: { value: new THREE.Color(palette.light.hub) },
+            uNode: { value: COL.node },
+            uHub: { value: COL.hub },
           }}
         />
       </points>
@@ -321,13 +309,11 @@ function Network({
 }
 
 export function NetworkCanvas({
-  isDark,
   reduced,
   visible,
   onFirstFrame,
   style,
 }: {
-  isDark: boolean;
   reduced: boolean;
   visible: boolean;
   onFirstFrame: () => void;
@@ -343,11 +329,7 @@ export function NetworkCanvas({
       camera={{ fov: 45, position: [0, 0, 3], near: 0.1, far: 20 }}
       style={style}
     >
-      <Network
-        isDark={isDark}
-        reduced={reduced}
-        onFirstFrame={onFirstFrame}
-      />
+      <Network reduced={reduced} onFirstFrame={onFirstFrame} />
     </Canvas>
   );
 }

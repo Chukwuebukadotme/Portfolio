@@ -128,7 +128,7 @@ export default function AboutPage() {
                 <Button asChild>
                   <Link href="/contact">Start a conversation</Link>
                 </Button>
-                <Button asChild variant="outline">
+                <Button asChild variant="secondary">
                   <a href={site.resume} target="_blank" rel="noopener">
                     Résumé
                   </a>

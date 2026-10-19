@@ -1,6 +1,5 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import { useEffect, useId, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
@@ -35,8 +34,6 @@ function hasWebGL() {
  * missing, the context is lost, or JavaScript never runs, the SVG simply stays.
  */
 export function HeroNetwork({ className }: { className?: string }) {
-  const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
   const uid = useId().replace(/:/g, "");
 
   const [gl, setGl] = useState(false);
@@ -77,8 +74,7 @@ export function HeroNetwork({ className }: { className?: string }) {
           painting a background, and it is plain CSS — so it is there on the
           very first frame, before any script runs. */}
       <div
-        data-net-scope
-        className="absolute inset-0 bg-[radial-gradient(120%_100%_at_78%_38%,var(--net-bg-b)_0%,var(--net-bg-a)_62%)]"
+        className="absolute inset-0 bg-[radial-gradient(120%_100%_at_78%_38%,var(--cl-color-bg-subtle)_0%,var(--cl-color-bg-canvas)_62%)]"
       />
 
       {/* The static rendering. Its live group hides once the canvas is drawing;
@@ -86,8 +82,8 @@ export function HeroNetwork({ className }: { className?: string }) {
       <div
         className={cn(
           "absolute inset-0 [&_[data-net-live]]:transition-opacity",
-          "[&_[data-net-live]]:duration-[var(--dur-scene)]",
-          "[&_[data-net-live]]:ease-[var(--ease-glass)]",
+          "[&_[data-net-live]]:duration-(--cl-motion-duration-hero)",
+          "[&_[data-net-live]]:ease-standard",
           ready && "[&_[data-net-live]]:opacity-0",
         )}
       >
@@ -96,7 +92,6 @@ export function HeroNetwork({ className }: { className?: string }) {
 
       {gl && mounted ? (
         <NetworkCanvas
-          isDark={isDark}
           reduced={reduced}
           visible={visible}
           onFirstFrame={() => setReady(true)}
@@ -104,7 +99,8 @@ export function HeroNetwork({ className }: { className?: string }) {
             position: "absolute",
             inset: 0,
             opacity: ready ? 1 : 0,
-            transition: "opacity var(--dur-scene) var(--ease-glass)",
+            transition:
+              "opacity var(--cl-motion-duration-hero) var(--cl-motion-ease-standard)",
           }}
         />
       ) : null}

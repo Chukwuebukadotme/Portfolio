@@ -16,7 +16,7 @@ export type NetNode = {
   y: number;
   /** Radius in VIEW units. */
   r: number;
-  /** Hubs are the bright cyan nodes that carry the glow. */
+  /** Hubs are the cobalt nodes that carry the glow. */
   hub: boolean;
   /** Deterministic drift orbit — amplitude, phase and rate. */
   ax: number;
@@ -165,25 +165,13 @@ export function nodeAt(n: NetNode, t: number) {
 }
 
 /**
- * Both renderers read these. Emitted as CSS custom properties for the SVG and
- * used directly by the canvas, so there is one source for the palette.
+ * Both renderers read these Cobalt Light tokens: the SVG as CSS variables, the
+ * canvas by resolving them once from the document, so tokens.json stays the
+ * single source for the hero's colours. Neutral nodes and links, cobalt hubs.
  */
 export const palette = {
-  light: {
-    node: "#8AA6BC",
-    hub: "#12C2E9",
-    edge: "#9DB6C9",
-    arc: "#C3D2DE",
-    /* The hero's own ground. The canvas is transparent, so this is CSS. */
-    bgA: "#FBFCFD",
-    bgB: "#EDF2F6",
-  },
-  dark: {
-    node: "#93BADD",
-    hub: "#22D3EE",
-    edge: "#47709C",
-    arc: "#1E3A5C",
-    bgA: "#060A12",
-    bgB: "#0B1A2E",
-  },
+  node: "--cl-color-border-control",
+  hub: "--cl-color-brand-default",
+  edge: "--cl-color-border-default",
+  arc: "--cl-color-border-subtle",
 } as const;

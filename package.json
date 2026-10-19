@@ -2,14 +2,15 @@
   "name": "portfolio",
   "version": "2.0.0",
   "private": true,
-  "description": "Chukwuebuka Onyemelukwe \u2014 portfolio site. Next.js + TypeScript.",
+  "description": "Chukwuebuka Onyemelukwe — portfolio site. Next.js + TypeScript.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test:email": "node scripts/test-email.mjs"
+    "test:email": "node scripts/test-email.mjs",
+    "tokens": "python3 -I design/cobalt-light/build_foundations.py"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
@@ -17,16 +18,13 @@
     "@react-three/fiber": "^9.7.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "cn": "^0.2.6",
     "lucide-react": "^1.43.0",
     "next": "^16.3.4",
-    "next-themes": "^0.4.6",
     "radix-ui": "^1.6.7",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-hook-form": "^7.87.0",
     "resend": "^6.27.0",
-    "sonner": "^2.0.8",
     "tailwind-merge": "^3.6.0",
     "three": "^0.185.1",
     "zod": "^4.5.4"

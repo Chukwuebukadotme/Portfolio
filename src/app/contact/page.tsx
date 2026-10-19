@@ -35,15 +35,15 @@ export default function ContactPage() {
                 permanent opportunities across the UK.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Button asChild variant="outline" size="sm">
+                <Button asChild variant="secondary" size="sm">
                   <a href={site.resume} target="_blank" rel="noopener">
                     Résumé
                   </a>
                 </Button>
-                <Button asChild variant="outline" size="sm">
+                <Button asChild variant="secondary" size="sm">
                   <a href={`mailto:${site.contactEmail}`}>Email</a>
                 </Button>
-                <Button asChild variant="outline" size="sm">
+                <Button asChild variant="secondary" size="sm">
                   <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
                     LinkedIn
                   </a>

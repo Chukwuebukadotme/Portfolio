@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cobalt-light:project:1.0.0",
+  "title": "Cobalt Light portfolio project",
+  "description": "Structural validation. Publication additionally requires factual, asset, link and accessibility review.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["slug", "title", "summary", "disciplines", "status", "role", "contributions", "media", "evidence", "sections", "published"],
+  "properties": {
+    "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "title": {"type": "string", "minLength": 1},
+    "summary": {"type": "string", "minLength": 1},
+    "year": {"type": "integer", "minimum": 1900, "maximum": 2100},
+    "disciplines": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["Product Design", "Design Engineering", "AI & Machine Learning", "Data"]}},
+    "status": {"enum": ["Concept", "Prototype", "In development", "Deployed", "Research", "Archived"]},
+    "role": {"type": "string", "minLength": 1},
+    "contributions": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "published": {"type": "boolean"},
+    "homeOrder": {"type": "integer", "minimum": 1},
+    "links": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["label", "url", "kind"], "properties": {"label": {"type": "string", "minLength": 1}, "url": {"type": "string", "format": "uri"}, "kind": {"enum": ["product", "source", "report", "demo", "community"]}}}},
+    "media": {"type": "array", "items": {"$ref": "#/$defs/media"}},
+    "metrics": {"type": "array", "items": {"$ref": "#/$defs/metric"}},
+    "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
+    "sections": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["id", "title", "body"], "properties": {"id": {"type": "string", "pattern": "^[a-z0-9-]+$"}, "title": {"type": "string", "minLength": 1}, "body": {"type": "string", "minLength": 1}, "mediaIds": {"type": "array", "items": {"type": "string"}}, "evidenceIds": {"type": "array", "items": {"type": "string"}}}}}
+  },
+  "allOf": [{"if": {"properties": {"published": {"const": true}}, "required": ["published"]}, "then": {"properties": {"evidence": {"minItems": 1}, "media": {"minItems": 1}}}}],
+  "$defs": {
+    "media": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "type", "source", "alt", "demonstration"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "type": {"enum": ["image", "video", "audio", "interactive", "chart"]},
+        "source": {"type": "string", "minLength": 1},
+        "alt": {"type": "string", "minLength": 1},
+        "caption": {"type": "string"},
+        "poster": {"type": "string"},
+        "transcript": {"type": "string"},
+        "demonstration": {"type": "boolean"},
+        "aspectRatio": {"enum": ["16:10", "4:3", "16:9", "intrinsic"]}
+      }
+    },
+    "metric": {
+      "type": "object", "additionalProperties": false,
+      "required": ["label", "value", "unit", "context", "sourceId", "verifiedOn"],
+      "properties": {
+        "label": {"type": "string", "minLength": 1},
+        "value": {"type": ["number", "string"]},
+        "unit": {"type": "string", "minLength": 1},
+        "context": {"type": "string", "minLength": 1},
+        "sourceId": {"type": "string", "minLength": 1},
+        "verifiedOn": {"type": "string", "format": "date"},
+        "direction": {"enum": ["lower-is-better", "higher-is-better", "descriptive"]}
+      }
+    },
+    "evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "label", "source", "verifiedOn", "verificationNote"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "label": {"type": "string", "minLength": 1},
+        "source": {"type": "string", "minLength": 1},
+        "verifiedOn": {"type": "string", "format": "date"},
+        "verificationNote": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

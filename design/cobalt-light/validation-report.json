@@ -1,0 +1,331 @@
+{
+  "token_version": "1.0.0",
+  "contrast_pairs": [
+    {
+      "pair": "text.primary / bg.canvas",
+      "foreground": "#141820",
+      "background": "#F5F7FB",
+      "ratio": 16.5754,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "text.secondary / bg.canvas",
+      "foreground": "#475467",
+      "background": "#F5F7FB",
+      "ratio": 7.1671,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "text.muted / bg.canvas",
+      "foreground": "#596579",
+      "background": "#F5F7FB",
+      "ratio": 5.4963,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "brand / bg.canvas",
+      "foreground": "#0041D9",
+      "background": "#F5F7FB",
+      "ratio": 7.0991,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "text.primary / bg.surface",
+      "foreground": "#141820",
+      "background": "#FFFFFF",
+      "ratio": 17.7777,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "text.secondary / bg.surface",
+      "foreground": "#475467",
+      "background": "#FFFFFF",
+      "ratio": 7.687,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "text.muted / bg.surface",
+      "foreground": "#596579",
+      "background": "#FFFFFF",
+      "ratio": 5.895,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "brand / bg.surface",
+      "foreground": "#0041D9",
+      "background": "#FFFFFF",
+      "ratio": 7.614,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "text.primary / bg.subtle",
+      "foreground": "#141820",
+      "background": "#E8EDF7",
+      "ratio": 15.1431,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "text.secondary / bg.subtle",
+      "foreground": "#475467",
+      "background": "#E8EDF7",
+      "ratio": 6.5478,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "text.muted / bg.subtle",
+      "foreground": "#596579",
+      "background": "#E8EDF7",
+      "ratio": 5.0214,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "brand / bg.subtle",
+      "foreground": "#0041D9",
+      "background": "#E8EDF7",
+      "ratio": 6.4857,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "primary button default",
+      "foreground": "#FFFFFF",
+      "background": "#0041D9",
+      "ratio": 7.614,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "primary button hover",
+      "foreground": "#FFFFFF",
+      "background": "#0038BA",
+      "ratio": 9.232,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "primary button active",
+      "foreground": "#FFFFFF",
+      "background": "#002E9B",
+      "ratio": 11.2654,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "status info",
+      "foreground": "#0041D9",
+      "background": "#E8EDF7",
+      "ratio": 6.4857,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "status success",
+      "foreground": "#16754A",
+      "background": "#E9F6EF",
+      "ratio": 5.1376,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "status warning",
+      "foreground": "#8A4B08",
+      "background": "#FFF4DB",
+      "ratio": 6.2173,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "status error",
+      "foreground": "#B42318",
+      "background": "#FFF0EE",
+      "ratio": 5.9327,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "inverse text",
+      "foreground": "#F5F7FB",
+      "background": "#141820",
+      "ratio": 16.5754,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "inverse secondary",
+      "foreground": "#B8C6DD",
+      "background": "#141820",
+      "ratio": 10.294,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "inverse link",
+      "foreground": "#A9C1FF",
+      "background": "#141820",
+      "ratio": 9.9547,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "control border on white",
+      "foreground": "#7D8BA0",
+      "background": "#FFFFFF",
+      "ratio": 3.4581,
+      "required": 3,
+      "pass": true
+    },
+    {
+      "pair": "control border on canvas",
+      "foreground": "#7D8BA0",
+      "background": "#F5F7FB",
+      "ratio": 3.2243,
+      "required": 3,
+      "pass": true
+    },
+    {
+      "pair": "chart selected on white",
+      "foreground": "#0041D9",
+      "background": "#FFFFFF",
+      "ratio": 7.614,
+      "required": 3,
+      "pass": true
+    },
+    {
+      "pair": "chart comparison on white",
+      "foreground": "#475467",
+      "background": "#FFFFFF",
+      "ratio": 7.687,
+      "required": 3,
+      "pass": true
+    },
+    {
+      "pair": "chart teal on white",
+      "foreground": "#0D766E",
+      "background": "#FFFFFF",
+      "ratio": 5.4778,
+      "required": 3,
+      "pass": true
+    },
+    {
+      "pair": "chart purple on white",
+      "foreground": "#6941C6",
+      "background": "#FFFFFF",
+      "ratio": 6.62,
+      "required": 3,
+      "pass": true
+    },
+    {
+      "pair": "chart orange on white",
+      "foreground": "#B54708",
+      "background": "#FFFFFF",
+      "ratio": 5.427,
+      "required": 3,
+      "pass": true
+    },
+    {
+      "pair": "chart magenta on white",
+      "foreground": "#B42369",
+      "background": "#FFFFFF",
+      "ratio": 6.2037,
+      "required": 3,
+      "pass": true
+    },
+    {
+      "pair": "chart cyan on white",
+      "foreground": "#087E8B",
+      "background": "#FFFFFF",
+      "ratio": 4.8083,
+      "required": 3,
+      "pass": true
+    },
+    {
+      "pair": "chart olive on white",
+      "foreground": "#54772B",
+      "background": "#FFFFFF",
+      "ratio": 5.1844,
+      "required": 3,
+      "pass": true
+    }
+  ],
+  "missing_css_variables": [],
+  "typography": [
+    {
+      "role": "display",
+      "at320": 44,
+      "at1440": 88,
+      "css": "clamp(2.75rem, 1.964286rem + 3.928571vw, 5.5rem)"
+    },
+    {
+      "role": "page",
+      "at320": 36,
+      "at1440": 64,
+      "css": "clamp(2.25rem, 1.75rem + 2.5vw, 4rem)"
+    },
+    {
+      "role": "section",
+      "at320": 30,
+      "at1440": 48,
+      "css": "clamp(1.875rem, 1.553571rem + 1.607143vw, 3rem)"
+    },
+    {
+      "role": "project",
+      "at320": 26,
+      "at1440": 36,
+      "css": "clamp(1.625rem, 1.446429rem + 0.892857vw, 2.25rem)"
+    },
+    {
+      "role": "subheading",
+      "at320": 22,
+      "at1440": 26,
+      "css": "clamp(1.375rem, 1.303571rem + 0.357143vw, 1.625rem)"
+    },
+    {
+      "role": "lead",
+      "at320": 18,
+      "at1440": 22,
+      "css": "clamp(1.125rem, 1.053571rem + 0.357143vw, 1.375rem)"
+    },
+    {
+      "role": "body",
+      "at320": 16,
+      "at1440": 18,
+      "css": "clamp(1rem, 0.964286rem + 0.178571vw, 1.125rem)"
+    },
+    {
+      "role": "ui",
+      "at320": 14,
+      "at1440": 14,
+      "css": "0.875rem"
+    },
+    {
+      "role": "caption",
+      "at320": 13,
+      "at1440": 14,
+      "css": "clamp(0.8125rem, 0.794643rem + 0.089286vw, 0.875rem)"
+    },
+    {
+      "role": "eyebrow",
+      "at320": 12,
+      "at1440": 12,
+      "css": "0.75rem"
+    },
+    {
+      "role": "code",
+      "at320": 13,
+      "at1440": 14,
+      "css": "clamp(0.8125rem, 0.794643rem + 0.089286vw, 0.875rem)"
+    }
+  ],
+  "scope": "Static token and foundation checks only. Not browser, screen-reader, full-state, field-performance or site compliance verification."
+}

@@ -1,27 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 import { HashRedirect } from "@/components/site/hash-redirect";
-import { ThemeProvider } from "@/components/site/theme-provider";
-import { ThemeToggle } from "@/components/site/theme-toggle";
 import { site } from "@/lib/content";
 
 import "./globals.css";
 
-/* The design system names Geist and Geist Mono. next/font self-hosts both and
-   exposes them as the variables tokens/typography.css reads. */
-const geist = Geist({
+/* Cobalt Light pairs Space Grotesk for display with Inter for reading and UI.
+   next/font self-hosts both under the variables styles/cobalt-light.css binds
+   (--font-space-grotesk, --font-inter), loading only the weights the system
+   names: display 500/600/700, body 400/500/600. */
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-geist",
-  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-space-grotesk",
+  weight: ["500", "600", "700"],
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-geist-mono",
+  variable: "--font-inter",
   weight: ["400", "500", "600"],
   display: "swap",
 });
@@ -44,11 +44,10 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+/* One light theme; the browser chrome matches the canvas. */
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
-    { media: "(prefers-color-scheme: dark)", color: "#050608" },
-  ],
+  themeColor: "#F5F7FB",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
@@ -57,8 +56,7 @@ export default function RootLayout({
   return (
     <html
       lang="en-GB"
-      suppressHydrationWarning
-      className={`${geist.variable} ${geistMono.variable}`}
+      className={`${spaceGrotesk.variable} ${inter.variable}`}
     >
       <head>
         {/* Marks the document as scripted before first paint, so the scroll
@@ -70,20 +68,17 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-dvh antialiased">
-        <ThemeProvider>
-          <HashRedirect />
-          <a
-            href="#main"
-            className="sr-only focus:not-sr-only focus:absolute focus:left-1 focus:top-1 focus:z-50 focus:bg-surface-raised focus:px-1 focus:py-0.5 focus:shadow-medium"
-          >
-            Skip to content
-          </a>
-          <SiteHeader />
-          <main id="main">{children}</main>
-          <SiteFooter />
-          <ThemeToggle />
-        </ThemeProvider>
+      <body className="min-h-dvh">
+        <HashRedirect />
+        <a
+          href="#main"
+          className="fixed left-2 top-2 z-100 -translate-y-[200%] rounded-control bg-bg-surface p-3 cl-type-ui text-brand shadow-raised focus:translate-y-0"
+        >
+          Skip to content
+        </a>
+        <SiteHeader />
+        <main id="main">{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );
