@@ -10,7 +10,11 @@ import { cn } from "@/lib/utils";
  * view is marked visually and with aria-current. Sticky on desktop below the
  * header; a short wrapping list on smaller screens.
  */
-export function CaseStudyNav({ sections }: { sections: readonly { id: string; label: string }[] }) {
+export function CaseStudyNav({
+  sections,
+}: {
+  sections: readonly { id: string; label: string; number?: string }[];
+}) {
   const [current, setCurrent] = useState<string | null>(null);
 
   useEffect(() => {
@@ -46,12 +50,18 @@ export function CaseStudyNav({ sections }: { sections: readonly { id: string; la
                 href={`#${s.id}`}
                 aria-current={on ? "location" : undefined}
                 className={cn(
-                  "inline-flex min-h-11 items-center cl-type-ui no-underline transition-colors duration-(--cl-motion-duration-micro) ease-standard lg:-ml-3 lg:border-l-2 lg:pl-3",
+                  "inline-flex min-h-11 items-center gap-3 cl-type-ui no-underline transition-colors duration-(--cl-motion-duration-micro) ease-standard lg:-ml-3 lg:border-l-2 lg:pl-3",
                   on
                     ? "text-text-primary underline decoration-brand decoration-2 underline-offset-[0.4em] lg:border-brand lg:no-underline"
                     : "text-text-secondary hover:text-text-primary lg:border-transparent",
                 )}
               >
+                {/* Matches the number set beside each chapter heading. */}
+                {s.number ? (
+                  <span aria-hidden className={cn("tabular-nums", on ? "text-brand" : "text-text-muted")}>
+                    {s.number}
+                  </span>
+                ) : null}
                 {s.label}
               </a>
             </li>

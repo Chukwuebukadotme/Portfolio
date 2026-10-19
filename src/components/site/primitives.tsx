@@ -1,5 +1,15 @@
 import type { ReactNode } from "react";
+import {
+  Archive,
+  CircleCheck,
+  CircleDashed,
+  FlaskConical,
+  Lightbulb,
+  Shapes,
+  type LucideIcon,
+} from "lucide-react";
 
+import { Icon } from "@/components/site/icon";
 import type { ProjectStatus } from "@/lib/projects";
 import { cn } from "@/lib/utils";
 
@@ -57,27 +67,30 @@ export function Tag({ children }: { children: ReactNode }) {
   );
 }
 
-const statusTone: Record<ProjectStatus, string> = {
-  Deployed: "bg-status-success-bg text-status-success",
-  "In development": "bg-status-warning-bg text-status-warning",
-  Research: "bg-status-info-bg text-status-info",
-  Prototype: "bg-bg-subtle text-text-secondary",
-  Concept: "bg-bg-subtle text-text-secondary",
-  Archived: "bg-bg-subtle text-text-secondary",
+const statusStyle: Record<ProjectStatus, { tone: string; icon: LucideIcon }> = {
+  Deployed: { tone: "bg-status-success-bg text-status-success", icon: CircleCheck },
+  "In development": { tone: "bg-status-warning-bg text-status-warning", icon: CircleDashed },
+  Research: { tone: "bg-status-info-bg text-status-info", icon: FlaskConical },
+  Prototype: { tone: "bg-bg-subtle text-text-secondary", icon: Shapes },
+  Concept: { tone: "bg-bg-subtle text-text-secondary", icon: Lightbulb },
+  Archived: { tone: "bg-bg-subtle text-text-secondary", icon: Archive },
 };
 
 /**
- * C06 status badge. The word carries the meaning; the semantic colour only
- * reinforces it. Development status, never an outcome.
+ * C06 status badge. The word carries the meaning; the icon gives each status
+ * a shape and the semantic colour reinforces both. Development status, never
+ * an outcome.
  */
 export function StatusBadge({ status }: { status: ProjectStatus }) {
+  const { tone, icon } = statusStyle[status];
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-control px-2 py-1 text-[0.75rem] leading-normal font-medium",
-        statusTone[status],
+        "inline-flex items-center gap-1 rounded-control px-2 py-1 text-[0.75rem] leading-normal font-medium",
+        tone,
       )}
     >
+      <Icon icon={icon} size={16} className="-ml-0.5" />
       {status}
     </span>
   );

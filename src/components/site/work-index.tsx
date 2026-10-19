@@ -80,6 +80,23 @@ export function WorkIndex({ items }: { items: Item[] }) {
         })}
       </div>
 
+      {/* The count on screen, as well as announced. Not itself a live region,
+          so a change is read once, by the region below. */}
+      <p className="mt-4 flex flex-wrap items-center gap-x-3 cl-type-caption text-text-secondary">
+        <span>
+          Showing {visible.length} of {items.length} projects
+        </span>
+        {filter !== "all" ? (
+          <button
+            type="button"
+            onClick={() => choose("all")}
+            className="inline-flex min-h-11 items-center text-brand underline underline-offset-4 hover:text-brand-hover"
+          >
+            Show all
+          </button>
+        ) : null}
+      </p>
+
       <p aria-live="polite" className="sr-only">
         {announce}
       </p>

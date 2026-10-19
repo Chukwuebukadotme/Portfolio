@@ -65,6 +65,8 @@ export type Metric = {
   sourceId: string;
   verifiedOn: string;
   direction?: "lower-is-better" | "higher-is-better" | "descriptive";
+  /** A recorded comparison drawn inside the metric, from the same source. */
+  comparison?: "rmse";
 };
 
 export type ProjectLink = {
@@ -92,8 +94,12 @@ export type Project = {
   published: boolean;
   /** Position in Home's Selected work. Absent means Work only. */
   homeOrder?: number;
-  /** The evidence-backed outcome on the card, citing its source. */
-  highlight?: { text: string; sourceId: string };
+  /**
+   * The evidence-backed outcome on the card, citing its source. A measured
+   * figure goes in `value` and is set large; `label` says what it measures.
+   * Outcomes without a figure use `label` alone.
+   */
+  highlight?: { value?: string; label: string; sourceId: string };
   problem: string;
   /** Paragraphs separated by a blank line. */
   built: string;
@@ -157,7 +163,8 @@ export const projects: readonly Project[] = [
     published: true,
     homeOrder: 1,
     highlight: {
-      text: "21.6k users on Figma Community",
+      value: "21.6k",
+      label: "users on Figma Community",
       sourceId: "product-site",
     },
     problem:
@@ -262,7 +269,7 @@ export const projects: readonly Project[] = [
     published: true,
     homeOrder: 2,
     highlight: {
-      text: "Public product site live, waitlist open",
+      label: "Public product site live, waitlist open",
       sourceId: "product-site",
     },
     problem:
@@ -373,7 +380,8 @@ export const projects: readonly Project[] = [
     published: true,
     homeOrder: 3,
     highlight: {
-      text: "12.57 cycles RMSE on the FD001 official test, lowest of eight pipelines",
+      value: "12.57 cycles",
+      label: "RMSE on the FD001 official test, lowest of eight pipelines",
       sourceId: "msc-report",
     },
     problem:
@@ -425,6 +433,7 @@ export const projects: readonly Project[] = [
         sourceId: "msc-report",
         verifiedOn: "2026-10-19",
         direction: "lower-is-better",
+        comparison: "rmse",
       },
       {
         label: "Pipelines compared",
@@ -497,7 +506,8 @@ export const projects: readonly Project[] = [
     published: true,
     homeOrder: 4,
     highlight: {
-      text: "2.4k standard-tier messages, 0 server errors in the recorded test run",
+      value: "2.4k",
+      label: "standard-tier messages in the recorded test run, with 0 server errors",
       sourceId: "azure-metrics",
     },
     problem:

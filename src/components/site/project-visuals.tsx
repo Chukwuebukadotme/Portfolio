@@ -356,6 +356,49 @@ const visuals: Record<ProjectVisual, () => ReactNode> = {
   tiers: Tiers,
 };
 
+/**
+ * The recorded RMSE of all eight pipelines, compact enough to sit inside the
+ * metric it explains. Zero-baseline bars, the winner in cobalt and the rest in
+ * graphite, every value printed. A real list, so it reads without the bars.
+ */
+export function RmseComparison() {
+  const best = Math.min(...turbofanRmse.map((r) => r.rmse));
+  return (
+    <ol
+      aria-label="Official-test RMSE for each pipeline, in cycles. Lower is better."
+      className="flex flex-col gap-1.5"
+    >
+      {turbofanRmse.map((r) => {
+        const top = r.rmse === best;
+        return (
+          <li
+            key={r.model}
+            className="grid grid-cols-[5.5rem_1fr_2.5rem] items-center gap-2 text-[0.75rem] leading-normal"
+          >
+            <span className={cn("truncate", top ? "font-medium text-text-primary" : "text-text-secondary")}>
+              <abbr title={r.model} className="no-underline">
+                {r.short}
+              </abbr>
+            </span>
+            <span aria-hidden className="relative h-1.5 rounded-full bg-bg-subtle">
+              <span
+                className="absolute inset-y-0 left-0 rounded-full"
+                style={{
+                  width: `${(r.rmse / rmseMax) * 100}%`,
+                  background: top ? "var(--cl-color-brand-default)" : "var(--cl-color-chart-comparison)",
+                }}
+              />
+            </span>
+            <span className={cn("text-right tabular-nums", top ? "font-medium text-text-primary" : "text-text-secondary")}>
+              {r.rmse.toFixed(2)}
+            </span>
+          </li>
+        );
+      })}
+    </ol>
+  );
+}
+
 /** C08 captions: what each diagram is drawn from, and when it is illustrative. */
 export const visualCaption: Record<ProjectVisual, string> = {
   rmse: "Official-test RMSE for all eight pipelines on FD001, from the MSc report. Lower is better.",

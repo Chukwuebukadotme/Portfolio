@@ -35,10 +35,21 @@ export function ProjectCard({
         </div>
         <p className="mt-4 cl-type-body text-text-secondary">{p.description}</p>
 
+        {/* A measured figure is set large with its label beside it, so it
+            reads at a glance; an outcome without a figure stays a line. */}
         {p.highlight ? (
           <p className="mt-5 border-l-2 border-brand pl-3">
             <span className="block cl-type-eyebrow uppercase text-text-muted">Evidence</span>
-            <span className="mt-1 block cl-type-ui text-text-primary">{p.highlight.text}</span>
+            {p.highlight.value ? (
+              <span className="mt-1 flex flex-wrap items-baseline gap-x-2">
+                <span className="cl-type-subheading text-text-primary tabular-nums">
+                  {p.highlight.value}
+                </span>
+                <span className="cl-type-caption text-text-secondary">{p.highlight.label}</span>
+              </span>
+            ) : (
+              <span className="mt-1 block cl-type-ui text-text-primary">{p.highlight.label}</span>
+            )}
           </p>
         ) : null}
 

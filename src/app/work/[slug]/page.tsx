@@ -9,6 +9,7 @@ import { CaseStudyNav } from "@/components/site/case-study-nav";
 import { Icon } from "@/components/site/icon";
 import { Container, StatusBadge, Tag } from "@/components/site/primitives";
 import { ProjectMedia } from "@/components/site/project-media";
+import { RmseComparison } from "@/components/site/project-visuals";
 import { Button } from "@/components/ui/button";
 import { disciplineLabel } from "@/lib/disciplines";
 import { projectBySlug, publishedProjects, type Metric } from "@/lib/projects";
@@ -49,13 +50,32 @@ const isUrl = (source: string) => /^https?:\/\//.test(source);
 const textLink =
   "inline-flex min-h-11 items-center gap-2 cl-type-ui text-brand no-underline transition-colors duration-(--cl-motion-duration-micro) ease-standard hover:text-brand-hover";
 
-/** One chapter of the study, reachable from the section navigation. */
-function Chapter({ id, title, children }: { id: string; title: string; children: ReactNode }) {
+/**
+ * One chapter of the study, reachable from the section navigation. Its number
+ * is set in display type beside the heading and matches the menu; it is a
+ * visual landmark only, since document order already carries the sequence.
+ */
+function Chapter({
+  id,
+  number,
+  title,
+  children,
+}: {
+  id: string;
+  number: string;
+  title: string;
+  children: ReactNode;
+}) {
   return (
     <section id={id} aria-labelledby={`${id}-title`} className="border-t border-border-subtle pt-10 first:border-t-0 first:pt-0">
-      <h2 id={`${id}-title`} className="cl-type-section text-text-primary">
-        {title}
-      </h2>
+      <div className="flex items-baseline gap-4">
+        <span aria-hidden className="cl-type-section text-border-control tabular-nums">
+          {number}
+        </span>
+        <h2 id={`${id}-title`} className="cl-type-section text-text-primary">
+          {title}
+        </h2>
+      </div>
       <div className="mt-6 flex flex-col gap-10">{children}</div>
     </section>
   );
@@ -83,7 +103,11 @@ export default async function CaseStudyPage({ params }: Params) {
     { id: "build", label: "Build" },
     { id: "results", label: "Results" },
     ...(p.reflection ? [{ id: "reflection", label: "Reflection" }] : []),
-  ];
+  ].map((c, i) => ({ ...c, number: String(i + 1).padStart(2, "0") }));
+  const chapter = (id: string) => {
+    const { number } = chapters.find((c) => c.id === id)!;
+    return { id, number };
+  };
 
   const facts = [
     ["Role", p.role],
@@ -130,14 +154,6 @@ export default async function CaseStudyPage({ params }: Params) {
             </ul>
           ) : null}
 
-          <dl className="mt-10 grid gap-x-8 gap-y-6 border-t border-border pt-6 sm:grid-cols-2 lg:grid-cols-4">
-            {facts.map(([k, v]) => (
-              <div key={k} className="min-w-0">
-                <dt className="cl-type-eyebrow uppercase text-text-muted">{k}</dt>
-                <dd className="mt-1.5 cl-type-body text-text-primary">{v}</dd>
-              </div>
-            ))}
-          </dl>
         </Container>
       </header>
 
@@ -152,21 +168,32 @@ export default async function CaseStudyPage({ params }: Params) {
       </Container>
 
       <Container className="grid gap-10 py-(--cl-section-space) lg:grid-cols-12 lg:gap-x-(--cl-grid-gap)">
-        <aside className="lg:col-span-3">
+        {/* Facts sit beside the story rather than between the title and the
+            media. Only the section menu is sticky, so a long contribution
+            line can never push it off screen. */}
+        <aside className="flex flex-col gap-10 lg:col-span-3">
+          <dl className="grid gap-x-8 gap-y-5 border-t border-border pt-5 sm:grid-cols-2 lg:grid-cols-1">
+            {facts.map(([k, v]) => (
+              <div key={k} className="min-w-0">
+                <dt className="cl-type-eyebrow uppercase text-text-muted">{k}</dt>
+                <dd className="mt-1 cl-type-ui text-text-primary">{v}</dd>
+              </div>
+            ))}
+          </dl>
           <div className="lg:sticky lg:top-[calc(var(--cl-header-offset)+var(--cl-header-height)+1.5rem)]">
             <CaseStudyNav sections={chapters} />
           </div>
         </aside>
 
         <div className="flex min-w-0 flex-col gap-16 lg:col-span-8 lg:col-start-5">
-          <Chapter id="overview" title="Overview">
+          <Chapter {...chapter("overview")} title="Overview">
             <div className="max-w-measure">
               <h3 className="cl-type-subheading text-text-primary">The problem</h3>
               <p className="mt-3 cl-type-body text-text-secondary">{p.problem}</p>
             </div>
           </Chapter>
 
-          <Chapter id="decisions" title="Key decisions">
+          <Chapter {...chapter("decisions")} title="Key decisions">
             <ol className="flex flex-col">
               {p.decisions.map((d) => (
                 <li key={d.t} className="grid gap-2 border-t border-border py-6 last:border-b md:grid-cols-[2fr_3fr] md:gap-8">
@@ -177,7 +204,7 @@ export default async function CaseStudyPage({ params }: Params) {
             </ol>
           </Chapter>
 
-          <Chapter id="build" title="Build">
+          <Chapter {...chapter("build")} title="Build">
             <div className="max-w-measure">
               <h3 className="cl-type-subheading text-text-primary">What I built</h3>
               {p.built.split("\n\n").map((para) => (
@@ -257,7 +284,7 @@ export default async function CaseStudyPage({ params }: Params) {
             ) : null}
           </Chapter>
 
-          <Chapter id="results" title="Results">
+          <Chapter {...chapter("results")} title="Results">
             {p.metrics?.length ? (
               <dl
                 className={
@@ -272,6 +299,11 @@ export default async function CaseStudyPage({ params }: Params) {
                       <span className="cl-type-section text-text-primary tabular-nums">{m.value}</span>
                       <span className="cl-type-ui text-text-secondary">{m.unit}</span>
                     </dd>
+                    {m.comparison === "rmse" ? (
+                      <dd className="my-2">
+                        <RmseComparison />
+                      </dd>
+                    ) : null}
                     <dd className="cl-type-caption text-text-secondary">
                       {[m.context, m.direction ? direction[m.direction] : null].filter(Boolean).join(". ")}.
                     </dd>
@@ -307,7 +339,7 @@ export default async function CaseStudyPage({ params }: Params) {
           </Chapter>
 
           {p.reflection ? (
-            <Chapter id="reflection" title="Reflection">
+            <Chapter {...chapter("reflection")} title="Reflection">
               <p className="max-w-measure cl-type-body text-text-secondary">{p.reflection}</p>
             </Chapter>
           ) : null}
@@ -343,6 +375,13 @@ export default async function CaseStudyPage({ params }: Params) {
                 <Icon icon={ArrowRight} size={16} />
               </span>
               <span className="cl-type-subheading text-text-primary">{next.name}</span>
+              {/* A teaser, so the next project has a reason to be opened. */}
+              <span className="mt-1 line-clamp-3 max-w-measure cl-type-caption text-text-secondary">
+                {next.description}
+              </span>
+              <span className="cl-type-caption text-text-muted">
+                {[next.categories.map(disciplineLabel).join(" · "), next.year].filter(Boolean).join(" · ")}
+              </span>
             </Link>
           ) : null}
         </nav>
