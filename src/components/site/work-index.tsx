@@ -2,56 +2,61 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 
-import { Reveal } from "@/components/site/reveal";
 import { disciplines, type ProjectCategory } from "@/lib/disciplines";
 import { cn } from "@/lib/utils";
 
 type FilterId = ProjectCategory | "all";
 
-const projectFilters: readonly { id: FilterId; label: string }[] = [
+const filters: readonly { id: FilterId; label: string }[] = [
   { id: "all", label: "All projects" },
   ...disciplines,
 ];
 
 type Item = { slug: string; categories: readonly ProjectCategory[]; card: ReactNode };
 
-const isFilter = (v: string | null): v is FilterId =>
-  projectFilters.some((f) => f.id === v);
+const isFilter = (v: string | null): v is FilterId => filters.some((f) => f.id === v);
 
 /**
- * Filters server-rendered project cards in place. The choice is mirrored into
- * ?filter= so a filtered view can be linked or restored, without a navigation.
+ * C05. Discipline filters over server-rendered project rows. Each filter is a
+ * toggle button (aria-pressed), focus stays on it after activation, the result
+ * count is announced once through a polite live region, and the choice is
+ * mirrored into ?filter= so a view can be shared and restored. Counts come
+ * from the published records. Without scripts every project is listed.
  */
 export function WorkIndex({ items }: { items: Item[] }) {
   const [filter, setFilter] = useState<FilterId>("all");
+  const [announce, setAnnounce] = useState("");
 
   useEffect(() => {
     const v = new URLSearchParams(window.location.search).get("filter");
     if (isFilter(v)) setFilter(v);
   }, []);
 
+  const count = (id: FilterId) =>
+    id === "all" ? items.length : items.filter((i) => i.categories.includes(id)).length;
+
   function choose(id: FilterId) {
     setFilter(id);
     const url = new URL(window.location.href);
     if (id === "all") url.searchParams.delete("filter");
     else url.searchParams.set("filter", id);
-    window.history.replaceState(null, "", url);
+    window.history.replaceState(window.history.state, "", url);
+
+    const n = count(id);
+    const label = filters.find((f) => f.id === id)!.label;
+    setAnnounce(
+      id === "all"
+        ? `Showing all ${n} projects`
+        : `Showing ${n} ${n === 1 ? "project" : "projects"} in ${label}`,
+    );
   }
 
-  const count = (id: FilterId) =>
-    id === "all" ? items.length : items.filter((i) => i.categories.includes(id)).length;
-
   const visible = items.filter((i) => filter === "all" || i.categories.includes(filter));
-  const active = projectFilters.find((f) => f.id === filter)!;
 
   return (
     <>
-      <div
-        role="group"
-        aria-label="Filter projects by discipline"
-        className="flex flex-wrap gap-2"
-      >
-        {projectFilters.map((f) => {
+      <div role="group" aria-label="Filter projects by discipline" className="flex flex-wrap gap-2">
+        {filters.map((f) => {
           const on = f.id === filter;
           return (
             <button
@@ -60,20 +65,15 @@ export function WorkIndex({ items }: { items: Item[] }) {
               aria-pressed={on}
               onClick={() => choose(f.id)}
               className={cn(
-                "inline-flex min-h-10 items-center gap-2 rounded-pill px-4 text-small transition-colors duration-[var(--dur-fast)] ease-[var(--ease-glass)]",
+                "inline-flex min-h-11 items-center gap-2 rounded-pill border px-4 py-2 cl-type-ui transition-colors duration-(--cl-motion-duration-micro) ease-standard",
                 on
-                  ? "bg-text-primary text-text-inverse"
-                  : "text-text-secondary shadow-[inset_0_0_0_1px_var(--border-hairline)] hover:bg-state-hover hover:text-text-primary",
+                  ? "border-brand bg-brand text-brand-on"
+                  : "border-border-control bg-bg-surface text-text-primary hover:bg-bg-subtle",
               )}
             >
               {f.label}
-              <span
-                className={cn(
-                  "font-mono text-tiny tabular-nums",
-                  on ? "opacity-70" : "text-text-tertiary",
-                )}
-              >
-                {String(count(f.id)).padStart(2, "0")}
+              <span className={cn("tabular-nums", on ? "text-brand-on" : "text-text-secondary")}>
+                {count(f.id)}
               </span>
             </button>
           );
@@ -81,20 +81,30 @@ export function WorkIndex({ items }: { items: Item[] }) {
       </div>
 
       <p aria-live="polite" className="sr-only">
-        {filter === "all"
-          ? `Showing all ${visible.length} projects`
-          : `Showing ${visible.length} ${active.label} projects`}
+        {announce}
       </p>
 
-      <ul className="project-list mt-16 flex flex-col gap-20 md:gap-28">
-        {visible.map((item, i) => (
-          // Keyed by filter so a change re-runs the reveal rather than
-          // snapping cards into new positions.
-          <Reveal key={`${filter}-${item.slug}`} index={i} as="li">
-            {item.card}
-          </Reveal>
-        ))}
-      </ul>
+      {visible.length ? (
+        <ul className="mt-12 flex flex-col gap-(--cl-project-gap) md:mt-16">
+          {visible.map((item) => (
+            <li key={item.slug}>{item.card}</li>
+          ))}
+        </ul>
+      ) : (
+        // C18: an empty result names the problem and offers the way back.
+        <div className="mt-12 rounded-card border border-border bg-bg-surface p-8">
+          <p className="cl-type-subheading text-text-primary">
+            No published projects in this discipline yet.
+          </p>
+          <button
+            type="button"
+            onClick={() => choose("all")}
+            className="mt-4 inline-flex min-h-11 items-center cl-type-ui text-brand underline underline-offset-4 hover:text-brand-hover"
+          >
+            Show all projects
+          </button>
+        </div>
+      )}
     </>
   );
 }

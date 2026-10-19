@@ -4,13 +4,15 @@ import { turbofanRmse, type ProjectVisual } from "@/lib/projects";
 import { cn } from "@/lib/utils";
 
 /**
- * Designed project visuals, drawn from each project's real data or real
- * architecture rather than mocked screenshots. They fill whatever box they are
+ * Project diagrams, drawn from each project's recorded data or its
+ * architecture. Charts use cobalt for the highlighted series and graphite for
+ * comparison, never decorative gradients. They fill whatever box they are
  * given and size their type against it (container queries), so the same visual
  * works as a card thumbnail and as a case-study hero.
  */
 
-const label = "font-mono text-[10px] tracking-[var(--track-meta)] text-text-tertiary @md:text-tiny";
+/** Supporting labels never drop below 12px, however small the frame. */
+const label = "text-[0.75rem] leading-normal text-text-secondary @4xl:text-[0.875rem]";
 
 function Frame({
   children,
@@ -26,11 +28,10 @@ function Frame({
       role="img"
       aria-label={description}
       className={cn(
-        "@container relative size-full overflow-hidden bg-surface-sunken",
+        "@container relative size-full overflow-hidden bg-bg-subtle",
         className,
       )}
     >
-      <span aria-hidden className="ds-grid-overlay pointer-events-none absolute inset-0" />
       <div aria-hidden className="relative size-full">
         {children}
       </div>
@@ -69,23 +70,22 @@ function RmseChart() {
               >
                 <span
                   className={cn(
-                    "truncate text-[10px] @md:text-small",
+                    "truncate text-[0.75rem] @md:text-[0.875rem] @4xl:text-[1rem]",
                     top ? "font-semibold text-text-primary" : "text-text-secondary",
                   )}
                 >
                   <span className="@md:hidden">{r.short}</span>
                   <span className="hidden @md:inline">{r.model}</span>
                 </span>
-                <span className="relative h-1.5 overflow-hidden rounded-full bg-border-hairline @md:h-2">
+                <span className="relative h-1.5 overflow-hidden rounded-full bg-border-subtle @md:h-2 @4xl:h-3">
                   <span
                     className="viz-grow absolute inset-y-0 left-0 rounded-full"
                     style={
                       {
                         width: `${(r.rmse / rmseMax) * 100}%`,
                         background: top
-                          ? "var(--signature-gradient)"
-                          : "var(--text-tertiary)",
-                        opacity: top ? 1 : 0.45,
+                          ? "var(--cl-color-brand-default)"
+                          : "var(--cl-color-chart-comparison)",
                         "--i": i,
                       } as CSSProperties
                     }
@@ -93,8 +93,8 @@ function RmseChart() {
                 </span>
                 <span
                   className={cn(
-                    "text-right font-mono text-[10px] tabular-nums @md:text-tiny",
-                    top ? "text-text-primary" : "text-text-tertiary",
+                    "text-right text-[0.75rem] tabular-nums @md:text-[0.8125rem] @4xl:text-[1rem]",
+                    top ? "font-medium text-text-primary" : "text-text-secondary",
                   )}
                 >
                   {r.rmse.toFixed(2)}
@@ -119,12 +119,12 @@ function Components() {
           <span className={label}>Figma · React</span>
         </div>
         <div className="grid flex-1 grid-cols-2 items-center gap-[5%] pt-[4%]">
-          <div className="flex h-[82%] min-h-0 flex-col gap-[6%] overflow-hidden rounded-md bg-surface-raised p-[7%] shadow-[inset_0_0_0_1px_var(--border-subtle),var(--shadow-small)]">
+          <div className="flex h-[82%] min-h-0 flex-col gap-[6%] overflow-hidden rounded-media bg-bg-surface p-[7%] shadow-[inset_0_0_0_1px_var(--cl-color-border-subtle),var(--cl-shadow-subtle)]">
             <span className={label}>Figma · Button</span>
             <span className="flex flex-1 items-center justify-center">
               <span
-                className="rounded-[4px] px-[14%] py-[6%] text-[10px] font-semibold text-white @md:text-small"
-                style={{ background: "var(--signature-gradient)" }}
+                className="rounded-control px-[14%] py-[6%] text-[0.75rem] font-semibold text-brand-on @md:text-[0.875rem]"
+                style={{ background: "var(--cl-color-brand-default)" }}
               >
                 Button
               </span>
@@ -136,25 +136,25 @@ function Components() {
               <span
                 key={k}
                 className={cn(
-                  "items-center justify-between border-t border-border-hairline pt-[4%] text-[10px] @md:text-small",
+                  "items-center justify-between border-t border-border-hairline pt-[4%] text-[0.75rem] @md:text-[0.875rem]",
                   i === 0 ? "flex" : "hidden @md:flex",
                 )}
               >
-                <span className="text-text-tertiary">{k}</span>
+                <span className="text-text-muted">{k}</span>
                 <span className="text-text-primary">{v}</span>
               </span>
             ))}
           </div>
-          <div className="flex h-[82%] min-h-0 flex-col gap-[4%] overflow-hidden rounded-md bg-surface-inverse p-[7%] font-mono text-[10px] leading-relaxed text-text-inverse @md:text-small">
+          <div className="flex h-[82%] min-h-0 flex-col gap-[4%] overflow-hidden rounded-media bg-bg-inverse p-[7%] font-mono text-[0.75rem] leading-relaxed text-text-inverse @md:text-[0.875rem]">
             <span className="opacity-60">React · Button.tsx</span>
             <span className="mt-auto">
-              &lt;<span className="text-[#38bdf8]">Button</span>
+              &lt;<span className="text-brand-inverse">Button</span>
             </span>
             <span className="pl-[10%]">
-              variant=<span className="text-[#22d3ee]">&quot;primary&quot;</span>
+              variant=<span className="text-brand-inverse">&quot;primary&quot;</span>
             </span>
             <span className="hidden pl-[10%] @md:inline">
-              size=<span className="text-[#22d3ee]">&quot;md&quot;</span>
+              size=<span className="text-brand-inverse">&quot;md&quot;</span>
             </span>
             <span className="mb-auto">/&gt;</span>
           </div>
@@ -163,7 +163,7 @@ function Components() {
           {["colour", "type", "space"].map((t) => (
             <span
               key={t}
-              className="rounded-sm px-2 py-0.5 font-mono text-[10px] text-text-secondary shadow-[inset_0_0_0_1px_var(--border-hairline)] @md:text-tiny"
+              className="rounded-control px-2 py-0.5 font-mono text-[0.75rem] text-text-secondary shadow-[inset_0_0_0_1px_var(--cl-color-border-default)] @md:text-[0.8125rem]"
             >
               {t}
             </span>
@@ -210,15 +210,6 @@ const cleanWave = wave(false);
 function Lsm() {
   return (
     <Frame description="Schematic of the Liquid State Machine: a noisy audio signal is encoded as spikes, drives a fixed recurrent reservoir of spiking neurons, and a trained readout reconstructs a filtered signal.">
-      <svg width="0" height="0" className="absolute">
-        <defs>
-          <linearGradient id="lsm-signature" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0" stopColor="#22d3ee" />
-            <stop offset="0.5" stopColor="#38bdf8" />
-            <stop offset="1" stopColor="#6366f1" />
-          </linearGradient>
-        </defs>
-      </svg>
       <div className="flex size-full flex-col px-[6%] py-[5%]">
         <div className="flex items-baseline justify-between gap-3">
           <span className={label}>Sound → spikes → sound</span>
@@ -226,13 +217,13 @@ function Lsm() {
         </div>
         <div className="grid flex-1 grid-cols-[1fr_auto_1.1fr_auto_1fr] items-center gap-[2%]">
           {[
-            { name: "Noisy input", el: <polyline points={noisyWave} fill="none" stroke="var(--text-tertiary)" strokeWidth="2" strokeLinejoin="round" /> },
+            { name: "Noisy input", el: <polyline points={noisyWave} fill="none" stroke="var(--cl-color-chart-comparison)" strokeWidth="2" strokeLinejoin="round" /> },
             null,
             {
               name: "Spiking reservoir",
               el: (
                 <g>
-                  <circle cx="100" cy="100" r="92" fill="none" stroke="var(--border-strong)" strokeOpacity="0.35" strokeDasharray="3 5" />
+                  <circle cx="100" cy="100" r="92" fill="none" stroke="var(--cl-color-text-primary)" strokeOpacity="0.35" strokeDasharray="3 5" />
                   {reservoir.links.map(([a, b], i) => (
                     <line
                       key={i}
@@ -240,7 +231,7 @@ function Lsm() {
                       y1={reservoir.nodes[a].y}
                       x2={reservoir.nodes[b].x}
                       y2={reservoir.nodes[b].y}
-                      stroke="var(--text-tertiary)"
+                      stroke="var(--cl-color-chart-comparison)"
                       strokeOpacity="0.28"
                     />
                   ))}
@@ -250,7 +241,7 @@ function Lsm() {
                       cx={n.x}
                       cy={n.y}
                       r={n.on ? 6 : 4}
-                      fill={n.on ? "url(#lsm-signature)" : "var(--text-tertiary)"}
+                      fill={n.on ? "var(--cl-color-brand-default)" : "var(--cl-color-chart-comparison)"}
                       fillOpacity={n.on ? 1 : 0.55}
                     />
                   ))}
@@ -258,7 +249,7 @@ function Lsm() {
               ),
             },
             null,
-            { name: "Filtered output", el: <polyline points={cleanWave} fill="none" stroke="url(#lsm-signature)" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" /> },
+            { name: "Filtered output", el: <polyline points={cleanWave} fill="none" stroke="var(--cl-color-brand-default)" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" /> },
           ].map((cell, i) =>
             cell ? (
               <div key={i} className="flex flex-col items-center gap-2 @md:gap-3">
@@ -306,9 +297,9 @@ function Tiers() {
             {tiers.map((t, i) => (
               <li
                 key={t.name}
-                className="flex items-center gap-2 rounded-sm bg-surface-raised px-2 py-1.5 shadow-[inset_0_0_0_1px_var(--border-subtle)] @md:gap-3 @md:px-3 @md:py-2"
+                className="flex items-center gap-2 rounded-control bg-bg-surface px-2 py-1.5 shadow-[inset_0_0_0_1px_var(--cl-color-border-subtle)] @md:gap-3 @md:px-3 @md:py-2"
               >
-                <span className="w-[4.25rem] shrink-0 text-[10px] font-medium text-text-primary @md:w-20 @md:text-small">
+                <span className="w-[4.25rem] shrink-0 text-[0.75rem] font-medium text-text-primary @md:w-20 @md:text-[0.875rem]">
                   {t.name}
                 </span>
                 <span className="flex min-w-0 flex-1 gap-1">
@@ -318,8 +309,7 @@ function Tiers() {
                       className="viz-grow h-1.5 flex-1 rounded-full @md:h-2"
                       style={
                         {
-                          background: i === 0 ? "var(--signature-gradient)" : "var(--text-tertiary)",
-                          opacity: i === 0 ? 1 : 0.4 - i * 0.06,
+                          background: i === 0 ? "var(--cl-color-brand-default)" : "var(--cl-color-chart-comparison)",
                           "--i": i,
                         } as CSSProperties
                       }
@@ -345,12 +335,12 @@ function Node({ children, accent }: { children: ReactNode; accent?: boolean }) {
   return (
     <span
       className={cn(
-        "rounded-sm px-2 py-1.5 text-center text-[10px] leading-tight @md:px-3 @md:py-2.5 @md:text-small",
+        "rounded-control px-2 py-1.5 text-center text-[0.75rem] leading-tight @md:px-3 @md:py-2.5 @md:text-[0.875rem]",
         accent
-          ? "font-medium text-white"
-          : "bg-surface-raised text-text-secondary shadow-[inset_0_0_0_1px_var(--border-subtle)]",
+          ? "font-medium text-brand-on"
+          : "bg-bg-surface text-text-secondary shadow-[inset_0_0_0_1px_var(--cl-color-border-subtle)]",
       )}
-      style={accent ? { background: "var(--signature-gradient)" } : undefined}
+      style={accent ? { background: "var(--cl-color-brand-default)" } : undefined}
     >
       {children}
     </span>
