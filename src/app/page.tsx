@@ -1,359 +1,194 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 import { HeroNetwork } from "@/components/site/hero-network";
-import {
-  Container,
-  Eyebrow,
-  Section,
-  Tag,
-} from "@/components/site/primitives";
+import { Icon } from "@/components/site/icon";
+import { Container, Eyebrow, Section } from "@/components/site/primitives";
 import { ProjectCard } from "@/components/site/project-card";
 import { Reveal } from "@/components/site/reveal";
-import { RotatingWord } from "@/components/site/rotating-word";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import {
-  about,
-  capabilities,
-  disciplines,
-  process,
-  site,
-  skills,
-  stats,
-} from "@/lib/content";
-import { featuredProjectCount, projects } from "@/lib/projects";
+import { capabilities, experience, hero, site } from "@/lib/content";
+import { homeProjects, projectBySlug, publishedProjects } from "@/lib/projects";
+import { resumeMeta } from "@/lib/resume";
 
-const featured = projects.slice(0, featuredProjectCount);
+const textLink =
+  "inline-flex min-h-11 items-center gap-2 cl-type-ui text-brand no-underline transition-colors duration-(--cl-motion-duration-micro) ease-standard hover:text-brand-hover";
 
+/**
+ * Home, in the spec's order: identity and actions, selected work, capabilities
+ * tied to that work, experience, then contact. Everything renders as static
+ * content first; the network art and scroll reveals are enhancements only.
+ */
 export default function HomePage() {
+  const resume = resumeMeta();
+  const more = publishedProjects.filter((p) => !homeProjects.includes(p));
+
   return (
     <>
-      {/* Hero */}
-      <section
-        data-hero
-        className="relative min-h-[86svh] overflow-hidden"
-      >
+      {/* Hero: name, role, line and actions sit in seven columns; the network
+          weights the remaining five and fades out before it reaches the copy. */}
+      <section data-hero aria-labelledby="hero-title" className="relative isolate overflow-hidden">
         <HeroNetwork className="absolute inset-0 -z-10" />
-
-        {/* The network is deliberately weighted to the right and thins out
-            before it reaches the headline, so this only has to soften the last
-            of it and blend the hero into the page. It is far lighter than the
-            grid needed — which is why the artwork now reads at full strength. */}
         <div
           aria-hidden
-          className={cn(
-            "pointer-events-none absolute inset-0 -z-10",
-            "bg-[linear-gradient(to_bottom,transparent_62%,var(--surface-page)_100%)]",
-            "md:bg-[linear-gradient(to_right,var(--surface-page)_0%,color-mix(in_oklab,var(--surface-page)_55%,transparent)_26%,transparent_44%),linear-gradient(to_bottom,transparent_62%,var(--surface-page)_100%)]",
-          )}
+          className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,color-mix(in_oklab,var(--cl-color-bg-canvas)_78%,transparent)_0%,color-mix(in_oklab,var(--cl-color-bg-canvas)_78%,transparent)_70%,var(--cl-color-bg-canvas)_100%)] lg:bg-[linear-gradient(to_right,var(--cl-color-bg-canvas)_0%,color-mix(in_oklab,var(--cl-color-bg-canvas)_72%,transparent)_38%,transparent_60%),linear-gradient(to_bottom,transparent_70%,var(--cl-color-bg-canvas)_100%)]"
         />
 
-        <Container className="flex min-h-[86svh] items-center pt-32">
-          <div className="max-w-[var(--measure-large)]">
-            <h1 className="text-h1 font-extrabold text-text-primary">
-              I design and engineer <RotatingWord /> that make complex work
-              simpler.
+        <Container className="cl-page pb-16 lg:grid lg:min-h-[min(88svh,58rem)] lg:grid-cols-12 lg:items-center lg:gap-x-(--cl-grid-gap) lg:pb-24">
+          <div className="lg:col-span-7">
+            <p className="cl-type-eyebrow uppercase text-brand">{site.role}</p>
+            <p className="mt-2 cl-type-subheading text-text-primary">{site.name}</p>
+            <h1 id="hero-title" className="mt-6 cl-type-page text-balance text-text-primary">
+              {hero.lead} <span className="text-brand">{hero.highlight}</span> {hero.tail}
             </h1>
-            <p className="mt-6 max-w-[var(--measure-small)] text-large text-text-secondary">
-              I’m naturally curious about how things work and how they could
-              work better. I combine product thinking, design and engineering to
-              build fast, usable and durable websites, applications and
-              intelligent systems.
-            </p>
+            <p className="mt-6 max-w-measure cl-type-lead text-text-secondary">{hero.body}</p>
+
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Button asChild>
-                <Link href="/work">Selected work</Link>
+              <Button asChild size="lg">
+                <Link href="#selected-work">Selected work</Link>
               </Button>
-              <Button asChild variant="secondary">
+              <Button asChild size="lg" variant="secondary">
                 <a href={site.resume} target="_blank" rel="noopener">
                   Résumé
+                  <span className="cl-type-caption text-text-secondary">{resume}</span>
+                  <span className="sr-only">, opens in a new tab</span>
                 </a>
               </Button>
             </div>
-            <Eyebrow className="mt-6">
-              {site.availability}
-            </Eyebrow>
+            <p className="mt-6 cl-type-caption text-text-secondary">{site.availability}</p>
           </div>
         </Container>
       </section>
 
-      {/* Standing figures */}
-      <Section>
+      <Section id="selected-work" labelledBy="selected-work-title" className="pt-0 lg:pt-0">
         <Container>
-          <dl className="grid grid-cols-2 gap-x-8 gap-y-10 md:grid-cols-4">
-            {stats.map((s, i) => (
-              <Reveal key={s.value} index={i} className="flex flex-col gap-1.5">
-                <dt className="text-h3 font-bold tracking-[var(--track-heading)] text-text-primary">
-                  {s.value}
-                </dt>
-                <dd className="text-small text-text-tertiary">{s.label}</dd>
-              </Reveal>
-            ))}
-          </dl>
-        </Container>
-      </Section>
-
-      {/* Selected work */}
-      <Section>
-        <Container>
-          <Reveal className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
+          <div className="grid gap-4 lg:grid-cols-12 lg:items-end lg:gap-x-(--cl-grid-gap)">
+            <div className="lg:col-span-7">
               <Eyebrow>Selected work</Eyebrow>
-              <h2 className="mt-3 max-w-[var(--measure-large)] text-h2 font-bold text-text-primary">
-                Designed with intent.
-                <br />
-                Built to solve real problems.
+              <h2 id="selected-work-title" className="mt-3 cl-type-section text-text-primary">
+                Products and research, with the evidence behind them.
               </h2>
             </div>
-            <p className="max-w-[var(--measure-small)] text-medium text-text-secondary">
-              A collection of digital products, design systems, machine
-              learning systems and engineering projects spanning product
-              design, frontend development, artificial intelligence and data.
+            <p className="max-w-measure cl-type-body text-text-secondary lg:col-span-5">
+              A plugin designers use, a product in development, a research
+              study and a cloud pipeline. Each case study separates what I
+              built from what it achieved.
             </p>
-          </Reveal>
+          </div>
 
-          <ul className="project-list mt-16 flex flex-col gap-20 md:gap-28">
-            {featured.map((p, i) => (
+          <ul className="mt-12 flex flex-col gap-(--cl-project-gap) md:mt-16">
+            {homeProjects.map((p, i) => (
               <Reveal key={p.slug} index={i} as="li">
                 <ProjectCard project={p} />
               </Reveal>
             ))}
           </ul>
 
-          <Reveal className="mt-20 flex flex-col gap-4 border-t border-border-hairline pt-8 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-medium text-text-secondary">
-              {projects.length - featured.length} more across product design,
-              machine learning, neuromorphic computing and data engineering.
-            </p>
-            <Link
-              href="/work"
-              className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap text-medium font-medium text-text-primary no-underline transition-colors duration-[var(--dur-fast)] ease-[var(--ease-glass)] hover:text-text-accent"
-            >
-              View all {projects.length} projects
-              <span aria-hidden className="text-text-accent">
-                →
-              </span>
+          <div className="mt-(--cl-project-gap) flex flex-col gap-4 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
+            {more.length ? (
+              <p className="cl-type-body text-text-secondary">
+                Also on the Work page: {more.map((p) => p.name).join(", ")}.
+              </p>
+            ) : (
+              <span />
+            )}
+            <Link href="/work" className={textLink}>
+              View all {publishedProjects.length} projects
+              <Icon icon={ArrowRight} />
             </Link>
-          </Reveal>
+          </div>
         </Container>
       </Section>
 
-      {/* Capabilities */}
-      <Section grid>
+      <Section labelledBy="capabilities-title" className="border-t border-border-subtle">
         <Container>
-          <Reveal>
-            <Eyebrow>Capabilities</Eyebrow>
-            <h2 className="mt-3 max-w-[var(--measure-large)] text-h2 font-bold text-text-primary">
-              From ambiguous problems to working products.
-            </h2>
-          </Reveal>
-
-          <ul className="mt-12 flex flex-col">
-            {capabilities.map((cap, i) => (
-              <Reveal
-                key={cap.number}
-                index={i}
-                as="li"
-                className="group border-t border-border-hairline transition-colors duration-[var(--dur-base)] ease-[var(--ease-glass)] last:border-b hover:bg-state-hover"
-              >
-                <div className="grid gap-3 px-3 py-8 md:grid-cols-[auto_1fr_auto] md:items-start md:gap-8">
-                  <span className="font-mono text-tiny tracking-[var(--track-meta)] text-text-tertiary transition-colors duration-[var(--dur-base)] group-hover:text-text-accent">
-                    {cap.number}
-                  </span>
-                  <div>
-                    <h3 className="text-h5 font-semibold text-text-primary">
-                      {cap.title}
-                    </h3>
-                    <p className="mt-2 max-w-[var(--measure-large)] text-medium text-text-secondary">
-                      {cap.body}
-                    </p>
-                    <div className="mt-5 flex flex-wrap gap-2 transition-opacity duration-[var(--dur-base)] ease-[var(--ease-glass)] md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100 motion-reduce:opacity-100">
-                      {cap.tags.map((t) => (
-                        <Tag key={t}>{t}</Tag>
-                      ))}
-                    </div>
-                  </div>
-                  <span
-                    aria-hidden
-                    className="hidden text-text-accent transition-transform duration-[var(--dur-base)] ease-[var(--ease-glass)] group-hover:translate-x-1.5 md:block"
-                  >
-                    ↗
-                  </span>
-                </div>
-              </Reveal>
-            ))}
+          <Eyebrow>Capabilities</Eyebrow>
+          <h2 id="capabilities-title" className="mt-3 max-w-[24ch] cl-type-section text-text-primary">
+            What I bring to a team, and where to see it.
+          </h2>
+          <ul className="mt-12 grid gap-10 md:grid-cols-3 md:gap-(--cl-grid-gap)">
+            {capabilities.map((c, i) => {
+              const shown = c.projects.map(projectBySlug).filter((p) => p !== undefined);
+              return (
+                <Reveal key={c.title} index={i} as="li" className="border-t border-border pt-6">
+                  <h3 className="cl-type-subheading text-text-primary">{c.title}</h3>
+                  <p className="mt-3 cl-type-body text-text-secondary">{c.body}</p>
+                  {shown.length ? (
+                    <>
+                      <p className="mt-5 cl-type-eyebrow uppercase text-text-muted">Shown in</p>
+                      <ul className="mt-1">
+                        {shown.map((p) => (
+                          <li key={p.slug}>
+                            <Link href={`/work/${p.slug}`} className={textLink}>
+                              {p.name}
+                              <Icon icon={ArrowRight} size={16} />
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  ) : null}
+                </Reveal>
+              );
+            })}
           </ul>
         </Container>
       </Section>
 
-      {/* Process */}
-      <Section>
-        <Container>
-          <Reveal>
-            <Eyebrow>Process 01 / 05</Eyebrow>
-            <h2 className="mt-3 text-h3 font-bold text-text-primary">
-              Understand. Shape. Build. Launch. Learn.
+      <Section labelledBy="experience-title" className="border-t border-border-subtle">
+        <Container className="grid gap-10 lg:grid-cols-12 lg:gap-x-(--cl-grid-gap)">
+          <div className="lg:col-span-5">
+            <Eyebrow>Experience</Eyebrow>
+            <h2 id="experience-title" className="mt-3 cl-type-section text-text-primary">
+              From plant dashboards to AI products.
             </h2>
-          </Reveal>
-          <ol className="mt-12 grid gap-8 md:grid-cols-5">
-            {process.map((p, i) => (
+            <p className="mt-4 max-w-measure cl-type-body text-text-secondary">
+              I trained in electronic and computer engineering, built
+              operational dashboards at Nigeria LNG, then moved into AI product
+              engineering, first at Technoville and now as a freelancer. In
+              2026 I completed an MSc in Artificial Intelligence at Nottingham
+              Trent University with Distinction.
+            </p>
+            <Link href="/about" className={`mt-4 ${textLink}`}>
+              More about me
+              <Icon icon={ArrowRight} />
+            </Link>
+          </div>
+
+          <ol className="lg:col-span-6 lg:col-start-7">
+            {experience.map((e, i) => (
               <Reveal
-                key={p.step}
+                key={e.organisation}
                 index={i}
                 as="li"
-                className="border-t border-border-hairline pt-5"
+                className="grid gap-1 border-t border-border py-5 last:border-b sm:grid-cols-[10rem_1fr] sm:gap-6"
               >
-                <p className="ds-eyebrow text-text-accent">{p.step}</p>
-                <ul className="mt-3 flex flex-col gap-1.5 text-small text-text-secondary">
-                  {p.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
+                <p className="cl-type-caption text-text-secondary tabular-nums">{e.dates}</p>
+                <div>
+                  <h3 className="cl-type-ui text-text-primary">{e.role}</h3>
+                  <p className="cl-type-caption text-text-secondary">{e.organisation}</p>
+                </div>
               </Reveal>
             ))}
           </ol>
         </Container>
       </Section>
 
-      {/* Disciplines */}
-      <Section>
-        <Container>
-          <Reveal className="max-w-[var(--measure-large)]">
-            <h2 className="text-h3 font-bold text-text-primary">
-              The interface is only half the product.
+      <Section labelledBy="contact-title" className="border-t border-border-subtle">
+        <Container className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-measure">
+            <Eyebrow>{site.availability}</Eyebrow>
+            <h2 id="contact-title" className="mt-3 cl-type-section text-text-primary">
+              Hiring for design, product or AI engineering?
             </h2>
-            <p className="mt-4 text-medium text-text-secondary">
-              Visual quality matters, but so do architecture, accessibility,
-              performance, reliability and maintainability. I work across both
-              sides so that what looks considered also behaves considered.
+            <p className="mt-3 cl-type-body text-text-secondary">
+              I’m open to permanent roles across the UK and to selected product
+              collaborations.
             </p>
-          </Reveal>
-
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {disciplines.map((d, i) => (
-              <Reveal
-                key={d.title}
-                index={i}
-                as="article"
-                className="group flex flex-col gap-3 border border-border-hairline bg-surface-page p-6 transition-colors duration-[var(--dur-base)] ease-[var(--ease-glass)] hover:bg-state-hover"
-              >
-                <div className="flex items-center justify-between">
-                  <p className="ds-eyebrow transition-colors duration-[var(--dur-base)] group-hover:text-text-accent">
-                    {d.label}
-                  </p>
-                  <span
-                    aria-hidden
-                    className="text-text-accent transition-transform duration-[var(--dur-base)] ease-[var(--ease-glass)] group-hover:translate-x-1.5"
-                  >
-                    →
-                  </span>
-                </div>
-                <h3 className="text-h5 font-semibold text-text-primary">
-                  {d.title}
-                </h3>
-                <ul className="mt-2 flex flex-col gap-1.5 text-small text-text-secondary">
-                  {d.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </Reveal>
-            ))}
           </div>
-        </Container>
-      </Section>
-
-      {/* Skills index */}
-      <Section grid>
-        <Container>
-          <div className="grid gap-10 md:grid-cols-3">
-            {skills.map((group, i) => (
-              <Reveal key={group.heading} index={i}>
-                <h2 className="ds-eyebrow">{group.heading}</h2>
-                <ul className="mt-4 flex flex-col gap-2 text-medium text-text-secondary">
-                  {group.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
-      {/* About teaser */}
-      <Section>
-        <Container>
-          <Reveal className="grid items-center gap-10 md:grid-cols-2">
-            <div className="flex flex-col gap-3 border-l-2 border-border-accent pl-6">
-              <p className="font-mono text-tiny tracking-[var(--track-eyebrow)] text-text-accent">
-                {site.initials}
-              </p>
-              <p className="text-h3 font-extrabold leading-[var(--leading-tight)] tracking-[var(--track-display)] text-text-primary">
-                {about.markTitle.map((line) => (
-                  <span key={line} className="block">
-                    {line}
-                  </span>
-                ))}
-              </p>
-            </div>
-            <div>
-              <Eyebrow>About CO</Eyebrow>
-              <h2 className="mt-3 text-h4 font-bold text-text-primary">
-                Different disciplines.
-                <br />
-                Same question.
-              </h2>
-              <p className="mt-3 text-large text-gradient-accent">
-                {about.question}
-              </p>
-              <p className="mt-4 text-medium text-text-secondary">
-                I work at the intersection of design, engineering and product,
-                turning complicated business and user problems into digital
-                systems that are useful, fast and built to last.
-              </p>
-              <p className="mt-3 text-medium text-text-secondary">
-                Curiosity, experimentation and multidisciplinary thinking shape
-                how I approach products and systems.
-              </p>
-              <Link
-                href="/about"
-                className="mt-6 inline-flex items-center gap-1.5 text-medium font-medium text-text-primary no-underline transition-colors duration-[var(--dur-fast)] ease-[var(--ease-glass)] hover:text-text-accent"
-              >
-                More about me{" "}
-                <span aria-hidden className="text-text-accent">
-                  →
-                </span>
-              </Link>
-            </div>
-          </Reveal>
-        </Container>
-      </Section>
-
-      {/* Closing call */}
-      <Section>
-        <Container>
-          <Reveal className="flex flex-col gap-6 border-t border-border-hairline pt-12 md:flex-row md:items-end md:justify-between">
-            <div className="max-w-[var(--measure-large)]">
-              <Eyebrow>Open to permanent UK roles</Eyebrow>
-              <h2 className="mt-3 text-h3 font-bold text-text-primary">
-                Think we could build something useful together?
-              </h2>
-              <p className="mt-3 text-medium text-text-secondary">
-                I’m open to permanent opportunities across the UK and selected
-                product collaborations globally.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <Button asChild>
-                <Link href="/contact">Start a conversation</Link>
-              </Button>
-              <Button asChild variant="secondary">
-                <a href={site.resume} target="_blank" rel="noopener">
-                  Résumé
-                </a>
-              </Button>
-            </div>
-          </Reveal>
+          <Button asChild size="lg">
+            <Link href="/contact">Get in touch</Link>
+          </Button>
         </Container>
       </Section>
     </>

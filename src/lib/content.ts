@@ -26,15 +26,13 @@ export const site = {
   availability: "UK based · Open to permanent UK roles",
 } as const;
 
-/** Rotates through the hero headline. */
-export const words = [
-  "digital products",
-  "web experiences",
-  "intelligent systems",
-  "AI workflows",
-] as const;
-
-export const rotateIntervalMs = 2600;
+/** The hero's fixed line. The highlighted phrase is the one cobalt accent. */
+export const hero = {
+  lead: "I design and engineer",
+  highlight: "digital products and intelligent systems",
+  tail: "that make complex work simpler.",
+  body: "I combine product thinking, interface design and engineering to build fast, usable and durable websites, applications and AI systems.",
+} as const;
 
 export const enquiryOptions = [
   "Hiring / Career Opportunity",
@@ -47,102 +45,80 @@ export const enquiryOptions = [
 
 export type EnquiryOption = (typeof enquiryOptions)[number];
 
-export const stats = [
-  { value: "5+", label: "Years across design, AI & engineering" },
-  { value: "20+", label: "Projects across product, web & AI" },
-  { value: "UK", label: "Based in the United Kingdom" },
-  { value: "Global", label: "Available for remote collaboration" },
-] as const;
-
+/**
+ * Home's capabilities, each tied to the projects that show it. Slugs that are
+ * not published are skipped where these render.
+ */
 export const capabilities = [
   {
-    number: "01",
-    title: "Digital products",
-    body: "Applications, SaaS products, internal tools, dashboards, portals and MVPs.",
-    tags: ["SaaS", "Dashboards", "Internal tools", "Portals", "MVPs"],
-  },
-  {
-    number: "02",
-    title: "Web experiences",
-    body: "High-performance websites, landing pages, CMS experiences, e-commerce and interactive web experiences.",
-    tags: ["Landing pages", "CMS", "E-commerce", "Performance", "Interaction"],
-  },
-  {
-    number: "03",
-    title: "AI & automation",
-    body: "AI agents, intelligent product features, workflow automation, LLM integrations, APIs and AI-enabled systems.",
-    tags: [
-      "Agents",
-      "LLM integration",
-      "Workflow automation",
-      "APIs",
-      "Evaluation",
-    ],
-  },
-  {
-    number: "04",
     title: "Product design",
-    body: "Product research, information architecture, UX/UI, interaction design, prototyping and design systems.",
-    tags: [
-      "Research",
-      "Information architecture",
-      "UX / UI",
-      "Prototyping",
-      "Design systems",
-    ],
-  },
-] as const;
-
-export const process = [
-  {
-    step: "01 Discover",
-    items: ["Goals", "Product research", "User research", "Early concepts"],
+    body: "Research, information architecture and interface design, carried through to a product people can use on site, in Figma or in a browser.",
+    projects: ["siteresolve", "make-it-responsive"],
   },
   {
-    step: "02 Design",
-    items: ["Information architecture", "Interfaces", "Flows", "Prototypes"],
-  },
-  {
-    step: "03 Build",
-    items: ["Development", "Integration", "Production code", "Testing"],
-  },
-  {
-    step: "04 Launch",
-    items: ["Deployment", "QA", "Performance", "Production checks"],
-  },
-  {
-    step: "05 Evolve",
-    items: ["Feedback", "Analysis", "Iteration", "Improvement"],
-  },
-] as const;
-
-export const disciplines = [
-  {
-    label: "Discipline 01",
-    title: "Product design",
-    items: [
-      "Research",
-      "UX/UI",
-      "Information architecture",
-      "Prototyping",
-      "Design systems",
-    ],
-  },
-  {
-    label: "Discipline 02",
     title: "Product engineering",
-    items: ["Next.js", "TypeScript", "Full stack", "APIs", "Cloud infrastructure"],
+    body: "Next.js, TypeScript and Python services, Figma plugins and cloud data pipelines, built for the conditions they run in.",
+    projects: ["make-it-responsive", "siteresolve", "ozon-data-pipeline"],
   },
   {
-    label: "Discipline 03",
-    title: "AI & automation",
-    items: [
-      "Python",
-      "AI agents",
-      "LLMs",
-      "Automation",
-      "Intelligent integrations",
-    ],
+    title: "AI engineering",
+    body: "Model evaluation under one controlled protocol, spiking and reservoir networks, and AI features that keep a person in the loop.",
+    projects: ["predictive-maintenance", "liquid-state-machine"],
+  },
+] as const;
+
+/**
+ * Career history, from the CV supplied in October 2026. The single source for
+ * Home's milestones and the About timeline; add entries only from confirmed
+ * records.
+ */
+export const experience = [
+  {
+    role: "AI Product Engineer",
+    organisation: "Freelance",
+    location: "United Kingdom, remote",
+    dates: "Jan 2025 – present",
+    summary:
+      "Designed and engineered three digital products across fintech, construction technology and healthcare, from discovery and UX through architecture, implementation, testing and launch. Created Make It Responsive.",
+    projects: ["siteresolve", "make-it-responsive"],
+  },
+  {
+    role: "AI Product Engineer (contract)",
+    organisation: "Technoville Innovation Nigeria",
+    location: "Nigeria",
+    dates: "Sep 2023 – Sep 2025",
+    summary:
+      "AI product engineering and product design in a cross-functional team, prototyping AI features. Built an AI product that drafts proposals for clients and sponsors, and trained more than ten colleagues on AI workflows.",
+    projects: [],
+  },
+  {
+    role: "Process Control Engineer and Data Analyst Intern",
+    organisation: "Nigeria LNG Limited",
+    location: "Bonny, Nigeria",
+    dates: "Dec 2021 – Jul 2022",
+    summary:
+      "Built more than 50 AVEVA PI Vision dashboards that gave over 1,000 employees browser access to real-time plant KPIs, sensor readings and critical control status, replacing checks that needed a visit to the plant.",
+    projects: [],
+  },
+] as const;
+
+export const education = [
+  {
+    award: "MSc Artificial Intelligence, Distinction",
+    institution: "Nottingham Trent University",
+    location: "United Kingdom",
+    date: "Sep 2026",
+  },
+  {
+    award: "BEng Electronic and Computer Engineering",
+    institution: "University of Nigeria, Nsukka",
+    location: "Nigeria",
+    date: "Aug 2023",
+  },
+  {
+    award: "IBM AI Engineering Professional Certificate",
+    institution: "IBM",
+    date: "Nov 2021",
   },
 ] as const;
 

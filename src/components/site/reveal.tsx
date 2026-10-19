@@ -10,7 +10,7 @@ type RevealTag = "div" | "section" | "article" | "li" | "aside" | "header";
 type RevealProps = {
   children: ReactNode;
   className?: string;
-  /** Stagger position; 60ms per step, matching the previous build. */
+  /** Stagger position: 40ms per step, capped at 240ms so long lists never wait. */
   index?: number;
   as?: RevealTag;
 };
@@ -53,7 +53,7 @@ export function Reveal({
     <Tag
       ref={ref as React.Ref<never>}
       data-reveal=""
-      style={{ "--reveal-delay": `${(index % 6) * 60}ms` } as React.CSSProperties}
+      style={{ "--reveal-delay": `${Math.min(index * 40, 240)}ms` } as React.CSSProperties}
       className={cn(className)}
     >
       {children}

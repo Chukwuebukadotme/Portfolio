@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Container, Eyebrow, Section } from "@/components/site/primitives";
 import { ProjectCard } from "@/components/site/project-card";
 import { WorkIndex } from "@/components/site/work-index";
-import { projects } from "@/lib/projects";
+import { publishedProjects } from "@/lib/projects";
 
 const intro =
   "A collection of digital products, design systems, machine learning systems and engineering projects spanning product design, frontend development, artificial intelligence and data.";
@@ -31,7 +31,7 @@ export default function WorkPage() {
       <Section className="pt-0">
         <Container>
           <WorkIndex
-            items={projects.map((p) => ({
+            items={publishedProjects.map((p) => ({
               slug: p.slug,
               categories: p.categories,
               card: <ProjectCard project={p} heading="h2" />,

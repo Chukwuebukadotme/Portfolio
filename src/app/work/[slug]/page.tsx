@@ -8,7 +8,7 @@ import { Container, Section, Tag } from "@/components/site/primitives";
 import { ProjectMedia } from "@/components/site/project-media";
 import { Reveal } from "@/components/site/reveal";
 import { Button } from "@/components/ui/button";
-import { projectBySlug, projects } from "@/lib/projects";
+import { projectBySlug, publishedProjects as projects } from "@/lib/projects";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -54,7 +54,7 @@ export default async function CaseStudyPage({ params }: Params) {
   const facts = [
     ["Type", p.type],
     ["Role", p.role],
-    ["Contribution", p.contribution],
+    ["Contribution", p.contributions.join(" · ")],
     ["Year", p.year],
   ].filter((f): f is [string, string] => Boolean(f[1]));
 
@@ -73,7 +73,7 @@ export default async function CaseStudyPage({ params }: Params) {
           <header className="mt-6">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
               <span className="font-mono text-tiny tracking-[var(--track-meta)] text-text-accent">
-                {p.number} / {String(projects.length).padStart(2, "0")}
+                {String(at + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
               </span>
               {p.status ? (
                 <span className="font-mono text-tiny tracking-[var(--track-meta)] text-text-tertiary">
@@ -94,9 +94,9 @@ export default async function CaseStudyPage({ params }: Params) {
               {p.description}
             </p>
 
-            {p.url ? (
+            {p.links?.[0] ? (
               <a
-                href={p.url}
+                href={p.links[0].url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-6 inline-flex items-center gap-1.5 text-medium font-medium text-text-primary no-underline transition-colors duration-[var(--dur-fast)] ease-[var(--ease-glass)] hover:text-text-accent"
@@ -135,7 +135,7 @@ export default async function CaseStudyPage({ params }: Params) {
         </Container>
       </Section>
 
-      <Section grid>
+      <Section>
         <Container>
           <Block label="The problem">
             <p className="max-w-[var(--measure-large)] text-large text-text-primary">
@@ -239,7 +239,7 @@ export default async function CaseStudyPage({ params }: Params) {
       ) : null}
 
       {p.engineering ? (
-        <Section grid>
+        <Section>
           <Container>
             <Block label={p.engineering.label}>
               {p.engineering.body ? (
@@ -276,7 +276,7 @@ export default async function CaseStudyPage({ params }: Params) {
               {p.metrics.map((m, i) => (
                 <Reveal key={m.label} index={i} className="flex flex-col-reverse gap-2 bg-surface-page p-6 md:p-8">
                   <dt className="ds-eyebrow">{m.label}</dt>
-                  <dd className="self-start text-h2 font-bold text-gradient-accent tabular-nums">{m.value}</dd>
+                  <dd className="self-start text-h2 font-bold text-gradient-accent tabular-nums">{m.value} {m.unit}</dd>
                 </Reveal>
               ))}
             </dl>

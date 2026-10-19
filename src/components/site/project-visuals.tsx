@@ -110,67 +110,6 @@ function RmseChart() {
 
 /* ------------------------------------------------------------------ */
 
-function Screen({
-  cols,
-  className,
-  name,
-  width,
-}: {
-  cols: 1 | 2 | 3;
-  className: string;
-  name: string;
-  width: string;
-}) {
-  const cards = cols === 3 ? 6 : cols === 2 ? 4 : 3;
-  return (
-    <div className={cn("flex flex-col items-center gap-[6%]", className)}>
-      <div className="flex w-full flex-1 flex-col gap-[5%] rounded-[6px] bg-surface-raised p-[6%] shadow-[inset_0_0_0_1px_var(--border-subtle),var(--shadow-small)]">
-        <span className="h-[4%] min-h-[3px] w-1/3 rounded-full bg-border-strong opacity-40" />
-        <span
-          className="h-[22%] w-full rounded-[3px]"
-          style={{ background: "var(--signature-gradient)", opacity: 0.85 }}
-        />
-        <span
-          className="grid flex-1 gap-[6%]"
-          style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}
-        >
-          {Array.from({ length: cards }, (_, i) => (
-            <span
-              key={i}
-              className="rounded-[3px] bg-text-primary/[0.07] shadow-[inset_0_0_0_1px_var(--border-subtle)]"
-            />
-          ))}
-        </span>
-      </div>
-      <span className={cn(label, "whitespace-nowrap")}>
-        {name} <span className="hidden @lg:inline">· {width}</span>
-      </span>
-    </div>
-  );
-}
-
-function Breakpoints() {
-  return (
-    <Frame description="Illustration of one design adapted into desktop, tablet and mobile layouts, with columns reflowing at each breakpoint in about two seconds.">
-      <div className="flex size-full flex-col px-[6%] py-[5%]">
-        <div className="flex items-baseline justify-between gap-3">
-          <span className={label}>One frame → every screen</span>
-          <span className={cn(label, "text-text-primary")}>≈ 2 s</span>
-        </div>
-        <div className="flex flex-1 items-end justify-center gap-[4%] pt-[4%]">
-          <Screen cols={3} name="Desktop" width="1440" className="h-[78%] w-[48%]" />
-          <span className={cn(label, "self-center pb-[6%]")}>→</span>
-          <Screen cols={2} name="Tablet" width="768" className="h-[70%] w-[22%]" />
-          <span className={cn(label, "self-center pb-[6%]")}>→</span>
-          <Screen cols={1} name="Mobile" width="375" className="h-[62%] w-[11%]" />
-        </div>
-      </div>
-    </Frame>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-
 function Components() {
   return (
     <Frame description="Illustration of the Figma to React relationship in Axon UI: a component's Figma variant properties map one-to-one onto the props of its React component, over shared colour, type and spacing foundations.">
@@ -422,10 +361,17 @@ function Node({ children, accent }: { children: ReactNode; accent?: boolean }) {
 
 const visuals: Record<ProjectVisual, () => ReactNode> = {
   rmse: RmseChart,
-  breakpoints: Breakpoints,
   components: Components,
   lsm: Lsm,
   tiers: Tiers,
+};
+
+/** C08 captions: what each diagram is drawn from, and when it is illustrative. */
+export const visualCaption: Record<ProjectVisual, string> = {
+  rmse: "Official-test RMSE for all eight pipelines on FD001, from the MSc report. Lower is better.",
+  components: "Illustrative diagram: a Figma variant and the matching React props.",
+  lsm: "Illustrative diagram of the pipeline, not recorded output.",
+  tiers: "Architecture diagram: events routed into four isolated priority tiers.",
 };
 
 export function ProjectVisualView({ kind }: { kind: ProjectVisual }) {

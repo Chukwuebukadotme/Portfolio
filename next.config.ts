@@ -10,6 +10,12 @@ const nextConfig: NextConfig = {
       // Retired case studies; links to them still exist in CVs and messages.
       { source: "/work/budgetview", destination: "/work", permanent: true },
       { source: "/work/referralview", destination: "/work", permanent: true },
+      // Held back until they have real media and evidence; temporary, so
+      // they can return at the same address.
+      { source: "/work/axon-ui", destination: "/work", permanent: false },
+      { source: "/work/plantify", destination: "/work", permanent: false },
+      { source: "/work/mankela", destination: "/work", permanent: false },
+      { source: "/work/salary-benchmark", destination: "/work", permanent: false },
     ];
   },
 };

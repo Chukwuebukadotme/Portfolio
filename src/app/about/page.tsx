@@ -43,7 +43,7 @@ export default function AboutPage() {
         </Container>
       </Section>
 
-      <Section grid>
+      <Section>
         <Container>
           <Reveal className="max-w-[var(--measure-large)]">
             <h2 className="text-h4 font-bold text-text-primary">
@@ -139,7 +139,7 @@ export default function AboutPage() {
         </Container>
       </Section>
 
-      <Section grid>
+      <Section>
         <Container>
           <div className="grid gap-10 md:grid-cols-3">
             {skills.map((group, i) => (

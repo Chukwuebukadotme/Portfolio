@@ -2,59 +2,98 @@
  * Selected work.
  *
  * One record per project drives the homepage, the /work index and every case
- * study. Order here is the order everywhere, including previous/next.
+ * study. Array order is the Work order and the previous/next sequence;
+ * `homeOrder` picks and orders Home's Selected work.
  *
- * Artwork: `media` holds real images; `visual` names a designed diagram drawn
- * from the project's own data (see components/site/project-visuals.tsx). A slot
- * with neither renders the "artwork pending" frame, so final assets drop in by
- * adding an import to `media` and nothing else.
+ * Fields follow design/cobalt-light/projects.schema.json. A project renders
+ * only when `published`, and the publication gate at the bottom of this file
+ * stops the build if a published project lacks media or evidence, or cites a
+ * source it does not list. Claims without a source stay out of the record.
+ *
+ * Artwork: `media` holds real images; `visual` names a diagram drawn from the
+ * project's own data (see components/site/project-visuals.tsx).
  *
  * `verify` is an internal note listing drafted details to confirm. Never rendered.
  */
 
 import type { StaticImageData } from "next/image";
 
+import makeItResponsiveOverview from "@/assets/work/make-it-responsive/overview.png";
 import ozonStandardMetrics from "@/assets/work/ozon/standard-tier-metrics.jpg";
 import snnArchitecture from "@/assets/work/predictive-maintenance/snn-architecture.jpg";
 import siteresolveLanding from "@/assets/work/siteresolve/landing.jpg";
 import siteresolveOverview from "@/assets/work/siteresolve/overview.jpg";
 import siteresolveRecord from "@/assets/work/siteresolve/record.jpg";
+import type { ProjectCategory } from "@/lib/disciplines";
 
-export type ProjectCategory = "product" | "design-engineering" | "ai" | "data";
+/** Development status, worded as the evidence supports. Never an outcome. */
+export type ProjectStatus =
+  | "Concept"
+  | "Prototype"
+  | "In development"
+  | "Deployed"
+  | "Research"
+  | "Archived";
 
-export const projectFilters: readonly {
-  id: ProjectCategory | "all";
+export type ProjectImage = {
+  src: StaticImageData;
+  alt: string;
+  /** C08: names the task and state, and says when data is not real. */
+  caption?: string;
+  /** Shows sample or demonstration data rather than real use. */
+  demonstration?: boolean;
+};
+export type ProjectVisual = "rmse" | "components" | "lsm" | "tiers";
+
+/** A checked source. Metrics and the card highlight cite one by id. */
+export type Evidence = {
+  id: string;
   label: string;
-}[] = [
-  { id: "all", label: "All" },
-  { id: "product", label: "Product Design" },
-  { id: "design-engineering", label: "Design Engineering" },
-  { id: "ai", label: "AI & Machine Learning" },
-  { id: "data", label: "Data" },
-];
+  /** A URL, or a document reference when the source is not public. */
+  source: string;
+  /** ISO date the source was last checked against the claim. */
+  verifiedOn: string;
+  verificationNote: string;
+};
 
-export type ProjectImage = { src: StaticImageData; alt: string };
-export type ProjectVisual = "breakpoints" | "rmse" | "components" | "lsm" | "tiers";
-export type Metric = { value: string; label: string };
+/** C07: a measured result with its unit, context and source. */
+export type Metric = {
+  label: string;
+  value: string;
+  unit: string;
+  context: string;
+  sourceId: string;
+  verifiedOn: string;
+  direction?: "lower-is-better" | "higher-is-better" | "descriptive";
+};
+
+export type ProjectLink = {
+  label: string;
+  url: string;
+  kind: "product" | "source" | "report" | "demo" | "community";
+};
 
 export type Project = {
   slug: string;
-  number: string;
   name: string;
   /** Discipline line, e.g. "Design System · React · Frontend Engineering". */
   type: string;
-  /** The one-sentence description used on cards and in the hero. */
+  /** The summary used on cards and at the top of the case study. */
   description: string;
   headline?: string;
   categories: readonly ProjectCategory[];
   capabilities: readonly string[];
-  role?: string;
-  contribution?: string;
+  role: string;
+  contributions: readonly string[];
   tools?: readonly string[];
   year?: string;
-  status?: string;
-  /** The single line of evidence shown on the card. Omitted when there is none. */
-  evidence?: string;
+  status: ProjectStatus;
+  /** Only published projects render, prerender or count. */
+  published: boolean;
+  /** Position in Home's Selected work. Absent means Work only. */
+  homeOrder?: number;
+  /** The evidence-backed outcome on the card, citing its source. */
+  highlight?: { text: string; sourceId: string };
   problem: string;
   /** Paragraphs separated by a blank line. */
   built: string;
@@ -68,14 +107,15 @@ export type Project = {
     grid: readonly (readonly [string, string])[];
   };
   metrics?: readonly Metric[];
+  evidence: readonly Evidence[];
   outcome: string;
   reflection?: string;
-  url?: string;
+  links?: readonly ProjectLink[];
   visual?: ProjectVisual;
   media?: {
     card?: ProjectImage;
     primary?: ProjectImage;
-    detail?: ProjectImage & { caption?: string };
+    detail?: ProjectImage;
   };
   verify?: string;
 };
@@ -98,8 +138,108 @@ export const turbofanRmse: readonly {
 
 export const projects: readonly Project[] = [
   {
+    slug: "make-it-responsive",
+    name: "Make It Responsive",
+    type: "Design Automation · Figma Plugin · Product Engineering",
+    description:
+      "A Figma plugin that adapts an existing frame to desktop, tablet and mobile widths, or to custom breakpoints, so designers refine one layout per screen instead of rebuilding each one by hand.",
+    categories: ["design-engineering", "product"],
+    capabilities: [
+      "Product Design",
+      "Figma Plugin Development",
+      "Responsive Design",
+      "Design Automation",
+    ],
+    role: "Creator · Design Engineer",
+    contributions: ["Product design", "Plugin development", "Layout logic"],
+    tools: ["Figma", "Figma Plugin API"],
+    status: "Deployed",
+    published: true,
+    homeOrder: 1,
+    highlight: {
+      text: "21.6k users on Figma Community",
+      sourceId: "product-site",
+    },
+    problem:
+      "Designing for more than one screen size usually means rebuilding the same frame by hand for every breakpoint: resizing containers, reflowing columns, adjusting spacing and checking that nothing overlaps. For designers producing desktop, tablet and mobile versions of every screen, that is hours of repetitive work that adds no new design thinking, and it is exactly where inconsistencies between breakpoints creep in. Make It Responsive set out to automate that adaptation inside Figma, where the work already happens.",
+    built:
+      "Make It Responsive is a Figma plugin that takes an existing frame and produces versions of it for other screen sizes. Rather than scaling everything proportionally, it reads the structure of the design first: which layers are containers and which are content, how elements are grouped, and how each one relates to its parent.\n\nFrom that structure it infers how each part of the layout should behave at a new width, whether a row should wrap into a column, whether an element should stretch, hold its size or reflow, and only then applies the transformations that generate the new frame. The output is an ordinary, editable Figma frame, so a designer refines the result rather than starting again, and the work never leaves Figma: designs are not sent to a server.",
+    processLabel: "From one frame to every screen",
+    process: [
+      "Design parsing",
+      "Layout inference",
+      "Breakpoint transformation",
+      "Component resizing",
+      "Output validation",
+    ],
+    decisions: [
+      {
+        t: "Preserve parent–child relationships",
+        d: "Layers are adapted inside the hierarchy they already sit in, so groups and nested components keep their structure instead of being flattened into loose shapes.",
+      },
+      {
+        t: "Infer behaviour before transforming",
+        d: "The plugin decides how each element should respond, stretch, wrap or hold, before it moves anything. Scaling a frame first and fixing it afterwards is what produces distorted layouts.",
+      },
+      {
+        t: "Automate most of it, leave room to refine",
+        d: "The aim was to remove the repetitive bulk of the work, not to replace judgement. Output stays fully editable so the last details are finished by hand.",
+      },
+    ],
+    metrics: [
+      {
+        label: "Users on Figma Community",
+        value: "21.6k",
+        unit: "users",
+        context: "Figma Community's user count, as stated on makeitresponsive.co",
+        sourceId: "product-site",
+        verifiedOn: "2026-10-19",
+        direction: "descriptive",
+      },
+    ],
+    evidence: [
+      {
+        id: "product-site",
+        label: "Make It Responsive product site",
+        source: "https://makeitresponsive.co/",
+        verifiedOn: "2026-10-19",
+        verificationNote:
+          "States “21.6k users on Figma” (Figma Community's user count, not installs), lists Free, Pro and One-time plans, and says designs are not sent to a server. No timing or accuracy figures are published.",
+      },
+    ],
+    outcome:
+      "Make It Responsive is live on Figma Community, where it has 21.6k users, with free, monthly and one-time plans. The output is a starting point rather than a finished screen: the plugin works best on Auto Layout frames, and heights can still need a manual pass.",
+    links: [
+      {
+        label: "Make It Responsive product site",
+        url: "https://makeitresponsive.co/",
+        kind: "product",
+      },
+      {
+        label: "Make It Responsive on Figma Community",
+        url: "https://www.figma.com/community/plugin/1462198874109313248/make-it-responsive-convert-desktop-to-mobile-screens-and-more",
+        kind: "community",
+      },
+    ],
+    media: {
+      card: {
+        src: makeItResponsiveOverview,
+        alt: "The Make It Responsive plugin panel, with Desktop 1440 px selected and Tablet and Mobile breakpoints listed, beside one sample landing page adapted to desktop, tablet and mobile widths.",
+        demonstration: true,
+        caption: "Product graphic: the plugin panel beside one sample design adapted to three widths.",
+      },
+      primary: {
+        src: makeItResponsiveOverview,
+        alt: "The Make It Responsive plugin panel, with Desktop 1440 px selected and Tablet and Mobile breakpoints listed, beside one sample landing page adapted to desktop, tablet and mobile widths.",
+        demonstration: true,
+        caption: "Product graphic: the plugin panel beside one sample design adapted to three widths.",
+      },
+    },
+    verify:
+      "Role and contribution wording; tools beyond Figma; year; the parsing/inference description in `built`. Timing and conversion-quality figures were removed until there is a recorded benchmark. A before/after recording of one real frame would replace the promotional graphic.",
+  },
+  {
     slug: "siteresolve",
-    number: "01",
     name: "SiteResolve",
     type: "Product Design · Design Engineering · UX/UI",
     description:
@@ -115,11 +255,16 @@ export const projects: readonly Project[] = [
       "Content",
     ],
     role: "Design Engineer / Product Engineer",
-    contribution: "Product research · UX/UI · Brand · Engineering",
+    contributions: ["Product research", "UX/UI", "Brand", "Engineering"],
     tools: ["Next.js", "TypeScript", "Python", "FastAPI", "Figma"],
     year: "2025",
     status: "In development",
-    evidence: "Public product site, waitlist open",
+    published: true,
+    homeOrder: 2,
+    highlight: {
+      text: "Public product site live, waitlist open",
+      sourceId: "product-site",
+    },
     problem:
       "Defect management breaks down between steps. A defect may begin as a photograph on one phone, become a task in an email and end up as a status in a spreadsheet. The evidence sits in personal camera rolls and chat threads, nobody is named to fix it or given a date, work is marked done without anyone looking at it, and progress reports are pieced together by hand. By handover, nobody can say with confidence who fixed it or whether anyone checked.",
     built:
@@ -160,81 +305,45 @@ export const projects: readonly Project[] = [
       "SiteResolve is in development, with a public product site and an open waitlist. The workflow and interface are designed and built against demonstration data, including a worked fire-door scenario traced from report to sign-off. No customer metrics or client names are claimed until there are real ones.",
     reflection:
       "Traceability sounds like an admin feature until you watch someone try to prove a defect was fixed. Designing the audit trail as the primary object, rather than a log behind the product, changed the whole information architecture.",
-    url: "https://siteresolve-nu.vercel.app/",
+    evidence: [
+      {
+        id: "product-site",
+        label: "SiteResolve public product site",
+        source: "https://siteresolve-nu.vercel.app/",
+        verifiedOn: "2026-10-19",
+        verificationNote:
+          "Live with an open waitlist. Dashboard figures are labelled demonstration data; no customers, pricing or results are claimed.",
+      },
+    ],
+    links: [
+      {
+        label: "SiteResolve product site",
+        url: "https://siteresolve-nu.vercel.app/",
+        kind: "product",
+      },
+    ],
     media: {
       card: {
         src: siteresolveOverview,
         alt: "SiteResolve portfolio overview showing open, overdue and awaiting-verification defects, beside a site manager photographing a fire door.",
+        demonstration: true,
+        caption: "Portfolio overview, shown with demonstration data.",
       },
       primary: {
         src: siteresolveLanding,
         alt: "The SiteResolve product site: From defect report to verified resolution.",
+        caption: "The public SiteResolve product site.",
       },
       detail: {
         src: siteresolveRecord,
         alt: "A closed SiteResolve defect record, SR-1842, with its dated history from report to verified resolution.",
+        demonstration: true,
         caption: "One defect, one record: SR-1842 from report to sign-off, shown with demonstration data.",
       },
     },
   },
   {
-    slug: "make-it-responsive",
-    number: "02",
-    name: "Make It Responsive",
-    type: "Design Automation · Figma Plugin · Product Engineering",
-    description:
-      "A Figma plugin that automatically converts designs across different screen sizes using responsive layout logic, reducing hours of manual resizing to seconds.",
-    categories: ["design-engineering", "product"],
-    capabilities: [
-      "Product Design",
-      "Figma Plugin Development",
-      "Responsive Design",
-      "Design Automation",
-    ],
-    role: "Creator · Design Engineer",
-    contribution: "Product design · Plugin development · Layout logic",
-    tools: ["Figma", "Figma Plugin API"],
-    evidence: "10K+ users · conversion in ~2 seconds",
-    problem:
-      "Designing for more than one screen size usually means rebuilding the same frame by hand for every breakpoint: resizing containers, reflowing columns, adjusting spacing and checking that nothing overlaps. For designers producing desktop, tablet and mobile versions of every screen, that is hours of repetitive work that adds no new design thinking, and it is exactly where inconsistencies between breakpoints creep in. Make It Responsive set out to automate that adaptation inside Figma, where the work already happens.",
-    built:
-      "Make It Responsive is a Figma plugin that takes an existing frame and produces versions of it for other screen sizes. Rather than scaling everything proportionally, it reads the structure of the design first: which layers are containers and which are content, how elements are grouped, and how each one relates to its parent.\n\nFrom that structure it infers how each part of the layout should behave at a new width, whether a row should wrap into a column, whether an element should stretch, hold its size or reflow, and only then applies the transformations that generate the new frame. The output is an ordinary, editable Figma frame, so a designer refines the result rather than starting again. Conversion completes in around two seconds, and the plugin has grown to more than 10,000 users.",
-    processLabel: "From one frame to every screen",
-    process: [
-      "Design parsing",
-      "Layout inference",
-      "Breakpoint transformation",
-      "Component resizing",
-      "Output validation",
-    ],
-    decisions: [
-      {
-        t: "Preserve parent–child relationships",
-        d: "Layers are adapted inside the hierarchy they already sit in, so groups and nested components keep their structure instead of being flattened into loose shapes.",
-      },
-      {
-        t: "Infer behaviour before transforming",
-        d: "The plugin decides how each element should respond, stretch, wrap or hold, before it moves anything. Scaling a frame first and fixing it afterwards is what produces distorted layouts.",
-      },
-      {
-        t: "Automate most of it, leave room to refine",
-        d: "The aim was to remove the repetitive bulk of the work, not to replace judgement. Output stays fully editable so the last details are finished by hand.",
-      },
-    ],
-    metrics: [
-      { value: "~2 s", label: "Responsive conversion" },
-      { value: "80–90%", label: "Conversion accuracy" },
-      { value: "10K+", label: "Users" },
-    ],
-    outcome:
-      "The plugin turns a task measured in hours into one measured in seconds, with most layouts converting accurately enough to need only light refinement. It has grown to more than 10,000 users.",
-    visual: "breakpoints",
-    verify:
-      "Role and contribution wording; tools beyond Figma (TypeScript?); year; the parsing/inference description in `built`. TODO: add a real before/after screenshot of the plugin to media.card and media.primary.",
-  },
-  {
     slug: "predictive-maintenance",
-    number: "03",
     name: "Predictive Maintenance for Turbofan Engines",
     type: "Artificial Intelligence · Predictive Maintenance · Research",
     description:
@@ -249,10 +358,24 @@ export const projects: readonly Project[] = [
       "Model Evaluation",
     ],
     role: "AI Engineer / Researcher",
-    contribution: "Data preparation · Modelling · Evaluation · Research",
-    tools: ["Python", "scikit-learn", "NEST Simulator", "pandas", "NumPy", "Matplotlib"],
+    contributions: ["Data preparation", "Modelling", "Evaluation", "Research"],
+    tools: [
+      "Python",
+      "scikit-learn",
+      "TensorFlow / Keras",
+      "NEST Simulator",
+      "pandas",
+      "NumPy",
+      "Matplotlib",
+    ],
     year: "2026",
-    evidence: "Best official-test RMSE of 12.57 cycles across 8 approaches",
+    status: "Research",
+    published: true,
+    homeOrder: 3,
+    highlight: {
+      text: "12.57 cycles RMSE on the FD001 official test, lowest of eight pipelines",
+      sourceId: "msc-report",
+    },
     problem:
       "Aircraft turbofan engines degrade gradually. Maintenance scheduled too early wastes serviceable life; maintenance scheduled too late risks failure. Remaining useful life (RUL) prediction estimates how many operating cycles an engine has left from its sensor history. Many approaches have been proposed, from classical regression to deep and neuromorphic networks, but they are often reported under different protocols, which makes them hard to compare fairly. This project evaluated eight of them side by side on the same data, splits and test conditions.",
     built:
@@ -294,12 +417,47 @@ export const projects: readonly Project[] = [
       ],
     },
     metrics: [
-      { value: "12.57", label: "Best official-test RMSE (cycles)" },
-      { value: "8", label: "AI approaches evaluated" },
-      { value: "100", label: "Unseen test engines" },
+      {
+        label: "Best official-test RMSE",
+        value: "12.57",
+        unit: "cycles",
+        context: "Histogram Gradient Boosting · FD001 · 100 unseen engines",
+        sourceId: "msc-report",
+        verifiedOn: "2026-10-19",
+        direction: "lower-is-better",
+      },
+      {
+        label: "Pipelines compared",
+        value: "8",
+        unit: "pipelines",
+        context: "One shared protocol: engine-level split, 30-cycle windows, 125-cycle RUL cap",
+        sourceId: "msc-report",
+        verifiedOn: "2026-10-19",
+        direction: "descriptive",
+      },
+      {
+        label: "Official-test engines",
+        value: "100",
+        unit: "engines",
+        context: "NASA's held-out FD001 test set, one endpoint prediction each",
+        sourceId: "msc-report",
+        verifiedOn: "2026-10-19",
+        direction: "descriptive",
+      },
+    ],
+    evidence: [
+      {
+        id: "msc-report",
+        label: "MSc major project report, Table 5.2",
+        source:
+          "Onyemelukwe, C. (2026). MSc Artificial Intelligence major project report. Nottingham Trent University.",
+        verifiedOn: "2026-10-19",
+        verificationNote:
+          "All eight official-test RMSE values match Table 5.2. The report also confirms the FD001 scope, engine-level split, 30-cycle windows, 125-cycle cap and TensorFlow/Keras for the neural models.",
+      },
     ],
     outcome:
-      "Histogram Gradient Boosting achieved the lowest official-test RMSE at 12.57 cycles, narrowly ahead of the LSTM (12.85) and Extra Trees (12.89). The spiking Liquid State Machine placed last on accuracy at 20.17, but trains only a 301-parameter readout, which is the trade-off the study was designed to expose: accuracy has to be read alongside computational cost.",
+      "Histogram Gradient Boosting achieved the lowest official-test RMSE at 12.57 cycles, narrowly ahead of the LSTM (12.85) and Extra Trees (12.89). No pipeline led on every criterion: the LSTM had the lowest NASA score and Ridge Regression the lowest measured inference latency. The NEST spiking model trains only a 301-parameter readout, but simulated on a CPU it had the highest inference latency and the weakest accuracy (20.17), so the experiment did not show a computational advantage. The results hold for unseen FD001 engines; they do not establish transfer to other operating conditions or to aircraft in service.",
     visual: "rmse",
     media: {
       detail: {
@@ -309,211 +467,10 @@ export const projects: readonly Project[] = [
       },
     },
     verify:
-      "Year (repo dated Aug 2026); the deep-learning framework used for CNN/LSTM/Transformer (add to tools).",
-  },
-  {
-    slug: "axon-ui",
-    number: "04",
-    name: "Axon UI",
-    type: "Design System · React · Frontend Engineering",
-    description:
-      "A shared Figma and React component library designed to create a more consistent workflow between product design and frontend development.",
-    categories: ["design-engineering"],
-    capabilities: [
-      "Design Systems",
-      "Figma",
-      "React",
-      "Frontend Engineering",
-      "Component Architecture",
-    ],
-    role: "Design Engineer",
-    contribution: "Component design · React implementation",
-    tools: ["Figma", "React"],
-    evidence: "One component library across Figma and React",
-    problem:
-      "When a design file and a codebase each keep their own version of a component, they drift. A button gains a variant in Figma that never reaches code; a spacing value changes in code and the design file is never updated. Designers and developers then spend review time reconciling differences instead of building, and every new screen risks another inconsistency. Axon UI was built to give both sides one shared set of components to work from.",
-    built:
-      "Axon UI is a component library maintained in two matching halves: a Figma library for designing and a React library for building. Each component is defined once, its anatomy, variants and states, and that definition is expressed the same way on both sides, so a variant a designer selects in Figma corresponds to a prop a developer passes in React.\n\nShared foundations such as colour, typography and spacing sit underneath both halves, which keeps components consistent as the library grows. The result is a handoff without translation: the names, options and structure a developer reads in the design are the ones they find in code.",
-    processLabel: "One component, two sides",
-    process: [
-      "Component audit",
-      "Shared foundations",
-      "Anatomy & variants",
-      "Figma library",
-      "React components",
-      "Parity check",
-    ],
-    decisions: [
-      {
-        t: "Variants map to props",
-        d: "Every Figma variant property has a matching React prop with the same name and options, so the design file doubles as a reference for the component’s API.",
-      },
-      {
-        t: "Foundations before components",
-        d: "Colour, type and spacing are defined first and consumed by every component on both sides, so a change to a foundation propagates instead of being repeated.",
-      },
-      {
-        t: "Compose, don’t redraw",
-        d: "Larger patterns are assembled from smaller components rather than drawn from scratch, which keeps the library small and its behaviour predictable.",
-      },
-    ],
-    outcome:
-      "Axon UI gives design and development a shared vocabulary. Components are specified once and implemented to match, which is intended to shorten handoff and reduce the drift that builds up when design files and code evolve separately.",
-    visual: "components",
-    verify:
-      "Process steps and decisions are drafted from the description; confirm tooling (TypeScript? Storybook? tokens pipeline?), year, and any adoption figures. TODO: add real Figma library and React screenshots to media.",
-  },
-  {
-    slug: "plantify",
-    number: "05",
-    name: "Plantify",
-    type: "Computer Vision · AI Product · Product Design",
-    description:
-      "An AI-powered application that identifies plants from images using computer vision and machine learning.",
-    categories: ["ai", "product"],
-    capabilities: [
-      "Machine Learning",
-      "Computer Vision",
-      "Product Design",
-      "AI Product Development",
-    ],
-    role: "Product Designer / ML Engineer",
-    contribution: "Product design · Model training · Evaluation",
-    evidence: "Over 90% identification accuracy",
-    problem:
-      "Most people cannot name the plants around them, and the usual routes to finding out, searching by description or browsing a field guide, are slow and depend on already knowing what to look for. A photograph is the most natural input: quick to take, and it holds the information an expert would use. Plantify set out to turn a single image into a confident identification, in an experience simple enough for someone with no botanical knowledge.",
-    built:
-      "Plantify pairs a computer-vision model with a product experience designed around it. On the machine-learning side, an image classifier is trained to recognise plant species from photographs and evaluated on held-out images to measure how reliably it identifies them.\n\nOn the product side, the flow is built around the moment of capture: take or upload a photo, receive an identification, and see the result presented clearly enough to act on. Designing both halves together meant the interface could be shaped around what the model can and cannot do, rather than treating the model as a black box attached to a finished design.",
-    processLabel: "From photograph to answer",
-    process: [
-      "Image collection",
-      "Preprocessing",
-      "Model training",
-      "Evaluation",
-      "Capture flow",
-      "Result design",
-    ],
-    decisions: [
-      {
-        t: "Design around the model’s behaviour",
-        d: "The interface was shaped by how the classifier actually performs, rather than assuming every prediction is equally certain.",
-      },
-      {
-        t: "One photo, one clear answer",
-        d: "Capture is the whole interaction: the experience asks for a single image and returns a single, readable identification.",
-      },
-      {
-        t: "Measure on unseen images",
-        d: "Accuracy was measured on images held out from training, so the reported figure reflects identification rather than memorisation.",
-      },
-    ],
-    metrics: [{ value: "90%+", label: "Plant-identification accuracy" }],
-    outcome:
-      "During project evaluation, Plantify identified plants with over 90% accuracy, delivered through a capture-and-result flow designed for people with no botanical background.",
-    verify:
-      "Tools and model architecture (e.g. CNN / transfer learning, framework), dataset, year, and whether evaluation used a held-out set. TODO: add app screens to media.card and media.primary.",
-  },
-  {
-    slug: "mankela",
-    number: "06",
-    name: "Mankela",
-    type: "Business Platform · Product Design",
-    description:
-      "A business platform designed to simplify operations by connecting skilled manpower, structured business processes and technology services.",
-    categories: ["product"],
-    capabilities: [
-      "Product Design",
-      "UX/UI",
-      "Business Process Design",
-      "Digital Product Strategy",
-    ],
-    role: "Product Designer",
-    contribution: "Product strategy · UX/UI · Process design",
-    evidence: "Manpower, processes and technology in one platform",
-    problem:
-      "Growing businesses often manage staffing, operational processes and technology through separate providers and informal arrangements. Finding skilled people, keeping work structured and getting the right technical support become three separate problems, each with its own contacts, paperwork and follow-up. The overhead falls on the business owner, who spends time coordinating rather than operating. Mankela was designed to bring those needs together so a business can resolve them in one place.",
-    built:
-      "Mankela is a business platform organised around three connected services: access to skilled manpower, structured business processes, and technology services. The product design work focused on making those services feel like one system rather than three catalogues.\n\nThat meant defining how a business describes what it needs, how each request reaches the right service, and how progress is shown back once work begins. The interface prioritises plain language and a small number of well-defined actions, so a business owner can understand what is available and what is happening without first learning the platform.",
-    processLabel: "Designing the operating model",
-    process: [
-      "Service mapping",
-      "Business needs",
-      "Information architecture",
-      "Journey design",
-      "Interface design",
-      "Validation",
-    ],
-    decisions: [
-      {
-        t: "One platform, not three catalogues",
-        d: "Manpower, processes and technology share one request and tracking model, so a business does not have to learn three ways of working.",
-      },
-      {
-        t: "Plain language over industry terms",
-        d: "Services are described by the problem they solve for a business, not by internal categories.",
-      },
-      {
-        t: "Show progress, not just requests",
-        d: "Once a request is made, its status stays visible, removing the follow-up calls that informal arrangements depend on.",
-      },
-    ],
-    outcome:
-      "Mankela gives businesses one structured place to access people, process support and technology services, and is designed to turn separate arrangements into a single, trackable workflow.",
-    verify:
-      "Everything beyond the description is drafted: process, decisions, role, year, tools, and whether the platform launched. TODO: add product screens to media.card and media.primary.",
-  },
-  {
-    slug: "liquid-state-machine",
-    number: "07",
-    name: "Liquid State Machine for Audio Denoising",
-    type: "Spiking Neural Networks · Neuromorphic Computing",
-    description:
-      "A Liquid State Machine using spiking neural networks to recognise temporal audio patterns and filter unwanted noise from sound signals.",
-    categories: ["ai"],
-    capabilities: [
-      "Spiking Neural Networks",
-      "Liquid State Machines",
-      "Neuromorphic Computing",
-      "Audio Processing",
-      "Machine Learning",
-    ],
-    role: "AI Engineer / Researcher",
-    contribution: "Research · Network design · Audio processing",
-    problem:
-      "Background noise degrades speech and audio everywhere from calls to recordings, and removing it well depends on recognising patterns that unfold over time rather than in a single instant. Conventional approaches handle this with large networks performing dense, continuous computation. Spiking neural networks process information as discrete events in time, which makes them a natural fit for temporal signals and a candidate for efficient neuromorphic hardware. This project explored whether a Liquid State Machine could separate wanted sound from noise.",
-    built:
-      "A Liquid State Machine for audio denoising. Incoming sound is converted into spike trains that drive a recurrent reservoir of spiking neurons, the ‘liquid’. Because the reservoir’s activity at any moment reflects the recent history of its input, it holds a rich, time-dependent representation of the signal without the reservoir itself being trained.\n\nA readout layer is trained on that activity to distinguish the patterns of the wanted signal from those of noise and to reconstruct a cleaner version of the sound. Only the readout learns, which keeps training lightweight and suits the event-driven, low-power computation that neuromorphic systems are designed for.",
-    processLabel: "From sound to spikes and back",
-    process: [
-      "Audio preprocessing",
-      "Spike encoding",
-      "Reservoir dynamics",
-      "Readout training",
-      "Signal reconstruction",
-    ],
-    decisions: [
-      {
-        t: "Train the readout, not the reservoir",
-        d: "The recurrent spiking network stays fixed and only the readout learns, which keeps training fast and stable.",
-      },
-      {
-        t: "Encode time, not just amplitude",
-        d: "Audio is converted into spike timing so the network works with how the signal changes, which is where speech and noise differ.",
-      },
-      {
-        t: "Present it as research",
-        d: "The work investigates spiking computation as a route to event-driven audio processing. It is not a production denoiser, and no benchmark figures are claimed.",
-      },
-    ],
-    outcome:
-      "A working research prototype showing how a Liquid State Machine can learn temporal audio patterns and filter noise from sound signals. No production deployment or benchmark results are claimed; the value of the work is in the approach and what it shows about spiking networks for temporal signals.",
-    visual: "lsm",
-    verify:
-      "Tools (NEST? Brian2? Python libraries), dataset, spike-encoding method, year. Add any spectrogram or waveform comparison to media.detail.",
+      "A public copy of the report or code would let the evidence link out instead of citing the document.",
   },
   {
     slug: "ozon-data-pipeline",
-    number: "08",
     name: "Ozon Priority-Aware Data Pipeline",
     type: "Big Data Engineering · E-commerce",
     description:
@@ -527,10 +484,22 @@ export const projects: readonly Project[] = [
       "E-commerce Systems",
     ],
     role: "Data Engineer",
-    contribution: "Pipeline architecture · Cloud infrastructure · Data processing",
-    tools: ["Microsoft Azure", "Azure Event Hubs"],
+    contributions: ["Pipeline architecture", "Cloud infrastructure", "Data processing"],
+    tools: [
+      "Microsoft Azure",
+      "Azure Event Hubs",
+      "Azure Databricks",
+      "Delta Lake",
+      "Azure Synapse",
+    ],
     year: "2026",
-    evidence: "Four isolated priority tiers on Azure Event Hubs",
+    status: "Prototype",
+    published: true,
+    homeOrder: 4,
+    highlight: {
+      text: "2.4k standard-tier messages, 0 server errors in the recorded test run",
+      sourceId: "azure-metrics",
+    },
     problem:
       "An e-commerce platform produces a constant stream of events, and they do not all matter equally. When everything flows through one queue, a surge of routine events can delay the ones that need immediate action. The pipeline had to handle high volume without letting urgent data wait behind routine data, while keeping the flow organised enough to transform, process and analyse downstream.",
     built:
@@ -572,12 +541,37 @@ export const projects: readonly Project[] = [
       ],
     },
     metrics: [
-      { value: "4", label: "Isolated priority tiers" },
-      { value: "2.4k", label: "Standard-tier events in the recorded test run" },
-      { value: "0", label: "Server errors across tiers" },
+      {
+        label: "Standard-tier messages in the recorded test run",
+        value: "2.4k",
+        unit: "messages",
+        context: "Incoming messages, ozon-eh-standard, one-hour window",
+        sourceId: "azure-metrics",
+        verifiedOn: "2026-10-19",
+        direction: "descriptive",
+      },
+      {
+        label: "Server errors on the standard tier",
+        value: "0",
+        unit: "errors",
+        context: "Same namespace and window, against 2.4k successful requests",
+        sourceId: "azure-metrics",
+        verifiedOn: "2026-10-19",
+        direction: "lower-is-better",
+      },
+    ],
+    evidence: [
+      {
+        id: "azure-metrics",
+        label: "Azure portal metrics for the ozon-eh-standard namespace",
+        source: "Screenshot of the Event Hubs namespace overview, recorded during the test run (April 2026)",
+        verifiedOn: "2026-10-19",
+        verificationNote:
+          "Shows 2.4k incoming and 2.4k successful requests, 2.4k incoming messages, 870.84 kB incoming and 0 server errors over one hour, with zone redundancy enabled. Covers the standard tier only.",
+      },
     ],
     outcome:
-      "In the recorded test run, events reached their intended tiers, around 2,400 through the standard tier and 12 through the high tier, with no server errors on any namespace. The architecture enforces priority structurally, by isolating streams, rather than relying on ordering inside one shared queue.",
+      "In the recorded test run the standard tier took about 2,400 messages with no server errors, as the namespace metrics below show. The architecture enforces priority structurally, by isolating streams, rather than relying on ordering inside one shared queue.",
     visual: "tiers",
     media: {
       detail: {
@@ -587,11 +581,224 @@ export const projects: readonly Project[] = [
       },
     },
     verify:
-      "Year (screenshots dated Apr 2026); the classification rule for priorities; downstream processing and storage services (Stream Analytics? Databricks? Blob/ADLS?) to add to tools.",
+      "The classification rule for priorities; recorded metrics for the other three tiers would let the outcome cover them too. Downstream tools are from the CV.",
+  },
+  {
+    slug: "liquid-state-machine",
+    name: "Liquid State Machine for Audio Denoising",
+    type: "Spiking Neural Networks · Neuromorphic Computing",
+    description:
+      "A Liquid State Machine using spiking neural networks to recognise temporal audio patterns and filter unwanted noise from sound signals.",
+    categories: ["ai"],
+    capabilities: [
+      "Spiking Neural Networks",
+      "Liquid State Machines",
+      "Neuromorphic Computing",
+      "Audio Processing",
+      "Machine Learning",
+    ],
+    role: "AI Engineer / Researcher",
+    contributions: ["Research", "Network design", "Audio processing"],
+    year: "2025–2026",
+    status: "Research",
+    published: true,
+    problem:
+      "Background noise degrades speech and audio everywhere from calls to recordings, and removing it well depends on recognising patterns that unfold over time rather than in a single instant. Conventional approaches handle this with large networks performing dense, continuous computation. Spiking neural networks process information as discrete events in time, which makes them a natural fit for temporal signals and a candidate for efficient neuromorphic hardware. This project explored whether a Liquid State Machine could separate wanted sound from noise.",
+    built:
+      "A Liquid State Machine for audio denoising. Incoming sound is converted into spike trains that drive a recurrent reservoir of spiking neurons, the ‘liquid’. Because the reservoir’s activity at any moment reflects the recent history of its input, it holds a rich, time-dependent representation of the signal without the reservoir itself being trained.\n\nA readout layer is trained on that activity to distinguish the patterns of the wanted signal from those of noise and to reconstruct a cleaner version of the sound. Only the readout learns, which keeps training lightweight and suits the event-driven, low-power computation that neuromorphic systems are designed for.",
+    processLabel: "From sound to spikes and back",
+    process: [
+      "Audio preprocessing",
+      "Spike encoding",
+      "Reservoir dynamics",
+      "Readout training",
+      "Signal reconstruction",
+    ],
+    decisions: [
+      {
+        t: "Train the readout, not the reservoir",
+        d: "The recurrent spiking network stays fixed and only the readout learns, which keeps training fast and stable.",
+      },
+      {
+        t: "Encode time, not just amplitude",
+        d: "Audio is converted into spike timing so the network works with how the signal changes, which is where speech and noise differ.",
+      },
+      {
+        t: "Present it as research",
+        d: "The work investigates spiking computation as a route to event-driven audio processing. It is not a production denoiser, and no benchmark figures are claimed.",
+      },
+    ],
+    outcome:
+      "A working research prototype showing how a Liquid State Machine can learn temporal audio patterns and filter noise from sound signals. No production deployment or benchmark results are claimed; the value of the work is in the approach and what it shows about spiking networks for temporal signals.",
+    evidence: [
+      {
+        id: "cv",
+        label: "Listed on the CV as the Liquid State Machine Audio Denoising Pipeline (Applied AI, 2025–2026)",
+        source: "Chukwuebuka Onyemelukwe, CV, October 2026",
+        verifiedOn: "2026-10-19",
+        verificationNote:
+          "Supplied by the owner. There is no public artefact or benchmark yet, so the case study claims no numeric results and its diagram is illustrative.",
+      },
+    ],
+    visual: "lsm",
+    verify:
+      "Tools (NEST? Brian2? Python libraries), dataset, spike-encoding method, year. Add any spectrogram or waveform comparison to media.detail.",
+  },
+  {
+    slug: "axon-ui",
+    name: "Axon UI",
+    type: "Design System · React · Frontend Engineering",
+    description:
+      "A shared Figma and React component library designed to create a more consistent workflow between product design and frontend development.",
+    categories: ["design-engineering"],
+    capabilities: [
+      "Design Systems",
+      "Figma",
+      "React",
+      "Frontend Engineering",
+      "Component Architecture",
+    ],
+    role: "Design Engineer",
+    contributions: ["Component design", "React implementation"],
+    tools: ["Figma", "React"],
+    status: "Prototype",
+    published: false,
+    evidence: [],
+    problem:
+      "When a design file and a codebase each keep their own version of a component, they drift. A button gains a variant in Figma that never reaches code; a spacing value changes in code and the design file is never updated. Designers and developers then spend review time reconciling differences instead of building, and every new screen risks another inconsistency. Axon UI was built to give both sides one shared set of components to work from.",
+    built:
+      "Axon UI is a component library maintained in two matching halves: a Figma library for designing and a React library for building. Each component is defined once, its anatomy, variants and states, and that definition is expressed the same way on both sides, so a variant a designer selects in Figma corresponds to a prop a developer passes in React.\n\nShared foundations such as colour, typography and spacing sit underneath both halves, which keeps components consistent as the library grows. The result is a handoff without translation: the names, options and structure a developer reads in the design are the ones they find in code.",
+    processLabel: "One component, two sides",
+    process: [
+      "Component audit",
+      "Shared foundations",
+      "Anatomy & variants",
+      "Figma library",
+      "React components",
+      "Parity check",
+    ],
+    decisions: [
+      {
+        t: "Variants map to props",
+        d: "Every Figma variant property has a matching React prop with the same name and options, so the design file doubles as a reference for the component’s API.",
+      },
+      {
+        t: "Foundations before components",
+        d: "Colour, type and spacing are defined first and consumed by every component on both sides, so a change to a foundation propagates instead of being repeated.",
+      },
+      {
+        t: "Compose, don’t redraw",
+        d: "Larger patterns are assembled from smaller components rather than drawn from scratch, which keeps the library small and its behaviour predictable.",
+      },
+    ],
+    outcome:
+      "Axon UI gives design and development a shared vocabulary. Components are specified once and implemented to match, which is intended to shorten handoff and reduce the drift that builds up when design files and code evolve separately.",
+    visual: "components",
+    verify:
+      "Process steps and decisions are drafted from the description; confirm tooling (TypeScript? Storybook? tokens pipeline?), year, and any adoption figures. TODO: add real Figma library and React screenshots to media.",
+  },
+  {
+    slug: "plantify",
+    name: "Plantify",
+    type: "Computer Vision · AI Product · Product Design",
+    description:
+      "An AI-powered application that identifies plants from images using computer vision and machine learning.",
+    categories: ["ai", "product"],
+    capabilities: [
+      "Machine Learning",
+      "Computer Vision",
+      "Product Design",
+      "AI Product Development",
+    ],
+    role: "Product Designer / ML Engineer",
+    contributions: ["Product design", "Model training", "Evaluation"],
+    status: "Prototype",
+    published: false,
+    evidence: [],
+    problem:
+      "Most people cannot name the plants around them, and the usual routes to finding out, searching by description or browsing a field guide, are slow and depend on already knowing what to look for. A photograph is the most natural input: quick to take, and it holds the information an expert would use. Plantify set out to turn a single image into a confident identification, in an experience simple enough for someone with no botanical knowledge.",
+    built:
+      "Plantify pairs a computer-vision model with a product experience designed around it. On the machine-learning side, an image classifier is trained to recognise plant species from photographs and evaluated on held-out images to measure how reliably it identifies them.\n\nOn the product side, the flow is built around the moment of capture: take or upload a photo, receive an identification, and see the result presented clearly enough to act on. Designing both halves together meant the interface could be shaped around what the model can and cannot do, rather than treating the model as a black box attached to a finished design.",
+    processLabel: "From photograph to answer",
+    process: [
+      "Image collection",
+      "Preprocessing",
+      "Model training",
+      "Evaluation",
+      "Capture flow",
+      "Result design",
+    ],
+    decisions: [
+      {
+        t: "Design around the model’s behaviour",
+        d: "The interface was shaped by how the classifier actually performs, rather than assuming every prediction is equally certain.",
+      },
+      {
+        t: "One photo, one clear answer",
+        d: "Capture is the whole interaction: the experience asks for a single image and returns a single, readable identification.",
+      },
+      {
+        t: "Measure on unseen images",
+        d: "Accuracy was measured on images held out from training, so the reported figure reflects identification rather than memorisation.",
+      },
+    ],
+    outcome:
+      "During project evaluation, Plantify identified plants with over 90% accuracy, delivered through a capture-and-result flow designed for people with no botanical background.",
+    verify:
+      "Tools and model architecture (e.g. CNN / transfer learning, framework), dataset, year, and whether evaluation used a held-out set. TODO: add app screens to media.card and media.primary.",
+  },
+  {
+    slug: "mankela",
+    name: "Mankela",
+    type: "Business Platform · Product Design",
+    description:
+      "A business platform designed to simplify operations by connecting skilled manpower, structured business processes and technology services.",
+    categories: ["product"],
+    capabilities: [
+      "Product Design",
+      "UX/UI",
+      "Business Process Design",
+      "Digital Product Strategy",
+    ],
+    role: "Product Designer",
+    contributions: ["Product strategy", "UX/UI", "Process design"],
+    status: "Concept",
+    published: false,
+    evidence: [],
+    problem:
+      "Growing businesses often manage staffing, operational processes and technology through separate providers and informal arrangements. Finding skilled people, keeping work structured and getting the right technical support become three separate problems, each with its own contacts, paperwork and follow-up. The overhead falls on the business owner, who spends time coordinating rather than operating. Mankela was designed to bring those needs together so a business can resolve them in one place.",
+    built:
+      "Mankela is a business platform organised around three connected services: access to skilled manpower, structured business processes, and technology services. The product design work focused on making those services feel like one system rather than three catalogues.\n\nThat meant defining how a business describes what it needs, how each request reaches the right service, and how progress is shown back once work begins. The interface prioritises plain language and a small number of well-defined actions, so a business owner can understand what is available and what is happening without first learning the platform.",
+    processLabel: "Designing the operating model",
+    process: [
+      "Service mapping",
+      "Business needs",
+      "Information architecture",
+      "Journey design",
+      "Interface design",
+      "Validation",
+    ],
+    decisions: [
+      {
+        t: "One platform, not three catalogues",
+        d: "Manpower, processes and technology share one request and tracking model, so a business does not have to learn three ways of working.",
+      },
+      {
+        t: "Plain language over industry terms",
+        d: "Services are described by the problem they solve for a business, not by internal categories.",
+      },
+      {
+        t: "Show progress, not just requests",
+        d: "Once a request is made, its status stays visible, removing the follow-up calls that informal arrangements depend on.",
+      },
+    ],
+    outcome:
+      "Mankela gives businesses one structured place to access people, process support and technology services, and is designed to turn separate arrangements into a single, trackable workflow.",
+    verify:
+      "Everything beyond the description is drafted: process, decisions, role, year, tools, and whether the platform launched. TODO: add product screens to media.card and media.primary.",
   },
   {
     slug: "salary-benchmark",
-    number: "09",
     name: "Salary Benchmark Prediction System",
     type: "Machine Learning · Regression · Data Analysis",
     description:
@@ -606,7 +813,10 @@ export const projects: readonly Project[] = [
       "Model Evaluation",
     ],
     role: "ML Engineer",
-    contribution: "Data preparation · Analysis · Modelling · Evaluation",
+    contributions: ["Data preparation", "Analysis", "Modelling", "Evaluation"],
+    status: "Research",
+    published: false,
+    evidence: [],
     problem:
       "Setting pay fairly and competitively depends on knowing what a role is worth, but salary benchmarks are often assembled from inconsistent surveys, job adverts and instinct. The factors that drive pay interact in ways that simple averages hide. Organisations need a benchmark that reflects those factors together and can be applied to a specific role. This project built a data-driven way to estimate that benchmark from workforce data.",
     built:
@@ -641,9 +851,42 @@ export const projects: readonly Project[] = [
   },
 ];
 
-/** The homepage shows the first few; /work shows everything. */
-export const featuredProjectCount = 4;
+/**
+ * The publication gate. A published project needs media for its card and its
+ * case study and at least one evidence record, and every metric and highlight
+ * must cite one of those records. A failure stops the build rather than
+ * shipping an unsupported claim.
+ */
+function unpublishable(p: Project): string[] {
+  if (!p.published) return [];
+  const ids = new Set(p.evidence.map((e) => e.id));
+  const problems: string[] = [];
+  if (!ids.size) problems.push("no evidence");
+  for (const slot of ["card", "primary"] as const) {
+    if (!p.media?.[slot] && !p.visual) problems.push(`no ${slot} media`);
+  }
+  for (const m of p.metrics ?? []) {
+    if (!ids.has(m.sourceId)) problems.push(`metric "${m.label}" cites unknown source "${m.sourceId}"`);
+  }
+  if (p.highlight && !ids.has(p.highlight.sourceId)) {
+    problems.push(`highlight cites unknown source "${p.highlight.sourceId}"`);
+  }
+  return problems;
+}
+
+const failures = projects.flatMap((p) => unpublishable(p).map((m) => `${p.slug}: ${m}`));
+if (failures.length) {
+  throw new Error(`Projects failed the publication gate:\n${failures.join("\n")}`);
+}
+
+/** Everything a visitor can reach, in Work order. */
+export const publishedProjects = projects.filter((p) => p.published);
+
+/** Home's Selected work, in `homeOrder`. */
+export const homeProjects = publishedProjects
+  .filter((p) => p.homeOrder !== undefined)
+  .sort((a, b) => (a.homeOrder ?? 0) - (b.homeOrder ?? 0));
 
 export function projectBySlug(slug: string): Project | undefined {
-  return projects.find((p) => p.slug === slug);
+  return publishedProjects.find((p) => p.slug === slug);
 }

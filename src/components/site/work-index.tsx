@@ -3,10 +3,15 @@
 import { useEffect, useState, type ReactNode } from "react";
 
 import { Reveal } from "@/components/site/reveal";
-import { projectFilters, type ProjectCategory } from "@/lib/projects";
+import { disciplines, type ProjectCategory } from "@/lib/disciplines";
 import { cn } from "@/lib/utils";
 
 type FilterId = ProjectCategory | "all";
+
+const projectFilters: readonly { id: FilterId; label: string }[] = [
+  { id: "all", label: "All projects" },
+  ...disciplines,
+];
 
 type Item = { slug: string; categories: readonly ProjectCategory[]; card: ReactNode };
 

@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
 
+import type { ProjectStatus } from "@/lib/projects";
 import { cn } from "@/lib/utils";
 
-/** Page gutter plus the 1312px content measure from the source frames. */
+/** The 1200px content container with the responsive 20/32/48px gutter. */
 export function Container({
   children,
   className,
@@ -10,38 +11,29 @@ export function Container({
   children: ReactNode;
   className?: string;
 }) {
-  return (
-    <div className={cn("relative px-[var(--page-margin)]", className)}>
-      <div className="mx-auto w-full max-w-[var(--container-content)]">
-        {children}
-      </div>
-    </div>
-  );
+  return <div className={cn("cl-container", className)}>{children}</div>;
 }
 
+/** A chapter of the page, spaced by the 64/80/120px section token. */
 export function Section({
   children,
   className,
-  grid = false,
+  id,
+  labelledBy,
 }: {
   children: ReactNode;
   className?: string;
-  /** Lays the measurement texture behind the section at low opacity. */
-  grid?: boolean;
+  id?: string;
+  labelledBy?: string;
 }) {
   return (
-    <section className={cn("relative py-[var(--block-gap)]", className)}>
-      {grid ? (
-        <span
-          aria-hidden
-          className="ds-grid-overlay pointer-events-none absolute inset-0"
-        />
-      ) : null}
+    <section id={id} aria-labelledby={labelledBy} className={cn("cl-section", className)}>
       {children}
     </section>
   );
 }
 
+/** Short uppercase label above a heading. The only place uppercase is used. */
 export function Eyebrow({
   children,
   className,
@@ -49,48 +41,44 @@ export function Eyebrow({
   children: ReactNode;
   className?: string;
 }) {
-  return <p className={cn("ds-eyebrow", className)}>{children}</p>;
+  return (
+    <p className={cn("cl-type-eyebrow uppercase text-brand", className)}>
+      {children}
+    </p>
+  );
 }
 
+/** C06 capability tag: neutral fill, no pointer or hover, since it is not a control. */
 export function Tag({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex items-center rounded-sm px-2 py-1 font-mono text-tiny tracking-[var(--track-meta)] text-text-secondary shadow-[inset_0_0_0_1px_var(--border-hairline)]">
+    <span className="inline-flex items-center rounded-control bg-bg-subtle px-2 py-1 text-[0.75rem] leading-normal text-text-secondary">
       {children}
     </span>
   );
 }
 
+const statusTone: Record<ProjectStatus, string> = {
+  Deployed: "bg-status-success-bg text-status-success",
+  "In development": "bg-status-warning-bg text-status-warning",
+  Research: "bg-status-info-bg text-status-info",
+  Prototype: "bg-bg-subtle text-text-secondary",
+  Concept: "bg-bg-subtle text-text-secondary",
+  Archived: "bg-bg-subtle text-text-secondary",
+};
+
 /**
- * Stands in for artwork that has not been supplied yet. Deliberately reads as
- * a frame rather than a broken image, and carries its own label so an empty
- * slot is never mistaken for a rendering fault.
+ * C06 status badge. The word carries the meaning; the semantic colour only
+ * reinforces it. Development status, never an outcome.
  */
-export function MediaPlaceholder({
-  label,
-  ratio = "16 / 10",
-  className,
-}: {
-  label: string;
-  ratio?: string;
-  className?: string;
-}) {
+export function StatusBadge({ status }: { status: ProjectStatus }) {
   return (
-    <div
-      role="img"
-      aria-label={`${label}, artwork pending`}
-      style={{ aspectRatio: ratio }}
+    <span
       className={cn(
-        "relative w-full overflow-hidden rounded-md bg-surface-sunken shadow-[inset_0_0_0_1px_var(--border-hairline)]",
-        className,
+        "inline-flex items-center rounded-control px-2 py-1 text-[0.75rem] leading-normal font-medium",
+        statusTone[status],
       )}
     >
-      <span
-        aria-hidden
-        className="ds-grid-overlay pointer-events-none absolute inset-0"
-      />
-      <span className="absolute bottom-3 left-3 font-mono text-tiny tracking-[var(--track-meta)] text-text-tertiary">
-        {label}
-      </span>
-    </div>
+      {status}
+    </span>
   );
 }
