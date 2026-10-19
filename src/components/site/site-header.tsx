@@ -134,7 +134,12 @@ export function SiteHeader({ resumeMeta }: { resumeMeta: string }) {
           onClick={() => (open ? close(true) : setOpen(true))}
           aria-expanded={open}
           aria-controls="mobile-nav"
-          className="-mr-2 inline-flex min-h-11 items-center gap-2 rounded-control px-2 cl-type-ui text-text-primary md:hidden"
+          className={cn(
+            // A bordered control, so it reads as a button and not a link.
+            "inline-flex min-h-11 items-center gap-2 rounded-control border border-border-control bg-bg-subtle px-3 cl-type-ui text-text-primary md:hidden",
+            "transition-colors duration-(--cl-motion-duration-micro) ease-standard hover:bg-brand-soft",
+            "aria-expanded:border-brand aria-expanded:bg-brand-soft",
+          )}
         >
           <Icon icon={open ? X : Menu} />
           Menu
@@ -177,7 +182,7 @@ export function SiteHeader({ resumeMeta }: { resumeMeta: string }) {
             { href: "/contact", label: "Contact" },
           ].map((item) => {
             const row =
-              "flex min-h-12 items-center justify-between gap-3 rounded-control px-3 cl-type-subheading no-underline hover:bg-bg-subtle";
+              "flex min-h-14 items-center justify-between gap-3 rounded-control px-3 cl-type-section no-underline hover:bg-bg-subtle";
             return (
               <li key={item.href} className="border-b border-border-subtle last:border-b-0">
                 {item.href === site.resume ? (

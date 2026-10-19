@@ -1,15 +1,23 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, BrainCircuit, CodeXml, PenTool, type LucideIcon } from "lucide-react";
 
+import { CareerRuler } from "@/components/site/career-ruler";
 import { HeroNetwork } from "@/components/site/hero-network";
 import { Icon } from "@/components/site/icon";
 import { Container, Eyebrow, Section } from "@/components/site/primitives";
 import { ProjectCard } from "@/components/site/project-card";
 import { Reveal } from "@/components/site/reveal";
 import { Button } from "@/components/ui/button";
-import { capabilities, experience, hero, site } from "@/lib/content";
+import { capabilities, hero, site } from "@/lib/content";
 import { homeProjects, projectBySlug, publishedProjects } from "@/lib/projects";
 import { resumeMeta } from "@/lib/resume";
+
+/** One neutral icon per capability; cobalt stays reserved for actions. */
+const capabilityIcon: Record<(typeof capabilities)[number]["title"], LucideIcon> = {
+  "Product design": PenTool,
+  "Product engineering": CodeXml,
+  "AI engineering": BrainCircuit,
+};
 
 const textLink =
   "inline-flex min-h-11 items-center gap-2 cl-type-ui text-brand no-underline transition-colors duration-(--cl-motion-duration-micro) ease-standard hover:text-brand-hover";
@@ -36,8 +44,11 @@ export default function HomePage() {
 
         <Container className="cl-page pb-16 lg:grid lg:min-h-[min(88svh,58rem)] lg:grid-cols-12 lg:items-center lg:gap-x-(--cl-grid-gap) lg:pb-24">
           <div className="lg:col-span-7">
-            <p className="cl-type-eyebrow uppercase text-brand">{site.role}</p>
-            <p className="mt-2 cl-type-subheading text-text-primary">{site.name}</p>
+            <p className="cl-type-subheading text-text-primary">{site.name}</p>
+            {/* What I do, then whether I am available, before the headline,
+                so availability is read first rather than after the actions. */}
+            <p className="mt-2 cl-type-eyebrow uppercase text-brand">{site.role}</p>
+            <p className="mt-1 cl-type-caption text-text-secondary">{site.availability}</p>
             <h1 id="hero-title" className="mt-6 cl-type-page text-balance text-text-primary">
               {hero.lead} <span className="text-brand">{hero.highlight}</span> {hero.tail}
             </h1>
@@ -55,7 +66,6 @@ export default function HomePage() {
                 </a>
               </Button>
             </div>
-            <p className="mt-6 cl-type-caption text-text-secondary">{site.availability}</p>
           </div>
         </Container>
       </section>
@@ -111,6 +121,9 @@ export default function HomePage() {
               const shown = c.projects.map(projectBySlug).filter((p) => p !== undefined);
               return (
                 <Reveal key={c.title} index={i} as="li" className="border-t border-border pt-6">
+                  <span className="mb-4 inline-flex size-10 items-center justify-center rounded-control bg-bg-subtle text-text-primary">
+                    <Icon icon={capabilityIcon[c.title]} />
+                  </span>
                   <h3 className="cl-type-subheading text-text-primary">{c.title}</h3>
                   <p className="mt-3 cl-type-body text-text-secondary">{c.body}</p>
                   {shown.length ? (
@@ -136,46 +149,36 @@ export default function HomePage() {
       </Section>
 
       <Section labelledBy="experience-title" className="border-t border-border-subtle">
-        <Container className="grid gap-10 lg:grid-cols-12 lg:gap-x-(--cl-grid-gap)">
-          <div className="lg:col-span-5">
+        <Container>
+          <div className="max-w-measure">
             <Eyebrow>Experience</Eyebrow>
             <h2 id="experience-title" className="mt-3 cl-type-section text-text-primary">
               From plant dashboards to AI products.
             </h2>
-            <p className="mt-4 max-w-measure cl-type-body text-text-secondary">
+            <p className="mt-4 cl-type-body text-text-secondary">
               I trained in electronic and computer engineering, built
               operational dashboards at Nigeria LNG, then moved into AI product
               engineering, first at Technoville and now as a freelancer. In
               2026 I completed an MSc in Artificial Intelligence at Nottingham
               Trent University with Distinction.
             </p>
-            <Link href="/about" className={`mt-4 ${textLink}`}>
-              More about me
-              <Icon icon={ArrowRight} />
-            </Link>
           </div>
 
-          <ol className="lg:col-span-6 lg:col-start-7">
-            {experience.map((e, i) => (
-              <Reveal
-                key={e.organisation}
-                index={i}
-                as="li"
-                className="grid gap-1 border-t border-border py-5 last:border-b sm:grid-cols-[10rem_1fr] sm:gap-6"
-              >
-                <p className="cl-type-caption text-text-secondary tabular-nums">{e.dates}</p>
-                <div>
-                  <h3 className="cl-type-ui text-text-primary">{e.role}</h3>
-                  <p className="cl-type-caption text-text-secondary">{e.organisation}</p>
-                </div>
-              </Reveal>
-            ))}
-          </ol>
+          <Reveal className="mt-10">
+            <CareerRuler />
+          </Reveal>
+
+          <Link href="/about" className={`mt-6 ${textLink}`}>
+            More about me
+            <Icon icon={ArrowRight} />
+          </Link>
         </Container>
       </Section>
 
-      <Section labelledBy="contact-title" className="border-t border-border-subtle">
-        <Container className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      {/* The hiring call sits on the subtle surface: more weight than the
+          page around it, while cobalt stays on its one action. */}
+      <Section labelledBy="contact-title" className="pt-0 lg:pt-0">
+        <Container className="flex flex-col gap-6 rounded-card bg-bg-subtle p-6 sm:p-10 md:flex-row md:items-end md:justify-between lg:p-12">
           <div className="max-w-measure">
             <Eyebrow>{site.availability}</Eyebrow>
             <h2 id="contact-title" className="mt-3 cl-type-section text-text-primary">
