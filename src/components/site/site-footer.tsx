@@ -43,8 +43,14 @@ export function SiteFooter() {
             <h2 className="mt-3 cl-type-section text-text-inverse">
               Let’s connect.
             </h2>
+            {/* Availability at a glance. The words carry the meaning; the
+                dot only reinforces it (success green, 3.1:1 on the plate). */}
+            <p className="mt-4 inline-flex items-center gap-2 rounded-pill border border-text-inverse/20 px-3 py-1.5 cl-type-caption text-text-inverse">
+              <span aria-hidden className="size-2 shrink-0 rounded-full bg-status-success" />
+              {site.availability}
+            </p>
             <p className="mt-3 max-w-measure cl-type-body text-text-inverse-secondary">
-              {site.availability}. Selected product collaborations welcome.
+              Selected product collaborations welcome.
             </p>
             <a
               href={`mailto:${site.contactEmail}`}

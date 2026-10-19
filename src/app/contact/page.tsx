@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 import { ContactForm } from "@/components/site/contact-form";
-import { CopyEmail } from "@/components/site/copy-email";
+import { CopyEmailButton } from "@/components/site/copy-email";
 import { Icon } from "@/components/site/icon";
 import { Container, Eyebrow } from "@/components/site/primitives";
 import { Button } from "@/components/ui/button";
@@ -17,15 +16,18 @@ export const metadata: Metadata = {
 };
 
 const external = [
-  { href: site.linkedin, label: "LinkedIn" },
-  { href: site.github, label: "GitHub" },
-  { href: site.calcom, label: "Book a call on Cal.com" },
+  { label: "LinkedIn", href: site.linkedin, text: "Profile" },
+  { label: "GitHub", href: site.github, text: "Chukwuebukadotme" },
 ] as const;
 
+const rowLink =
+  "inline-flex min-h-11 items-center gap-1.5 cl-type-body text-brand underline decoration-1 underline-offset-4 hover:text-brand-hover";
+
 /**
- * Contact: hiring and project routes kept apart, the direct address, résumé
- * and LinkedIn before the form, then the enquiry form with a short, truthful
- * note on how a message is handled.
+ * Contact: every direct contact in one list, with copy on the email row; then
+ * the hiring and project routes beside the enquiry form, so choosing a route
+ * and writing happen in one view. Email, résumé and LinkedIn all come before
+ * the form, and the routes precede it in reading order on every screen.
  */
 export default function ContactPage() {
   const resume = resumeMeta();
@@ -42,66 +44,70 @@ export default function ContactPage() {
             {site.availability}. The quickest way to reach me is email.
           </p>
 
-          <div className="mt-8">
-            <CopyEmail email={site.contactEmail} />
-          </div>
+          <dl className="mt-8 max-w-[44rem] border-t border-border">
+            <div className="grid gap-x-6 border-b border-border py-3 sm:grid-cols-[8rem_1fr] sm:items-center">
+              <dt className="cl-type-ui text-text-secondary">Email</dt>
+              <dd className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
+                <a id="contact-email" href={`mailto:${site.contactEmail}`} className={`${rowLink} break-all`}>
+                  {site.contactEmail}
+                </a>
+                <CopyEmailButton email={site.contactEmail} addressId="contact-email" />
+              </dd>
+            </div>
+            {external.map((l) => (
+              <div
+                key={l.label}
+                className="grid gap-x-6 border-b border-border py-3 sm:grid-cols-[8rem_1fr] sm:items-center"
+              >
+                <dt className="cl-type-ui text-text-secondary">{l.label}</dt>
+                <dd>
+                  <a href={l.href} target="_blank" rel="noopener noreferrer" className={rowLink}>
+                    {l.text}
+                    <Icon icon={ArrowUpRight} size={16} />
+                    <span className="sr-only">(opens in a new tab)</span>
+                  </a>
+                </dd>
+              </div>
+            ))}
+          </dl>
         </Container>
       </section>
 
-      <section aria-label="Ways to get in touch" className="pt-12 md:pt-16">
-        <Container className="grid gap-6 md:grid-cols-2">
-          <div className="flex flex-col rounded-card border border-border bg-bg-surface p-6 md:p-8">
-            <h2 className="cl-type-subheading text-text-primary">Hiring</h2>
-            <p className="mt-3 cl-type-body text-text-secondary">
-              Building a product, design engineering or AI team? I’m open to
-              permanent roles across the UK.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3 md:mt-auto md:pt-6">
-              <Button asChild variant="secondary">
+      <section id="enquiry" aria-labelledby="enquiry-title" className="cl-section">
+        <Container className="grid gap-12 lg:grid-cols-12 lg:gap-x-(--cl-grid-gap)">
+          <aside aria-label="Ways to get in touch" className="flex flex-col gap-6 lg:col-span-4">
+            <div className="rounded-card border border-border bg-bg-surface p-6">
+              <h2 className="cl-type-subheading text-text-primary">Hiring</h2>
+              <p className="mt-3 cl-type-body text-text-secondary">
+                Building a product, design engineering or AI team? I’m open to
+                permanent roles across the UK.
+              </p>
+              <Button asChild variant="secondary" className="mt-5">
                 <a href={site.resume} target="_blank" rel="noopener">
                   Résumé
                   <span className="cl-type-caption text-text-secondary">{resume}</span>
                   <span className="sr-only">, opens in a new tab</span>
                 </a>
               </Button>
-              <Button asChild variant="secondary">
-                <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
-                  LinkedIn
-                  <Icon icon={ArrowUpRight} size={16} />
-                  <span className="sr-only">(opens in a new tab)</span>
-                </a>
-              </Button>
             </div>
-          </div>
 
-          <div className="flex flex-col rounded-card border border-border bg-bg-surface p-6 md:p-8">
-            <h2 className="cl-type-subheading text-text-primary">Product collaborations</h2>
-            <p className="mt-3 cl-type-body text-text-secondary">
-              Have a product, website or intelligent system in mind? Book a
-              call, or send the details below.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3 md:mt-auto md:pt-6">
-              <Button asChild variant="secondary">
+            <div className="rounded-card border border-border bg-bg-surface p-6">
+              <h2 className="cl-type-subheading text-text-primary">Product collaborations</h2>
+              <p className="mt-3 cl-type-body text-text-secondary">
+                Have a product, website or intelligent system in mind? Book a
+                call, or send the details with the form.
+              </p>
+              <Button asChild variant="secondary" className="mt-5">
                 <a href={site.calcom} target="_blank" rel="noopener noreferrer">
                   Book a call
                   <Icon icon={ArrowUpRight} size={16} />
                   <span className="sr-only">on Cal.com (opens in a new tab)</span>
                 </a>
               </Button>
-              <Button asChild variant="secondary">
-                <Link href="#enquiry">
-                  Send an enquiry
-                  <Icon icon={ArrowRight} size={16} />
-                </Link>
-              </Button>
             </div>
-          </div>
-        </Container>
-      </section>
+          </aside>
 
-      <section id="enquiry" aria-labelledby="enquiry-title" className="cl-section">
-        <Container className="grid gap-12 lg:grid-cols-12 lg:gap-x-(--cl-grid-gap)">
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 lg:col-start-6">
             <h2 id="enquiry-title" className="cl-type-section text-text-primary">
               Send an enquiry
             </h2>
@@ -109,26 +115,6 @@ export default function ContactPage() {
               <ContactForm />
             </div>
           </div>
-
-          <aside className="lg:col-span-4 lg:col-start-9">
-            <h2 className="cl-type-eyebrow uppercase text-text-muted">Elsewhere</h2>
-            <ul className="mt-2">
-              {external.map((l) => (
-                <li key={l.href}>
-                  <a
-                    href={l.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-11 items-center gap-2 cl-type-ui text-brand no-underline hover:text-brand-hover"
-                  >
-                    {l.label}
-                    <Icon icon={ArrowUpRight} size={16} />
-                    <span className="sr-only">(opens in a new tab)</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </aside>
         </Container>
       </section>
     </>

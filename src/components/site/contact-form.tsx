@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { startTransition, useActionState, useEffect, useId, useRef, useState } from "react";
-import { ChevronDown, TriangleAlert } from "lucide-react";
+import { ArrowRight, ChevronDown, Send, TriangleAlert } from "lucide-react";
 
 import { submitContact } from "@/app/contact/actions";
 import { Icon } from "@/components/site/icon";
@@ -78,8 +78,19 @@ export function ContactForm() {
   if (state.status === "success") {
     return (
       <div role="status" className="rounded-card border border-status-success bg-status-success-bg p-6 md:p-8">
-        <p className="cl-type-subheading text-text-primary">Message sent</p>
+        <p className="flex items-center gap-2 cl-type-subheading text-text-primary">
+          <Icon icon={Send} className="text-status-success" />
+          Message sent
+        </p>
         <p className="mt-2 cl-type-body text-text-primary">{state.message}</p>
+        {/* One next step, so the page does not end at the confirmation. */}
+        <Link
+          href="/work"
+          className="mt-4 inline-flex min-h-11 items-center gap-2 cl-type-ui text-brand no-underline hover:text-brand-hover"
+        >
+          Browse work
+          <Icon icon={ArrowRight} />
+        </Link>
       </div>
     );
   }
@@ -127,7 +138,7 @@ export function ContactForm() {
 
       <div className="grid gap-6 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
-          <Label htmlFor={field("name")}>Name (required)</Label>
+          <Label htmlFor={field("name")} className={cn(err.name && "text-status-error")}>Name (required)</Label>
           <Input
             id={field("name")}
             name="name"
@@ -141,7 +152,7 @@ export function ContactForm() {
         </div>
 
         <div className="flex flex-col gap-2">
-          <Label htmlFor={field("email")}>Email (required)</Label>
+          <Label htmlFor={field("email")} className={cn(err.email && "text-status-error")}>Email (required)</Label>
           <Input
             id={field("email")}
             name="email"
@@ -165,7 +176,7 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label htmlFor={field("type")}>Enquiry type (required)</Label>
+        <Label htmlFor={field("type")} className={cn(err.type && "text-status-error")}>Enquiry type (required)</Label>
         <div className="relative">
           <select
             id={field("type")}
@@ -209,7 +220,7 @@ export function ContactForm() {
       ) : null}
 
       <div className="flex flex-col gap-2">
-        <Label htmlFor={field("message")}>Message (required)</Label>
+        <Label htmlFor={field("message")} className={cn(err.message && "text-status-error")}>Message (required)</Label>
         <Textarea
           id={field("message")}
           name="message"
