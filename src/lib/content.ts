@@ -22,6 +22,8 @@ export const site = {
   calcom: "https://cal.com/TODO",
   resume: "/uploads/Chukwuebuka_CV_.docx.pdf",
   location: "United Kingdom",
+  /** Stated once and reused wherever availability appears. */
+  availability: "UK based · Open to permanent UK roles",
 } as const;
 
 /** Rotates through the hero headline. */

@@ -71,7 +71,7 @@ export default function HomePage() {
               </Button>
             </div>
             <Eyebrow className="mt-6">
-              UK based · Open to permanent UK roles
+              {site.availability}
             </Eyebrow>
           </div>
         </Container>

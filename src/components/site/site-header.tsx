@@ -2,163 +2,200 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 
-import { GlassPanel } from "@/components/site/glass-panel";
+import { Icon } from "@/components/site/icon";
 import { site } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
-const nav = [
+const pages = [
   { href: "/work", label: "Work" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] as const;
 
-export function SiteHeader() {
+/** Header and menu panel share the content container, so they align. */
+const shell = "fixed inset-x-0 z-40 cl-container rounded-card border border-border";
+
+/**
+ * C01 floating header and C02 mobile navigation.
+ *
+ * Desktop: the wordmark and Work / About / Contact / Résumé on one floating
+ * bar. Below 768px the links move into a panel opened by one labelled button.
+ * While the panel is open the page behind it is inert and does not scroll,
+ * Escape closes it and focus returns to the button; the active route is marked
+ * with an underline and aria-current, never with a second primary action.
+ */
+export function SiteHeader({ resumeMeta }: { resumeMeta: string }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-
-  // Route changes close the menu; an open menu locks the page behind it.
-  useEffect(() => setOpen(false), [pathname]);
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLElement>(null);
 
   const isActive = (href: string) =>
-    href === "/work" ? pathname.startsWith("/work") : pathname === href;
+    pathname === href || pathname.startsWith(`${href}/`);
+
+  const close = useCallback((restoreFocus: boolean) => {
+    setOpen(false);
+    if (restoreFocus) triggerRef.current?.focus();
+  }, []);
+
+  // Following a link closes the menu; the new page takes focus from there.
+  useEffect(() => setOpen(false), [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const behind = ["main", "site-footer"].map((id) => document.getElementById(id));
+    behind.forEach((el) => el?.setAttribute("inert", ""));
+    // The menu only exists on touch-sized layouts, where scrollbars overlay
+    // the page, so locking scroll here cannot shift the layout sideways.
+    const root = document.documentElement;
+    root.style.overflow = "hidden";
+    const frame = requestAnimationFrame(() =>
+      panelRef.current?.querySelector<HTMLElement>("a")?.focus(),
+    );
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close(true);
+    };
+    // Growing past the mobile layout hides the panel, so it must not stay
+    // open behind the desktop bar with the page still inert.
+    const wide = window.matchMedia("(min-width: 48rem)");
+    const onWide = () => {
+      if (wide.matches) close(false);
+    };
+    document.addEventListener("keydown", onKey);
+    wide.addEventListener("change", onWide);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      behind.forEach((el) => el?.removeAttribute("inert"));
+      root.style.overflow = "";
+      document.removeEventListener("keydown", onKey);
+      wide.removeEventListener("change", onWide);
+    };
+  }, [open, close]);
 
   return (
     <>
-      <div className="pointer-events-none sticky top-3 z-60 flex justify-center px-[var(--page-margin)]">
-        <GlassPanel
-          flat
-          className="pointer-events-auto w-full max-w-[var(--container-large)]"
+      <header
+        className={cn(
+          shell,
+          "top-(--cl-header-offset) flex min-h-(--cl-header-height) items-center justify-between gap-6 bg-bg-surface px-4 shadow-subtle md:px-5",
+          "supports-[backdrop-filter]:bg-header supports-[backdrop-filter]:backdrop-blur-[16px]",
+        )}
+      >
+        <Link
+          href="/"
+          aria-label={`CO, ${site.name}, home`}
+          className="inline-flex min-h-11 items-center font-display text-[1.5rem] leading-none font-semibold tracking-[-0.02em] text-text-primary no-underline"
         >
-          <div className="flex items-center gap-3 px-5 py-3 sm:gap-6">
-            {/* An initials mark, with the full name still announced to screen
-                readers and kept intact in the footer. */}
-            <Link
-              href="/"
-              aria-label="Chukwuebuka Onyemelukwe, home"
-              className="inline-flex items-baseline whitespace-nowrap text-[19px] font-bold leading-none tracking-[var(--track-heading)] text-text-primary no-underline"
-            >
-              CO
-            </Link>
+          CO
+        </Link>
 
-            <span className="flex-1" />
-
-            <nav
-              aria-label="Primary"
-              className="hidden items-center gap-5 md:flex"
-            >
-              {nav.map((item) => (
+        <nav aria-label="Primary" className="hidden md:block">
+          <ul className="flex items-center gap-6">
+            {pages.map((item) => (
+              <li key={item.href}>
                 <Link
-                  key={item.href}
                   href={item.href}
                   aria-current={isActive(item.href) ? "page" : undefined}
                   className={cn(
-                    "ds-eyebrow whitespace-nowrap no-underline transition-colors duration-[var(--dur-fast)] ease-[var(--ease-glass)] hover:text-text-primary",
+                    "inline-flex min-h-11 items-center cl-type-ui underline-offset-[0.45em] transition-colors duration-(--cl-motion-duration-micro) ease-standard",
                     isActive(item.href)
-                      ? "text-text-primary"
-                      : "text-text-tertiary",
+                      ? "text-text-primary underline decoration-brand decoration-2"
+                      : "text-text-secondary no-underline hover:text-text-primary",
                   )}
                 >
                   {item.label}
                 </Link>
-              ))}
+              </li>
+            ))}
+            <li>
               <a
                 href={site.resume}
                 target="_blank"
                 rel="noopener"
-                className="ds-eyebrow whitespace-nowrap text-text-tertiary no-underline transition-colors duration-[var(--dur-fast)] ease-[var(--ease-glass)] hover:text-text-primary"
+                className="inline-flex min-h-11 items-center gap-1 cl-type-ui text-text-secondary no-underline transition-colors duration-(--cl-motion-duration-micro) ease-standard hover:text-text-primary"
               >
-                Résumé <span className="text-text-accent">↗</span>
+                Résumé
+                <Icon icon={ArrowUpRight} size={16} />
+                <span className="sr-only">({resumeMeta}, opens in a new tab)</span>
               </a>
-            </nav>
+            </li>
+          </ul>
+        </nav>
 
-            <div className="flex items-center gap-1.5 md:hidden">
-              {/* Three bars that rotate into a cross. The bars are the same
-                  element throughout, so open and close are one continuous
-                  movement rather than an icon swap. */}
-              <button
-                type="button"
-                onClick={() => setOpen((v) => !v)}
-                aria-expanded={open}
-                aria-controls="mobile-nav"
-                className="relative grid size-11 place-items-center text-text-primary"
-              >
-                <span className="sr-only">
-                  {open ? "Close menu" : "Open menu"}
-                </span>
-                <span aria-hidden className="relative block h-[14px] w-[22px]">
-                  <span
-                    className={cn(
-                      "absolute left-0 block h-[1.5px] w-full rounded-full bg-current",
-                      "transition-transform duration-[var(--dur-base)] ease-[var(--ease-glass)]",
-                      open ? "top-1/2 -translate-y-1/2 rotate-45" : "top-0",
-                    )}
-                  />
-                  <span
-                    className={cn(
-                      "absolute left-0 top-1/2 block h-[1.5px] w-full -translate-y-1/2 rounded-full bg-current",
-                      "transition-opacity duration-[var(--dur-fast)] ease-[var(--ease-glass)]",
-                      open ? "opacity-0" : "opacity-100",
-                    )}
-                  />
-                  <span
-                    className={cn(
-                      "absolute left-0 block h-[1.5px] w-full rounded-full bg-current",
-                      "transition-transform duration-[var(--dur-base)] ease-[var(--ease-glass)]",
-                      open ? "top-1/2 -translate-y-1/2 -rotate-45" : "bottom-0",
-                    )}
-                  />
-                </span>
-              </button>
-            </div>
-          </div>
-        </GlassPanel>
-      </div>
+        <button
+          ref={triggerRef}
+          type="button"
+          onClick={() => (open ? close(true) : setOpen(true))}
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          className="-mr-2 inline-flex min-h-11 items-center gap-2 rounded-control px-2 cl-type-ui text-text-primary md:hidden"
+        >
+          <Icon icon={open ? X : Menu} />
+          Menu
+        </button>
+      </header>
 
+      {/* Dims the inert page behind the panel; a tap outside closes it. */}
+      <div
+        aria-hidden
+        onClick={() => close(true)}
+        className={cn(
+          "fixed inset-0 z-30 bg-overlay transition-opacity md:hidden motion-reduce:transition-none",
+          open
+            ? "opacity-100 duration-(--cl-motion-duration-enter) ease-enter"
+            : "pointer-events-none opacity-0 duration-(--cl-motion-duration-standard) ease-exit",
+        )}
+      />
+
+      {/* Hidden with visibility, not display, so it can animate out; while
+          hidden it is out of the tab order and the accessibility tree. */}
       <nav
         id="mobile-nav"
-        aria-label="Mobile"
-        hidden={!open}
-        className="fixed inset-0 z-59 flex flex-col justify-between gap-10 overflow-y-auto overscroll-contain bg-surface-page bg-[image:var(--surface-field)] px-[var(--page-margin)] pb-10 pt-20 md:hidden"
+        ref={panelRef}
+        aria-label="Menu"
+        className={cn(
+          shell,
+          "top-[calc(var(--cl-header-offset)+var(--cl-header-height)+0.5rem)] max-h-[calc(100dvh-var(--cl-header-offset)-var(--cl-header-height)-1.5rem)] overflow-y-auto overscroll-contain bg-bg-surface p-2 shadow-raised md:hidden",
+          "motion-reduce:transition-none",
+          // Visibility flips at once on open, so the first link can take
+          // focus on the next frame, and only waits out the exit on close.
+          open
+            ? "visible opacity-100 transition-[opacity,translate] duration-(--cl-motion-duration-enter) ease-enter"
+            : "invisible -translate-y-4 opacity-0 transition-[opacity,translate,visibility] duration-(--cl-motion-duration-standard) ease-exit",
+        )}
       >
-        <ul className="flex flex-col">
+        <ul>
           {[
-            ...nav.filter((n) => n.href !== "/contact"),
-            { href: site.resume, label: "Résumé ↗" },
+            ...pages.filter((p) => p.href !== "/contact"),
+            { href: site.resume, label: "Résumé" },
             { href: "/contact", label: "Contact" },
-          ].map((item, i, all) => {
-            const external = item.href.startsWith("/uploads");
-            const last = i === all.length - 1;
+          ].map((item) => {
+            const row =
+              "flex min-h-12 items-center justify-between gap-3 rounded-control px-3 cl-type-subheading no-underline hover:bg-bg-subtle";
             return (
-              <li
-                key={item.href}
-                className={cn(
-                  "border-t border-border-hairline py-1.25",
-                  last && "border-b",
-                )}
-              >
-                {external ? (
-                  <a
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener"
-                    className="text-h3 font-bold tracking-[var(--track-display)] text-text-primary no-underline"
-                  >
-                    {item.label}
+              <li key={item.href} className="border-b border-border-subtle last:border-b-0">
+                {item.href === site.resume ? (
+                  <a href={item.href} target="_blank" rel="noopener" className={cn(row, "text-text-primary")}>
+                    <span>
+                      {item.label}
+                      <span className="sr-only"> ({resumeMeta}, opens in a new tab)</span>
+                    </span>
+                    <Icon icon={ArrowUpRight} className="text-text-secondary" />
                   </a>
                 ) : (
                   <Link
                     href={item.href}
+                    aria-current={isActive(item.href) ? "page" : undefined}
                     className={cn(
-                      "text-h3 font-bold tracking-[var(--track-display)] no-underline",
-                      last ? "text-text-accent" : "text-text-primary",
+                      row,
+                      "text-text-primary underline-offset-[0.3em]",
+                      isActive(item.href) && "underline decoration-brand decoration-2",
                     )}
                   >
                     {item.label}
@@ -168,9 +205,9 @@ export function SiteHeader() {
             );
           })}
         </ul>
-        <div className="flex flex-wrap items-center justify-between gap-5">
-          <p className="ds-eyebrow">UK based · Open to permanent UK roles</p>
-        </div>
+        <p className="px-3 pt-4 pb-2 cl-type-caption text-text-secondary">
+          {site.availability}
+        </p>
       </nav>
     </>
   );
