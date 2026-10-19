@@ -6,8 +6,6 @@ import { extendTailwindMerge } from "tailwind-merge";
  * roles (cl-type-display … cl-type-code) are custom utilities, so they are
  * declared as one group: a later role replaces an earlier one, and a role
  * replaces any separate size, leading, weight or tracking set before it.
- *
- * The h1 … tiny scale belongs to the transitional bridge and goes with it.
  */
 const twMerge = extendTailwindMerge<"cl-type">({
   extend: {
@@ -26,23 +24,6 @@ const twMerge = extendTailwindMerge<"cl-type">({
             "caption",
             "eyebrow",
             "code",
-          ],
-        },
-      ],
-      "font-size": [
-        {
-          text: [
-            "h1",
-            "h2",
-            "h3",
-            "h4",
-            "h5",
-            "h6",
-            "large",
-            "medium",
-            "regular",
-            "small",
-            "tiny",
           ],
         },
       ],

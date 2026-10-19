@@ -1,157 +1,180 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
+import { Icon } from "@/components/site/icon";
 import { Container, Eyebrow, Section } from "@/components/site/primitives";
 import { Reveal } from "@/components/site/reveal";
 import { Button } from "@/components/ui/button";
-import { about, site, skills } from "@/lib/content";
+import { about, education, experience, site } from "@/lib/content";
+import { projectBySlug, publishedProjects } from "@/lib/projects";
+import { resumeMeta } from "@/lib/resume";
 
 export const metadata: Metadata = {
   title: "About",
   description: about.intro,
 };
 
+const textLink =
+  "inline-flex min-h-11 items-center gap-2 cl-type-ui text-brand no-underline transition-colors duration-(--cl-motion-duration-micro) ease-standard hover:text-brand-hover";
+
+/**
+ * About: the person, a dated career from confirmed records only, education,
+ * how design and AI meet in the work, and a skills-to-evidence table built
+ * from the published projects rather than a free-standing technology list.
+ */
 export default function AboutPage() {
+  const resume = resumeMeta();
+
   return (
     <>
-      <Section className="pt-32">
-        <Container>
-          <div className="grid items-end gap-10 md:grid-cols-2">
-            <div>
-              <Eyebrow>{about.eyebrow}</Eyebrow>
-              <h1 className="mt-3 text-h1 font-extrabold text-text-primary">
-                {about.title}
-              </h1>
-              <p className="mt-6 max-w-[var(--measure-large)] text-large text-text-secondary">
-                {about.intro}
-              </p>
+      <section aria-labelledby="about-title" className="cl-page pb-(--cl-section-space)">
+        <Container className="grid gap-10 lg:grid-cols-12 lg:gap-x-(--cl-grid-gap)">
+          <div className="lg:col-span-7">
+            <Eyebrow>About</Eyebrow>
+            <h1 id="about-title" className="mt-3 cl-type-page text-text-primary">
+              {site.name}
+            </h1>
+            <p className="mt-3 cl-type-subheading text-text-secondary">{site.role}</p>
+            <p className="mt-6 max-w-measure cl-type-lead text-text-primary">{about.intro}</p>
+            <p className="mt-4 max-w-measure cl-type-body text-text-secondary">{about.body}</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button asChild size="lg">
+                <Link href="/contact">Get in touch</Link>
+              </Button>
+              <Button asChild size="lg" variant="secondary">
+                <a href={site.resume} target="_blank" rel="noopener">
+                  Résumé
+                  <span className="cl-type-caption text-text-secondary">{resume}</span>
+                  <span className="sr-only">, opens in a new tab</span>
+                </a>
+              </Button>
             </div>
+            <p className="mt-6 max-w-measure cl-type-caption text-text-secondary">{about.availability}</p>
+          </div>
 
-            <div className="flex flex-col gap-3 border-l-2 border-border-accent pl-6">
-              <p className="font-mono text-tiny tracking-[var(--track-eyebrow)] text-text-accent">
-                {site.initials}
-              </p>
-              <p className="text-h2 font-extrabold leading-[var(--leading-tight)] tracking-[var(--track-display)] text-text-primary">
-                {about.markTitle.map((line) => (
-                  <span key={line} className="block">
-                    {line}
-                  </span>
-                ))}
-              </p>
-            </div>
+          <div className="lg:col-span-4 lg:col-start-9 lg:self-end">
+            <h2 className="cl-type-eyebrow uppercase text-text-muted">How I work</h2>
+            <dl className="mt-3">
+              {about.practice.map((p) => (
+                <div key={p.title} className="border-t border-border py-4 last:border-b">
+                  <dt className="cl-type-ui text-text-primary">{p.title}</dt>
+                  <dd className="mt-1 cl-type-caption text-text-secondary">{p.body}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </Container>
-      </Section>
+      </section>
 
-      <Section>
+      <Section labelledBy="design-ai-title" className="border-t border-border-subtle">
         <Container>
-          <Reveal className="max-w-[var(--measure-large)]">
-            <h2 className="text-h4 font-bold text-text-primary">
-              {about.questionLead}
-            </h2>
-            <p className="mt-3 text-h3 font-bold text-gradient-accent">
-              {about.question}
-            </p>
-            <p className="mt-6 text-medium text-text-secondary">
-              {about.body}
-            </p>
-          </Reveal>
+          <Eyebrow>Design and AI</Eyebrow>
+          <h2 id="design-ai-title" className="mt-3 max-w-[24ch] cl-type-section text-text-primary">
+            Where the two meet in the work.
+          </h2>
+          <p className="mt-4 max-w-measure cl-type-body text-text-secondary">{about.designAndAi}</p>
         </Container>
       </Section>
 
-      <Section>
+      <Section labelledBy="experience-title" className="border-t border-border-subtle">
         <Container>
-          <Reveal>
-            <Eyebrow>The practice</Eyebrow>
-          </Reveal>
-          <dl className="mt-8 grid gap-6 md:grid-cols-4">
-            {about.practice.map((p, i) => (
-              <Reveal
-                key={p.title}
-                index={i}
-                className="border-t border-border-hairline pt-5"
-              >
-                <dt className="text-h5 font-semibold text-text-primary">
-                  {p.title}
-                </dt>
-                <dd className="mt-2 text-small text-text-secondary">
-                  {p.body}
-                </dd>
-              </Reveal>
-            ))}
-          </dl>
-        </Container>
-      </Section>
-
-      <Section>
-        <Container>
-          <div className="grid gap-12 md:grid-cols-2">
-            <Reveal>
-              <Eyebrow>Journey</Eyebrow>
-              <ol className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-3">
-                {about.journey.map((step, i) => (
-                  <li key={step} className="flex items-center gap-3">
-                    <span className="text-medium font-medium text-text-primary">
-                      {step}
-                    </span>
-                    {i < about.journey.length - 1 ? (
-                      <span aria-hidden className="text-text-accent">
-                        →
-                      </span>
+          <Eyebrow>Experience</Eyebrow>
+          <h2 id="experience-title" className="mt-3 cl-type-section text-text-primary">
+            Career
+          </h2>
+          <ol className="mt-10">
+            {experience.map((e, i) => {
+              const related = e.projects.map(projectBySlug).filter((p) => p !== undefined);
+              return (
+                <Reveal
+                  key={e.organisation}
+                  index={i}
+                  as="li"
+                  className="grid gap-2 border-t border-border py-8 last:border-b md:grid-cols-12 md:gap-x-(--cl-grid-gap)"
+                >
+                  <p className="cl-type-caption text-text-secondary tabular-nums md:col-span-3">{e.dates}</p>
+                  <div className="md:col-span-8 md:col-start-5">
+                    <h3 className="cl-type-subheading text-text-primary">{e.role}</h3>
+                    <p className="mt-1 cl-type-ui text-text-secondary">
+                      {e.organisation} · {e.location}
+                    </p>
+                    <p className="mt-3 max-w-measure cl-type-body text-text-secondary">{e.summary}</p>
+                    {related.length ? (
+                      <ul className="mt-2 flex flex-wrap gap-x-6">
+                        {related.map((p) => (
+                          <li key={p.slug}>
+                            <Link href={`/work/${p.slug}`} className={textLink}>
+                              {p.name} case study
+                              <Icon icon={ArrowRight} size={16} />
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
                     ) : null}
-                  </li>
-                ))}
-              </ol>
-
-              <div className="mt-10 border-t border-border-hairline pt-6">
-                <Eyebrow>Education</Eyebrow>
-                <p className="mt-3 text-h5 font-semibold text-text-primary">
-                  {about.education.degree}
-                </p>
-                <p className="mt-1.5 text-medium text-text-secondary">
-                  {about.education.school}
-                  <br />
-                  {about.education.country}
-                </p>
-              </div>
-            </Reveal>
-
-            <Reveal index={1}>
-              <Eyebrow>Availability</Eyebrow>
-              <p className="mt-4 text-medium text-text-secondary">
-                {about.availability.body}
-              </p>
-              <p className="mt-3 text-medium text-text-secondary">
-                {about.availability.note}
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Button asChild>
-                  <Link href="/contact">Start a conversation</Link>
-                </Button>
-                <Button asChild variant="secondary">
-                  <a href={site.resume} target="_blank" rel="noopener">
-                    Résumé
-                  </a>
-                </Button>
-              </div>
-            </Reveal>
-          </div>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </ol>
         </Container>
       </Section>
 
-      <Section>
+      <Section labelledBy="education-title" className="border-t border-border-subtle">
         <Container>
-          <div className="grid gap-10 md:grid-cols-3">
-            {skills.map((group, i) => (
-              <Reveal key={group.heading} index={i}>
-                <h2 className="ds-eyebrow">{group.heading}</h2>
-                <ul className="mt-4 flex flex-col gap-2 text-medium text-text-secondary">
-                  {group.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </Reveal>
+          <Eyebrow>Education</Eyebrow>
+          <h2 id="education-title" className="mt-3 cl-type-section text-text-primary">
+            Education and certification
+          </h2>
+          <ul className="mt-10 grid gap-6 md:grid-cols-3 md:gap-(--cl-grid-gap)">
+            {education.map((e) => (
+              <li key={e.award} className="border-t border-border pt-5">
+                <p className="cl-type-caption text-text-secondary tabular-nums">{e.date}</p>
+                <h3 className="mt-2 cl-type-ui text-text-primary">{e.award}</h3>
+                <p className="mt-1 cl-type-caption text-text-secondary">
+                  {"location" in e ? `${e.institution}, ${e.location}` : e.institution}
+                </p>
+              </li>
             ))}
+          </ul>
+        </Container>
+      </Section>
+
+      <Section labelledBy="skills-title" className="border-t border-border-subtle">
+        <Container>
+          <Eyebrow>Skills in context</Eyebrow>
+          <h2 id="skills-title" className="mt-3 cl-type-section text-text-primary">
+            Where each tool was used
+          </h2>
+          <div role="region" aria-labelledby="skills-title" tabIndex={0} className="mt-8 max-w-full overflow-x-auto">
+            <table className="w-full border-collapse text-left cl-type-caption">
+              <thead>
+                <tr>
+                  <th scope="col" className="border-b border-border py-3 pr-6 font-semibold text-text-primary">
+                    Project
+                  </th>
+                  <th scope="col" className="border-b border-border py-3 font-semibold text-text-primary">
+                    Tools
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {publishedProjects
+                  .filter((p) => p.tools?.length)
+                  .map((p) => (
+                    <tr key={p.slug}>
+                      <th scope="row" className="border-b border-border py-3 pr-6 align-top font-normal">
+                        <Link href={`/work/${p.slug}`} className="text-brand underline underline-offset-2 hover:text-brand-hover">
+                          {p.name}
+                        </Link>
+                      </th>
+                      <td className="border-b border-border py-3 align-top text-text-secondary">
+                        {p.tools?.join(", ")}
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
           </div>
         </Container>
       </Section>

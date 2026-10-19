@@ -18,8 +18,7 @@ export const site = {
   linkedin:
     "https://www.linkedin.com/in/chukwuebuka-onyemelukwe-43b751177/",
   github: "https://github.com/Chukwuebukadotme",
-  /** TODO — replace with the real Cal.com handle. */
-  calcom: "https://cal.com/TODO",
+  calcom: "https://cal.com/chukwuebuka-studio",
   resume: "/uploads/Chukwuebuka_CV_.docx.pdf",
   location: "United Kingdom",
   /** Stated once and reused wherever availability appears. */
@@ -34,13 +33,11 @@ export const hero = {
   body: "I combine product thinking, interface design and engineering to build fast, usable and durable websites, applications and AI systems.",
 } as const;
 
+/** C15: hiring and project enquiries stay distinct; everything else is general. */
 export const enquiryOptions = [
-  "Hiring / Career Opportunity",
-  "Digital Product",
-  "Website",
-  "AI & Automation",
-  "Product Design",
-  "Other",
+  "Hiring",
+  "Product collaboration",
+  "General enquiry",
 ] as const;
 
 export type EnquiryOption = (typeof enquiryOptions)[number];
@@ -122,71 +119,19 @@ export const education = [
   },
 ] as const;
 
-export const skills = [
-  {
-    heading: "Capabilities",
-    items: [
-      "Product research",
-      "Product design",
-      "UI/UX",
-      "Design engineering",
-      "Product engineering",
-      "AI engineering",
-      "Full-stack development",
-      "AI automation",
-    ],
-  },
-  {
-    heading: "Technology",
-    items: [
-      "Next.js",
-      "TypeScript",
-      "Python",
-      "FastAPI",
-      "Supabase",
-      "APIs",
-      "Cloud infrastructure",
-    ],
-  },
-  {
-    heading: "Tools",
-    items: [
-      "Figma",
-      "Webflow",
-      "Claude",
-      "ChatGPT / Codex",
-      "GitHub",
-      "Vercel",
-      "n8n",
-      "Google AI Studio",
-      "Microsoft 365",
-    ],
-  },
-] as const;
-
 export const about = {
-  eyebrow: "About CO",
-  title: "Designer. Engineer. Product thinker.",
   intro:
     "I work at the intersection of design, engineering and product, taking complicated problems and turning them into digital systems that are useful, understandable and durable.",
-  markTitle: ["Making", "systems", "better."],
-  questionLead: "Different disciplines. Same question.",
-  question: "How can this work better?",
   body: "Curiosity has consistently pushed me across disciplines. Design helps me understand how people experience a system. Engineering helps me understand how it works. Artificial intelligence expands what that system can do. Product thinking keeps the work connected to a real problem.",
+  /** Design and AI meet in specific decisions, so this names them. */
+  designAndAi:
+    "In SiteResolve, AI drafts a defect’s title and category from the photograph, and the reporter edits or discards it, so a person stays responsible for the record. In my MSc research I compared eight models under one protocol and reported where the most novel of them fell short, because a design decision is only as good as the evidence behind it.",
   practice: [
     { title: "Design", body: "Understand and shape the experience." },
     { title: "Engineering", body: "Make the experience real and reliable." },
     { title: "Intelligence", body: "Make the system more capable." },
     { title: "Product", body: "Make sure the right problem is being solved." },
   ],
-  journey: ["Design", "Product", "Engineering", "Artificial intelligence"],
-  education: {
-    degree: "MSc Artificial Intelligence",
-    school: "Nottingham Trent University",
-    country: "United Kingdom",
-  },
-  availability: {
-    body: "Based in the UK and open to permanent roles across Design Engineering, Product Engineering and AI Engineering.",
-    note: "Available for selected global remote collaborations.",
-  },
+  availability:
+    "Open to permanent roles across the UK in design engineering, product engineering and AI engineering, and to selected product collaborations.",
 } as const;

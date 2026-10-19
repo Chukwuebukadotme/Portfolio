@@ -86,9 +86,17 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <p className="mt-10 border-t border-text-inverse/15 pt-6 cl-type-caption text-text-inverse-secondary">
-          © {year} {site.name}
-        </p>
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-t border-text-inverse/15 pt-4 cl-type-caption text-text-inverse-secondary">
+          <p>
+            © {year} {site.name}
+          </p>
+          <Link
+            href="/privacy"
+            className="inline-flex min-h-11 items-center text-text-inverse-secondary underline underline-offset-2 hover:text-text-inverse"
+          >
+            Privacy
+          </Link>
+        </div>
 
         {/* The first name, spanning the plate and cropped by its bottom edge.
             SVG text with a fixed textLength fills the width at any viewport. */}

@@ -19,10 +19,10 @@ const esc = (v: string) =>
 
 /** Wraps a body in the minimal shell that renders consistently across clients. */
 function shell(inner: string) {
-  return `<!doctype html><html><body style="margin:0;padding:24px;background:#f4f6f8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#0A0F14;">
-<div style="max-width:560px;margin:0 auto;background:#ffffff;border:1px solid #e3e9ee;border-radius:10px;padding:28px;">
+  return `<!doctype html><html><body style="margin:0;padding:24px;background:#F5F7FB;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#141820;">
+<div style="max-width:560px;margin:0 auto;background:#ffffff;border:1px solid #DCE3ED;border-radius:10px;padding:28px;">
 ${inner}
-<p style="margin:28px 0 0;padding-top:18px;border-top:1px solid #e3e9ee;font-size:12px;color:#66798a;">
+<p style="margin:28px 0 0;padding-top:18px;border-top:1px solid #DCE3ED;font-size:12px;color:#596579;">
 Chukwuebuka Onyemelukwe · Design Engineer × AI Engineer · ${site.location}
 </p>
 </div></body></html>`;
@@ -52,16 +52,16 @@ export function notification(input: ContactInput) {
   ].join("\n");
 
   const html = shell(
-    `<p style="margin:0 0 18px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#66798a;">New enquiry</p>
+    `<p style="margin:0 0 18px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#596579;">New enquiry</p>
 <table style="width:100%;border-collapse:collapse;font-size:14px;">
 ${rows
   .map(
     ([k, v]) =>
-      `<tr><td style="padding:6px 0;color:#66798a;width:130px;vertical-align:top;">${esc(k)}</td><td style="padding:6px 0;">${esc(v)}</td></tr>`,
+      `<tr><td style="padding:6px 0;color:#596579;width:130px;vertical-align:top;">${esc(k)}</td><td style="padding:6px 0;">${esc(v)}</td></tr>`,
   )
   .join("")}
 </table>
-<p style="margin:22px 0 6px;color:#66798a;font-size:14px;">Message</p>
+<p style="margin:22px 0 6px;color:#596579;font-size:14px;">Message</p>
 <p style="margin:0;font-size:15px;line-height:1.6;white-space:pre-wrap;">${esc(input.message)}</p>`,
   );
 
@@ -75,7 +75,7 @@ export function confirmation(input: ContactInput) {
   const text = [
     `Hi ${input.name},`,
     "",
-    "Thanks for getting in touch. Your message has reached me and I'll come back to you shortly.",
+    "Thanks for getting in touch. Your message has reached me.",
     "",
     "Here is a copy for your records:",
     "",
@@ -92,19 +92,19 @@ export function confirmation(input: ContactInput) {
 
   const html = shell(
     `<p style="margin:0 0 16px;font-size:16px;">Hi ${esc(input.name)},</p>
-<p style="margin:0 0 22px;font-size:15px;line-height:1.6;">Thanks for getting in touch. Your message has reached me and I&rsquo;ll come back to you shortly.</p>
-<p style="margin:0 0 10px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#66798a;">A copy for your records</p>
+<p style="margin:0 0 22px;font-size:15px;line-height:1.6;">Thanks for getting in touch. Your message has reached me.</p>
+<p style="margin:0 0 10px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#596579;">A copy for your records</p>
 <table style="width:100%;border-collapse:collapse;font-size:14px;">
 ${rows
   .map(
     ([k, v]) =>
-      `<tr><td style="padding:6px 0;color:#66798a;width:130px;vertical-align:top;">${esc(k)}</td><td style="padding:6px 0;">${esc(v)}</td></tr>`,
+      `<tr><td style="padding:6px 0;color:#596579;width:130px;vertical-align:top;">${esc(k)}</td><td style="padding:6px 0;">${esc(v)}</td></tr>`,
   )
   .join("")}
 </table>
-<p style="margin:22px 0 6px;color:#66798a;font-size:14px;">Message</p>
+<p style="margin:22px 0 6px;color:#596579;font-size:14px;">Message</p>
 <p style="margin:0;font-size:15px;line-height:1.6;white-space:pre-wrap;">${esc(input.message)}</p>
-<p style="margin:22px 0 0;font-size:13px;color:#66798a;">Replies to this email reach me directly, so feel free to just hit reply.</p>`,
+<p style="margin:22px 0 0;font-size:13px;color:#596579;">Replies to this email reach me directly, so feel free to just hit reply.</p>`,
   );
 
   return {

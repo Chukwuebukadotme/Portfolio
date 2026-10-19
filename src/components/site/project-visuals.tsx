@@ -136,7 +136,7 @@ function Components() {
               <span
                 key={k}
                 className={cn(
-                  "items-center justify-between border-t border-border-hairline pt-[4%] text-[0.75rem] @md:text-[0.875rem]",
+                  "items-center justify-between border-t border-border-subtle pt-[4%] text-[0.75rem] @md:text-[0.875rem]",
                   i === 0 ? "flex" : "hidden @md:flex",
                 )}
               >

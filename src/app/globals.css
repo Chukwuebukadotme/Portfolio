@@ -4,20 +4,6 @@
    build_foundations.py (`npm run tokens`). Never edit it by hand. */
 @import "../styles/cobalt-light.css";
 
-/* Transitional. The previous system's variables and utilities, re-pointed at
-   Cobalt Light so pages not yet rebuilt render in the new palette and type.
-   Removed once every route uses Cobalt utilities directly. */
-@import "../styles/ds.css" layer(base);
-@import "../styles/legacy-bridge.css";
-
-@layer base {
-  /* Anchors rendered as controls carry their own colour and no underline;
-     prose links keep the underline the spec requires. */
-  a[data-slot="button"] {
-    text-decoration-line: none;
-  }
-}
-
 /* Scroll reveal. Elements start displaced and settle once observed;
    with reduced motion they are simply present. */
 @media (prefers-reduced-motion: no-preference) {
@@ -35,13 +21,6 @@
     transition:
       opacity var(--cl-motion-duration-enter) var(--cl-motion-ease-enter) var(--reveal-delay, 0ms),
       transform var(--cl-motion-duration-enter) var(--cl-motion-ease-enter) var(--reveal-delay, 0ms);
-  }
-}
-
-/* Selected Work rows alternate text and artwork by visible position. */
-@media (min-width: 48rem) {
-  .project-list > :nth-child(even) [data-project-text] {
-    order: 2;
   }
 }
 

@@ -40,4 +40,6 @@ export type ContactState = {
   message?: string;
   /** Field-level messages, keyed by field name. */
   errors?: Partial<Record<keyof ContactInput, string>>;
+  /** What was submitted, returned on failure so the form never loses it. */
+  values?: Partial<Record<keyof ContactInput, string>>;
 };

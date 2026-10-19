@@ -17,7 +17,7 @@ export function HashRedirect() {
 
     const path = hash.slice(1);
     // Only follow paths this site actually serves.
-    if (!/^\/(work(\/[a-z0-9-]+)?|about|contact)?$/.test(path)) return;
+    if (!/^\/(work(\/[a-z0-9-]+)?|about|contact|privacy)?$/.test(path)) return;
 
     router.replace(path === "/" ? "/" : path);
   }, [router]);

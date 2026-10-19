@@ -22,8 +22,11 @@ import {
  *
  * With no API key configured the enquiry is logged instead, which keeps local
  * development working without credentials.
+ *
+ * Resolves to whether the sender's copy went out, so the success message only
+ * mentions a copy that was actually sent.
  */
-async function deliver(input: ContactInput): Promise<void> {
+async function deliver(input: ContactInput): Promise<boolean> {
   const key = process.env.RESEND_API_KEY;
 
   const from =
@@ -37,7 +40,7 @@ async function deliver(input: ContactInput): Promise<void> {
     console.info(
       `[contact] no RESEND_API_KEY set; enquiry for ${to}\n${note.text}`,
     );
-    return;
+    return false;
   }
 
   const { Resend } = await import("resend");
@@ -70,9 +73,12 @@ async function deliver(input: ContactInput): Promise<void> {
     });
     if (reply.error) {
       console.error("[contact] confirmation failed", reply.error);
+      return false;
     }
+    return true;
   } catch (error) {
     console.error("[contact] confirmation threw", error);
+    return false;
   }
 }
 
@@ -80,16 +86,25 @@ export async function submitContact(
   _prev: ContactState,
   formData: FormData,
 ): Promise<ContactState> {
-  const parsed = contactSchema.safeParse({
-    name: formData.get("name"),
-    email: formData.get("email"),
-    company: formData.get("company"),
-    type: formData.get("type"),
-    message: formData.get("message"),
-    timeline: formData.get("timeline"),
-    budget: formData.get("budget"),
-    website: formData.get("website"),
-  });
+  // A field the form did not render (timeline and budget appear only for
+  // product collaborations) is absent, and absent means empty, not invalid.
+  const get = (name: keyof ContactInput) => formData.get(name) ?? undefined;
+  const submitted = {
+    name: get("name"),
+    email: get("email"),
+    company: get("company"),
+    type: get("type"),
+    message: get("message"),
+    timeline: get("timeline"),
+    budget: get("budget"),
+    website: get("website"),
+  };
+  const parsed = contactSchema.safeParse(submitted);
+
+  // Echoed back on any failure so the form can restore every field.
+  const values = Object.fromEntries(
+    Object.entries(submitted).map(([k, v]) => [k, typeof v === "string" ? v : ""]),
+  ) as ContactState["values"];
 
   if (!parsed.success) {
     const errors: ContactState["errors"] = {};
@@ -99,28 +114,35 @@ export async function submitContact(
     }
     return {
       status: "error",
-      message: "Please check the highlighted fields.",
+      message: "Some fields need attention before this can be sent.",
       errors,
+      values,
     };
   }
 
   // A filled honeypot is a bot. Answer as though it worked; do not deliver.
   if (parsed.data.website) {
-    return { status: "success", message: "Thanks, message received." };
+    return { status: "success", message: "Your message has been sent." };
   }
 
+  let copied: boolean;
   try {
-    await deliver(parsed.data);
+    copied = await deliver(parsed.data);
   } catch (error) {
     console.error("[contact] delivery failed", error);
     return {
       status: "error",
-      message: `Something went wrong sending that. Email ${site.contactEmail} directly and it will reach me.`,
+      message: `That message didn’t send. Everything you wrote is still here, so you can try again, or email ${site.contactEmail} directly.`,
+      values,
     };
   }
 
+  // C16: success is reported only once the delivery service has accepted the
+  // message, and says no more than that.
   return {
     status: "success",
-    message: "Thanks, message received. I’ll come back to you shortly.",
+    message: copied
+      ? `Your message has been sent. A copy is on its way to ${parsed.data.email}.`
+      : "Your message has been sent.",
   };
 }
