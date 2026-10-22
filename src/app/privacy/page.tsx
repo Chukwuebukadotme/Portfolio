@@ -15,8 +15,9 @@ const link = "text-brand underline underline-offset-2 hover:text-brand-hover";
 
 /**
  * States only what the site's code and hosting actually do: the form's fields,
- * delivery through Resend to an inbox, the sender's copy, no database, no
- * cookies or analytics, self-hosted fonts and hosting on Vercel. It names no
+ * delivery through Resend, forwarding by ImprovMX, replies through Brevo, the
+ * sender's copy, no database, no cookies or analytics, self-hosted fonts and
+ * hosting on Vercel. It names no
  * retention period, because none has been set.
  */
 export default function PrivacyPage() {
@@ -27,7 +28,7 @@ export default function PrivacyPage() {
         <h1 id="privacy-title" className="mt-3 cl-type-page text-text-primary">
           How your details are handled
         </h1>
-        <p className="mt-4 cl-type-caption text-text-secondary">Last updated 19 October 2026</p>
+        <p className="mt-4 cl-type-caption text-text-secondary">Last updated 22 October 2026</p>
 
         <div className="mt-10 flex max-w-measure flex-col gap-8 cl-type-body text-text-secondary">
           <div>
@@ -42,13 +43,23 @@ export default function PrivacyPage() {
           <div>
             <h2 className="cl-type-subheading text-text-primary">What happens when you send it</h2>
             <p className="mt-3">
-              The form sends your message by email to {site.name}, using{" "}
+              The form sends your message by email to {site.contactEmail},
+              using{" "}
               <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className={link}>
                 Resend<span className="sr-only"> privacy policy (opens in a new tab)</span>
               </a>
-              , an email delivery service. A copy is emailed to the address
-              you entered so you have a record of what you sent. This site has
-              no database: messages are not stored on the website itself.
+              , an email delivery service. Mail to that address is forwarded
+              to {site.name}’s inbox by{" "}
+              <a href="https://improvmx.com/privacy/" target="_blank" rel="noopener noreferrer" className={link}>
+                ImprovMX<span className="sr-only"> privacy policy (opens in a new tab)</span>
+              </a>
+              , and replies are sent through{" "}
+              <a href="https://www.brevo.com/legal/privacypolicy/" target="_blank" rel="noopener noreferrer" className={link}>
+                Brevo<span className="sr-only"> privacy policy (opens in a new tab)</span>
+              </a>
+              . A copy is emailed to the address you entered so you have a
+              record of what you sent. This site has no database: messages are
+              not stored on the website itself.
             </p>
           </div>
 

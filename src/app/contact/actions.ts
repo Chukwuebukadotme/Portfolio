@@ -20,8 +20,15 @@ import {
  * it is logged and the submission still reports success rather than telling
  * someone their message did not arrive when it did.
  *
+ * Addresses. The enquiry goes to the public hello@ address, which ImprovMX
+ * forwards to Gmail; Gmail then sends replies as hello@ (through Brevo), so
+ * the personal inbox is never shown to anyone. It comes from a separate
+ * enquiries@ address so Gmail does not file it as mail from one of its own
+ * send-as aliases. The sender's copy comes from, and replies to, hello@.
+ *
  * With no API key configured the enquiry is logged instead, which keeps local
- * development working without credentials.
+ * development working without credentials. On Vercel a missing key is a
+ * failure, so a deployment can never report "sent" for mail that went nowhere.
  *
  * Resolves to whether the sender's copy went out, so the success message only
  * mentions a copy that was actually sent.
@@ -31,12 +38,18 @@ async function deliver(input: ContactInput): Promise<boolean> {
 
   const from =
     process.env.CONTACT_FROM ??
-    "Chukwuebuka Onyemelukwe <hello@chukwuebukaonyemelukwe.com>";
-  const to = process.env.CONTACT_TO ?? site.email;
+    `${site.name} <${site.contactEmail}>`;
+  const notifyFrom =
+    process.env.CONTACT_NOTIFY_FROM ??
+    `Website enquiries <enquiries@${site.contactEmail.split("@")[1]}>`;
+  const to = process.env.CONTACT_TO ?? site.contactEmail;
 
   const note = notification(input);
 
   if (!key) {
+    if (process.env.VERCEL_ENV) {
+      throw new Error("RESEND_API_KEY is not set for this deployment");
+    }
     console.info(
       `[contact] no RESEND_API_KEY set; enquiry for ${to}\n${note.text}`,
     );
@@ -48,7 +61,7 @@ async function deliver(input: ContactInput): Promise<boolean> {
 
   // The enquiry itself. replyTo means replying in the inbox goes to the sender.
   const sent = await resend.emails.send({
-    from,
+    from: notifyFrom,
     to,
     replyTo: input.email,
     subject: note.subject,
@@ -66,7 +79,7 @@ async function deliver(input: ContactInput): Promise<boolean> {
     const reply = await resend.emails.send({
       from,
       to: input.email,
-      replyTo: site.email,
+      replyTo: site.contactEmail,
       subject: ack.subject,
       text: ack.text,
       html: ack.html,

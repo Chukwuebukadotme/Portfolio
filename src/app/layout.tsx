@@ -28,7 +28,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://chukwuebuka.dev"),
+  metadataBase: new URL("https://chukwuebukaonyemelukwe.com"),
   title: {
     default: `${site.name}, ${site.role}`,
     template: `%s | ${site.name}`,

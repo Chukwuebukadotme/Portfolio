@@ -10,11 +10,12 @@ export const site = {
   name: "Chukwuebuka Onyemelukwe",
   initials: "CO",
   role: "Design Engineer × AI Engineer",
-  /** Shown publicly (footer, contact page, email signatures). Forwards to `email`. */
+  /**
+   * The one public address: shown on the site, where enquiries are sent and
+   * where replies route. ImprovMX forwards it to the Gmail inbox, which sends
+   * as this address through Brevo, so the personal address stays private.
+   */
   contactEmail: "hello@chukwuebukaonyemelukwe.com",
-  /** Where enquiries actually land and where replies route — kept off the
-   *  public forwarder so delivery never depends on it. */
-  email: "chukwuebukaspad@gmail.com",
   linkedin:
     "https://www.linkedin.com/in/chukwuebuka-onyemelukwe-43b751177/",
   github: "https://github.com/Chukwuebukadotme",
