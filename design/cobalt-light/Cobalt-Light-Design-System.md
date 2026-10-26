@@ -671,6 +671,7 @@ Reference pages were researched during 18-19 October 2026. Public Mobbin listing
 | Home pinning | Optional single desktop stage | Prototype shows useful explanation and acceptable input/performance |
 | Full dark theme | Outside v1 | Separate palette, component-state and chart checks are completed |
 | Career details | Actual supplied records only | Owner supplies confirmed history |
+| Experience sections | Omitted from Home and About at the owner's request (2026-10-26) | Owner asks for career history to return |
 | Adoption / research metrics | Source-backed claims only | A newer authoritative result is available |
 
 ## 20 · Handoff instruction

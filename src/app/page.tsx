@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, BrainCircuit, CodeXml, PenTool, type LucideIcon } from "lucide-react";
 
-import { CareerRuler } from "@/components/site/career-ruler";
 import { HeroNetwork } from "@/components/site/hero-network";
 import { Icon } from "@/components/site/icon";
 import { Container, Eyebrow, Section } from "@/components/site/primitives";
@@ -23,9 +22,10 @@ const textLink =
   "inline-flex min-h-11 items-center gap-2 cl-type-ui text-brand no-underline transition-colors duration-(--cl-motion-duration-micro) ease-standard hover:text-brand-hover";
 
 /**
- * Home, in the spec's order: identity and actions, selected work, capabilities
- * tied to that work, experience, then contact. Everything renders as static
- * content first; the network art and scroll reveals are enhancements only.
+ * Home: identity and actions, selected work, capabilities tied to that work,
+ * then contact. The spec's experience section is omitted at the owner's
+ * request (see its decision register). Everything renders as static content
+ * first; the network art and scroll reveals are enhancements only.
  */
 export default function HomePage() {
   const resume = resumeMeta();
@@ -145,33 +145,6 @@ export default function HomePage() {
               );
             })}
           </ul>
-        </Container>
-      </Section>
-
-      <Section labelledBy="experience-title" className="border-t border-border-subtle">
-        <Container>
-          <div className="max-w-measure">
-            <Eyebrow>Experience</Eyebrow>
-            <h2 id="experience-title" className="mt-3 cl-type-section text-text-primary">
-              From plant dashboards to AI products.
-            </h2>
-            <p className="mt-4 cl-type-body text-text-secondary">
-              I trained in electronic and computer engineering, built
-              operational dashboards at Nigeria LNG, then moved into AI product
-              engineering, first at Technoville and now as a freelancer. In
-              2026 I completed an MSc in Artificial Intelligence at Nottingham
-              Trent University with Distinction.
-            </p>
-          </div>
-
-          <Reveal className="mt-10">
-            <CareerRuler />
-          </Reveal>
-
-          <Link href="/about" className={`mt-6 ${textLink}`}>
-            More about me
-            <Icon icon={ArrowRight} />
-          </Link>
         </Container>
       </Section>
 

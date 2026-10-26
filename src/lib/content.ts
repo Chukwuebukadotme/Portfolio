@@ -65,66 +65,23 @@ export const capabilities = [
   },
 ] as const;
 
-/**
- * Career history, from the CV supplied in October 2026. The single source for
- * Home's milestones and the About timeline; add entries only from confirmed
- * records. `start` and `end` are year-month; a missing `end` means present.
- */
-export const experience = [
-  {
-    role: "AI Product Engineer",
-    organisation: "Freelance",
-    location: "United Kingdom, remote",
-    dates: "Jan 2025 – present",
-    start: "2025-01",
-    summary:
-      "Designed and engineered three digital products across fintech, construction technology and healthcare, from discovery and UX through architecture, implementation, testing and launch. Created Make It Responsive.",
-    projects: ["siteresolve", "make-it-responsive"],
-  },
-  {
-    role: "AI Product Engineer (contract)",
-    organisation: "Technoville Innovation Nigeria",
-    location: "Nigeria",
-    dates: "Sep 2023 – Sep 2025",
-    start: "2023-09",
-    end: "2025-09",
-    summary:
-      "AI product engineering and product design in a cross-functional team, prototyping AI features. Built an AI product that drafts proposals for clients and sponsors, and trained more than ten colleagues on AI workflows.",
-    projects: [],
-  },
-  {
-    role: "Process Control Engineer and Data Analyst Intern",
-    organisation: "Nigeria LNG Limited",
-    location: "Bonny, Nigeria",
-    dates: "Dec 2021 – Jul 2022",
-    start: "2021-12",
-    end: "2022-07",
-    summary:
-      "Built more than 50 AVEVA PI Vision dashboards that gave over 1,000 employees browser access to real-time plant KPIs, sensor readings and critical control status, replacing checks that needed a visit to the plant.",
-    projects: [],
-  },
-] as const;
-
 export const education = [
   {
     award: "MSc Artificial Intelligence, Distinction",
     institution: "Nottingham Trent University",
     location: "United Kingdom",
     date: "Sep 2026",
-    completed: "2026-09",
   },
   {
     award: "BEng Electronic and Computer Engineering",
     institution: "University of Nigeria, Nsukka",
     location: "Nigeria",
     date: "Aug 2023",
-    completed: "2023-08",
   },
   {
     award: "IBM AI Engineering Professional Certificate",
     institution: "IBM",
     date: "Nov 2021",
-    completed: "2021-11",
   },
 ] as const;
 

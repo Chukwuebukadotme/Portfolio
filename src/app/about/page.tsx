@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
-import { Icon } from "@/components/site/icon";
 import { Container, Eyebrow, Section } from "@/components/site/primitives";
-import { Reveal } from "@/components/site/reveal";
 import { Button } from "@/components/ui/button";
-import { about, education, experience, site } from "@/lib/content";
-import { projectBySlug, publishedProjects } from "@/lib/projects";
+import { about, education, site } from "@/lib/content";
+import { publishedProjects } from "@/lib/projects";
 import { resumeMeta } from "@/lib/resume";
 
 export const metadata: Metadata = {
@@ -15,13 +12,11 @@ export const metadata: Metadata = {
   description: about.intro,
 };
 
-const textLink =
-  "inline-flex min-h-11 items-center gap-2 cl-type-ui text-brand no-underline transition-colors duration-(--cl-motion-duration-micro) ease-standard hover:text-brand-hover";
-
 /**
- * About: the person, a dated career from confirmed records only, education,
- * how design and AI meet in the work, and a skills-to-evidence table built
- * from the published projects rather than a free-standing technology list.
+ * About: the person, how design and AI meet in the work, education, and a
+ * skills-to-evidence table built from the published projects rather than a
+ * free-standing technology list. The career list is omitted at the owner's
+ * request (see the spec's decision register).
  */
 export default function AboutPage() {
   const resume = resumeMeta();
@@ -74,49 +69,6 @@ export default function AboutPage() {
             Where the two meet in the work.
           </h2>
           <p className="mt-4 max-w-measure cl-type-body text-text-secondary">{about.designAndAi}</p>
-        </Container>
-      </Section>
-
-      <Section labelledBy="experience-title" className="border-t border-border-subtle">
-        <Container>
-          <Eyebrow>Experience</Eyebrow>
-          <h2 id="experience-title" className="mt-3 cl-type-section text-text-primary">
-            Career
-          </h2>
-          <ol className="mt-10">
-            {experience.map((e, i) => {
-              const related = e.projects.map(projectBySlug).filter((p) => p !== undefined);
-              return (
-                <Reveal
-                  key={e.organisation}
-                  index={i}
-                  as="li"
-                  className="grid gap-2 border-t border-border py-8 last:border-b md:grid-cols-12 md:gap-x-(--cl-grid-gap)"
-                >
-                  <p className="cl-type-caption text-text-secondary tabular-nums md:col-span-3">{e.dates}</p>
-                  <div className="md:col-span-8 md:col-start-5">
-                    <h3 className="cl-type-subheading text-text-primary">{e.role}</h3>
-                    <p className="mt-1 cl-type-ui text-text-secondary">
-                      {e.organisation} · {e.location}
-                    </p>
-                    <p className="mt-3 max-w-measure cl-type-body text-text-secondary">{e.summary}</p>
-                    {related.length ? (
-                      <ul className="mt-2 flex flex-wrap gap-x-6">
-                        {related.map((p) => (
-                          <li key={p.slug}>
-                            <Link href={`/work/${p.slug}`} className={textLink}>
-                              {p.name} case study
-                              <Icon icon={ArrowRight} size={16} />
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : null}
-                  </div>
-                </Reveal>
-              );
-            })}
-          </ol>
         </Container>
       </Section>
 
