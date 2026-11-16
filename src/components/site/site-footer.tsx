@@ -3,7 +3,6 @@ import { ArrowUpRight, Mail } from "lucide-react";
 
 import { Icon } from "@/components/site/icon";
 import { site } from "@/lib/content";
-import { resumeMeta } from "@/lib/resume";
 
 const pages = [
   { href: "/work", label: "Work" },
@@ -21,13 +20,12 @@ const link =
 
 /**
  * C20. One inset plate on the inverse palette: a contact invitation with the
- * address visible, the site's routes, résumé and profiles, and the full name
- * in the copyright. The first name set large along the bottom edge is
+ * address visible, the site's routes and profiles, and the full name in the
+ * copyright. The spec's résumé link is omitted: the site publishes no résumé. The first name set large along the bottom edge is
  * decoration only; the readable name is the copyright line.
  */
 export function SiteFooter() {
   const year = new Date().getFullYear();
-  const resume = resumeMeta();
 
   return (
     <footer id="site-footer" className="pb-6 pt-12 md:pt-16">
@@ -72,13 +70,6 @@ export function SiteFooter() {
               ))}
             </ul>
             <ul>
-              <li>
-                <a href={site.resume} target="_blank" rel="noopener" className={link}>
-                  Résumé
-                  <Icon icon={ArrowUpRight} size={16} />
-                  <span className="sr-only">({resume}, opens in a new tab)</span>
-                </a>
-              </li>
               {elsewhere.map((s) => (
                 <li key={s.label}>
                   <a href={s.href} target="_blank" rel="noopener noreferrer" className={link}>

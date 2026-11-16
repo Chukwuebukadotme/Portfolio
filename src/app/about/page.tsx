@@ -5,7 +5,6 @@ import { Container, Eyebrow, Section } from "@/components/site/primitives";
 import { Button } from "@/components/ui/button";
 import { about, education, site } from "@/lib/content";
 import { publishedProjects } from "@/lib/projects";
-import { resumeMeta } from "@/lib/resume";
 
 export const metadata: Metadata = {
   title: "About",
@@ -19,7 +18,6 @@ export const metadata: Metadata = {
  * request (see the spec's decision register).
  */
 export default function AboutPage() {
-  const resume = resumeMeta();
 
   return (
     <>
@@ -36,13 +34,6 @@ export default function AboutPage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg">
                 <Link href="/contact">Get in touch</Link>
-              </Button>
-              <Button asChild size="lg" variant="secondary">
-                <a href={site.resume} target="_blank" rel="noopener">
-                  Résumé
-                  <span className="cl-type-caption text-text-secondary">{resume}</span>
-                  <span className="sr-only">, opens in a new tab</span>
-                </a>
               </Button>
             </div>
             <p className="mt-6 max-w-measure cl-type-caption text-text-secondary">{about.availability}</p>

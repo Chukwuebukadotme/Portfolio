@@ -7,7 +7,6 @@ import { Icon } from "@/components/site/icon";
 import { Container, Eyebrow } from "@/components/site/primitives";
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/content";
-import { resumeMeta } from "@/lib/resume";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -26,12 +25,11 @@ const rowLink =
 /**
  * Contact: every direct contact in one list, with copy on the email row; then
  * the hiring and project routes beside the enquiry form, so choosing a route
- * and writing happen in one view. Email, résumé and LinkedIn all come before
- * the form, and the routes precede it in reading order on every screen.
+ * and writing happen in one view. Email and LinkedIn come before the form,
+ * and the routes precede it in reading order on every screen. The site
+ * publishes no résumé, at the owner's request.
  */
 export default function ContactPage() {
-  const resume = resumeMeta();
-
   return (
     <>
       <section aria-labelledby="contact-title" className="cl-page">
@@ -83,10 +81,10 @@ export default function ContactPage() {
                 permanent roles across the UK.
               </p>
               <Button asChild variant="secondary" className="mt-5">
-                <a href={site.resume} target="_blank" rel="noopener">
-                  Résumé
-                  <span className="cl-type-caption text-text-secondary">{resume}</span>
-                  <span className="sr-only">, opens in a new tab</span>
+                <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
+                  LinkedIn
+                  <Icon icon={ArrowUpRight} size={16} />
+                  <span className="sr-only">profile (opens in a new tab)</span>
                 </a>
               </Button>
             </div>

@@ -9,7 +9,6 @@ import { Reveal } from "@/components/site/reveal";
 import { Button } from "@/components/ui/button";
 import { capabilities, hero, site } from "@/lib/content";
 import { homeProjects, projectBySlug, publishedProjects } from "@/lib/projects";
-import { resumeMeta } from "@/lib/resume";
 
 /** One neutral icon per capability; cobalt stays reserved for actions. */
 const capabilityIcon: Record<(typeof capabilities)[number]["title"], LucideIcon> = {
@@ -28,7 +27,6 @@ const textLink =
  * first; the network art and scroll reveals are enhancements only.
  */
 export default function HomePage() {
-  const resume = resumeMeta();
   const more = publishedProjects.filter((p) => !homeProjects.includes(p));
 
   return (
@@ -59,11 +57,7 @@ export default function HomePage() {
                 <Link href="#selected-work">Selected work</Link>
               </Button>
               <Button asChild size="lg" variant="secondary">
-                <a href={site.resume} target="_blank" rel="noopener">
-                  Résumé
-                  <span className="cl-type-caption text-text-secondary">{resume}</span>
-                  <span className="sr-only">, opens in a new tab</span>
-                </a>
+                <Link href="/contact">Get in touch</Link>
               </Button>
             </div>
           </div>

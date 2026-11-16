@@ -5,7 +5,6 @@ import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 import { HashRedirect } from "@/components/site/hash-redirect";
 import { site } from "@/lib/content";
-import { resumeMeta } from "@/lib/resume";
 
 import "./globals.css";
 
@@ -77,7 +76,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <SiteHeader resumeMeta={resumeMeta()} />
+        <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />
       </body>

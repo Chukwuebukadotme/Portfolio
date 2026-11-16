@@ -16,6 +16,8 @@ const nextConfig: NextConfig = {
       { source: "/work/plantify", destination: "/work", permanent: false },
       { source: "/work/mankela", destination: "/work", permanent: false },
       { source: "/work/salary-benchmark", destination: "/work", permanent: false },
+      // The résumé is no longer published; its old link goes to Contact.
+      { source: "/uploads/Chukwuebuka_CV_.docx.pdf", destination: "/contact", permanent: false },
     ];
   },
 };

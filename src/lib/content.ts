@@ -20,7 +20,6 @@ export const site = {
     "https://www.linkedin.com/in/chukwuebuka-onyemelukwe-43b751177/",
   github: "https://github.com/Chukwuebukadotme",
   calcom: "https://cal.com/chukwuebuka-studio",
-  resume: "/uploads/Chukwuebuka_CV_.docx.pdf",
   location: "United Kingdom",
   /** Stated once and reused wherever availability appears. */
   availability: "UK based · Open to permanent UK roles",

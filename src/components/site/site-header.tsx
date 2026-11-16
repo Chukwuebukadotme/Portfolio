@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 import { Icon } from "@/components/site/icon";
 import { site } from "@/lib/content";
@@ -21,13 +21,13 @@ const shell = "fixed inset-x-0 z-40 cl-container rounded-card border border-bord
 /**
  * C01 floating header and C02 mobile navigation.
  *
- * Desktop: the wordmark and Work / About / Contact / Résumé on one floating
- * bar. Below 768px the links move into a panel opened by one labelled button.
+ * Desktop: the wordmark and Work / About / Contact on one floating bar (the
+ * spec's Résumé link is omitted: the site publishes no résumé). Below 768px the links move into a panel opened by one labelled button.
  * While the panel is open the page behind it is inert and does not scroll,
  * Escape closes it and focus returns to the button; the active route is marked
  * with an underline and aria-current, never with a second primary action.
  */
-export function SiteHeader({ resumeMeta }: { resumeMeta: string }) {
+export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -113,18 +113,6 @@ export function SiteHeader({ resumeMeta }: { resumeMeta: string }) {
                 </Link>
               </li>
             ))}
-            <li>
-              <a
-                href={site.resume}
-                target="_blank"
-                rel="noopener"
-                className="inline-flex min-h-11 items-center gap-1 cl-type-ui text-text-secondary no-underline transition-colors duration-(--cl-motion-duration-micro) ease-standard hover:text-text-primary"
-              >
-                Résumé
-                <Icon icon={ArrowUpRight} size={16} />
-                <span className="sr-only">({resumeMeta}, opens in a new tab)</span>
-              </a>
-            </li>
           </ul>
         </nav>
 
@@ -176,39 +164,20 @@ export function SiteHeader({ resumeMeta }: { resumeMeta: string }) {
         )}
       >
         <ul>
-          {[
-            ...pages.filter((p) => p.href !== "/contact"),
-            { href: site.resume, label: "Résumé" },
-            { href: "/contact", label: "Contact" },
-          ].map((item) => {
-            const row =
-              "flex min-h-14 items-center justify-between gap-3 rounded-control px-3 cl-type-section no-underline hover:bg-bg-subtle";
-            return (
-              <li key={item.href} className="border-b border-border-subtle last:border-b-0">
-                {item.href === site.resume ? (
-                  <a href={item.href} target="_blank" rel="noopener" className={cn(row, "text-text-primary")}>
-                    <span>
-                      {item.label}
-                      <span className="sr-only"> ({resumeMeta}, opens in a new tab)</span>
-                    </span>
-                    <Icon icon={ArrowUpRight} className="text-text-secondary" />
-                  </a>
-                ) : (
-                  <Link
-                    href={item.href}
-                    aria-current={isActive(item.href) ? "page" : undefined}
-                    className={cn(
-                      row,
-                      "text-text-primary underline-offset-[0.3em]",
-                      isActive(item.href) && "underline decoration-brand decoration-2",
-                    )}
-                  >
-                    {item.label}
-                  </Link>
+          {pages.map((item) => (
+            <li key={item.href} className="border-b border-border-subtle last:border-b-0">
+              <Link
+                href={item.href}
+                aria-current={isActive(item.href) ? "page" : undefined}
+                className={cn(
+                  "flex min-h-14 items-center rounded-control px-3 cl-type-section text-text-primary no-underline underline-offset-[0.3em] hover:bg-bg-subtle",
+                  isActive(item.href) && "underline decoration-brand decoration-2",
                 )}
-              </li>
-            );
-          })}
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
         </ul>
         <p className="px-3 pt-4 pb-2 cl-type-caption text-text-secondary">
           {site.availability}
